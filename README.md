@@ -1,18 +1,20 @@
-# **Takım İsmi**
+# **24**
 
-Takım X
+Takım 24
 
 # Ürün İle İlgili Bilgiler
 
 ## Takım Elemanları
 
-- John Doe: Product Owner
-- Jane Doe: Scrum Master
-- Atıl Samancıoğlu: Team Member/Developer
+- Emine COŞKUN: Product Owner
+- Merve Nur Köroğlu: Scrum Master
+- Erdem KALYONCU: Team Member/Developer
+- Mehmet Semih BABACAN: Team Member/Developer
+- Melike Zeynep ÇAKMAKCI: Team Member/Developer
 
 ## Ürün İsmi
 
---Movie App--
+--QR Yemek Uygulaması--
 
 ## Ürün Açıklaması
 
