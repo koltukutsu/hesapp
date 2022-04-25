@@ -29,8 +29,8 @@ Takım 24
 
 ## Hedef Kitle
 
-- Netflix kullanıcıları
-- Prime kullanıcıları
+- Kahveseverler
+- Öğrenciler
 - Sinema severler
 - Dizi severler
 - 15 - 65 yaş arası kullanıcılar
