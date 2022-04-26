@@ -1,30 +1,41 @@
-24
+# **24**
+
 Takım 24
 
-Ürün İle İlgili Bilgiler
+ Ürün İle İlgili Bilgiler
 
-Takım Elemanları
-Emine COŞKUN: Product Owner
-Merve Nur Köroğlu: Scrum Master
-Erdem KALYONCU: Team Member/Developer
-Mehmet Semih BABACAN: Team Member/Developer
-Melike Zeynep ÇAKMAKCI: Team Member/Developer
-Ürün İsmi
+## Takım Elemanları
+
+- Emine COŞKUN: Product Owner
+- Merve Nur Köroğlu: Scrum Master
+- Erdem KALYONCU: Team Member/Developer
+- Mehmet Semih BABACAN: Team Member/Developer
+- Melike Zeynep ÇAKMAKCI: Team Member/Developer
+
+## Ürün İsmi
+
 PayR
 
-Ürün Açıklaması
-PayR uygulamamız ile hem restaurantlara hem de müşterilerine ödeme kolaylığı sunuyoruz. Uygulamamızla birlikte QR kod ile hem sipariş verilebilecek hemde çoklu veya tekli ödeme işlemleri kolayca yapılabilecek.
-Ürün Özellikleri
-Uygulama üzerinden garsonu çağırmadan QR ile sipariş verebilme
-Pos cihazı veya nakit para kullanmadan ödeme yapabilme
-Seçtiğin kadar siparişi ödeyebilme seçeneği
-Hesabı arkadaşlarınla paylaşabilme
-Uygulama üzerinden garsonu çağırabilme
-PayR uygulaması ile anlaşmalı restaurantları görüntüleyebilme
-Hedef Kitle
-Restaurant ve cafeleri kullanan herkes
-Kalabalık arkadaş grupları
-15 - 65 yaş arası kullanıcılar
+## Ürün Açıklaması
+
+- PayR uygulamamız ile hem restaurantlara hem de müşterilerine ödeme kolaylığı sunuyoruz. Uygulamamızla birlikte QR kod ile hem sipariş verilebilecek  hemde çoklu veya tekli ödeme işlemleri kolayca yapılabilecek.
+
+## Ürün Özellikleri
+
+- Uygulama üzerinden garsonu çağırmadan QR ile sipariş verebilme
+- Pos cihazı veya nakit para kullanmadan ödeme yapabilme
+- Seçtiğin kadar siparişi ödeyebilme seçeneği 
+- Hesabı arkadaşlarınla paylaşabilme
+- Uygulama üzerinden garsonu çağırabilme 
+- PayR uygulaması ile anlaşmalı restaurantları görüntüleyebilme
+
+## Hedef Kitle
+
+- Restaurant ve cafeleri kullanan herkes
+- Kalabalık arkadaş grupları
+- 15 - 65 yaş arası kullanıcılar
+
+
 
 ## Product Backlog URL
 
