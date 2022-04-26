@@ -14,11 +14,11 @@ Takım 24
 
 ## Ürün İsmi
 
-PayR
+Hesap
 
 ## Ürün Açıklaması
 
-- PayR uygulamamız ile hem restaurantlara hem de müşterilerine ödeme kolaylığı sunuyoruz. Uygulamamızla birlikte QR kod ile hem sipariş verilebilecek  hemde çoklu veya tekli ödeme işlemleri kolayca yapılabilecek.
+- Hesap uygulamamız ile hem restaurantlara hem de müşterilerine ödeme kolaylığı sunuyoruz. Uygulamamızla birlikte QR kod ile hem sipariş verilebilecek  hemde çoklu veya tekli ödeme işlemleri kolayca yapılabilecek.
 
 ## Ürün Özellikleri
 
@@ -27,7 +27,7 @@ PayR
 - Seçtiğin kadar siparişi ödeyebilme seçeneği 
 - Hesabı arkadaşlarınla paylaşabilme
 - Uygulama üzerinden garsonu çağırabilme 
-- PayR uygulaması ile anlaşmalı restaurantları görüntüleyebilme
+- Hesap uygulaması ile anlaşmalı restaurantları görüntüleyebilme
 
 ## Hedef Kitle
 
