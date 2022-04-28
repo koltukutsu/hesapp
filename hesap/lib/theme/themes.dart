@@ -7,6 +7,6 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  brightness: Brightness.light,
+  brightness: Brightness.dark,
   primaryColor: AppColors.primary,
 );
