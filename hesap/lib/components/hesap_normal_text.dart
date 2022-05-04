@@ -12,14 +12,14 @@ class HesapNormalText extends StatelessWidget {
    */
   const HesapNormalText({
     Key? key,
-    required this.label,
-    this.labelColor = AppColors.primary,
+    required this.text,
+    this.textColor = AppColors.primary,
     this.fontSize = Insets.l,
     this.fontWeight = FontWeight.w700,
   }) : super(key: key);
 
-  final String label;
-  final Color labelColor;
+  final String text;
+  final Color textColor;
   final double fontSize;
   final FontWeight fontWeight;
 
@@ -27,11 +27,11 @@ class HesapNormalText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        label,
+        text,
         style: TextStyle(
           fontFamily: 'Ubuntu',
           fontWeight: fontWeight,
-          color: labelColor,
+          color: textColor,
           fontSize: fontSize,
           letterSpacing: -2,
         ),

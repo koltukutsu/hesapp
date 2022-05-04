@@ -37,8 +37,8 @@ class _SiparisEkran extends State<SiparisEkran> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          HesapNormalText(label: cafeName, fontSize: Insets.l, labelColor: AppColors.primary),
-          HesapTextCard(label: cafeName, )
+          HesapNormalText(text: cafeName, fontSize: Insets.l, textColor: AppColors.primary),
+          HesapTextCard(text: cafeName, fontSize: Insets.xll, textColor: AppColors.lightBackground,)
         ],
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

@@ -1,7 +1,9 @@
 // necessary
 import 'package:flutter/material.dart';
+
 // components
 import 'package:hesap/components/hesap_normal_text.dart';
+
 // theme
 import 'package:hesap/theme/insets.dart';
 import 'package:hesap/theme/colors.dart';
@@ -9,10 +11,11 @@ import 'package:hesap/theme/colors.dart';
 class HesapTextCard extends StatelessWidget {
   const HesapTextCard(
       {Key? key,
-      required this.label,
-      this.labelColor = AppColors.primary,
+      required this.text,
+      this.textColor = AppColors.primary,
       this.fontSize = Insets.l,
       this.fontWeight = FontWeight.w700,
+      this.cardColor = AppColors.primary,
       this.cardHeight = 100,
       this.cardWidth = 200,
       this.marginLeft = 15,
@@ -20,10 +23,12 @@ class HesapTextCard extends StatelessWidget {
       this.marginTop = 15,
       this.marginBottom = 15})
       : super(key: key);
-  final String label;
-  final Color labelColor;
+
+  final String text;
+  final Color textColor;
   final double fontSize;
   final FontWeight fontWeight;
+  final Color cardColor;
   final double cardHeight;
   final double cardWidth;
   final double marginLeft;
@@ -34,7 +39,11 @@ class HesapTextCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: HesapNormalText(label: label),
+      child: HesapNormalText(
+          text: text,
+          textColor: textColor,
+          fontSize: fontSize,
+          fontWeight: fontWeight),
       margin: EdgeInsets.only(
           left: marginLeft,
           top: marginTop,
@@ -43,7 +52,7 @@ class HesapTextCard extends StatelessWidget {
       height: cardHeight,
       width: cardWidth,
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: cardColor,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
