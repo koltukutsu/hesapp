@@ -47,57 +47,59 @@ class UyeOlEkran extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/qr.png"),
-            alignment: Alignment.bottomLeft,
-            fit: BoxFit.none,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/qr.png"),
+              alignment: Alignment.bottomLeft,
+              fit: BoxFit.none,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(Insets.l),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const HesapTextField(
-                label: "Kullanıcı Adı",
-                prefixIcon: Icon(Icons.person_rounded),
-              ),
-              const HesapTextField(
-                label: "E-posta",
-                prefixIcon: Icon(Icons.email_rounded),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const HesapTextField(
-                label: "Telefon",
-                prefixIcon: Icon(Icons.phone_rounded),
-                keyboardType: TextInputType.phone,
-              ),
-              const HesapTextField(
-                label: "Şifre",
-                prefixIcon: Icon(Icons.password_rounded),
-                keyboardType: TextInputType.number,
-                maxLength: 6,
-                obscureText: true,
-              ),
-              const HesapTextField(
-                label: "Şifre (Tekrar)",
-                prefixIcon: Icon(Icons.password_rounded),
-                keyboardType: TextInputType.number,
-                maxLength: 6,
-                obscureText: true,
-              ),
-              Row(
-                children: [
-                  HesapButton(
-                    label: 'Kaydı Tamamla',
-                    filled: true,
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(Insets.l),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const HesapTextField(
+                  label: "Kullanıcı Adı",
+                  prefixIcon: Icon(Icons.person_rounded),
+                ),
+                const HesapTextField(
+                  label: "E-posta",
+                  prefixIcon: Icon(Icons.email_rounded),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const HesapTextField(
+                  label: "Telefon",
+                  prefixIcon: Icon(Icons.phone_rounded),
+                  keyboardType: TextInputType.phone,
+                ),
+                const HesapTextField(
+                  label: "Şifre",
+                  prefixIcon: Icon(Icons.password_rounded),
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                  obscureText: true,
+                ),
+                const HesapTextField(
+                  label: "Şifre (Tekrar)",
+                  prefixIcon: Icon(Icons.password_rounded),
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                  obscureText: true,
+                ),
+                Row(
+                  children: [
+                    HesapButton(
+                      label: 'Kaydı Tamamla',
+                      filled: true,
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

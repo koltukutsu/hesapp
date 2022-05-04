@@ -27,7 +27,9 @@ class GirisEkran extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.close_rounded),
               color: AppColors.gray,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ),
         ],
@@ -96,7 +98,11 @@ class GirisEkran extends StatelessWidget {
                           HesapButton(
                             label: 'Giriş Yap',
                             filled: true,
-                            onPressed: () {},
+                            onPressed: () {
+                              MaterialPageRoute(
+                                builder: (context) => const
+                              )
+                            },
                           ),
                         ],
                       ),
