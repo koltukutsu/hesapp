@@ -22,6 +22,7 @@ class HesapTextCard extends StatelessWidget {
     this.paddingRight = 0.0,
     this.paddingBottom = 0.0,
     this.cardColor = AppColors.primary,
+    this.cardShadowColorOpacity = 0.5,
     this.cardHeight = 100,
     this.cardWidth = 250,
     this.cardCircularTopLeft = 10,
@@ -32,6 +33,10 @@ class HesapTextCard extends StatelessWidget {
     this.marginRight = 15,
     this.marginTop = 15,
     this.marginBottom = 15,
+    this.cardShadowColor = Colors.grey,
+    this.cardSpreadRadius = 5,
+    this.cardBlurRadius = 7,
+    this.cardOffset = const Offset(0, 3),
   }) : super(key: key);
 
   final String text;
@@ -52,6 +57,13 @@ class HesapTextCard extends StatelessWidget {
   final double cardCircularTopRight;
   final double cardCircularBottomLeft;
   final double cardCircularBottomRight;
+
+  final Color cardShadowColor;
+  final double cardShadowColorOpacity;
+  final double cardSpreadRadius;
+  final double cardBlurRadius;
+  final Offset cardOffset;
+
   final double marginLeft;
   final double marginRight;
   final double marginTop;
@@ -87,10 +99,10 @@ class HesapTextCard extends StatelessWidget {
             bottomRight: Radius.circular(cardCircularBottomRight)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3), // changes position of shadow
+            color: cardShadowColor.withOpacity(cardShadowColorOpacity),
+            spreadRadius: cardSpreadRadius,
+            blurRadius: cardBlurRadius,
+            offset: cardOffset, // changes position of shadow
           ),
         ],
       ),
