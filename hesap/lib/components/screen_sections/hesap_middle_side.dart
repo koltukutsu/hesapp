@@ -33,9 +33,9 @@ class HesapMiddleSide extends StatelessWidget {
         HesapTextCard(
           text: firstText,
           fontSize: Insets.l,
-          textColor: AppColors.white,
+          textColor: AppColors.primary,
           textAlignment: Alignment.centerLeft,
-          cardColor: AppColors.primary,
+          cardColor: Colors.grey.shade300,
           cardWidth: 500,
           cardHeight: 40,
           paddingLeft: 15,

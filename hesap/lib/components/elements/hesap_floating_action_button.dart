@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 
 class HesapFloatingActionButton extends StatelessWidget {
-  const HesapFloatingActionButton({Key? key}) : super(key: key);
+  const HesapFloatingActionButton({Key? key, this.icon = Icons.qr_code_scanner})
+      : super(key: key);
+  final IconData icon;
 
   void _floatingActionButtonFuction() {}
 
@@ -12,7 +14,7 @@ class HesapFloatingActionButton extends StatelessWidget {
       onPressed: () {
         _floatingActionButtonFuction();
       },
-      child: const Icon(Icons.qr_code_scanner),
+      child: Icon(icon),
     );
   }
 }
