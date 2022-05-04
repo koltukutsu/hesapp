@@ -1,9 +1,12 @@
+// necessary
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+// pages
+import 'package:hesap/pages/uye_ol_ekran.dart';
+// components
 import 'package:hesap/components/hesap_button.dart';
 import 'package:hesap/components/hesap_text_field.dart';
-import 'package:hesap/pages/uye_ol_ekran.dart';
+// theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
 import 'package:hesap/pages/ana_ekran.dart';

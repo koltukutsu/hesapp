@@ -1,9 +1,14 @@
+// necessary
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// components
 import 'package:hesap/components/hesap_bottom_navigation_bar.dart';
 import 'package:hesap/components/hesap_floating_action_button.dart';
-
+import 'package:hesap/components/hesap_normal_text.dart';
 import 'package:hesap/components/hesap_text_card.dart';
+// theme
+import 'package:hesap/theme/colors.dart';
+import 'package:hesap/theme/insets.dart';
 
 class SiparisEkran extends StatefulWidget {
   const SiparisEkran({Key? key}) : super(key: key);
@@ -32,7 +37,8 @@ class _SiparisEkran extends State<SiparisEkran> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          HesapTextCard(label: cafeName)
+          HesapNormalText(label: cafeName, fontSize: Insets.l, labelColor: AppColors.primary),
+          HesapTextCard(label: cafeName, )
         ],
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

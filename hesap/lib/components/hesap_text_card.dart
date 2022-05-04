@@ -1,12 +1,18 @@
+// necessary
 import 'package:flutter/material.dart';
-
+// components
 import 'package:hesap/components/hesap_normal_text.dart';
+// theme
+import 'package:hesap/theme/insets.dart';
 import 'package:hesap/theme/colors.dart';
 
 class HesapTextCard extends StatelessWidget {
   const HesapTextCard(
       {Key? key,
       required this.label,
+      this.labelColor = AppColors.primary,
+      this.fontSize = Insets.l,
+      this.fontWeight = FontWeight.w700,
       this.cardHeight = 100,
       this.cardWidth = 200,
       this.marginLeft = 15,
@@ -15,6 +21,9 @@ class HesapTextCard extends StatelessWidget {
       this.marginBottom = 15})
       : super(key: key);
   final String label;
+  final Color labelColor;
+  final double fontSize;
+  final FontWeight fontWeight;
   final double cardHeight;
   final double cardWidth;
   final double marginLeft;

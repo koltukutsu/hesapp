@@ -1,6 +1,8 @@
+// necessary
 import 'package:flutter/material.dart';
-
+// pages
 import 'package:hesap/pages/siparis_ekran.dart';
+// theme
 import 'package:hesap/theme/colors.dart';
 
 

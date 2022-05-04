@@ -1,10 +1,12 @@
+// necessary
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hesap/theme/insets.dart';
-
+// components
 import '../components/hesap_button.dart';
 import '../components/hesap_text_field.dart';
 import '../theme/colors.dart';
+// theme
+import 'package:hesap/theme/insets.dart';
 
 class UyeOlEkran extends StatelessWidget {
   const UyeOlEkran({Key? key}) : super(key: key);
