@@ -1,11 +1,13 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 // components
 import 'package:hesap/components/hesap_bottom_navigation_bar.dart';
 import 'package:hesap/components/hesap_floating_action_button.dart';
-import 'package:hesap/components/hesap_normal_text.dart';
-import 'package:hesap/components/hesap_text_card.dart';
+import 'package:hesap/components/hesap_middle_side.dart';
+import 'package:hesap/components/hesap_up_side.dart';
+
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
@@ -36,11 +38,13 @@ class _SiparisEkran extends State<SiparisEkran> {
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
-        children: [
-          HesapNormalText(text: cafeName, fontSize: Insets.l, textColor: AppColors.primary),
-          HesapTextCard(text: cafeName, fontSize: Insets.xll, textColor: AppColors.lightBackground,)
-        ],
-      )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              HesapUpSide(),
+              HesapMiddleSide(),
+            ],
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const HesapFloatingActionButton(),
       bottomNavigationBar: const HesapBottomNavigationBar(),
