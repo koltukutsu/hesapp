@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hesap/components/hesap_bottom_navigation_bar.dart';
 import 'package:hesap/pages/siparis_ekran.dart';
 
 class AnaSayfa extends StatefulWidget {
@@ -19,43 +19,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
         onPressed: () { },
         child: const Icon(Icons.qr_code_scanner),
       ),
-      bottomNavigationBar: BottomAppBar(
-        notchMargin: 4.0,
-        shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed:() {},
-              icon: const Icon(Icons.home),
-              // TODO: IconButton yerine bir widget oluştulup isSelected parametresi verilebilir.
-            ),
-            IconButton(
-              onPressed:() {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SiparisEkran())
-                );
-              },
-              icon: const Icon(Icons.fastfood),
-              // TODO: Uyarı mesajı
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            IconButton(
-              onPressed:() {},
-              icon: const Icon(Icons.room_service),
-              // TODO: Uyarı mesajı
-            ),
-            IconButton(
-              onPressed:() {},
-              icon: const Icon(Icons.person),
-              // TODO: IconButton yerine bir widget oluştulup isSelected parametresi verilebilir.
-            ),
-          ],
-        ),
-
-      ),
+      bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
 }
