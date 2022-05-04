@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // components
-import '../components/hesap_button.dart';
-import '../components/hesap_text_field.dart';
+import '../components/elements/hesap_button.dart';
+import '../components/elements/hesap_text_field.dart';
 import '../theme/colors.dart';
 // theme
 import 'package:hesap/theme/insets.dart';

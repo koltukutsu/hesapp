@@ -1,14 +1,12 @@
 // necessary
 import 'package:flutter/material.dart';
-
 // components
-import 'package:hesap/components/hesap_text_card.dart';
-
+import 'package:hesap/components/elements/hesap_text_card.dart';
+import 'package:hesap/components/elements/hesap_normal_text.dart';
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
 
-import 'hesap_normal_text.dart';
 
 class HesapUpSide extends StatelessWidget {
   const HesapUpSide({

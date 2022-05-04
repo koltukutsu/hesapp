@@ -2,13 +2,14 @@
 import 'package:flutter/material.dart';
 
 // components
-import 'package:hesap/components/hesap_text_card.dart';
+import 'package:hesap/components/elements/hesap_text_card.dart';
 
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
 
 class HesapScreenSection extends StatelessWidget {
+  // TODO: Daha kullanilmadi, gerekmezse silinebilir.
   const HesapScreenSection(
       {Key? key,
       required this.text,

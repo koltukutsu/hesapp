@@ -1,8 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
 // components
-import 'package:hesap/components/hesap_floating_action_button.dart';
-import 'package:hesap/components/hesap_bottom_navigation_bar.dart';
+import 'package:hesap/components/elements/hesap_floating_action_button.dart';
+import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({Key? key}) : super(key: key);
