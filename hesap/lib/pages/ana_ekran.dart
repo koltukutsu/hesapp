@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:hesap/components/hesap_floating_action_button.dart';
 import 'package:hesap/components/hesap_bottom_navigation_bar.dart';
 import 'package:hesap/pages/siparis_ekran.dart';
 
@@ -15,10 +17,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     return Scaffold(
       body: Container(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () { },
-        child: const Icon(Icons.qr_code_scanner),
-      ),
+      floatingActionButton: const HesapFloatingActionButton(),
       bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
