@@ -17,7 +17,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
     return Scaffold(
       body: Container(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const HesapFloatingActionButton(),
+      floatingActionButton: HesapFloatingActionButton(icon: Icons.qr_code_scanner, floatingActionButtonFuction: () {
+      }),
       bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
