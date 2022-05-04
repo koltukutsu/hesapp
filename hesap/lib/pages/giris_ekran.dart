@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:hesap/components/hesap_button.dart';
 import 'package:hesap/components/hesap_text_field.dart';
 import 'package:hesap/pages/uye_ol_ekran.dart';
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
+import 'package:hesap/pages/ana_ekran.dart';
 
 class GirisEkran extends StatelessWidget {
   const GirisEkran({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class GirisEkran extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO: make it a component
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
@@ -99,9 +102,11 @@ class GirisEkran extends StatelessWidget {
                             label: 'Giriş Yap',
                             filled: true,
                             onPressed: () {
-                              MaterialPageRoute(
-                                builder: (context) => const
-                              )
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                  builder: (context) => const AnaSayfa(),
+                                ),
+                              );
                             },
                           ),
                         ],
