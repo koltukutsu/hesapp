@@ -17,7 +17,7 @@ class HesapBottomNavigationBar extends StatelessWidget {
       notchMargin: 4.0,
       shape: const CircularNotchedRectangle(),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
             onPressed: () {},

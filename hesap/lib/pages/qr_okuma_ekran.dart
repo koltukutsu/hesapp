@@ -1,8 +1,10 @@
 // necessary
 import 'package:flutter/material.dart';
-// components
-import 'package:hesap/components/elements/hesap_floating_action_button.dart';
-import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
+import 'package:flutter/services.dart';
+// theme
+import 'package:hesap/theme/colors.dart';
+import 'package:hesap/theme/insets.dart';
+
 
 class QrOkumaEkran extends StatefulWidget {
   const QrOkumaEkran({Key? key}) : super(key: key);
@@ -15,12 +17,21 @@ class _QrOkumaEkran extends State<QrOkumaEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        backgroundColor: AppColors.primary,
+        elevation: 1,
+      ),
       body: Container(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: HesapFloatingActionButton(icon: Icons.home_filled, floatingActionButtonFuction: () {
-        Navigator.of(context).pop();
-      }),
-      bottomNavigationBar: const HesapBottomNavigationBar(),
+
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: HesapFloatingActionButton(icon: Icons.home_filled, floatingActionButtonFuction: () {
+      //   Navigator.of(context).pop();
+      // }),
+      // bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
 }

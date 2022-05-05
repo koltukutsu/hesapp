@@ -45,11 +45,11 @@ class _SiparisEkran extends State<SiparisEkran> {
               HesapMiddleSide(),
             ],
           )),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: HesapFloatingActionButton(icon: Icons.exit_to_app, floatingActionButtonFuction: (){
-        Navigator.pop(context);
-      }),
-      bottomNavigationBar: const HesapBottomNavigationBar(),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: HesapFloatingActionButton(icon: Icons.exit_to_app, floatingActionButtonFuction: (){
+      //   Navigator.pop(context);
+      // }),
+      // bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
 }
