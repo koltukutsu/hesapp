@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 
 // components
+// import 'package:hesap/components/elements/hesap_text_card.dart';
+// import 'package:hesap/components/elements/hesap_normal_text.dart';
+import 'package:hesap/components/elements/hesap_siparis_card.dart';
 import 'package:hesap/components/elements/hesap_text_card.dart';
-import 'package:hesap/components/elements/hesap_normal_text.dart';
-
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
@@ -53,7 +54,7 @@ class HesapMiddleSide extends StatelessWidget {
         ),
         for (var item in corbaCesitleri)
           // TODO: Buraya bir tane daha card ekleyip dekotarif bir hale getirmak lazim
-          HesapTextCard(
+          HesapSiparisCard(
             text: item,
             fontSize: Insets.l,
             textColor: AppColors.darkBackground,
@@ -98,7 +99,7 @@ class HesapMiddleSide extends StatelessWidget {
         ),
         for (var item in makarnaCesitleri)
           // TODO: Buraya bir tane daha card ekleyip dekotarif bir hale getirmak lazim
-          HesapTextCard(
+          HesapSiparisCard(
             text: item,
             fontSize: Insets.l,
             textColor: AppColors.darkBackground,
