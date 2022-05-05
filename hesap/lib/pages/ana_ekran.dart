@@ -9,7 +9,7 @@ import 'package:hesap/pages/ekran4.dart';
 
 // components
 import 'package:hesap/components/elements/hesap_floating_action_button.dart';
-import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
+import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar_KULLANIM_DISI.dart';
 import 'package:hesap/components/screen_sections/hesap_tap_bar_material_widget.dart';
 
 class AnaSayfa extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // components
-import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
+import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar_KULLANIM_DISI.dart';
 import 'package:hesap/components/elements/hesap_floating_action_button.dart';
 import 'package:hesap/components/screen_sections/hesap_middle_side.dart';
 import 'package:hesap/components/screen_sections/hesap_up_side.dart';

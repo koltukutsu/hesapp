@@ -1,10 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
+
 // pages
 import 'package:hesap/pages/siparis_ekran.dart';
-// theme
-import 'package:hesap/theme/colors.dart';
-
 
 class HesapBottomNavigationBar extends StatelessWidget {
   const HesapBottomNavigationBar({
@@ -26,9 +24,8 @@ class HesapBottomNavigationBar extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SiparisEkran())
-              );
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SiparisEkran()));
             },
             icon: const Icon(Icons.fastfood),
             // TODO: Uyarı mesajı
@@ -48,7 +45,6 @@ class HesapBottomNavigationBar extends StatelessWidget {
           ),
         ],
       ),
-
     );
   }
 }
