@@ -13,9 +13,10 @@ class HesapSiparisCard extends StatelessWidget {
   const HesapSiparisCard({
     Key? key,
     required this.text,
-    // required this.imageSiparis,
-    // required this.priceSiparis,
-    // required this.durationSiparis,
+    this.imageSiparisUrl =
+        "https://cdn.yemek.com/mnresize/940/940/uploads/2014/06/mercimek-corbasi-yemekcom.jpg",
+    this.priceSiparis = 20,
+    this.durationSiparis = "10-20",
     this.textColor = AppColors.primary,
     this.fontSize = Insets.l,
     this.textAlignment = Alignment.center,
@@ -44,9 +45,9 @@ class HesapSiparisCard extends StatelessWidget {
 
   final String text;
 
-  // final Image imageSiparis;
-  // final double priceSiparis;
-  // final int durationSiparis;
+  final String imageSiparisUrl;
+  final double priceSiparis;
+  final String durationSiparis;
 
   final Color textColor;
   final Alignment textAlignment;
@@ -80,30 +81,55 @@ class HesapSiparisCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          HesapNormalText(
-            text: text,
-            textColor: textColor,
-            textAlignment: textAlignment,
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            paddingLeft: paddingLeft,
-            paddingTop: paddingTop,
-            paddingRight: paddingRight,
-            paddingBottom: paddingBottom,
+          Padding(
+            padding: const EdgeInsets.only(right: 0.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Image.network(
+                imageSiparisUrl,
+                height: 91,
+                width: 131,
+              ),
+            ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HesapNormalText(text: text, fontSize: Insets.l),
-              HesapNormalText(text: "10dk", fontSize: Insets.m, textColor: AppColors.gray,),
-              HesapNormalText(text: "20 tl", fontSize: Insets.l, textColor: AppColors.darkBackground),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(right: 0.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HesapNormalText(text: text, fontSize: Insets.l, fontWeight: FontWeight.w600,),
+                HesapNormalText(
+                  text: durationSiparis + " dk",
+                  fontSize: Insets.m,
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColors.gray,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                HesapNormalText(
+                  text: priceSiparis.toString() + "  TL",
+                  fontSize: Insets.l,
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColors.magenta,
+                ),
+              ],
+            ),
           ),
-
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.add_box_rounded,
+                  color: AppColors.primary,
+                  size: Insets.x3l,
+                )),
+          ),
         ],
       ),
       margin: EdgeInsets.only(
