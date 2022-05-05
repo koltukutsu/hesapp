@@ -43,6 +43,7 @@ class HesapSiparisCard extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
+
   // final Image imageSiparis;
   // final double priceSiparis;
   // final int durationSiparis;
@@ -95,11 +96,14 @@ class HesapSiparisCard extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HesapNormalText(text: text,fontSize: Insets.m),
-              HesapNormalText(text: text),
+              HesapNormalText(text: text, fontSize: Insets.l),
+              HesapNormalText(text: "10dk", fontSize: Insets.m, textColor: AppColors.gray,),
+              HesapNormalText(text: "20 tl", fontSize: Insets.l, textColor: AppColors.darkBackground),
             ],
           ),
+
         ],
       ),
       margin: EdgeInsets.only(

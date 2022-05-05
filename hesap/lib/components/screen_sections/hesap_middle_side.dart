@@ -64,7 +64,7 @@ class HesapMiddleSide extends StatelessWidget {
             cardWidth: 500,
             cardHeight: 100,
             paddingLeft: 15,
-            marginTop: 1,
+            marginTop: 0,
             marginBottom: 0,
             marginLeft: 0,
             marginRight: 0,
