@@ -50,16 +50,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
   }
   // TODO: FloatingActionButton kismi ayarlanmali
   void onChangedButton(int indexFromFloatingActionButton) {
-    if (indexFromFloatingActionButton == 0){
-      setState(() {
-        index = indexFromFloatingActionButton;
-      });
-    } else {
-      setState( () {
-        index = indexFromFloatingActionButton;
-      }
-      );
-    }
-
+    setState(() {
+      index = 0;
+    });
+    // if (indexFromFloatingActionButton == 0){
+    //   setState(() {
+    //     index = 0;
+    //   });
+    // } else {
+    //   setState( () {
+    //     index = 0;
+    //   }
+    //   );
+    // }
   }
 }
