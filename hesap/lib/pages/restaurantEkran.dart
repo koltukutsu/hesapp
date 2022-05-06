@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // components
 import 'package:hesap/components/elements/hesap_floating_action_button.dart';
+import 'package:hesap/components/elements/hesap_resimli_card.dart';
 // import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
 import 'package:hesap/pages/qr_okuma_ekran.dart';
 import 'package:hesap/theme/colors.dart';
@@ -30,12 +31,7 @@ class _RestaurantEkran extends State<RestaurantEkran> {
             ),
             SliverList(
                 delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                  return const Card(
-                    child: Text(
-                      'Lorem Ipsum Kafe',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                  );
+                  return HesapResimliCard();
                 },
                   childCount: 20,
                 )
@@ -43,14 +39,6 @@ class _RestaurantEkran extends State<RestaurantEkran> {
           ],
         ),
       ),
-      //   floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      //   floatingActionButton: HesapFloatingActionButton(
-      //       icon: Icons.qr_code_scanner,
-      //       floatingActionButtonFuction: () {
-      //         Navigator.of(context).push(
-      //             MaterialPageRoute(builder: (context) => const QrOkumaEkran()));
-      //       }),
-      //   bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
 }

@@ -1,7 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
-import 'package:hesap/pages/ekran1.dart';
 // pages
+import 'package:hesap/pages/restaurantEkran.dart';
 import 'package:hesap/pages/qr_okuma_ekran.dart';
 import 'package:hesap/pages/siparis_ekran.dart';
 import 'package:hesap/pages/ekran3.dart';
@@ -23,7 +23,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
   int index = 0;
 
   final pages = <Widget>[
-    const Ekran1(),
+    const RestaurantEkran(),
     const SiparisEkran(),
     const Ekran3(),
     const Ekran4(),
