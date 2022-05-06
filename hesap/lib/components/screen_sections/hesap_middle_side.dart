@@ -123,6 +123,7 @@ class HesapMiddleSide extends StatelessWidget {
             cardShadowColorOpacity: 0,
             cardSpreadRadius: 0,
           ),
+        const SizedBox(height: 30,)
       ],
     );
   }

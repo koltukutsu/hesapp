@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:hesap/theme/colors.dart';
 
 
-class HesapTapBarMeterialWidget extends StatefulWidget {
-  const HesapTapBarMeterialWidget({Key? key, required this.index, required this.onChangedTab})
+class HesapBottomNavigationBar extends StatefulWidget {
+  const HesapBottomNavigationBar({Key? key, required this.index, required this.onChangedTab})
       : super(key: key);
   final int index;
   final ValueChanged<int> onChangedTab;
   @override
-  State<HesapTapBarMeterialWidget> createState() =>
-      _HesapTapBarMeterialWidget();
+  State<HesapBottomNavigationBar> createState() =>
+      _HesapBottomNavigationBar();
 }
 
-class _HesapTapBarMeterialWidget extends State<HesapTapBarMeterialWidget> {
+class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     const placeHolder = Opacity(
@@ -43,7 +43,7 @@ class _HesapTapBarMeterialWidget extends State<HesapTapBarMeterialWidget> {
     final isSelected = index == widget.index;
     return IconTheme(
       data: IconThemeData(
-        color: isSelected ? AppColors.chosen : AppColors.magenta,
+        color: isSelected ? AppColors.chosen : AppColors.gray,
       ),
       child: IconButton(
         icon: icon,
@@ -51,4 +51,9 @@ class _HesapTapBarMeterialWidget extends State<HesapTapBarMeterialWidget> {
       ),
     );
   }
+  // void onChangedBottomNavigationBar(int value) {
+  //   setState(() {
+  //     index = value;
+  //   });
+  // }
 }
