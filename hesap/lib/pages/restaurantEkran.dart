@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // components
-import 'package:hesap/components/elements/hesap_floating_action_button.dart';
 import 'package:hesap/components/elements/hesap_resimli_card.dart';
-// import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
 import 'package:hesap/pages/qr_okuma_ekran.dart';
 import 'package:hesap/theme/colors.dart';
 
@@ -31,7 +29,7 @@ class _RestaurantEkran extends State<RestaurantEkran> {
             ),
             SliverList(
                 delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                  return HesapResimliCard();
+                  return const HesapResimliCard();
                 },
                   childCount: 20,
                 )
@@ -157,16 +155,17 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           ),
         ),
         Positioned(
-          top: 110 + offset ,
+          top: 113 + offset,
+          right: 10,
           child: Align(
             alignment: AlignmentDirectional.bottomCenter,
             child: SizedBox(
-              width: MediaQuery.of(context).size.width -20,
+              width: MediaQuery.of(context).size.width -30,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Padding(
+                children: [
+                  const Padding(
                     padding: EdgeInsets.all(3.0),
                     child: Text(
                       'Yakındaki Mekanlar',
@@ -176,10 +175,18 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Icon(
-                      Icons.search,
-                      size: 40,
+                    padding: const EdgeInsets.all(10.0),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.search,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        showSearch(
+                          context: context,
+                          delegate: AramaTemsilcisi(),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -195,9 +202,81 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
   double get maxExtent => maxYukseklik  ;
 
   @override
-  double get minExtent => 140;
+  double get minExtent => 150;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       oldDelegate.maxExtent != maxExtent || oldDelegate.minExtent != minExtent;
+}
+
+
+class AramaTemsilcisi extends SearchDelegate {
+  List<String> cafeListesi = [
+    'Elma Kafesi',
+    'Muz Kafesi',
+    'Armut Kafesi',
+    'Karpuz Kafesi',
+    'Portakal Kafesi',
+    'Çilek Kafesi',
+  ];
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      ),
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var cafeAdi in cafeListesi) {
+      if (cafeAdi.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(cafeAdi);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (BuildContext context, int index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var cafeAdi in cafeListesi) {
+      if (cafeAdi.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(cafeAdi);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (BuildContext context, int index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
 }
