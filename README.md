@@ -59,7 +59,7 @@ Story'ler ile yapılacak Task' ler arasında bağlantı kurulmuştur. Yeşil iş
 [Sprint 1 Daily Scrum Chats](https://docs.google.com/document/d/1xWYkas4XSHj8-oF33DGUGv9DfgmpO52ZIYFE0ZeMpYM/edit?usp=sharing)
 
 - **Sprint board update**: Sprint board screenshotları: 
-![Backlog 1](https://raw.githubusercontent.com/OyunveUygulamaAkademisi/BootcampScrumTemplate/main/ProjectManagement/Sprint1Documents/backlog1.png) 
+![Backlog 1](https://github.com/koltukutsu/Takim24---BootcampScrumTemplate/blob/main/ProjeY%C3%B6netimi/Sprint_1/sprint_board1.png) 
 
 
 - **Ürün Durumu**: Ekran görüntüleri:
