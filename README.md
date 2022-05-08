@@ -41,6 +41,8 @@ Hesap
 
 Proje Yönetimi sürecinde uygulama olarak Jira kullanılmıştır. Jira da Roadmap linki yalnızca authentication izni bulunanlar ile paylaşılabilmektedir. Bu nedenle yapılan tüm değişikliklerin ekran görüntüsü alınmıştır ve paylaşılmıştır. Gerekli olması durumunda erişim izni yetkililere verilebilir.
 
+[Jira Backlog](https://docs.google.com/document/d/1uZu4yMkMTafENntHkRpXQ-o8e36IdYss/edit?usp=sharing&ouid=116158011470839221900&rtpof=true&sd=true)
+
 ---
 
 # Sprint 1
@@ -69,17 +71,23 @@ Story'ler ile yapılacak Task' ler arasında bağlantı kurulmuştur. Yeşil iş
   
   **Üye Ol Sayfası**
   ![Screenshot 2](https://github.com/koltukutsu/Takim24---BootcampScrumTemplate/blob/main/ProjeY%C3%B6netimi/Sprint_1/2.jpg)
+  
+  **Ana Sayfa**
+  
+  ![Screenshot 3](https://github.com/koltukutsu/Takim24---BootcampScrumTemplate/blob/main/ProjeY%C3%B6netimi/Sprint_1/anasayfa.png)
 
 - **Sprint Review**: 
-Alınan kararlar: Veritabanı oluşturması email ile toplanacak veriler için gerekli görülmüştür. Fakat bir yandan da veritabanı form sayfası için gerekli olmamıştır. O sebeple PBI bir sonraki sprint'e aktarılmıştır. Çıkan ürünün çalışmasında ve testlerinde bir problem görülmemiştir. Ekstra koyulması gereken özellikler belirlenmiştir. Sprint Review katılımcıları: ......
+  - Görevler takım olarak verilen ortak kararlar doğrultusunda başarılı bir şekilde tamamlandı.
+  - Uygulamanın genel olarak tasarımına dair taslak oluşturuldu ve ilk sprintte yer alan sayfaların tasarımı ve kodlaması tamamlandı.
+  - Uygulama için kullanım kılavuzu oluşturulması fikri önerildi.
+  - Tasarımı tamamlanan sayfalara dair ek özelliklerin eklenmesinin sonraki sprintlerde gerçekleştirilmesine karar verildi. 
+  - Kodlama üzerine toplantılar yapılmasına karar verildi.
 
 - **Sprint Retrospective:**
-  - Takım içindeki görev dağılımıyla ilgili düzenleme yapılması kararı alınmıştır
-  - Tahmin puanları gözden geçirilmeli ve sprint planlama toplantılarında gerekli geri bildirimlerin developer'lar tarafından verildiğine emin olunmalı
-  - Unit test'ler için ayrılan efor/saat arttırılmalı 
-
--**Diğer Notlar**:
-- N/A
+  - Takım içindeki görev dağılımı sorunsuz bir şekilde gerçekleşti ve takım üyeleri görevlerini başarılı şekilde yerine getirdi.
+  - Tahmin puanları ile tamamlanan puanlar birbiriyle eş değer olarak tamamlandı.
+  - Unit test'ler için her takım üyesi vakit ayırmalı. 
+  - Planlanan toplantılara herkesin eksiksiz katılım sağlaması için tekrardan saat belirlenmeli. 
 
 ---
 
