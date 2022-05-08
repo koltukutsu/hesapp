@@ -2,15 +2,13 @@
 import 'package:flutter/material.dart';
 // pages
 import 'package:hesap/pages/restaurantEkran.dart';
-import 'package:hesap/pages/qr_okuma_ekran.dart';
 import 'package:hesap/pages/siparis_ekran.dart';
 import 'package:hesap/pages/ekran3.dart';
 import 'package:hesap/pages/ekran4.dart';
 
 // components
 import 'package:hesap/components/elements/hesap_floating_action_button.dart';
-import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar_KULLANIM_DISI.dart';
-import 'package:hesap/components/screen_sections/hesap_tap_bar_material_widget.dart';
+import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
 
 class AnaSayfa extends StatefulWidget {
   const AnaSayfa({Key? key}) : super(key: key);
@@ -35,21 +33,38 @@ class _AnaSayfaState extends State<AnaSayfa> {
       body: pages[index],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: HesapFloatingActionButton(
-          icon: Icons.qr_code_scanner,
-          floatingActionButtonFuction: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const QrOkumaEkran()));
-          }),
-      bottomNavigationBar: HesapTapBarMeterialWidget(
+          index: index,
+          onChangedButton: onChangedButton,
+          ),
+      bottomNavigationBar: HesapBottomNavigationBar(
         index: index,
         onChangedTab: onChangedTab,
       ),
     );
   }
 
-  void onChangedTab(int value) {
+  void onChangedTab(int indexFromNavigationBar) {
     setState(() {
-      index = value;
+      index = indexFromNavigationBar;
     });
+  }
+  // TODO: FloatingActionButton kismi ayarlanmali
+  void onChangedButton(int indexFromFloatingActionButton) {
+    if (index > 0){
+      setState(() {
+        index = 0;
+      });
+    }
+
+    // if (indexFromFloatingActionButton == 0){
+    //   setState(() {
+    //     index = 0;
+    //   });
+    // } else {
+    //   setState( () {
+    //     index = 0;
+    //   }
+    //   );
+    // }
   }
 }

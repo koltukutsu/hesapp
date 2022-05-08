@@ -26,12 +26,6 @@ class _QrOkumaEkran extends State<QrOkumaEkran> {
         elevation: 1,
       ),
       body: Container(),
-
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: HesapFloatingActionButton(icon: Icons.home_filled, floatingActionButtonFuction: () {
-      //   Navigator.of(context).pop();
-      // }),
-      // bottomNavigationBar: const HesapBottomNavigationBar(),
     );
   }
 }
