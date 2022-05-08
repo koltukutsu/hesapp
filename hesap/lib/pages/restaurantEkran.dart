@@ -73,7 +73,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
             ),
           ),
         ),
-        //SvgPicture.asset('assets/images/background.svg'),
+        SvgPicture.asset('assets/images/background.svg'),
         SizedBox(
           height: topPadding -20,
           width: MediaQuery.of(context).size.width,
@@ -121,41 +121,61 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.82,
                 height: 90,
-                color: Colors.white,
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Container(
-                        margin: const EdgeInsets.all(18),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          'Menüyü görüntülemek için QR kodu okutun',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontSize: 15,
+                margin: EdgeInsets.only(bottom: 6.0),
+                decoration: const BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
+                    boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 2.5),
+                      blurRadius: 6.0,
+                    )
+                  ]
+                ),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const QrOkumaEkran(),
+                      ),
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Container(
+                          margin: const EdgeInsets.all(18),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Menüyü görüntülemek için QR kodu okutun',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.qr_code,
-                        size: 60,
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.qr_code,
+                          size: 60,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
         Positioned(
-          top: 113 + offset,
+          top: 110 + offset,
           right: 10,
           child: Align(
             alignment: AlignmentDirectional.bottomCenter,
