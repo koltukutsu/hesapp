@@ -75,6 +75,10 @@ Story'ler ile yapılacak Task' ler arasında bağlantı kurulmuştur. Yeşil iş
   **Ana Sayfa**
   
   ![Screenshot 3](https://github.com/koltukutsu/Takim24---BootcampScrumTemplate/blob/main/ProjeY%C3%B6netimi/Sprint_1/anasayfa.png)
+  
+  **Sipariş Ekaranı**
+  
+  ![Screenshot 4](https://github.com/koltukutsu/Takim24---BootcampScrumTemplate/blob/main/ProjeY%C3%B6netimi/Sprint_1/siparis_ekrani.png)
 
 - **Sprint Review**: 
   - Görevler takım olarak verilen ortak kararlar doğrultusunda başarılı bir şekilde tamamlandı.
