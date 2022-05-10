@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 // pages
 import 'package:hesap/pages/uye_ol_ekran.dart';
 // components
-import 'package:hesap/components/elements/hesap_button.dart';
-import 'package:hesap/components/elements/hesap_text_field.dart';
+import 'package:hesap/components/elements/buton.dart';
+import 'package:hesap/components/elements/girdi_kutusu.dart';
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
@@ -13,7 +13,6 @@ import 'package:hesap/pages/ana_ekran.dart';
 
 class GirisEkran extends StatelessWidget {
   const GirisEkran({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,12 +73,12 @@ class GirisEkran extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const HesapTextField(
+                    const GirdiKutusu(
                       label: "Telefon No",
                       keyboardType: TextInputType.phone,
                       prefixIcon: Icon(Icons.phone_rounded),
                     ),
-                    const HesapTextField(
+                    const GirdiKutusu(
                       label: "Şifre",
                       keyboardType: TextInputType.number,
                       prefixIcon: Icon(Icons.password_rounded),
@@ -91,7 +90,7 @@ class GirisEkran extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          HesapButton(
+                          Buton(
                             label: 'Üye Ol',
                             onPressed: () {
                               Navigator.of(context).push(
@@ -101,7 +100,7 @@ class GirisEkran extends StatelessWidget {
                               );
                             },
                           ),
-                          HesapButton(
+                          Buton(
                             label: 'Giriş Yap',
                             filled: true,
                             onPressed: () {

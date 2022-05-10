@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // components
-import '../components/elements/hesap_button.dart';
-import '../components/elements/hesap_text_field.dart';
+import '../components/elements/buton.dart';
+import '../components/elements/girdi_kutusu.dart';
 import '../theme/colors.dart';
 // theme
 import 'package:hesap/theme/insets.dart';
@@ -63,28 +63,28 @@ class UyeOlEkran extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                const HesapTextField(
+                const GirdiKutusu(
                   label: "Kullanıcı Adı",
                   prefixIcon: Icon(Icons.person_rounded),
                 ),
-                const HesapTextField(
+                const GirdiKutusu(
                   label: "E-posta",
                   prefixIcon: Icon(Icons.email_rounded),
                   keyboardType: TextInputType.emailAddress,
                 ),
-                const HesapTextField(
+                const GirdiKutusu(
                   label: "Telefon",
                   prefixIcon: Icon(Icons.phone_rounded),
                   keyboardType: TextInputType.phone,
                 ),
-                const HesapTextField(
+                const GirdiKutusu(
                   label: "Şifre",
                   prefixIcon: Icon(Icons.password_rounded),
                   keyboardType: TextInputType.number,
                   maxLength: 6,
                   obscureText: true,
                 ),
-                const HesapTextField(
+                const GirdiKutusu(
                   label: "Şifre (Tekrar)",
                   prefixIcon: Icon(Icons.password_rounded),
                   keyboardType: TextInputType.number,
@@ -93,7 +93,7 @@ class UyeOlEkran extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    HesapButton(
+                    Buton(
                       label: 'Kaydı Tamamla',
                       filled: true,
                       onPressed: () {},

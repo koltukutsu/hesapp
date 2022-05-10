@@ -1,8 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
 // components
-import 'package:hesap/components/elements/hesap_text_card.dart';
-import 'package:hesap/components/elements/hesap_normal_text.dart';
+import 'package:hesap/components/elements/metin_kart.dart';
+import 'package:hesap/components/elements/normal_metin.dart';
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
@@ -11,12 +11,15 @@ import 'package:hesap/theme/insets.dart';
 class HesapUpSide extends StatelessWidget {
   const HesapUpSide({
     Key? key,
+    this.mekanIsmi = "Kafe 24",
+    this.secondText = "Masa 24",
   }) : super(key: key);
+  final String mekanIsmi;
+  final String secondText;
 
   @override
   Widget build(BuildContext context) {
-    var firstText = "Cafe Flutter";
-    var secondText = "Menu";
+    // var secondText = "Menu";
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,19 +27,19 @@ class HesapUpSide extends StatelessWidget {
         const SizedBox(
           height: 100,
         ),
-        HesapNormalText(
-            text: firstText,
+        NormalMetin(
+            text: mekanIsmi,
             fontSize: Insets.xll,
             textColor: AppColors.primary),
         const SizedBox(
           height: 20,
         ),
-        HesapTextCard(
+        MetinKart(
           text: secondText,
           fontSize: Insets.xll,
           textColor: AppColors.lightBackground,
           cardColor: AppColors.primary,
-        )
+        ),
       ],
     );
   }

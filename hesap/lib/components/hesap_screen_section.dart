@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // components
-import 'package:hesap/components/elements/hesap_text_card.dart';
+import 'package:hesap/components/elements/metin_kart.dart';
 
 // theme
 import 'package:hesap/theme/colors.dart';
@@ -39,7 +39,7 @@ class HesapScreenSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HesapTextCard(
+    return MetinKart(
       text: text,
       textColor: textColor,
       fontSize: fontSize,

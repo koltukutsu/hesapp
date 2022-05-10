@@ -1,5 +1,6 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:hesap/pages/pop_ekran.dart';
 
 class ResimliKart extends StatelessWidget {
   const ResimliKart(
@@ -23,6 +24,9 @@ class ResimliKart extends StatelessWidget {
             fit: BoxFit.cover,
             child: InkWell(
               onTap: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PopUpEkran(text: text))
+                );
 
               },
             ),

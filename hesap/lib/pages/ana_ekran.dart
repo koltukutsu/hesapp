@@ -1,13 +1,13 @@
 // necessary
 import 'package:flutter/material.dart';
 // pages
-import 'package:hesap/pages/restaurantEkran.dart';
-import 'package:hesap/pages/siparis_ekran.dart';
-import 'package:hesap/pages/ekran3.dart';
-import 'package:hesap/pages/ekran4.dart';
+import 'package:hesap/pages/ic_ekranlar/restaurantEkran.dart';
+import 'package:hesap/pages/ic_ekranlar/siparis_ekran.dart';
+import 'package:hesap/pages/ic_ekranlar/ekran3.dart';
+import 'package:hesap/pages/ic_ekranlar/ekran4.dart';
 
 // components
-import 'package:hesap/components/elements/hesap_floating_action_button.dart';
+import 'package:hesap/components/elements/floatingActionButton.dart';
 import 'package:hesap/components/screen_sections/hesap_bottom_navigation_bar.dart';
 
 class AnaSayfa extends StatefulWidget {
@@ -23,8 +23,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
   final pages = <Widget>[
     const RestaurantEkran(),
     const SiparisEkran(),
-    const Ekran3(),
-    const Ekran4(),
+    // const Ekran3(),
+    // const Ekran4(),
   ];
 
   @override
@@ -55,16 +55,5 @@ class _AnaSayfaState extends State<AnaSayfa> {
         index = 0;
       });
     }
-
-    // if (indexFromFloatingActionButton == 0){
-    //   setState(() {
-    //     index = 0;
-    //   });
-    // } else {
-    //   setState( () {
-    //     index = 0;
-    //   }
-    //   );
-    // }
   }
 }
