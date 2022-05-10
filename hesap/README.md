@@ -1,3 +1,3 @@
 # hesap
 
-Oyun ve Uygulama Akademisi ** Hesap ** Projemiz
+Oyun ve Uygulama Akademisi **Hesap** Projemiz
