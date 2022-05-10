@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 // import 'package:hesap/components/elements/hesap_normal_text.dart';
 import 'package:hesap/components/elements/hesap_siparis_card.dart';
 import 'package:hesap/components/elements/hesap_text_card.dart';
+
 // theme
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
-
 
 class HesapMiddleSide extends StatelessWidget {
   // TODO: text ve cardin oldugu kisim ScreenSection icine alinabilir.
@@ -21,13 +21,16 @@ class HesapMiddleSide extends StatelessWidget {
   Widget build(BuildContext context) {
     var firstText = "Corbalar";
     var secondText = "Makarnalar";
+    final List yemekler = [firstText, secondText];
     final List corbaCesitleri = ["Mercimek Corbasi", "Domates Corbasi"];
     final List makarnaCesitleri = ["Penne Arrabbiata", "Fettucine Alfredo"];
 
-    return Column(
+    return
+      Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+
         const SizedBox(
           height: 10,
         ),
@@ -123,7 +126,9 @@ class HesapMiddleSide extends StatelessWidget {
             cardShadowColorOpacity: 0,
             cardSpreadRadius: 0,
           ),
-        const SizedBox(height: 30,)
+        const SizedBox(
+          height: 30,
+        )
       ],
     );
   }

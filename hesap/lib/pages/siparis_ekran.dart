@@ -40,7 +40,7 @@ class _SiparisEkran extends State<SiparisEkran> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: const [
               HesapUpSide(),
               HesapMiddleSide(),
             ],
