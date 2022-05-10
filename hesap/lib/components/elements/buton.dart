@@ -10,11 +10,13 @@ class Buton extends StatelessWidget {
     Key? key,
     required this.label,
     this.filled = false,
+    this.textSize = 16,
     required this.onPressed,
   }) : super(key: key);
 
   final String label;
   final bool filled;
+  final double textSize;
   final Function onPressed;
 
   @override
@@ -35,7 +37,7 @@ class Buton extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Ubuntu',
                 fontWeight: FontWeight.w700,
-                fontSize: 16.0,
+                fontSize: textSize,
                 color: filled ? Colors.white : AppColors.primary,
               ),
             ),

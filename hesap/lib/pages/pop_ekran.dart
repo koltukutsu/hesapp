@@ -1,11 +1,14 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hesap/components/elements/buton.dart';
+import 'package:hesap/components/screen_sections/hesap_middle_side2.dart';
 // component
 import 'package:hesap/components/screen_sections/hesap_up_side.dart';
 
 // theme
 import 'package:hesap/theme/colors.dart';
+import 'package:hesap/theme/insets.dart';
 
 class PopUpEkran extends StatefulWidget {
   const PopUpEkran({Key? key, required this.text}) : super(key: key);
@@ -26,31 +29,41 @@ class _PopUpEkran extends State<PopUpEkran> {
   }
 
   final Map data = {
-    "Kafe Ismi": "Flutter Kafe",
-    "Kisiler": [
+    "Masa Ismi": "Flutter Kafe",
+    "kisiler": [
       {
-        "ismi": "Corbalar",
-        "elemanlar": [
-          {
-            "ismi": "1. corba",
-            "sure": "15",
-            "fiyat": "15",
-          },
-          {
-            "ismi": "2. corba",
-            "sure": "5",
-            "fiyat": "5",
-          },
-          {
-            "ismi": "3. corba",
-            "sure": "135",
-            "fiyat": "125",
-          },
-          {
-            "ismi": "4. corba",
-            "sure": "150",
-            "fiyat": "150",
-          },
+        "ismi": "Merve",
+        "ismarladiklari": [
+          "corba",
+          "makarna",
+        ]
+      },
+      {
+        "ismi": "Zeyney",
+        "ismarladiklari": [
+          "corba",
+          "makarna",
+        ]
+      },
+      {
+        "ismi": "Semih",
+        "ismarladiklari": [
+          "corba",
+          "makarna",
+        ]
+      },
+      {
+        "ismi": "Erdem",
+        "ismarladiklari": [
+          "corba",
+          "makarna",
+        ]
+      },
+      {
+        "ismi": "Emine",
+        "ismarladiklari": [
+          "corba",
+          "makarna",
         ]
       },
     ],
@@ -59,14 +72,14 @@ class _PopUpEkran extends State<PopUpEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-        ),
-        backgroundColor: AppColors.primary,
-        elevation: 1,
-      ),
+      // appBar: AppBar(
+      //   systemOverlayStyle: const SystemUiOverlayStyle(
+      //     statusBarColor: Colors.transparent,
+      //     statusBarIconBrightness: Brightness.dark,
+      //   ),
+      //   backgroundColor: AppColors.primary,
+      //   elevation: 1,
+      // ),
       body: SingleChildScrollView(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -75,6 +88,32 @@ class _PopUpEkran extends State<PopUpEkran> {
           HesapUpSide(
             mekanIsmi: widget.text,
             secondText: "Masa 24",
+          ),
+          HesapMiddleSide2(data: data),
+
+          SizedBox(
+            height: 50,
+            width: 300,
+            child: Buton(
+              label: 'Giriş Yap',
+              filled: true,
+              textSize: 24,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+          SizedBox(
+            height: 47,
+            width: 298,
+            child: Buton(
+              label: 'Giriş Yap',
+              filled: true,
+              textSize: 24,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
           ),
           // HesapMiddleSide(data: data),
         ],

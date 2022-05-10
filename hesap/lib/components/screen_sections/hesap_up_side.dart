@@ -13,10 +13,12 @@ class HesapUpSide extends StatelessWidget {
     Key? key,
     this.mekanIsmi = "Kafe 24",
     this.secondText = "Masa 24",
+    this.yukariUzunluk = 100,
   }) : super(key: key);
+
   final String mekanIsmi;
   final String secondText;
-
+  final double yukariUzunluk;
   @override
   Widget build(BuildContext context) {
     // var secondText = "Menu";
@@ -24,8 +26,8 @@ class HesapUpSide extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 100,
+        SizedBox(
+          height: yukariUzunluk,
         ),
         NormalMetin(
             text: mekanIsmi,
