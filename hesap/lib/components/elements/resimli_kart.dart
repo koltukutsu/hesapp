@@ -1,8 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
 
-class HesapResimliCard extends StatelessWidget {
-  const HesapResimliCard(
+class ResimliKart extends StatelessWidget {
+  const ResimliKart(
       {Key? key,
         this.text = "Hesap Coffe",
       this.imageUrl =

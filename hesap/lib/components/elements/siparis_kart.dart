@@ -2,17 +2,21 @@
 import 'package:flutter/material.dart';
 
 // components
-import 'package:hesap/components/elements/hesap_normal_text.dart';
+import 'package:hesap/components/elements/normal_metin.dart';
 
 // theme
 import 'package:hesap/theme/insets.dart';
 import 'package:hesap/theme/colors.dart';
 
-class HesapTextCard extends StatelessWidget {
+class SiparisKart extends StatelessWidget {
   // TODO: card radius.circular kisimlarini da kullanicidan alsin
-  const HesapTextCard({
+  const SiparisKart({
     Key? key,
     required this.text,
+    this.imageSiparisUrl =
+        "https://cdn.yemek.com/mnresize/940/940/uploads/2014/06/mercimek-corbasi-yemekcom.jpg",
+    this.priceSiparis = "20",
+    this.durationSiparis = "10-20",
     this.textColor = AppColors.primary,
     this.fontSize = Insets.l,
     this.textAlignment = Alignment.center,
@@ -40,6 +44,10 @@ class HesapTextCard extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
+
+  final String imageSiparisUrl;
+  final String priceSiparis;
+  final String durationSiparis;
 
   final Color textColor;
   final Alignment textAlignment;
@@ -72,16 +80,57 @@ class HesapTextCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: HesapNormalText(
-        text: text,
-        textColor: textColor,
-        textAlignment: textAlignment,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        paddingLeft: paddingLeft,
-        paddingTop: paddingTop,
-        paddingRight: paddingRight,
-        paddingBottom: paddingBottom,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 0.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Image.network(
+                imageSiparisUrl,
+                height: 91,
+                width: 131,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 0.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                NormalMetin(text: text, fontSize: Insets.l, fontWeight: FontWeight.w600,),
+                NormalMetin(
+                  text: durationSiparis + " dk",
+                  fontSize: Insets.m,
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColors.gray,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                NormalMetin(
+                  text: priceSiparis.toString() + "  TL",
+                  fontSize: Insets.l,
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColors.magenta,
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.add_box_rounded,
+                  color: AppColors.primary,
+                  size: Insets.x3l,
+                )),
+          ),
+        ],
       ),
       margin: EdgeInsets.only(
           left: marginLeft,

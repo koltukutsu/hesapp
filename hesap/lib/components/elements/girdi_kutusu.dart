@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
 
-class HesapTextField extends StatelessWidget {
-  const HesapTextField({
+class GirdiKutusu extends StatelessWidget {
+  const GirdiKutusu({
     Key? key,
     required this.label,
     this.obscureText = false,

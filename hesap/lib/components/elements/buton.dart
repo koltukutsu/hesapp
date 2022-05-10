@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
 
-class HesapButton extends StatelessWidget {
-  const HesapButton({
+class Buton extends StatelessWidget {
+  const Buton({
     Key? key,
     required this.label,
     this.filled = false,

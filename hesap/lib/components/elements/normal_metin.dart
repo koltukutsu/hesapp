@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:hesap/theme/colors.dart';
 import 'package:hesap/theme/insets.dart';
 
-class HesapNormalText extends StatelessWidget {
+class NormalMetin extends StatelessWidget {
   /*
     Renk -> primary
     fontSize -> L
     fontWeight -> w700
    */
-  const HesapNormalText({
+  const NormalMetin({
     Key? key,
     required this.text,
     this.textColor = AppColors.primary,
