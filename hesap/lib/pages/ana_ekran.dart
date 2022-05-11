@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 // pages
 import 'package:hesap/pages/ic_ekranlar/restaurantEkran.dart';
 import 'package:hesap/pages/ic_ekranlar/siparis_ekran.dart';
-import 'package:hesap/pages/ic_ekranlar/ekran3.dart';
-import 'package:hesap/pages/ic_ekranlar/ekran4.dart';
 
 // components
 import 'package:hesap/components/elements/floatingActionButton.dart';

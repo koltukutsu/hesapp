@@ -6,10 +6,6 @@ import 'package:hesap/components/screen_sections/hesap_middle_side2.dart';
 // component
 import 'package:hesap/components/screen_sections/hesap_up_side.dart';
 
-// theme
-import 'package:hesap/theme/colors.dart';
-import 'package:hesap/theme/insets.dart';
-
 class PopUpEkran extends StatefulWidget {
   const PopUpEkran({Key? key, required this.text}) : super(key: key);
   final String text;

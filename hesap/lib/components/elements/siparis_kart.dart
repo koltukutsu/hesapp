@@ -123,7 +123,7 @@ class SiparisKart extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {}, // sepete ekleme burada yapilacak
                 icon: const Icon(
                   Icons.add_box_rounded,
                   color: AppColors.primary,

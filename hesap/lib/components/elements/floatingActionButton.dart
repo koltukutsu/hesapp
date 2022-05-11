@@ -36,11 +36,8 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
       );
     } else {
       return FloatingActionButton(
-        onPressed: () {
-          // Navigator.of(context).pop();
-          () => widget.onChangedButton(index);
-          // print(index);
-        },
+        onPressed:
+          () => widget.onChangedButton(index),
         child: const Icon(Icons.exit_to_app),
       );
     }
