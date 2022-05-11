@@ -105,7 +105,7 @@ class _PopUpEkran extends State<PopUpEkran> {
             width: 298,
             child: Buton(
               label: 'İptal',
-              filled: true,
+              filled: false,
               textSize: 24,
               onPressed: () {
                 Navigator.of(context).pop(0);

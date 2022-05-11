@@ -49,7 +49,31 @@ class _SiparisEkran extends State<SiparisEkran> {
           },
         ]
       },
-
+      {
+        "ismi": "Makarnalar",
+        "elemanlar": [
+          {
+            "ismi": "1. Makarnalar",
+            "sure": "15",
+            "fiyat": "15",
+          },
+          {
+            "ismi": "2. Makarnalar",
+            "sure": "5",
+            "fiyat": "5",
+          },
+          {
+            "ismi": "3. Makarnalar",
+            "sure": "135",
+            "fiyat": "125",
+          },
+          {
+            "ismi": "4. Makarnalar",
+            "sure": "150",
+            "fiyat": "150",
+          },
+        ]
+      },
     ],
   };
 
