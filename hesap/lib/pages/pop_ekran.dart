@@ -95,11 +95,12 @@ class _PopUpEkran extends State<PopUpEkran> {
             height: 50,
             width: 300,
             child: Buton(
-              label: 'Giriş Yap',
+              label: 'Masaya Oturun',
               filled: true,
               textSize: 24,
               onPressed: () {
-                Navigator.of(context).pop();
+                // Navigator.of(context).pop();
+                  Navigator.pop(context, 1);
               },
             ),
           ),
@@ -107,11 +108,11 @@ class _PopUpEkran extends State<PopUpEkran> {
             height: 47,
             width: 298,
             child: Buton(
-              label: 'Giriş Yap',
+              label: 'İptal',
               filled: true,
               textSize: 24,
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(0);
               },
             ),
           ),

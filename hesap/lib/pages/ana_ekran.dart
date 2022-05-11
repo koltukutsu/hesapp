@@ -1,5 +1,6 @@
 // necessary
 import 'package:flutter/material.dart';
+
 // pages
 import 'package:hesap/pages/ic_ekranlar/restaurantEkran.dart';
 import 'package:hesap/pages/ic_ekranlar/siparis_ekran.dart';
@@ -20,40 +21,42 @@ class AnaSayfa extends StatefulWidget {
 class _AnaSayfaState extends State<AnaSayfa> {
   int index = 0;
 
-  final pages = <Widget>[
-    const RestaurantEkran(),
-    const SiparisEkran(),
-    // const Ekran3(),
-    // const Ekran4(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[index],
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: HesapFloatingActionButton(
-          index: index,
-          onChangedButton: onChangedButton,
-          ),
-      bottomNavigationBar: HesapBottomNavigationBar(
-        index: index,
-        onChangedTab: onChangedTab,
-      ),
-    );
-  }
-
   void onChangedTab(int indexFromNavigationBar) {
     setState(() {
       index = indexFromNavigationBar;
     });
   }
+
   // TODO: FloatingActionButton kismi ayarlanmali
   void onChangedButton(int indexFromFloatingActionButton) {
-    if (index > 0){
+    if (index > 0) {
       setState(() {
         index = 0;
       });
     }
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    final pages = <Widget>[
+      RestaurantEkran(onChangedTab: onChangedTab),
+      const SiparisEkran(),
+      // const Ekran3(),
+      // const Ekran4(),
+    ];
+
+    return Scaffold(
+      body: pages[index],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: HesapFloatingActionButton(
+        index: index,
+        onChangedButton: onChangedButton,
+      ),
+      bottomNavigationBar: HesapBottomNavigationBar(
+        index: index,
+        onChangedTab: onChangedTab,
+      ),
+    );
   }
 }

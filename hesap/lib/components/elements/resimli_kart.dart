@@ -5,10 +5,12 @@ import 'package:hesap/pages/pop_ekran.dart';
 class ResimliKart extends StatelessWidget {
   const ResimliKart(
       {Key? key,
-        this.text = "Hesap Coffe",
+        required this.onChangedTab,
+      this.text = "Hesap Coffe",
       this.imageUrl =
           "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2019%2F08%2F26230801%2F4549578.jpg"})
       : super(key: key);
+  final ValueChanged<int> onChangedTab;
   final String imageUrl;
   final String text;
 
@@ -23,11 +25,8 @@ class ResimliKart extends StatelessWidget {
             height: 99,
             fit: BoxFit.cover,
             child: InkWell(
-              onTap: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PopUpEkran(text: text))
-                );
-
+              onTap: () {
+                _returnButton(context);
               },
             ),
           ),
@@ -42,5 +41,17 @@ class ResimliKart extends StatelessWidget {
         ],
       ),
     );
+  }
+  Future<void> _returnButton(BuildContext context) async {
+
+    final int result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PopUpEkran(text: text)));
+  // return result;
+    onChangedTab(result);
+    // ScaffoldMessenger.of(context)
+    //   ..removeCurrentSnackBar()
+    //   ..showSnackBar(SnackBar(content: Text('$result')));
   }
 }

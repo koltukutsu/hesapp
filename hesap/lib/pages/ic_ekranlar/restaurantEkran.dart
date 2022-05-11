@@ -7,8 +7,9 @@ import 'package:hesap/components/elements/resimli_kart.dart';
 import 'package:hesap/theme/colors.dart';
 
 class RestaurantEkran extends StatefulWidget {
-  const RestaurantEkran({Key? key}) : super(key: key);
+  const RestaurantEkran({Key? key, required this.onChangedTab}) : super(key: key);
 
+  final ValueChanged<int> onChangedTab;
   @override
   State<RestaurantEkran> createState() => _RestaurantEkran();
 }
@@ -28,7 +29,7 @@ class _RestaurantEkran extends State<RestaurantEkran> {
             ),
             SliverList(
                 delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                  return ResimliKart();
+                  return ResimliKart(onChangedTab: widget.onChangedTab);
                 },
                   childCount: 20,
                 )
