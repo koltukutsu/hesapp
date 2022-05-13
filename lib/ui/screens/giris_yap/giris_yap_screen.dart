@@ -45,6 +45,8 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
           },
           signIn: () {
             context.read<AuthCubit>().signIn(email, password);
+            Navigator.pop(context);
+            Navigator.pushNamed(context, ROUTE_RESTAURANTS);
           },
           signInAnonymously: () {
             Navigator.pop(context);
