@@ -1,15 +1,16 @@
-
-
+//necessary
 import 'package:flutter/material.dart';
 
+
+
+
 class AramaTemsilcisi extends SearchDelegate {
-  List<String> cafeListesi = [
-    'Elma Kafesi',
-    'Muz Kafesi',
-    'Armut Kafesi',
-    'Karpuz Kafesi',
-    'Portakal Kafesi',
-    'Çilek Kafesi',
+
+  List restoranlar = [
+    'a kafesi',
+    'be kafesi',
+    'ce kafesi',
+    'de kafesi',
   ];
 
   @override
@@ -37,7 +38,7 @@ class AramaTemsilcisi extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-    for (var cafeAdi in cafeListesi) {
+    for (var cafeAdi in restoranlar) {
       if (cafeAdi.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(cafeAdi);
       }
@@ -56,7 +57,7 @@ class AramaTemsilcisi extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-    for (var cafeAdi in cafeListesi) {
+    for (var cafeAdi in restoranlar) {
       if (cafeAdi.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(cafeAdi);
       }
