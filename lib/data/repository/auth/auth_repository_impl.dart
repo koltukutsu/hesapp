@@ -9,44 +9,45 @@ class AuthRepositoryImpl extends AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
-
   @override
-  Future<HesapUser?> getUser() async {
-    var firebaseUser = _firebaseAuth.currentUser;
+  Future<HesapUser?> getHesapUser() async {
+    User? user = _firebaseAuth.currentUser;
 
-    if (firebaseUser == null) {
+    if (user == null) {
       return null;
     }
 
-    var userData = _firebaseFirestore
-        .collection('users')
-        .where("id", isEqualTo: firebaseUser.uid);
+    var userData =
+        _firebaseFirestore.collection('users').where("id", isEqualTo: user.uid);
 
-    late HesapUser hesapUser;
-    await userData.get().then((value) => {
-          hesapUser = HesapUser(
-            id: firebaseUser.uid,
-            username: value.docs[0]['username'],
-            email: value.docs[0]['email'],
-            phone: value.docs[0]['phone'],
-          )
-        });
+    var value = await userData.get();
 
-    return hesapUser;
+    return HesapUser(
+      id: user.uid,
+      username: value.docs[0]['username'],
+      email: value.docs[0]['email'],
+      phone: value.docs[0]['phone'],
+    );
   }
 
   @override
-  Future signIn(String email, String password) async {
+  Future<HesapUser?> signIn(String email, String password) async {
     try {
       if (email.isEmpty || password.isEmpty) {
         throw HesapException("Lütfen tüm alanları doldurun.");
       }
 
-      await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+
+      if (!userCredential.user!.emailVerified) {
+        throw HesapException("Lütfen e-postanızı doğrulayın");
+      }
+
+      return getHesapUser();
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
         case 'user-not-found':
@@ -55,17 +56,12 @@ class AuthRepositoryImpl extends AuthRepository {
           throw HesapException("Hatalı şifre girdiniz.");
       }
     }
+    return null;
   }
 
   @override
   Future signInAnonymously() async {
     await _firebaseAuth.signInAnonymously();
-  }
-
-  @override
-  Future<bool> isAnonymous() async {
-    final _currentUser = _firebaseAuth.currentUser;
-    return _currentUser?.isAnonymous ?? true;
   }
 
   @override
@@ -115,10 +111,5 @@ class AuthRepositoryImpl extends AuthRepository {
               'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
     }
-  }
-
-  @override
-  Future signOut() async {
-    return await _firebaseAuth.signOut();
   }
 }

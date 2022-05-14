@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
-import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
-
+import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
 import '../../../cubit/auth/auth_cubit.dart';
 
 class AcilisEkran extends StatefulWidget {
@@ -17,20 +16,19 @@ class _AcilisEkranState extends State<AcilisEkran> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
+        if (state is AuthError) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(errorSnackbar(state.errorMessage));
+        }
         // TODO: İnternet kontrolü yapılacak.
       },
       builder: (context, state) {
-        if (state is AuthLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is AuthAnonymous) {
-          return const GirisYapEkran();
-        } else if (state is AuthLoggedIn) {
-          return const AnaEkran();
-        } else {
-          return Container();
+        if (state is AuthSignInSuccessful) {
+          return AnaEkran(hesapUser: state.hesapUser);
         }
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }

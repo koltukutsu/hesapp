@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hesap/util/constants.dart';
 import '../../../theme/colors.dart';
 
 class UyeOlAppBar extends StatelessWidget with PreferredSizeWidget {
-  const UyeOlAppBar({Key? key, required this.onClosed}) : super(key: key);
+  const UyeOlAppBar({Key? key, required this.onBack}) : super(key: key);
 
-  final VoidCallback onClosed;
+  final VoidCallback onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,7 @@ class UyeOlAppBar extends StatelessWidget with PreferredSizeWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           color: AppColors.gray,
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, ROUTE_SIGN_IN);
-          },
+          onPressed: onBack,
         ),
         elevation: 0);
   }

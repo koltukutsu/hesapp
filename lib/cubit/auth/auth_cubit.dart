@@ -12,41 +12,37 @@ class AuthCubit extends Cubit<AuthState> {
     initialize();
   }
 
-  Future<void> initialize() async {
+  Future initialize() async {
     try {
       emit(AuthLoading());
 
-      var user = await _authRepository.getUser();
+      HesapUser? hesapUser = await _authRepository.getHesapUser();
 
-      if (user != null) {
-        emit(AuthLoggedIn(user));
-      } else {
-        emit(AuthAnonymous());
-      }
+      emit(AuthSignInSuccessful(hesapUser));
     } catch (error) {
       emit(AuthError("Kullanıcı yüklenemedi."));
     }
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future signIn(String email, String password) async {
     try {
       emit(AuthLoading());
 
-      var user = await _authRepository.signIn(email, password);
+      HesapUser? hesapUser = await _authRepository.signIn(email, password);
 
-      emit(AuthLoggedIn(user));
+      emit(AuthSignInSuccessful(hesapUser));
     } catch (error) {
       emit(AuthError(error.toString()));
     }
   }
 
-  Future<void> signInAnonymously() async {
+  Future signInAnonymously() async {
     try {
       emit(AuthLoading());
 
       await _authRepository.signInAnonymously();
 
-      emit(AuthAnonymous());
+      emit(AuthSignInSuccessful());
     } catch (error) {
       emit(AuthError(error.toString()));
     }
@@ -70,7 +66,7 @@ class AuthCubit extends Cubit<AuthState> {
         passwordAgain: passwordAgain,
       );
 
-      emit(AuthAnonymous());
+      emit(AuthSignUpSuccessful());
     } catch (error) {
       emit(AuthError(error.toString()));
     }

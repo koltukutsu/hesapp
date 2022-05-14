@@ -1,8 +1,6 @@
 part of 'auth_cubit.dart';
 
-abstract class AuthState extends Equatable {
-  get hesapUser => null;
-}
+abstract class AuthState extends Equatable {}
 
 class AuthInitial extends AuthState {
   @override
@@ -16,15 +14,8 @@ class AuthLoading extends AuthState {
   List<Object?> get props => [];
 }
 
-class AuthAnonymous extends AuthState {
-  AuthAnonymous();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AuthLoggedIn extends AuthState {
-  AuthLoggedIn(this.hesapUser);
+class AuthSignInSuccessful extends AuthState {
+  AuthSignInSuccessful([this.hesapUser]);
 
   final HesapUser? hesapUser;
 
@@ -32,8 +23,8 @@ class AuthLoggedIn extends AuthState {
   List<Object?> get props => [hesapUser];
 }
 
-class AuthSignedUp extends AuthState {
-  AuthSignedUp();
+class AuthSignUpSuccessful extends AuthState {
+  AuthSignUpSuccessful();
 
   @override
   List<Object?> get props => [];

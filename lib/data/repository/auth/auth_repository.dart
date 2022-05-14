@@ -1,10 +1,9 @@
 import 'package:hesap/data/model/hesap_user.dart';
 
 abstract class AuthRepository {
-  Future<HesapUser?> getUser();
-  Future<bool> isAnonymous();
+  Future<HesapUser?> getHesapUser();
+  Future<HesapUser?> signIn(String email, String password);
   Future signInAnonymously();
-  Future signIn(String email, String password);
   Future signUp({
     required String username,
     required String email,
@@ -12,5 +11,4 @@ abstract class AuthRepository {
     required String password,
     required String passwordAgain,
   });
-  Future signOut();
 }

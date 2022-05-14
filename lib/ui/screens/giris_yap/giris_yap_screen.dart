@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/util/constants.dart';
 import '../../../cubit/auth/auth_cubit.dart';
-import '../../widgets/hesap_error_snack_bar.dart';
 import 'components/giris_yap_app_bar.dart';
 import 'components/giris_yap_body.dart';
 
@@ -19,38 +18,27 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(errorSnackbar(state.errorMessage));
-        } else if (state is AuthLoggedIn) {
+    return Scaffold(
+      appBar: const GirisYapAppBar(),
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: GirisYapBody(
+        setEmail: (value) {
+          email = value;
+        },
+        setPassword: (value) {
+          password = value;
+        },
+        navigateToSignInScreen: () {
+          Navigator.pushNamed(context, ROUTE_SIGN_UP);
+        },
+        signIn: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, ROUTE_MAIN);
-        }
-      },
-      child: Scaffold(
-        appBar: const GirisYapAppBar(),
-        backgroundColor: Theme.of(context).backgroundColor,
-        body: GirisYapBody(
-          setEmail: (value) {
-            email = value;
-          },
-          setPassword: (value) {
-            password = value;
-          },
-          navigateToSignInScreen: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, ROUTE_SIGN_UP);
-          },
-          signIn: () {
-            context.read<AuthCubit>().signIn(email, password);
-          },
-          signInAnonymously: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, ROUTE_MAIN);
-          },
-        ),
+          context.read<AuthCubit>().signIn(email, password);
+        },
+        signInAnonymously: () {
+          Navigator.pop(context);
+          context.read<AuthCubit>().signInAnonymously();
+        },
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/ui/screens/uye_ol/components/uye_ol_dogrulama_pencere.dart';
 import '../../../cubit/auth/auth_cubit.dart';
-import '../../widgets/hesap_error_snack_bar.dart';
 import 'components/uye_ol_app_bar.dart';
 import 'components/uye_ol_body.dart';
 
@@ -25,10 +24,7 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is AuthError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(errorSnackbar(state.errorMessage));
-        } else if (state is AuthLoggedIn) {
+        if (state is AuthSignUpSuccessful) {
           showSignUpVerificationDialog(
             () {
               Navigator.pop(context);
@@ -38,7 +34,7 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
       },
       child: Scaffold(
         appBar: UyeOlAppBar(
-          onClosed: () {
+          onBack: () {
             Navigator.pop(context);
           },
         ),
