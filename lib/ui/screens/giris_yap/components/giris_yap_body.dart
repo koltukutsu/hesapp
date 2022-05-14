@@ -13,14 +13,14 @@ class GirisYapBody extends StatefulWidget {
     required this.setPassword,
     required this.signIn,
     required this.signInAnonymously,
-    required this.navigateToSignInScreen,
+    required this.navigateToSignUpScreen,
   }) : super(key: key);
 
   final Function(String) setEmail;
   final Function(String) setPassword;
   final VoidCallback signIn;
+  final VoidCallback navigateToSignUpScreen;
   final VoidCallback signInAnonymously;
-  final VoidCallback navigateToSignInScreen;
 
   @override
   State<GirisYapBody> createState() => _GirisYapBodyState();
@@ -83,7 +83,7 @@ class _GirisYapBodyState extends State<GirisYapBody> {
                       children: [
                         HesapButton(
                           label: 'Üye Ol',
-                          onPressed: widget.navigateToSignInScreen,
+                          onPressed: widget.navigateToSignUpScreen,
                         ),
                         HesapButton(
                           label: 'Giriş Yap',

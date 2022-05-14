@@ -18,7 +18,9 @@ class AuthCubit extends Cubit<AuthState> {
 
       HesapUser? hesapUser = await _authRepository.getHesapUser();
 
-      emit(AuthSignInSuccessful(hesapUser));
+      emit(hesapUser == null
+          ? AuthNotSignedIn()
+          : AuthSignInSuccessful(hesapUser));
     } catch (error) {
       emit(AuthError("Kullanıcı yüklenemedi."));
     }
@@ -28,7 +30,8 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
-      HesapUser? hesapUser = await _authRepository.signIn(email, password);
+      await _authRepository.signIn(email, password);
+      HesapUser? hesapUser = await _authRepository.getHesapUser();
 
       emit(AuthSignInSuccessful(hesapUser));
     } catch (error) {

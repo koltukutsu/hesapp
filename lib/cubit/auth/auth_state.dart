@@ -14,6 +14,13 @@ class AuthLoading extends AuthState {
   List<Object?> get props => [];
 }
 
+class AuthNotSignedIn extends AuthState {
+  AuthNotSignedIn();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class AuthSignInSuccessful extends AuthState {
   AuthSignInSuccessful([this.hesapUser]);
 

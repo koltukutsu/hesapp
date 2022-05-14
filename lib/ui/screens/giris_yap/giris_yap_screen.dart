@@ -18,27 +18,35 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const GirisYapAppBar(),
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: GirisYapBody(
-        setEmail: (value) {
-          email = value;
-        },
-        setPassword: (value) {
-          password = value;
-        },
-        navigateToSignInScreen: () {
-          Navigator.pushNamed(context, ROUTE_SIGN_UP);
-        },
-        signIn: () {
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSignInSuccessful) {
           Navigator.pop(context);
-          context.read<AuthCubit>().signIn(email, password);
-        },
-        signInAnonymously: () {
-          Navigator.pop(context);
-          context.read<AuthCubit>().signInAnonymously();
-        },
+        }
+      },
+      child: Scaffold(
+        appBar: const GirisYapAppBar(),
+        backgroundColor: Theme.of(context).backgroundColor,
+        body: GirisYapBody(
+          setEmail: (value) {
+            email = value;
+          },
+          setPassword: (value) {
+            password = value;
+          },
+          navigateToSignUpScreen: () {
+            Navigator.pushNamed(context, ROUTE_SIGN_UP);
+          },
+          signIn: () {
+            context.read<AuthCubit>().signIn(
+                  email.trim(),
+                  password.trim(),
+                );
+          },
+          signInAnonymously: () {
+            context.read<AuthCubit>().signInAnonymously();
+          },
+        ),
       ),
     );
   }

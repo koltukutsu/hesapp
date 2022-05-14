@@ -37,13 +37,12 @@ class AuthRepositoryImpl extends AuthRepository {
         throw HesapException("Lütfen tüm alanları doldurun.");
       }
 
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      if (!userCredential.user!.emailVerified) {
+      if (!_firebaseAuth.currentUser!.emailVerified) {
         throw HesapException("Lütfen e-postanızı doğrulayın");
       }
 
@@ -56,7 +55,6 @@ class AuthRepositoryImpl extends AuthRepository {
           throw HesapException("Hatalı şifre girdiniz.");
       }
     }
-    return null;
   }
 
   @override
