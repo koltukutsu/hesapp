@@ -50,7 +50,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
           },
           signInAnonymously: () {
             Navigator.pop(context);
-            Navigator.pushNamed(context, ROUTE_MAIN);
+            Navigator.pushNamed(context, ROUTE_RESTAURANTS);
           },
         ),
       ),

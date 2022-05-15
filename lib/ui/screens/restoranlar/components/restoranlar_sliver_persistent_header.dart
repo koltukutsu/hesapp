@@ -6,6 +6,7 @@ import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsil
 
 //components
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/constants.dart';
 
 
 class SliverHeader extends StatelessWidget {
@@ -57,6 +58,24 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           ),
         ),
         SvgPicture.asset('assets/images/background.svg'),
+        Align(
+          alignment: AlignmentDirectional.topStart,
+          child: SizedBox(
+            height: topPadding - 180,
+            width: (150 - offset) * 0.7,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, ROUTE_SIGN_IN);
+              },
+              icon: const Icon(
+                Icons.person,
+                size: 40,
+                color: AppColors.white,
+              ),
+            ),
+          ),
+        ),
         SizedBox(
           height: topPadding -20,
           width: MediaQuery.of(context).size.width,
