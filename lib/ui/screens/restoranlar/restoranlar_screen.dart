@@ -21,7 +21,7 @@ class _RestaurantEkran extends State<RestaurantEkran> {
         child: CustomScrollView(
           slivers: [
             SliverHeader(),
-            SliverListesi()
+            SliverListesi(),
           ],
         ),
       ),

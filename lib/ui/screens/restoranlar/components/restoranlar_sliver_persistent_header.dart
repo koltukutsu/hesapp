@@ -1,18 +1,25 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
+import 'package:geolocator/geolocator.dart';
 
 //components
 import 'package:hesap/ui/theme/colors.dart';
-import 'package:hesap/util/constants.dart';
 
 
-class SliverHeader extends StatelessWidget {
+class SliverHeader extends StatefulWidget {
   const SliverHeader({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<SliverHeader> createState() => _SliverHeaderState();
+}
+
+class _SliverHeaderState extends State<SliverHeader> {
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +34,7 @@ class SliverHeader extends StatelessWidget {
 
 class SliverAppBar extends SliverPersistentHeaderDelegate {
   final double maxYukseklik;
+
 
   SliverAppBar({required this.maxYukseklik});
 
@@ -63,10 +71,15 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           child: SizedBox(
             height: topPadding - 180,
             width: (150 - offset) * 0.7,
+            //TODO: Ya da visible olacak
             child: IconButton(
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, ROUTE_SIGN_IN);
+                //TODO: ROUTE GELECEK
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const GirisYapEkran(),
+                  ),
+                );
               },
               icon: const Icon(
                 Icons.person,
@@ -77,7 +90,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           ),
         ),
         SizedBox(
-          height: topPadding -20,
+          height: topPadding - 20,
           width: MediaQuery.of(context).size.width,
           child: const Padding(
             padding: EdgeInsets.all(18.0),
@@ -85,9 +98,10 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
               'hesap',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
+                fontFamily: 'Ubuntu',
+                color: AppColors.white,
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -100,15 +114,17 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
             children: const [
               Icon(
                 Icons.location_on_outlined,
-                color: Colors.white,
+                color: AppColors.white,
                 size: 25,
               ),
               Text(
                 ' Konum',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: AppColors.white,
                   fontSize: 20,
+                  fontFamily: 'Ubuntu',
+                  fontWeight: FontWeight.w300
                 ),
               ),
             ],
@@ -126,10 +142,10 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                 margin: const EdgeInsets.only(bottom: 6.0),
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.white,
+                    color: AppColors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: AppColors.gray,
                         offset: Offset(0.0, 2.5),
                         blurRadius: 6.0,
                       )
@@ -137,6 +153,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                 ),
                 child: InkWell(
                   onTap: () {
+                    //TODO: ROUTE olacak
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => const QrOkumaEkran(),
@@ -158,6 +175,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontSize: 15,
+                              color: AppColors.darkBackground,
                             ),
                           ),
                         ),
@@ -167,6 +185,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                         child: Icon(
                           Icons.qr_code,
                           size: 60,
+                          color: AppColors.darkBackground,
                         ),
                       ),
                     ],
@@ -193,6 +212,8 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                       'Yakındaki Mekanlar',
                       style: TextStyle(
                         fontSize: 22,
+                        fontFamily: ' Ubuntu',
+                        color: AppColors.darkBackground,
                       ),
                     ),
                   ),
@@ -202,6 +223,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                       icon: const Icon(
                         Icons.search,
                         size: 40,
+                        color: AppColors.darkBackground,
                       ),
                       onPressed: () {
                         showSearch(
@@ -219,6 +241,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
       ],
     );
   }
+
 
   @override
   double get maxExtent => maxYukseklik  ;
