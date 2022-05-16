@@ -7,4 +7,7 @@ class AppColors {
   static const Color darkBackground = Color(0xFF121212);
   static const Color white = Color(0xFFFFFFFF);
   static const Color gray = Color(0xFFA7A7A7);
+  static const Color magenta = Color(0xFFEA4335);
+  static const Color chosen = Color(0xFF32A7DA);
+  static const Color unchosen = Color(0xFFFAFAFA);
 }
