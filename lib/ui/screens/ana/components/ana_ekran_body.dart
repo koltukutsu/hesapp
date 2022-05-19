@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/util/constants.dart';
 // pages
-import 'package:hesap/ui/screens/ana/changing_screens/restaurantEkran.dart';
-import 'package:hesap/ui/screens/ana/changing_screens/siparis_ekran.dart';
+import 'package:hesap/ui/screens/restoran/restoran_ekran.dart';
+import 'package:hesap/ui/screens/siparis/siparis_ekran.dart';
 
 // components
 import "package:hesap/ui/widgets/floatingActionButton.dart";
