@@ -1,3 +1,6 @@
+
+
+
 class Restoran {
   final String id;
   final String name;
@@ -8,7 +11,7 @@ class Restoran {
 
   Restoran(this.id, this.name, this.image, this.address, this.location, );
 
-  Restoran.fromJson (Map<String, dynamic> json)
+  Restoran.fromMap (Map<String, dynamic> json)
     :   id = json['id'],
         name = json['name'],
         image = json['image'],

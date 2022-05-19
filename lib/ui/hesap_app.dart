@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
+import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/auth/auth_repository_impl.dart';
+import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 import 'package:hesap/ui/screens/acilis/acilis_ekran.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
@@ -25,7 +27,11 @@ class HesapApp extends StatelessWidget {
           create: (context) => AuthCubit(
             AuthRepositoryImpl(),
           ),
-        )
+        ),
+        BlocProvider(create: (context) => RestoranCubit(
+            RestoranRepository(),
+        ),
+        ),
       ],
       child: MaterialApp(
         title: 'Hesap',
