@@ -9,12 +9,14 @@ class HesapButton extends StatelessWidget {
     required this.label,
     this.enabled = true,
     this.filled = false,
+    this.textSize = 16,
     required this.onPressed,
   }) : super(key: key);
 
   final String label;
   final bool filled;
   final bool enabled;
+  final double textSize;
   final VoidCallback onPressed;
 
   @override
@@ -33,7 +35,7 @@ class HesapButton extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Ubuntu',
                 fontWeight: FontWeight.w700,
-                fontSize: 16.0,
+                fontSize: textSize,
                 color: enabled
                     ? (filled ? AppColors.white : AppColors.primary)
                     : Colors.grey.shade600,

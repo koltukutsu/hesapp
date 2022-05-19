@@ -4,6 +4,7 @@ import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/data/repository/auth/auth_repository_impl.dart';
 import 'package:hesap/ui/screens/acilis/acilis_ekran.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
+// import 'package:hesap/ui/screens/ana/ana_ekran_semih.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/uye_ol/uye_ol_ekran.dart';
 import 'package:hesap/ui/theme/themes.dart';
@@ -32,7 +33,8 @@ class HesapApp extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: _themeManager.themeMode,
-        initialRoute: ROUTE_BASE,
+        // initialRoute: ROUTE_BASE,
+        initialRoute: ROUTE_MAIN,
         routes: {
           ROUTE_BASE: (context) => const AcilisEkran(),
           ROUTE_MAIN: (context) => const AnaEkran(),
