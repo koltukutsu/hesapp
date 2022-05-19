@@ -26,7 +26,6 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
       },
       child: Scaffold(
         appBar: const GirisYapAppBar(),
-        backgroundColor: Theme.of(context).backgroundColor,
         body: GirisYapBody(
           setEmail: (value) {
             email = value;

@@ -31,7 +31,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<HesapUser?> signIn(String email, String password) async {
+  signIn(String email, String password) async {
     try {
       if (email.isEmpty || password.isEmpty) {
         throw HesapException("Lütfen tüm alanları doldurun.");
@@ -46,7 +46,7 @@ class AuthRepositoryImpl extends AuthRepository {
         throw HesapException("Lütfen e-postanızı doğrulayın");
       }
 
-      return getHesapUser();
+      getHesapUser();
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
         case 'user-not-found':
@@ -58,12 +58,12 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future signInAnonymously() async {
+  signInAnonymously() async {
     await _firebaseAuth.signInAnonymously();
   }
 
   @override
-  Future signUp({
+  signUp({
     required String username,
     required String email,
     required String phone,

@@ -19,21 +19,8 @@ class QRCubit extends Cubit<QRState> {
   }
 
   dispose() {
-    /// Stream'i durdurur.
     controller?.dispose();
   }
 
-  /// QR kodundan gelen veriyi işlemek için
-/*
-  Map<String, String> decode(Barcode qrResult) {
-    List<String> qrResults = qrResult.code!.split('/');
-
-    final Map<String, String> qrDecodedResult = {
-      "restaurant": qrResults[0],
-      "table": qrResults[1],
-    };
-
-    return qrDecodedResult;
-  }
-*/
+  /// QR kodundan gelen veriyi işlemek için: qrResult.code!
 }

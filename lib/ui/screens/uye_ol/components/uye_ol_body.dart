@@ -35,6 +35,7 @@ class UyeOlBody extends StatelessWidget {
         padding: const EdgeInsets.all(Insets.l),
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             HesapTextField(
               label: "Kullanıcı Adı",

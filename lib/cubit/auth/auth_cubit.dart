@@ -9,10 +9,10 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
 
   AuthCubit(this._authRepository) : super(AuthInitial()) {
-    initialize();
+    _initialize();
   }
 
-  Future initialize() async {
+  _initialize() async {
     try {
       emit(const AuthLoading());
 
@@ -26,7 +26,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future signIn(String email, String password) async {
+  signIn(String email, String password) async {
     try {
       emit(const AuthLoading());
 
@@ -39,7 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future signInAnonymously() async {
+  signInAnonymously() async {
     try {
       emit(const AuthLoading());
 
@@ -51,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> signUp({
+  signUp({
     required String username,
     required String email,
     required String phone,
