@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // pages
-import 'package:hesap/ui/screens/qr_scanner/qr_scanner_ekran.dart';
+import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 
 class HesapFloatingActionButton extends StatefulWidget {
   const HesapFloatingActionButton(
