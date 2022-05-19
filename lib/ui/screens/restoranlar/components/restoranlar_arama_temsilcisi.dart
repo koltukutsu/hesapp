@@ -2,9 +2,13 @@
 import 'package:flutter/material.dart';
 
 
-
-
 class AramaTemsilcisi extends SearchDelegate {
+
+  AramaTemsilcisi({
+    required String hintText,
+  }) : super(
+    searchFieldLabel: hintText,
+  );
 
   List restoranlar = [
     'a kafesi',

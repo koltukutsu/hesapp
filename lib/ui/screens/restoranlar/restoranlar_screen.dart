@@ -6,14 +6,14 @@ import 'package:hesap/ui/screens/restoranlar/components/restoranlar_sliver_persi
 // components
 
 
-class RestaurantEkran extends StatefulWidget {
-  const RestaurantEkran({Key? key}) : super(key: key);
+class RestoranEkran extends StatefulWidget {
+  const RestoranEkran({Key? key}) : super(key: key);
 
   @override
-  State<RestaurantEkran> createState() => _RestaurantEkran();
+  State<RestoranEkran> createState() => _RestaurantEkran();
 }
 
-class _RestaurantEkran extends State<RestaurantEkran> {
+class _RestaurantEkran extends State<RestoranEkran> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

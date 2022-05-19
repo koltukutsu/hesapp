@@ -228,7 +228,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: AramaTemsilcisi(),
+                          delegate: AramaTemsilcisi(hintText: 'Restoran Ara'),
                         );
                       },
                     ),

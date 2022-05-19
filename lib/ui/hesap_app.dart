@@ -39,7 +39,7 @@ class HesapApp extends StatelessWidget {
           ROUTE_MAIN: (context) => const AnaEkran(),
           ROUTE_SIGN_IN: (context) => const GirisYapEkran(),
           ROUTE_SIGN_UP: (context) => const UyeOlEkran(),
-          ROUTE_RESTAURANTS: (context) => const RestaurantEkran(),
+          ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
         },
       ),
     );
