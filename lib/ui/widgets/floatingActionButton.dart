@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // pages
-import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
+import 'package:hesap/ui/screens/qr_scanner/qr_scanner_ekran.dart';
 
 class HesapFloatingActionButton extends StatefulWidget {
   const HesapFloatingActionButton(
@@ -29,7 +29,7 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
       return FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const QrOkumaEkran()));
+              MaterialPageRoute(builder: (context) => const QRScannerScreen()));
 
         },
         child: const Icon(Icons.qr_code_scanner),
