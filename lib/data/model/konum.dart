@@ -3,4 +3,6 @@ class Konum {
   final double boylam;
 
   Konum(this.enlem, this.boylam);
+
+
 }

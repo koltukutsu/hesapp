@@ -1,14 +1,17 @@
 // necessary
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
-import 'package:geolocator/geolocator.dart';
 
 //components
 import 'package:hesap/ui/theme/colors.dart';
-
 
 class SliverHeader extends StatefulWidget {
   const SliverHeader({
@@ -20,7 +23,6 @@ class SliverHeader extends StatefulWidget {
 }
 
 class _SliverHeaderState extends State<SliverHeader> {
-
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
@@ -35,14 +37,16 @@ class _SliverHeaderState extends State<SliverHeader> {
 class SliverAppBar extends SliverPersistentHeaderDelegate {
   final double maxYukseklik;
 
+  Position? konum;
 
   SliverAppBar({required this.maxYukseklik});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     var adjustedShrinkOffset =
-    shrinkOffset > minExtent ? minExtent : shrinkOffset;
-    double offset = (minExtent - adjustedShrinkOffset) -20;
+        shrinkOffset > minExtent ? minExtent : shrinkOffset;
+    double offset = (minExtent - adjustedShrinkOffset) - 20;
     double topPadding = MediaQuery.of(context).padding.top + 250;
 
     return Stack(
@@ -60,7 +64,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
             ),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: topPadding-55,
+              height: topPadding - 55,
               color: AppColors.primary,
             ),
           ),
@@ -111,22 +115,28 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           height: 210,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.location_on_outlined,
                 color: AppColors.white,
                 size: 25,
               ),
-              Text(
-                ' Konum',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontSize: 20,
-                  fontFamily: 'Ubuntu',
-                  fontWeight: FontWeight.w300
+              BlocListener<KonumCubit, KonumState>(
+                listener: (context, state) {
+                  if (state is KonumYuklendi) {
+                    konum = state.konum;
+                  }
+                },
+                child: Text(
+                  ' Konum: $konum',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 20,
+                      fontFamily: 'Ubuntu',
+                      fontWeight: FontWeight.w300),
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -149,8 +159,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                         offset: Offset(0.0, 2.5),
                         blurRadius: 6.0,
                       )
-                    ]
-                ),
+                    ]),
                 child: InkWell(
                   onTap: () {
                     //TODO: ROUTE olacak
@@ -201,7 +210,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           child: Align(
             alignment: AlignmentDirectional.bottomCenter,
             child: SizedBox(
-              width: MediaQuery.of(context).size.width -30,
+              width: MediaQuery.of(context).size.width - 30,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -228,7 +237,9 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: AramaTemsilcisi(hintText: 'Restoran Ara'),
+                          delegate: AramaTemsilcisi(
+                            hintText: 'Restoran Ara',
+                          ),
                         );
                       },
                     ),
@@ -242,9 +253,8 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
     );
   }
 
-
   @override
-  double get maxExtent => maxYukseklik  ;
+  double get maxExtent => maxYukseklik;
 
   @override
   double get minExtent => 150;

@@ -10,21 +10,21 @@ class RestoranInitial extends RestoranState {
 }
 
 class RestoranYukleniyor extends RestoranState {
-  RestoranYukleniyor();
+  const RestoranYukleniyor();
 
   @override
   List<Object?> get props => [];
 }
 
 class RestoranYuklenemedi extends RestoranState {
-  RestoranYuklenemedi();
+  const RestoranYuklenemedi();
 
   @override
   List<Object?> get props => [];
 }
 
 class RestoranYuklendi extends RestoranState {
-  RestoranYuklendi(this.restoranList);
+  const RestoranYuklendi(this.restoranList);
   final List<Restoran> restoranList;
 
   @override

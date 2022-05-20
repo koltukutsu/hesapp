@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
-import 'package:hesap/data/model/restoran.dart';
-import 'package:hesap/data/model/restoran.dart';
 import 'package:hesap/ui/widgets/hesap_restoranlar_resimli_card.dart';
 
 class SliverListesi extends StatelessWidget {
@@ -21,7 +19,7 @@ class SliverListesi extends StatelessWidget {
                   text: state.restoranList[index].name,
                 );
               } else {
-                return Text('Merhaba');
+                return const Text('Hata');
               }
             },
           );

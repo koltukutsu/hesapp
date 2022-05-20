@@ -9,13 +9,9 @@ part 'restoran_state.dart';
 
 class RestoranCubit extends Cubit<RestoranState> {
   final RestoranRepository _restoranRepository;
-  RestoranCubit(this._restoranRepository) : super(RestoranInitial())
-  {initialize();}
-
-
+  RestoranCubit(this._restoranRepository) : super(RestoranInitial());
 
   Future<void> initialize() async {
-
 
       var restoranList = await _restoranRepository.loadLocalJson();
 
