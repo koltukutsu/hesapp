@@ -34,7 +34,7 @@ class HesapApp extends StatelessWidget {
         darkTheme: darkTheme,
         themeMode: _themeManager.themeMode,
         // initialRoute: ROUTE_BASE,
-        initialRoute: ROUTE_BASE,
+        initialRoute: ROUTE_MAIN,
         routes: {
           ROUTE_BASE: (context) => const AcilisEkran(),
           ROUTE_MAIN: (context) => const AnaEkran(),
