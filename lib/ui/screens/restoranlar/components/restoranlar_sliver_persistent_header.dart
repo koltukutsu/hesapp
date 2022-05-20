@@ -1,16 +1,10 @@
-// necessary
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
-
-//components
 import 'package:hesap/ui/theme/colors.dart';
 
 class SliverHeader extends StatefulWidget {
@@ -24,6 +18,13 @@ class SliverHeader extends StatefulWidget {
 
 class _SliverHeaderState extends State<SliverHeader> {
   @override
+  void initState() {
+    super.initState();
+
+    context.read<KonumCubit>().getLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       delegate: SliverAppBar(
@@ -36,8 +37,6 @@ class _SliverHeaderState extends State<SliverHeader> {
 
 class SliverAppBar extends SliverPersistentHeaderDelegate {
   final double maxYukseklik;
-
-  Position? konum;
 
   SliverAppBar({required this.maxYukseklik});
 
@@ -121,21 +120,21 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                 color: AppColors.white,
                 size: 25,
               ),
-              BlocListener<KonumCubit, KonumState>(
-                listener: (context, state) {
+              BlocBuilder<KonumCubit, KonumState>(
+                builder: (context, state) {
                   if (state is KonumYuklendi) {
-                    konum = state.konum;
+                    return Text(
+                      ' Konum: ${state.konum.heading.toString()}',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: AppColors.white,
+                          fontSize: 20,
+                          fontFamily: 'Ubuntu',
+                          fontWeight: FontWeight.w300),
+                    );
                   }
+                  return Container();
                 },
-                child: Text(
-                  ' Konum: $konum',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: AppColors.white,
-                      fontSize: 20,
-                      fontFamily: 'Ubuntu',
-                      fontWeight: FontWeight.w300),
-                ),
               )
             ],
           ),

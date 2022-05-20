@@ -24,11 +24,9 @@ class KonumYuklenemedi extends KonumState {
 }
 
 class KonumYuklendi extends KonumState {
-
   final Position konum;
 
   const KonumYuklendi(this.konum);
-
 
   @override
   List<Object?> get props => [konum];
