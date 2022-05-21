@@ -1,10 +1,12 @@
 //necessary
 import 'package:flutter/material.dart';
+import 'package:hesap/data/model/restoran.dart';
 
 
-class AramaTemsilcisi extends SearchDelegate {
+class RestoranAramaTemsilcisi extends SearchDelegate {
 
-  AramaTemsilcisi({
+
+  RestoranAramaTemsilcisi({
     required String hintText,
   }) : super(
     searchFieldLabel: hintText,

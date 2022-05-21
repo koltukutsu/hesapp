@@ -124,11 +124,11 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                 builder: (context, state) {
                   if (state is KonumYuklendi) {
                     return Text(
-                      ' Konum: ${state.konum.heading.toString()}',
+                      '${state.adres.first.street.toString()} , ${state.adres.first.administrativeArea}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: AppColors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontFamily: 'Ubuntu',
                           fontWeight: FontWeight.w300),
                     );
@@ -236,7 +236,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                       onPressed: () {
                         showSearch(
                           context: context,
-                          delegate: AramaTemsilcisi(
+                          delegate: RestoranAramaTemsilcisi(
                             hintText: 'Restoran Ara',
                           ),
                         );

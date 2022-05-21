@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
 
@@ -18,9 +19,10 @@ class KonumCubit extends Cubit<KonumState> {
 
   Future getLocation() async {
     var konum = await _konumRepository.getCurrentPosition();
+    var adres = await placemarkFromCoordinates(konum!.latitude, konum.longitude, localeIdentifier: 'tr_TR');
 
     if (konum != null) {
-      emit(KonumYuklendi(konum));
+      emit(KonumYuklendi(konum, adres));
     } else {
       emit(const KonumYuklenemedi());
     }

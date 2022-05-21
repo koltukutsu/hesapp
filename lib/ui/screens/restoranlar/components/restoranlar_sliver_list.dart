@@ -24,7 +24,7 @@ class SliverListesi extends StatelessWidget {
             },
           );
         },
-          childCount: 3,
+          childCount: 7,
         )
     );
   }

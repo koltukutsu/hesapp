@@ -25,8 +25,9 @@ class KonumYuklenemedi extends KonumState {
 
 class KonumYuklendi extends KonumState {
   final Position konum;
+  final List<Placemark>adres;
 
-  const KonumYuklendi(this.konum);
+  const KonumYuklendi(this.konum, this.adres);
 
   @override
   List<Object?> get props => [konum];
