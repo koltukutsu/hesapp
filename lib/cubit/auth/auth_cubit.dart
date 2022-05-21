@@ -9,26 +9,26 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
 
   AuthCubit(this._authRepository) : super(AuthInitial()) {
-    initialize();
+    _initialize();
   }
 
-  Future initialize() async {
+  _initialize() async {
     try {
-      emit(AuthLoading());
+      emit(const AuthLoading());
 
       HesapUser? hesapUser = await _authRepository.getHesapUser();
 
       emit(hesapUser == null
-          ? AuthNotSignedIn()
+          ? const AuthNotSignedIn()
           : AuthSignInSuccessful(hesapUser));
     } catch (error) {
-      emit(AuthError("Kullanıcı yüklenemedi."));
+      emit(const AuthError("Kullanıcı yüklenemedi."));
     }
   }
 
-  Future signIn(String email, String password) async {
+  signIn(String email, String password) async {
     try {
-      emit(AuthLoading());
+      emit(const AuthLoading());
 
       await _authRepository.signIn(email, password);
       HesapUser? hesapUser = await _authRepository.getHesapUser();
@@ -39,19 +39,19 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future signInAnonymously() async {
+  signInAnonymously() async {
     try {
-      emit(AuthLoading());
+      emit(const AuthLoading());
 
       await _authRepository.signInAnonymously();
 
-      emit(AuthSignInSuccessful());
+      emit(const AuthSignInSuccessful());
     } catch (error) {
       emit(AuthError(error.toString()));
     }
   }
 
-  Future<void> signUp({
+  signUp({
     required String username,
     required String email,
     required String phone,
@@ -59,7 +59,7 @@ class AuthCubit extends Cubit<AuthState> {
     required String passwordAgain,
   }) async {
     try {
-      emit(AuthLoading());
+      emit(const AuthLoading());
 
       await _authRepository.signUp(
         username: username,
@@ -69,7 +69,7 @@ class AuthCubit extends Cubit<AuthState> {
         passwordAgain: passwordAgain,
       );
 
-      emit(AuthSignUpSuccessful());
+      emit(const AuthSignUpSuccessful());
     } catch (error) {
       emit(AuthError(error.toString()));
     }

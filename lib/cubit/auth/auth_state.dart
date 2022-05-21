@@ -1,6 +1,8 @@
 part of 'auth_cubit.dart';
 
-abstract class AuthState extends Equatable {}
+abstract class AuthState extends Equatable {
+  const AuthState();
+}
 
 class AuthInitial extends AuthState {
   @override
@@ -8,21 +10,21 @@ class AuthInitial extends AuthState {
 }
 
 class AuthLoading extends AuthState {
-  AuthLoading();
+  const AuthLoading();
 
   @override
   List<Object?> get props => [];
 }
 
 class AuthNotSignedIn extends AuthState {
-  AuthNotSignedIn();
+  const AuthNotSignedIn();
 
   @override
   List<Object?> get props => [];
 }
 
 class AuthSignInSuccessful extends AuthState {
-  AuthSignInSuccessful([this.hesapUser]);
+  const AuthSignInSuccessful([this.hesapUser]);
 
   final HesapUser? hesapUser;
 
@@ -31,14 +33,14 @@ class AuthSignInSuccessful extends AuthState {
 }
 
 class AuthSignUpSuccessful extends AuthState {
-  AuthSignUpSuccessful();
+  const AuthSignUpSuccessful();
 
   @override
   List<Object?> get props => [];
 }
 
 class AuthError extends AuthState {
-  AuthError(this.errorMessage);
+  const AuthError(this.errorMessage);
 
   final String errorMessage;
 

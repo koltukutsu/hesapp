@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hesap/ui/screens/ana/ana_ekran.dart';
+import 'package:hesap/ui/screens/acilis/components/loading_screen.dart';
+import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/util/constants.dart';
@@ -19,18 +20,19 @@ class _AcilisEkranState extends State<AcilisEkran> {
       listener: (context, state) {
         if (state is AuthError) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(errorSnackbar(state.errorMessage));
+            ..removeCurrentSnackBar()
+            ..showSnackBar(
+              errorSnackbar(state.errorMessage),
+            );
         } else if (state is AuthNotSignedIn) {
           Navigator.pushNamed(context, ROUTE_SIGN_IN);
         }
       },
       builder: (context, state) {
         if (state is AuthSignInSuccessful) {
-          return AnaEkran(hesapUser: state.hesapUser);
+          return const QRScannerScreen();
         }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const LoadingScreen();
       },
     );
   }

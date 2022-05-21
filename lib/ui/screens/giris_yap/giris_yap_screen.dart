@@ -26,7 +26,6 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
       },
       child: Scaffold(
         appBar: const GirisYapAppBar(),
-        backgroundColor: Theme.of(context).backgroundColor,
         body: GirisYapBody(
           setEmail: (value) {
             email = value;
@@ -38,10 +37,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
             Navigator.pushNamed(context, ROUTE_SIGN_UP);
           },
           signIn: () {
-            context.read<AuthCubit>().signIn(
-                  email.trim(),
-                  password.trim(),
-                );
+            context.read<AuthCubit>().signIn(email.trim(), password.trim());
           },
           signInAnonymously: () {
             context.read<AuthCubit>().signInAnonymously();
