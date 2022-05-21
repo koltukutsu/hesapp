@@ -7,4 +7,6 @@ class AppColors {
   static const Color darkBackground = Color(0xFF121212);
   static const Color white = Color(0xFFFFFFFF);
   static const Color gray = Color(0xFFA7A7A7);
+  static const Color amountBox = Color(0xFFBEBEBE);
+  static const Color basketItemBackground = Color(0xFFC4C4C4);
 }
