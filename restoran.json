@@ -255,11 +255,11 @@
       ]
     },
     {
-      "restoran-id": 2,
+      "restoran-id": 3,
       "restoran-ismi": "Hesap Restoran",
       "restoran-resmi": "url",
       "adres": "İstanbul, Besiktas",
-      "konum": "konum bilgisi",
+      "konum": "41°02'32, 29°00'25",
       "masa-sayisi": 20,
       "toplam-kapasite": 80,
       "masalar": [
@@ -375,11 +375,11 @@
         ]
     },
     {
-      "restoran-id": 2,
+      "restoran-id": 4,
       "restoran-ismi": "Çiçek Cafe",
       "restoran-resmi": "url",
       "adres": "İstanbul, Beşiktaş",
-      "konum": "konum bilgisi",
+      "konum": "41°02'32, 29°00'25",
       "masa-sayisi": 20,
       "toplam-kapasite": 80,
       "masalar": [
