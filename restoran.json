@@ -5,7 +5,7 @@
       "restoran-ismi": "Erdem Restoran",
       "restoran-resmi": "url",
       "adres": "İstanbul, Kadıköy",
-      "konum": "konum bilgisi",
+      "konum": "41°07'00, 29°54'00",
       "masa-sayisi": 15,
       "toplam-kapasite": 60,
       "masalar": [
@@ -125,7 +125,7 @@
       "restoran-ismi": "Çiçek Cafe",
       "restoran-resmi": "url",
       "adres": "İstanbul, Beşiktaş",
-      "konum": "konum bilgisi",
+      "konum": "41°02'32, 29°00'25",
       "masa-sayisi": 20,
       "toplam-kapasite": 80,
       "masalar": [
