@@ -101,7 +101,7 @@ class HesapOrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HesapNormalText(text: text, fontSize: Insets.l, fontWeight: FontWeight.w600,),
+                HesapNormalText(text: text, textColor: textColor, fontSize: Insets.l, fontWeight: FontWeight.w600,),
                 HesapNormalText(
                   text: durationSiparis + " dk",
                   fontSize: Insets.m,
@@ -115,7 +115,7 @@ class HesapOrderCard extends StatelessWidget {
                   text: priceSiparis.toString() + "  TL",
                   fontSize: Insets.l,
                   fontWeight: FontWeight.w400,
-                  textColor: AppColors.magenta,
+                  textColor: AppColors.darkBackground,
                 ),
               ],
             ),

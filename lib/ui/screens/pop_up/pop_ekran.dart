@@ -88,7 +88,7 @@ class _PopUpEkran extends State<PopUpEkran> {
           HesapMiddleSide2(data: data),
 
           SizedBox(
-            height: 50,
+            height: 75,
             width: 300,
             child: HesapButton(
               label: 'Masaya Oturun',
@@ -101,8 +101,8 @@ class _PopUpEkran extends State<PopUpEkran> {
             ),
           ),
           SizedBox(
-            height: 47,
-            width: 298,
+            height: 65,
+            width: 200,
             child: HesapButton(
               label: 'İptal',
               filled: false,

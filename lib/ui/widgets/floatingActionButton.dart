@@ -30,8 +30,8 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
     if (index == 0) {
       return FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const QRScannerScreen()));
+          // Navigator.of(context).push(
+          //     MaterialPageRoute(builder: (context) => const QRScannerScreen()));
 
         },
         child: const Icon(Icons.qr_code_scanner),
