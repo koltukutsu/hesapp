@@ -32,10 +32,9 @@ class UyeOlBody extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(Insets.l),
+        padding: const EdgeInsets.all(Insets.s),
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             HesapTextField(
               label: "Kullanıcı Adı",
@@ -57,7 +56,7 @@ class UyeOlBody extends StatelessWidget {
             HesapTextField(
               label: "Şifre",
               prefixIcon: const Icon(Icons.password_rounded),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               maxLength: 6,
               obscureText: true,
               onChanged: setPassword,
@@ -65,20 +64,16 @@ class UyeOlBody extends StatelessWidget {
             HesapTextField(
               label: "Şifre (Tekrar)",
               prefixIcon: const Icon(Icons.password_rounded),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               maxLength: 6,
               obscureText: true,
-              onChanged: setPasswordAgain, // TODO: Şifre kontrolü
+              onChanged: setPasswordAgain,
             ),
-            Row(
-              children: [
-                HesapButton(
-                  enabled: true,
-                  label: 'Kaydı Tamamla',
-                  filled: true,
-                  onPressed: confirm,
-                ),
-              ],
+            HesapButton(
+              enabled: true,
+              label: 'Kaydı Tamamla',
+              filled: true,
+              onPressed: confirm,
             ),
           ],
         ),

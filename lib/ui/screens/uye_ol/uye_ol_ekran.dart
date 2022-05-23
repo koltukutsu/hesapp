@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/ui/screens/uye_ol/components/uye_ol_dogrulama_pencere.dart';
+import 'package:hesap/util/constants.dart';
 import '../../../cubit/auth/auth_cubit.dart';
 import 'components/uye_ol_app_bar.dart';
 import 'components/uye_ol_body.dart';
@@ -27,7 +28,7 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
         if (state is AuthSignUpSuccessful) {
           showSignUpVerificationDialog(
             () {
-              Navigator.pop(context);
+              Navigator.popUntil(context, ModalRoute.withName(ROUTE_BASE));
             },
           );
         }

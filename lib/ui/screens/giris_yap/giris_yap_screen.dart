@@ -21,7 +21,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSignInSuccessful) {
-          Navigator.pop(context);
+          Navigator.popUntil(context, ModalRoute.withName(ROUTE_BASE));
         }
       },
       child: Scaffold(
@@ -33,8 +33,8 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
           setPassword: (value) {
             password = value;
           },
-          navigateToSignUpScreen: () {
-            Navigator.pushNamed(context, ROUTE_SIGN_UP);
+          navigateToRegisterScreen: () {
+            Navigator.pushNamed(context, ROUTE_REGISTER);
           },
           signIn: () {
             context.read<AuthCubit>().signIn(email.trim(), password.trim());

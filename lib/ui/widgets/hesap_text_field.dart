@@ -28,14 +28,14 @@ class HesapTextField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Insets.m),
+            borderRadius: BorderRadius.circular(Insets.s),
             borderSide: const BorderSide(
               color: AppColors.gray,
               width: 2.0,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Insets.m),
+            borderRadius: BorderRadius.circular(Insets.s),
             borderSide: const BorderSide(
               color: AppColors.primary,
               width: 2.0,

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hesap/data/model/hesap_user.dart';
-import 'package:hesap/data/repository/auth/auth_repository.dart';
+import 'package:hesap/data/repository/auth_repository.dart';
 
 part 'auth_state.dart';
 
