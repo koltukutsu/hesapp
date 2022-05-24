@@ -13,7 +13,7 @@ class RestoranRepository {
   Future<List<Restoran>> loadLocalJson() async {
      var restoranData = await rootBundle.loadString(localJsonPath);
      List<dynamic> decodedJson = jsonDecode(restoranData);
-     restoranList = decodedJson.map((restoran) => Restoran.fromMap(restoran)).toList();
+     restoranList = decodedJson.map((restoran) => Restoran.fromJson(restoran)).toList();
      return restoranList;
   }
 

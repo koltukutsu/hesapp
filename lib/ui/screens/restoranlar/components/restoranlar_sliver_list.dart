@@ -16,7 +16,7 @@ class SliverListesi extends StatelessWidget {
             builder: (context, state) {
               if (state is RestoranYuklendi) {
                 return HesapResimliCard(
-                  text: state.restoranList[index].name,
+                  text: state.restoranList[index].isim,
                 );
               } else {
                 return const Text('Hata');
