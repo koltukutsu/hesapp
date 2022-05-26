@@ -7,9 +7,11 @@ import 'package:hesap/ui/widgets/hesap_image_card.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 class RestaurantEkran extends StatefulWidget {
-  const RestaurantEkran({Key? key, required this.onChangedTab}) : super(key: key);
+  const RestaurantEkran({Key? key, required this.onChangedTab})
+      : super(key: key);
 
   final ValueChanged<int> onChangedTab;
+
   @override
   State<RestaurantEkran> createState() => _RestaurantEkran();
 }
@@ -28,12 +30,12 @@ class _RestaurantEkran extends State<RestaurantEkran> {
               pinned: false,
             ),
             SliverList(
-                delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                  return HesapImageCard(onChangedTab: widget.onChangedTab);
-                },
-                  childCount: 20,
-                )
-            )
+                delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return HesapImageCard(onChangedTab: widget.onChangedTab);
+              },
+              childCount: 20,
+            ))
           ],
         ),
       ),
@@ -47,9 +49,10 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
   SliverAppBar({required this.maxYukseklik});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     var adjustedShrinkOffset =
-    shrinkOffset > minExtent ? minExtent : shrinkOffset;
+        shrinkOffset > minExtent ? minExtent : shrinkOffset;
     double offset = (minExtent - adjustedShrinkOffset) * 0.5;
 
     return Stack(
@@ -67,7 +70,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
             ),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height:210,
+              height: 210,
               color: AppColors.primary,
             ),
           ),
@@ -117,7 +120,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               child: Container(
-                width: MediaQuery.of(context).size.width*0.82,
+                width: MediaQuery.of(context).size.width * 0.82,
                 height: 80,
                 color: Colors.white,
                 child: Row(
@@ -185,7 +188,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => maxYukseklik ;
+  double get maxExtent => maxYukseklik;
 
   @override
   double get minExtent => 25;

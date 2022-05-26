@@ -60,7 +60,8 @@ class HesapMiddleSide2 extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: AppColors.primary,
                     ),
-                    child: const Icon(Icons.person_rounded, color:Colors.white),
+                    child:
+                        const Icon(Icons.person_rounded, color: Colors.white),
                     alignment: Alignment.center,
                   ),
                 ),
@@ -86,7 +87,6 @@ class HesapMiddleSide2 extends StatelessWidget {
                   cardShadowColorOpacity: 0,
                   cardSpreadRadius: 0,
                 ),
-
               ],
             ),
           ),
