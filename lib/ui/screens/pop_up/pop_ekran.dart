@@ -21,7 +21,7 @@ class _PopUpEkran extends State<PopUpEkran> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
+    WidgetsBinding.instance?.addPostFrameCallback((_) => _startingFunction());
   }
 
   final Map data = {
