@@ -1,5 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/util/constants.dart';
@@ -38,9 +40,14 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
         child: const Icon(Icons.qr_code_scanner),
       );
     } else {
-      return FloatingActionButton(
-        onPressed: () => widget.onChangedButton(index),
-        child: const Icon(Icons.exit_to_app),
+      return BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
+        builder: (context, state) {
+          return FloatingActionButton(
+            // onPressed: () => widget.onChangedButton(index),
+            onPressed: () => BlocProvider.of<DegisenEkranlarCubit>(context).onChangedButton(index),
+            child: const Icon(Icons.exit_to_app),
+          );
+        }
       );
     }
   }

@@ -1,5 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
@@ -76,45 +78,51 @@ class _PopUpEkran extends State<PopUpEkran> {
       //   backgroundColor: AppColors.primary,
       //   elevation: 1,
       // ),
-      body: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          HesapUpSide(
-            mekanIsmi: widget.text,
-            secondText: "Masa 24",
-          ),
-          HesapMiddleSide2(data: data),
+      body: BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              HesapUpSide(
+                mekanIsmi: widget.text,
+                secondText: "Masa 24",
+              ),
+              HesapMiddleSide2(data: data),
 
-          SizedBox(
-            height: 75,
-            width: 300,
-            child: HesapButton(
-              label: 'Masaya Oturun',
-              filled: true,
-              textSize: 24,
-              onPressed: () {
-                // Navigator.of(context).pop();
-                  Navigator.pop(context, 1);
-              },
-            ),
-          ),
-          SizedBox(
-            height: 65,
-            width: 200,
-            child: HesapButton(
-              label: 'İptal',
-              filled: false,
-              textSize: 24,
-              onPressed: () {
-                Navigator.of(context).pop(0);
-              },
-            ),
-          ),
-          // HesapMiddleSide(data: data),
-        ],
-      )),
+              SizedBox(
+                height: 75,
+                width: 300,
+                child: HesapButton(
+                  label: 'Masaya Oturun',
+                  filled: true,
+                  textSize: 24,
+                  onPressed: () {
+                    // Navigator.of(context).pop();
+                    //   Navigator.pop(context, 1);
+                      BlocProvider.of<DegisenEkranlarCubit>(context).onChangedButton(1);
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 65,
+                width: 200,
+                child: HesapButton(
+                  label: 'İptal',
+                  filled: false,
+                  textSize: 24,
+                  onPressed: () {
+                    // Navigator.of(context).pop(0);
+                    BlocProvider.of<DegisenEkranlarCubit>(context).onChangedButton(0);
+                  },
+                ),
+              ),
+              // HesapMiddleSide(data: data),
+            ],
+          ));
+        }
+      ),
     );
   }
 }

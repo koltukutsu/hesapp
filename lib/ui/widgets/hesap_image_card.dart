@@ -43,15 +43,11 @@ class HesapImageCard extends StatelessWidget {
     );
   }
   Future<void> _returnButton(BuildContext context) async {
-
     final int result = await Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => PopUpEkran(text: text)));
-  // return result;
+
     onChangedTab(result);
-    // ScaffoldMessenger.of(context)
-    //   ..removeCurrentSnackBar()
-    //   ..showSnackBar(SnackBar(content: Text('$result')));
   }
 }

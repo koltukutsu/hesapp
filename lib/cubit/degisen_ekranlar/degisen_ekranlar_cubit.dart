@@ -7,9 +7,13 @@ import 'package:hesap/ui/screens/siparis/siparis_ekran.dart';
 part 'degisen_ekranlar_state.dart';
 
 class DegisenEkranlarCubit extends Cubit<DegisenEkranlarState> {
-  
   DegisenEkranlarCubit() : super(DegisenEkranlarState(index: 0));
-  
+
   void onChangedTab(index) => emit(DegisenEkranlarState(index: index));
-  void onChangedButton(index) => emit(DegisenEkranlarState(index: index));
+
+  void onChangedButton(index) {
+    if (index > 0) {
+      emit(DegisenEkranlarState(index: 0));
+    }
+  }
 }
