@@ -1,33 +1,44 @@
-import 'package:flutter/material.dart';
 
 class Masalar {
   final int masaNo;
-  final Oturanlar oturanlar;
+  final List<dynamic> oturanlar;
 
-  Masalar(this.masaNo, this.oturanlar);
+  Masalar({required this.masaNo, required this.oturanlar});
 
-  Masalar.fromJson(Map<dynamic,dynamic> json):
-        masaNo = json['masa-no'],
-        oturanlar = Oturanlar.fromJson(json['oturanlar']);
+  factory Masalar.fromJson(Map<String,dynamic> json) {
+
+    var list = json['oturanlar'] as List;
+    return Masalar(
+        masaNo : json['masa-no'],
+        oturanlar : list.map((x) => Oturanlar.fromJson(x)).toList()
+    );
+  }
+
 }
 
 class Oturanlar {
   final String isim;
-  final Siparisler siparisler;
+  final List<Siparisler> siparisler;
 
-  Oturanlar(this.isim, this.siparisler);
+  Oturanlar({required this.isim, required this.siparisler});
 
-  Oturanlar.fromJson(Map<dynamic,dynamic> json):
-      isim = json['isim'],
-      siparisler = Siparisler.fromJson(json['siparisler']);
+  factory Oturanlar.fromJson(Map<String,dynamic> json) {
+
+    var list = json['siparisler'] as List;
+    return Oturanlar(
+        isim : json['isim'],
+        siparisler : list.map((x) => Siparisler.fromJson(x)).toList()
+    );
+  }
+
 }
 
 class Siparisler {
   final String kategori;
-  final String corbaIsmi;
-  final String yemekIsmi;
-  final String icecekIsmi;
-  final String tatliIsmi;
+  final String? corbaIsmi;
+  final String? yemekIsmi;
+  final String? icecekIsmi;
+  final String? tatliIsmi;
   final int toplamTutar;
 
   Siparisler(this.kategori, this.corbaIsmi, this.yemekIsmi, this.icecekIsmi,
@@ -39,6 +50,6 @@ class Siparisler {
       yemekIsmi = json['yemek-ismi'],
       icecekIsmi = json['icecek-ismi'],
       tatliIsmi = json['tatli-ismi'],
-      toplamTutar = json['toplamTutar'];
+      toplamTutar = json['toplam-tutar'];
 
 }

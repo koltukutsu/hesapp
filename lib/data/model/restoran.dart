@@ -1,7 +1,5 @@
 
 
-
-import 'package:geocoding/geocoding.dart';
 import 'package:hesap/data/model/masalar.dart';
 import 'package:hesap/data/model/menu.dart';
 
@@ -15,22 +13,28 @@ class Restoran {
   final Konum konum;
   final int masaSayisi;
   final int toplamKapasite;
-  final Masalar masalar;
-  final Menu menu;
+  final List<Masalar> masalar;
+  final List<Menu> menu;
 
 
-  Restoran(this.id, this.isim, this.resim, this.adres, this.konum, this.masaSayisi, this.toplamKapasite, this.masalar, this.menu, );
+  Restoran({required this.id, required this.isim, required this.resim, required this.adres, required this.konum, required this.masaSayisi, required this.toplamKapasite, required this.masalar, required this.menu, });
 
-  Restoran.fromJson (Map<String, dynamic> json)
-    :   id = json['id'],
-        isim = json['isim'],
-        resim = json['resim'],
-        adres = json['adres'],
-        konum = Konum.fromJson(json['konum']),
-        masaSayisi = json['masa-sayisi'],
-        toplamKapasite = json['toplam-kapasite'],
-        masalar = Masalar.fromJson(json['masalar']),
-        menu = Menu.fromMap(json['menu']);
+  factory Restoran.fromJson (Map<String, dynamic> json) {
+
+    var masalarList = json['masalar'] as List;
+    var menuList = json['menu'] as List;
+    return Restoran(
+        id : json['id'],
+        isim : json['isim'],
+        resim : json['resim'],
+        adres : json['adres'],
+        konum : Konum.fromJson(json['konum']),
+        masaSayisi : json['masa-sayisi'],
+        toplamKapasite : json['toplam-kapasite'],
+        masalar : masalarList.map((x) => Masalar.fromJson(x)).toList(),
+        menu : menuList.map((x) => Menu.fromJson(x)).toList(),
+    );
+  }
 
 /*  Map<String, dynamic> toMap() => {
     'id': id,

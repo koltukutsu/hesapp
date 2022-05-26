@@ -1,21 +1,31 @@
 class Menu {
   final String kategori;
-  final Corbalar corbalar;
-  final Yemekler yemekler;
-  final Tatlilar tatlilar;
-  final AraSicaklar araSicaklar;
-  final Icecekler icecekler;
+  final List<Corbalar>? corbalar;
+  final List<Yemekler>? yemekler;
+  final List<Tatlilar>? tatlilar;
+  final List<AraSicaklar>? araSicaklar;
+  final List<Icecekler>? icecekler;
 
-  Menu(this.kategori, this.corbalar, this.yemekler, this.tatlilar,
-      this.araSicaklar, this.icecekler);
+  Menu({required this.kategori, required this.corbalar, required this.yemekler, required this.tatlilar,
+      required this.araSicaklar, required this.icecekler});
 
-  Menu.fromMap(Map<String, dynamic> json)
-      : kategori = json['kategori'],
-        corbalar = Corbalar.fromJson(json['corbalar']),
-        yemekler = Yemekler.fromJson(json['yemekler']),
-        tatlilar = Tatlilar.fromJson(json['tatlilar']),
-        araSicaklar = AraSicaklar.fromJson(json['araSicaklar']),
-        icecekler = Icecekler.fromJson(json['icecekler']);
+  factory Menu.fromJson(Map<String, dynamic> json) {
+
+    var corbaList = json['corbalar'] as List ?? [];
+    var yemekList = json['yemekler'] as List;
+    var tatliList = json['tatlilar'] as List;
+    var araSicakList = json['ara-sicaklar'] as List;
+    var iceceklerList = json['icecekler'] as List;
+    return Menu(
+        kategori : json['kategori'],
+        corbalar : corbaList?.map((x) => Corbalar.fromJson(x)).toList(),
+        yemekler : yemekList.map((x) => Yemekler.fromJson(x)).toList(),
+        tatlilar : tatliList.map((x) => Tatlilar.fromJson(x)).toList(),
+        araSicaklar : araSicakList.map((x) => AraSicaklar.fromJson(x)).toList(),
+        icecekler : iceceklerList.map((x) => Icecekler.fromJson(x)).toList()
+    );
+  }
+
 }
 
 class Corbalar {
@@ -27,7 +37,7 @@ class Corbalar {
   Corbalar(this.isim, this.resim, this.fiyat, this.sure);
 
   Corbalar.fromJson (Map<String, dynamic> json)
-      : isim = json['isim'],
+      : isim = json['corba-ismi'],
         resim = json['resim'],
         fiyat = json['fiyat'],
         sure = json['sure'];
@@ -43,7 +53,7 @@ class Yemekler {
   Yemekler(this.isim, this.resim, this.fiyat, this.sure);
 
   Yemekler.fromJson(Map<String, dynamic> json)
-      : isim = json['isim'],
+      : isim = json['yemek-ismi'],
         resim = json['resim'],
         fiyat = json['fiyat'],
         sure = json['sure'];
@@ -58,7 +68,7 @@ class Tatlilar {
   Tatlilar(this.isim, this.resim, this.fiyat, this.sure);
 
   Tatlilar.fromJson(Map<String, dynamic> json)
-      : isim = json['isim'],
+      : isim = json['tatli-ismi'],
         resim = json['resim'],
         fiyat = json['fiyat'],
         sure = json['sure'];
@@ -73,7 +83,7 @@ class AraSicaklar {
   AraSicaklar(this.isim, this.resim, this.fiyat, this.sure);
 
   AraSicaklar.fromJson(Map<String, dynamic> json)
-      : isim = json['isim'],
+      : isim = json['yemek-ismi'],
         resim = json['resim'],
         fiyat = json['fiyat'],
         sure = json['sure'];
@@ -88,7 +98,7 @@ class Icecekler {
   Icecekler(this.isim, this.resim, this.fiyat, this.sure);
 
   Icecekler.fromJson(Map<String, dynamic> json)
-      : isim = json['isim'],
+      : isim = json['icecek-ismi'],
         resim = json['resim'],
         fiyat = json['fiyat'],
         sure = json['sure'];

@@ -1,126 +1,124 @@
-[{
-  "id": 1,
-  "isim": "Erdem Restoran",
-  "resim": "url",
-  "adres": "İstanbul, Kadıköy",
-  "konum": {
-    "enlem": "41°07'00",
-    "boylam": "29°54'00"
+[
+  {
+    "id": 1,
+    "isim": "Erdem Restoran",
+    "resim": "url",
+    "adres": "İstanbul, Kadıköy",
+    "konum": {
+      "enlem": "41°07'00",
+      "boylam": "29°54'00"
+    },
+    "masa-sayisi": 15,
+    "toplam-kapasite": 60,
+    "masalar": [
+      {
+        "masa-no": 1,
+        "oturanlar": [
+          {
+            "isim": "Semih",
+            "siparisler": [
+              {
+                "kategori": "Çorbalar",
+                "corba-ismi": "Mercimek Çorbası",
+                "toplam-tutar": 20
+              }
+            ]
+          },
+          {
+            "isim": "Erdem",
+            "siparisler": [
+              {
+                "kategori": "Makarnalar, İçecekler",
+                "yemek-ismi": "Soslu Makarna",
+                "icecek-ismi": "Su",
+                "toplam-tutar": 65
+              }
+            ]
+          },
+          {
+            "isim": "Zeynep",
+            "siparisler": [
+              {
+                "kategori": "Tatlılar, İçecekler",
+                "tatli-ismi": "Tiramisu",
+                "icecek-ismi": "Çay",
+                "toplam-tutar": 50
+              }
+            ]
+          }
+        ]
+      }],
+    "menu": [
+      {
+        "kategori": "Çorbalar",
+        "corbalar": [
+          {
+            "corba-isim": "Mercimek Çorbası",
+            "resim": "url",
+            "fiyat": 20,
+            "sure": "15dk"
+          },
+          {
+            "corba-isim": "Domates Çorbası",
+            "resim": "url",
+            "fiyat": 20,
+            "sure": "15dk"
+          }
+        ]
+      },
+      {
+        "kategori": "Tatlılar",
+        "tatlilar": [
+          {
+            "tatli-isim": "Tiramisu",
+            "resim": "url",
+            "fiyat": 40,
+            "sure": "20dk"
+          },
+          {
+            "tatli-isim": "Havuçlu kek",
+            "resim": "url",
+            "fiyat": 40,
+            "sure": "20dk"
+          }
+        ]
+      },
+      {
+        "kategori": "Ara Sıcaklar",
+        "ara-sicaklar": [
+          {
+            "yemek-isim": "Patates Kızartması",
+            "resim": "url",
+            "fiyat": 25,
+            "sure": "20dk"
+          },
+          {
+            "yemek-isim": "Paçanga Böreği",
+            "resim": "url",
+            "fiyat": 25,
+            "sure": "20dk"
+          }
+        ]
+      },
+      {
+        "kategori": "İçecekler",
+        "icecekler": [
+          {
+            "icecek-isim": "Su",
+            "resim": "url",
+            "fiyat": 5,
+            "sure": "3dk"
+          },
+          {
+            "icecek-isim": "Çay",
+            "resim": "url",
+            "fiyat": 10,
+            "sure": "10dk"
+          }
+        ]
+      }
+    ]
   },
-  "masa-sayisi": 15,
-  "toplam-kapasite": 60,
-  "masalar":
-    {
-      "masa-no": 1,
-      "oturanlar": [
-        {
-          "isim": "Semih",
-          "siparisler": [
-            {
-              "kategori": "Çorbalar",
-              "corba-isim": "Mercimek Çorbası",
-              "toplam-tutar": 20
-            }
-          ]
-        },
-        {
-          "isim": "Erdem",
-          "siparisler": [
-            {
-              "kategori": "Makarnalar, İçecekler",
-              "yemek-isim": "Soslu Makarna",
-              "icecek-isim": "Su",
-              "toplam-tutar": 65
-            }
-          ]
-        },
-        {
-          "isim": "Zeynep",
-          "siparisler": [
-            {
-              "kategori": "Tatlılar, İçecekler",
-              "tatli-isim": "Tiramisu",
-              "icecek-isim": "Çay",
-              "toplam-tutar": 50
-            }
-          ]
-        }
-      ]
-    },
-
-  "menu": [
-    {
-      "kategori": "Çorbalar",
-      "corbalar": [
-        {
-          "corba-isim": "Mercimek Çorbası",
-          "resim":"url",
-          "fiyat": 20,
-          "sure": "15dk"
-        },
-        {
-          "corba-isim": "Domates Çorbası",
-          "resim": "url",
-          "fiyat":20,
-          "sure":"15dk"
-        }
-      ]
-    },
-    {
-      "kategori": "Tatlılar",
-      "tatlilar": [
-        {
-          "tatli-isim": "Tiramisu",
-          "resim": "url",
-          "fiyat": 40,
-          "sure": "20dk"
-        },
-        {
-          "tatli-isim": "Havuçlu kek",
-          "resim":"url",
-          "fiyat": 40,
-          "sure": "20dk"
-        }
-      ]
-    },
-    {
-      "kategori": "Ara Sıcaklar",
-      "ara-sicaklar": [
-        {
-          "yemek-isim": "Patates Kızartması",
-          "resim":"url",
-          "fiyat": 25,
-          "sure": "20dk"
-        },
-        {
-          "yemek-isim": "Paçanga Böreği",
-          "resim":"url",
-          "fiyat": 25,
-          "sure": "20dk"
-        }
-      ]
-    },
-
-    {
-      "kategori": "İçecekler",
-      "icecekler": [
-        {
-          "icecek-isim": "Su",
-          "resim":"url",
-          "fiyat": 5,
-          "sure": "3dk"
-        },
-        {
-          "icecek-isim": "Çay",
-          "resim":"url",
-          "fiyat": 10,
-          "sure": "10dk"
-        }
-      ]
-    }
-
-  ]
-},
   {
     "id": 2,
     "isim": "Çiçek Cafe",
@@ -171,7 +169,6 @@
           }
         ]
       },
-
       {
         "masa-no": 2,
         "masa-kapasitesi": 2,
@@ -199,22 +196,20 @@
           }
         ]
       }
-
     ],
-
     "menu": [
       {
         "kategori": "Makarnalar",
         "yemekler": [
           {
             "yemek-isim": "Penne arabiata",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 45,
             "sure": "20dk"
           },
           {
             "yemek-isim": "Fesleğen soslu makarna",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 50,
             "sure": "20dk"
           }
@@ -225,16 +220,15 @@
         "tatlilar": [
           {
             "tatli-isim": "Pasta",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 40,
             "sure": "20dk"
           },
           {
             "tatli-isim": "Havuçlu Kek",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 40,
             "sure": "20dk"
-
           }
         ]
       },
@@ -244,13 +238,13 @@
         "icecekler": [
           {
             "icecek-isim": "Türk Kahvesi",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 20,
             "sure": "15dk"
           },
           {
             "icecek-isim": "Çay",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 20,
             "sure": "10dk"
           }
@@ -306,23 +300,23 @@
             ]
           }
         ]
-      }],
-
+      }
+    ],
     "menu": [
       {
         "kategori": "Çorbalar",
         "corbalar": [
           {
             "corba-isim": "Mercimek Çorbası",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 20,
             "sure": "15dk"
           },
           {
             "corba-isim": "Domates Çorbası",
             "resim": "url",
-            "fiyat":20,
-            "sure":"15dk"
+            "fiyat": 20,
+            "sure": "15dk"
           }
         ]
       },
@@ -337,7 +331,7 @@
           },
           {
             "tatli-isim": "Havuçlu kek",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 40,
             "sure": "20dk"
           }
@@ -348,37 +342,35 @@
         "ara-sicaklar": [
           {
             "yemek-isim": "Patates Kızartması",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 25,
             "sure": "20dk"
           },
           {
             "yemek-isim": "Paçanga Böreği",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 25,
             "sure": "20dk"
           }
         ]
       },
-
       {
         "kategori": "İçecekler",
         "icecekler": [
           {
             "icecek-isim": "Su",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 5,
             "sure": "3dk"
           },
           {
             "icecek-isim": "Çay",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 10,
             "sure": "10dk"
           }
         ]
       }
-
     ]
   },
   {
@@ -431,7 +423,6 @@
           }
         ]
       },
-
       {
         "masa-no": 2,
         "masa-kapasitesi": 2,
@@ -459,22 +450,20 @@
           }
         ]
       }
-
     ],
-
     "menu": [
       {
         "kategori": "Makarnalar",
         "yemekler": [
           {
             "yemek-isim": "Penne arabiata",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 45,
             "sure": "20dk"
           },
           {
             "yemek-isim": "Fesleğen soslu makarna",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 50,
             "sure": "20dk"
           }
@@ -485,16 +474,15 @@
         "tatlilar": [
           {
             "tatli-isim": "Pasta",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 40,
             "sure": "20dk"
           },
           {
             "tatli-isim": "Havuçlu Kek",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 40,
             "sure": "20dk"
-
           }
         ]
       },
@@ -504,13 +492,13 @@
         "icecekler": [
           {
             "icecek-isim": "Türk Kahvesi",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 20,
             "sure": "15dk"
           },
           {
             "icecek-isim": "Çay",
-            "resim":"url",
+            "resim": "url",
             "fiyat": 20,
             "sure": "10dk"
           }
