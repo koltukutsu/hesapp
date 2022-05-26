@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
+import 'package:hesap/util/constants.dart';
 
 // pages
 // import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
@@ -30,16 +31,15 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
     if (index == 0) {
       return FloatingActionButton(
         onPressed: () {
+          Navigator.of(context).pushNamed(ROUTE_QR_SCREEN);
           // Navigator.of(context).push(
           //     MaterialPageRoute(builder: (context) => const QRScannerScreen()));
-
         },
         child: const Icon(Icons.qr_code_scanner),
       );
     } else {
       return FloatingActionButton(
-        onPressed:
-          () => widget.onChangedButton(index),
+        onPressed: () => widget.onChangedButton(index),
         child: const Icon(Icons.exit_to_app),
       );
     }

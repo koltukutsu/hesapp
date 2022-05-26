@@ -25,7 +25,10 @@ class HesapApp extends StatelessWidget {
           create: (context) => AuthCubit(
             AuthRepositoryImpl(),
           ),
-        )
+        ),
+        // BlocProvider(
+        //   create: (context) => QrCubit(),
+        // )
       ],
       child: MaterialApp(
         title: 'Hesap',
@@ -40,6 +43,7 @@ class HesapApp extends StatelessWidget {
           ROUTE_MAIN: (context) => const AnaEkran(),
           ROUTE_SIGN_IN: (context) => const GirisYapEkran(),
           ROUTE_SIGN_UP: (context) => const UyeOlEkran(),
+          // ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
         },
       ),
     );
