@@ -24,8 +24,9 @@ class RestoranYuklenemedi extends RestoranState {
 }
 
 class RestoranYuklendi extends RestoranState {
-  const RestoranYuklendi(this.restoranList);
+  const RestoranYuklendi(this.restoranList, this.konum);
   final List<Restoran> restoranList;
+  final Position? konum;
 
   @override
   List<Object?> get props => restoranList;

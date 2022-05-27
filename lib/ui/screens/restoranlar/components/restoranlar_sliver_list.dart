@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
+import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 import 'package:hesap/ui/widgets/hesap_restoranlar_resimli_card.dart';
 
 class SliverListesi extends StatelessWidget {
@@ -20,13 +23,19 @@ class SliverListesi extends StatelessWidget {
             return BlocBuilder<RestoranCubit, RestoranState>(
               builder: (context, state) {
                 if (state is RestoranYuklendi) {
+                  double restoranEnlem = state.restoranList[index].konum.enlem;
+                  double restoranBoylam = state.restoranList[index].konum.boylam;
+                  var uzaklik = Geolocator.distanceBetween(state.konum!.latitude, state.konum!.longitude, restoranEnlem, restoranBoylam);
+
                   return HesapResimliCard(
                     isim: state.restoranList[index].isim,
                     resim: state.restoranList[index].resim,
-                    //uzaklik: state.restoranList[index].konum.boylam.toInt(), //TODO: Uzaklık gelecek
+                    uzaklik: uzaklik.toInt(),
                   );
+                } else if (state is RestoranYukleniyor) {
+                  return const CircularProgressIndicator();
                 } else {
-                  return const Text('Hata');
+                  return const SizedBox();
                 }
               },
             );

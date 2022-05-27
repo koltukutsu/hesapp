@@ -64,6 +64,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
           title: HesapResimliCard(
             isim: result,
             resim: liste.elementAt(index).resim,
+            uzaklik: -1,
           ),
         );
       },
@@ -86,6 +87,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
           title: HesapResimliCard(
             isim: result,
             resim: liste.elementAt(index).resim,
+            uzaklik: -1,
           ),
         );
       },

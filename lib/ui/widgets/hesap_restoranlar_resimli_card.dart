@@ -6,12 +6,12 @@ class HesapResimliCard extends StatelessWidget {
       {Key? key,
         required this.isim ,
         required this.resim,
-        //required this.uzaklik,
+        required this.uzaklik,
       })
       : super(key: key);
   final String resim;
   final String isim;
-  //final int uzaklik;
+  final int uzaklik;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,23 @@ class HesapResimliCard extends StatelessWidget {
               fontSize: 24,
             ),
           ),
+          SizedBox(
+            height: 90,
+            child: Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: Container(
+                color: Colors.grey,
+                child: Text(
+                  uzaklik == -1 ? '' : '${uzaklik.toString()} metre',
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
