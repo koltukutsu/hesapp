@@ -17,7 +17,7 @@ class RestoranYukleniyor extends RestoranState {
 }
 
 class RestoranYuklenemedi extends RestoranState {
-  const RestoranYuklenemedi();
+  const RestoranYuklenemedi(String s);
 
   @override
   List<Object?> get props => [];

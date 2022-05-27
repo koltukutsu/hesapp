@@ -272,7 +272,7 @@ class YakinimdakiMekanlar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 110 + offset,
+      top: 115 + offset,
       right: 10,
       child: Align(
         alignment: AlignmentDirectional.bottomCenter,

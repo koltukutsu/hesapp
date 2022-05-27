@@ -15,6 +15,19 @@ class RestoranCubit extends Cubit<RestoranState> {
 
   Future<void> initialize() async {
 
+    try {
+      emit(RestoranYukleniyor());
+
+      var restoranList = await _restoranRepository.loadLocalJson();
+      var konum = await KonumRepository().getCurrentPosition();
+
+      if (restoranList != null && konum != null) {
+        emit(RestoranYuklendi(restoranList, konum));
+      }
+    } catch (error) {
+      emit(const RestoranYuklenemedi("Restoranlar yüklenemedi."));
+    }
+
       var restoranList = await _restoranRepository.loadLocalJson();
       var konum = await KonumRepository().getCurrentPosition();
 

@@ -11,7 +11,7 @@ class HesapResimliCard extends StatelessWidget {
       : super(key: key);
   final String resim;
   final String isim;
-  final int uzaklik;
+  final int? uzaklik;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class HesapResimliCard extends StatelessWidget {
               child: Container(
                 color: Colors.grey,
                 child: Text(
-                  uzaklik == -1 ? '' : '${uzaklik.toString()} metre',
+                  uzaklik == null ? '' : '${uzaklik.toString()} metre',
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                     color: Colors.white,
