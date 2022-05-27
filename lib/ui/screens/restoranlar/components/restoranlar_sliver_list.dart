@@ -19,11 +19,11 @@ class SliverListesi extends StatelessWidget {
               double restoranEnlem = state.restoranList[index].konum.enlem;
               double restoranBoylam = state.restoranList[index].konum.boylam;
               var uzaklik = Geolocator.distanceBetween(state.konum!.latitude,
-                  state.konum!.longitude, restoranEnlem, restoranBoylam);
+                  state.konum!.longitude, restoranEnlem, restoranBoylam).toInt();
               return HesapResimliCard(
                 isim: state.restoranList[index].isim,
                 resim: state.restoranList[index].resim,
-                uzaklik: uzaklik.toInt(),
+                uzaklik: uzaklik,
               );
           }, childCount: state.restoranList.length));
         } else if (state is RestoranYukleniyor) {

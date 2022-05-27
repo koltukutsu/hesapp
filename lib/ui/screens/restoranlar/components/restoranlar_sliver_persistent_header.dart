@@ -299,6 +299,7 @@ class YakinimdakiMekanlar extends StatelessWidget {
                   builder: (context, state) {
                     if (state is RestoranYuklendi) {
                       var restoranList = state.restoranList;
+                      var konum = state.konum;
                       return IconButton(
                         icon: const Icon(
                           Icons.search,
@@ -311,6 +312,7 @@ class YakinimdakiMekanlar extends StatelessWidget {
                             delegate: RestoranAramaTemsilcisi(
                               hintText: 'Restoran Ara',
                               liste: restoranList,
+                              konum: konum,
                             ),
                           );
                         },

@@ -1,5 +1,6 @@
 //necessary
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hesap/data/model/restoran.dart';
 import 'package:hesap/ui/widgets/hesap_restoranlar_resimli_card.dart';
 
@@ -8,13 +9,15 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
 
 
 
-
   RestoranAramaTemsilcisi({
-    required String hintText, required this.liste,
+    required String hintText, required this.liste, required this.konum,
   }) : super(
     searchFieldLabel: hintText,
   );
   final List<Restoran> liste;
+  final Position? konum;
+
+
 
 
 
@@ -24,6 +27,16 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
       restoranlar.add(liste[i].isim);
     }
     return restoranlar;
+  }
+
+  int uzaklik(index) {
+    double restoranEnlem = liste[index].konum.enlem;
+    double restoranBoylam = liste[index].konum.boylam;
+    var uzaklik = Geolocator.distanceBetween(
+        konum!.latitude, konum!.longitude,
+        restoranEnlem, restoranBoylam
+    );
+    return uzaklik.toInt();
   }
 
   @override
@@ -64,7 +77,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
           title: HesapResimliCard(
             isim: result,
             resim: liste.elementAt(index).resim,
-            uzaklik: -1,
+            uzaklik: uzaklik(index),
           ),
         );
       },
@@ -87,7 +100,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
           title: HesapResimliCard(
             isim: result,
             resim: liste.elementAt(index).resim,
-            uzaklik: null,
+            uzaklik: uzaklik(index),
           ),
         );
       },
