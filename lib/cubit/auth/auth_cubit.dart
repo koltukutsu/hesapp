@@ -7,6 +7,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
+  HesapUser? hesapUser;
 
   AuthCubit(this._authRepository) : super(AuthInitial()) {
     _initialize();
@@ -16,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(const AuthLoading());
 
-      HesapUser? hesapUser = await _authRepository.getHesapUser();
+      hesapUser = await _authRepository.getHesapUser();
 
       emit(hesapUser == null
           ? const AuthNotSignedIn()
@@ -31,7 +32,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthLoading());
 
       await _authRepository.signIn(email, password);
-      HesapUser? hesapUser = await _authRepository.getHesapUser();
+      hesapUser = await _authRepository.getHesapUser();
 
       emit(AuthSignInSuccessful(hesapUser));
     } catch (error) {
@@ -73,5 +74,9 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (error) {
       emit(AuthError(error.toString()));
     }
+  }
+
+  HesapUser? getHesapUser() {
+    return hesapUser;
   }
 }
