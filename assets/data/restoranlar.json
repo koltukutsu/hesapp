@@ -2,11 +2,11 @@
   {
     "id": 1,
     "isim": "Erdem Restoran",
-    "resim": "url",
+    "resim": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
     "adres": "İstanbul, Kadıköy",
     "konum": {
-      "enlem": "41°07'00",
-      "boylam": "29°54'00"
+      "enlem": -41.116667,
+      "boylam": 29.9
     },
     "masa-sayisi": 15,
     "toplam-kapasite": 60,
@@ -121,12 +121,12 @@
   },
   {
     "id": 2,
-    "isim": "Çiçek Cafe",
-    "resim": "url",
+    "isim": "Cafe Hesap",
+    "resim": "https://images.unsplash.com/photo-1600353565737-2427a1ba3d3a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740",
     "adres": "İstanbul, Beşiktaş",
     "konum": {
-      "enlem": "41°02'32",
-      "boylam": "29°00'25"
+      "enlem": -41.025556,
+      "boylam": 29.006944
     },
     "masa-sayisi": 20,
     "toplam-kapasite": 80,
@@ -255,11 +255,11 @@
   {
     "id": 3,
     "isim": "Hesap Restoran",
-    "resim": "url",
+    "resim": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1694",
     "adres": "İstanbul, Besiktas",
     "konum": {
-      "enlem": "41°02'32",
-      "boylam": "29°00'25"
+      "enlem": -41.042224,
+      "boylam": 29.006944
     },
     "masa-sayisi": 20,
     "toplam-kapasite": 80,
@@ -376,11 +376,11 @@
   {
     "id": 4,
     "isim": "Çiçek Cafe",
-    "resim": "url",
+    "resim": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742",
     "adres": "İstanbul, Beşiktaş",
     "konum": {
-      "enlem": "41°02'32",
-      "boylam": "29°00'25"
+      "enlem": -41.042224,
+      "boylam": 29.006944
     },
     "masa-sayisi": 20,
     "toplam-kapasite": 80,

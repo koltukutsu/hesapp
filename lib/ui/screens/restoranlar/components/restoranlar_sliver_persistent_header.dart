@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
+import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
@@ -17,10 +18,10 @@ class SliverHeader extends StatefulWidget {
 }
 
 class _SliverHeaderState extends State<SliverHeader> {
+
   @override
   void initState() {
     super.initState();
-
     context.read<KonumCubit>().getLocation();
   }
 
@@ -294,19 +295,29 @@ class YakinimdakiMekanlar extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.search,
-                    size: 40,
-                    color: AppColors.darkBackground,
-                  ),
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: RestoranAramaTemsilcisi(
-                        hintText: 'Restoran Ara',
-                      ),
-                    );
+                child: BlocBuilder<RestoranCubit, RestoranState>(
+                  builder: (context, state) {
+                    if (state is RestoranYuklendi) {
+                      var restoranList = state.restoranList;
+                      return IconButton(
+                        icon: const Icon(
+                          Icons.search,
+                          size: 40,
+                          color: AppColors.darkBackground,
+                        ),
+                        onPressed: () {
+                          showSearch(
+                            context: context,
+                            delegate: RestoranAramaTemsilcisi(
+                              hintText: 'Restoran Ara',
+                              liste: restoranList,
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return Container();
+                    }
                   },
                 ),
               ),

@@ -1,6 +1,6 @@
 class Konum {
-  final String enlem;
-  final String boylam;
+  final double enlem;
+  final double boylam;
 
   Konum(this.enlem, this.boylam);
 

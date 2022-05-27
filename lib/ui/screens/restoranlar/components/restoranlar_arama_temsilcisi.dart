@@ -1,23 +1,30 @@
 //necessary
 import 'package:flutter/material.dart';
 import 'package:hesap/data/model/restoran.dart';
+import 'package:hesap/ui/widgets/hesap_restoranlar_resimli_card.dart';
 
 
 class RestoranAramaTemsilcisi extends SearchDelegate {
 
 
+
+
   RestoranAramaTemsilcisi({
-    required String hintText,
+    required String hintText, required this.liste,
   }) : super(
     searchFieldLabel: hintText,
   );
+  final List<Restoran> liste;
 
-  List restoranlar = [
-    'a kafesi',
-    'be kafesi',
-    'ce kafesi',
-    'de kafesi',
-  ];
+
+
+  isimler() {
+    List restoranlar = [];
+    for (int i=0; i<liste.length; i++) {
+      restoranlar.add(liste[i].isim);
+    }
+    return restoranlar;
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -44,7 +51,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-    for (var cafeAdi in restoranlar) {
+    for (var cafeAdi in isimler()) {
       if (cafeAdi.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(cafeAdi);
       }
@@ -54,7 +61,10 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
       itemBuilder: (BuildContext context, int index) {
         var result = matchQuery[index];
         return ListTile(
-          title: Text(result),
+          title: HesapResimliCard(
+            isim: result,
+            resim: liste.elementAt(index).resim,
+          ),
         );
       },
     );
@@ -63,7 +73,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-    for (var cafeAdi in restoranlar) {
+    for (var cafeAdi in isimler()) {
       if (cafeAdi.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(cafeAdi);
       }
@@ -73,7 +83,10 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
       itemBuilder: (BuildContext context, int index) {
         var result = matchQuery[index];
         return ListTile(
-          title: Text(result),
+          title: HesapResimliCard(
+            isim: result,
+            resim: liste.elementAt(index).resim,
+          ),
         );
       },
     );

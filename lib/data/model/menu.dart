@@ -6,23 +6,28 @@ class Menu {
   final List<AraSicaklar>? araSicaklar;
   final List<Icecekler>? icecekler;
 
-  Menu({required this.kategori, required this.corbalar, required this.yemekler, required this.tatlilar,
-      required this.araSicaklar, required this.icecekler});
+  Menu({required this.kategori, this.corbalar, this.yemekler, this.tatlilar,
+       this.araSicaklar, this.icecekler});
 
   factory Menu.fromJson(Map<String, dynamic> json) {
 
-    var corbaList = json['corbalar'] as List ?? [];
-    var yemekList = json['yemekler'] as List;
-    var tatliList = json['tatlilar'] as List;
-    var araSicakList = json['ara-sicaklar'] as List;
-    var iceceklerList = json['icecekler'] as List;
+    List? corbaList;
+    corbaList != null ? json['corbalar'] as List : ['yok'];
+    List? yemekList;
+    yemekList != null ? json['yemekler'] as List : ['yok'];
+    List? tatliList;
+    tatliList != null ? json['tatlilar'] as List : ['yok'];
+    List? araSicakList;
+    araSicakList != null ? json['ara-sicaklar'] as List : ['yok'];
+    List? iceceklerList;
+    iceceklerList != null ? json['icecekler'] as List : ['yok'];
     return Menu(
         kategori : json['kategori'],
         corbalar : corbaList?.map((x) => Corbalar.fromJson(x)).toList(),
-        yemekler : yemekList.map((x) => Yemekler.fromJson(x)).toList(),
-        tatlilar : tatliList.map((x) => Tatlilar.fromJson(x)).toList(),
-        araSicaklar : araSicakList.map((x) => AraSicaklar.fromJson(x)).toList(),
-        icecekler : iceceklerList.map((x) => Icecekler.fromJson(x)).toList()
+        yemekler : yemekList?.map((x) => Yemekler.fromJson(x)).toList(),
+        tatlilar : tatliList?.map((x) => Tatlilar.fromJson(x)).toList(),
+        araSicaklar : araSicakList?.map((x) => AraSicaklar.fromJson(x)).toList(),
+        icecekler : iceceklerList?.map((x) => Icecekler.fromJson(x)).toList()
     );
   }
 

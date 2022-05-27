@@ -10,22 +10,30 @@ class SliverListesi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-          return BlocBuilder<RestoranCubit, RestoranState>(
-            builder: (context, state) {
-              if (state is RestoranYuklendi) {
-                return HesapResimliCard(
-                  text: state.restoranList[index].isim,
-                );
-              } else {
-                return const Text('Hata');
-              }
-            },
-          );
-        },
-          childCount: 7,
-        )
+    return BlocListener<RestoranCubit, RestoranState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      child: SliverList(
+          delegate: SliverChildBuilderDelegate((BuildContext context,
+              int index) {
+            return BlocBuilder<RestoranCubit, RestoranState>(
+              builder: (context, state) {
+                if (state is RestoranYuklendi) {
+                  return HesapResimliCard(
+                    isim: state.restoranList[index].isim,
+                    resim: state.restoranList[index].resim,
+                    //uzaklik: state.restoranList[index].konum.boylam.toInt(), //TODO: Uzaklık gelecek
+                  );
+                } else {
+                  return const Text('Hata');
+                }
+              },
+            );
+          },
+            childCount: 4,
+          )
+      ),
     );
   }
 }

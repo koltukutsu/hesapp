@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 class HesapResimliCard extends StatelessWidget {
   const HesapResimliCard(
       {Key? key,
-        required this.text ,
-        this.imageUrl =
-        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"})
+        required this.isim ,
+        required this.resim,
+        //required this.uzaklik,
+      })
       : super(key: key);
-  final String imageUrl;
-  final String text;
+  final String resim;
+  final String isim;
+  //final int uzaklik;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class HesapResimliCard extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Ink.image(
-            image: NetworkImage(imageUrl),
+            image: NetworkImage(resim),
             height: 99,
             fit: BoxFit.cover,
             child: InkWell(
@@ -28,7 +30,7 @@ class HesapResimliCard extends StatelessWidget {
             ),
           ),
           Text(
-            text,
+            isim,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
