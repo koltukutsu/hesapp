@@ -18,13 +18,26 @@ class KonumCubit extends Cubit<KonumState> {
   }
 
   Future getLocation() async {
+
+    try {
+      emit(const KonumYukleniyor());
+
+      var konum = await _konumRepository.getCurrentPosition();
+      var adres = await placemarkFromCoordinates(konum!.latitude, konum.longitude, localeIdentifier: 'tr_TR');
+
+      if (konum != null) {
+        emit(KonumYuklendi(konum, adres));
+      }
+    } catch (error) {
+      emit(const KonumYuklenemedi("Konum yüklenemedi."));
+    }
+
     var konum = await _konumRepository.getCurrentPosition();
     var adres = await placemarkFromCoordinates(konum!.latitude, konum.longitude, localeIdentifier: 'tr_TR');
 
-    if (konum != null) {
-      emit(KonumYuklendi(konum, adres));
-    } else {
-      emit(const KonumYuklenemedi());
-    }
+    emit(KonumYuklendi(konum, adres));
   }
+
+
+
 }

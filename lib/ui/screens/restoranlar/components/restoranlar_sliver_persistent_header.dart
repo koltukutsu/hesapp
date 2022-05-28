@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
+import 'package:hesap/data/repository/konum/konum_repository.dart';
+import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
@@ -20,12 +22,6 @@ class SliverHeader extends StatefulWidget {
 }
 
 class _SliverHeaderState extends State<SliverHeader> {
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<KonumCubit>().getLocation();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +82,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
                 builder: (context, state) {
                   if (state is KonumYuklendi) {
                     return Text(
-                      '${state.adres.first.street.toString()} ${state.adres.first.subLocality}, ${state.adres.first.locality}',
+                      '${state.adres?.first.street.toString()} ${state.adres?.first.subLocality}, ${state.adres?.first.locality}',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: AppColors.white,
@@ -302,26 +298,43 @@ class YakinimdakiMekanlar extends StatelessWidget {
                   builder: (context, state) {
                     if (state is RestoranYuklendi) {
                       var restoranList = state.restoranList;
-                      var konum = state.konum;
-                      return IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          size: 40,
-                          color: AppColors.darkBackground,
-                        ),
-                        onPressed: () {
-                          showSearch(
-                            context: context,
-                            delegate: RestoranAramaTemsilcisi(
-                              hintText: 'Restoran Ara',
-                              liste: restoranList,
-                              konum: konum,
-                            ),
-                          );
-                        },
+                      return BlocBuilder<KonumCubit, KonumState>(
+                        builder: (context, state) {
+                          if (state is KonumYuklendi) {
+                            var konum = state.konum;
+                            return IconButton(
+                              icon: const Icon(
+                                Icons.search,
+                                size: 40,
+                                color: AppColors.darkBackground,
+                              ),
+                              onPressed: () {
+                                showSearch(
+                                  context: context,
+                                  delegate: RestoranAramaTemsilcisi(
+                                    hintText: 'Restoran Ara',
+                                    liste: restoranList,
+                                    konum: konum,
+                                  ),
+                                );
+                              },
+                            );
+                          } else if (state is KonumYukleniyor) {
+                            return const Center(child: CircularProgressIndicator());
+                          } else if (state is KonumYuklenemedi) {
+                            KonumRepository().checkPermission();
+                            return const Center(child: Text('Lütfen Konum Bilgisi Giriniz'));
+                          } else {
+                            return const Center(child: Text('Hata'));
+                          }
+                        }
                       );
+                    } else if (state is RestoranYukleniyor) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is RestoranYuklenemedi) {
+                      return const Center(child: Text('Restoran Yüklenemedi'));
                     } else {
-                      return Container();
+                      return const Center(child: Text('Hata'));
                     }
                   },
                 ),

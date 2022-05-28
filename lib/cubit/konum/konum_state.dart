@@ -17,15 +17,15 @@ class KonumYukleniyor extends KonumState {
 }
 
 class KonumYuklenemedi extends KonumState {
-  const KonumYuklenemedi();
+  const KonumYuklenemedi(String s);
 
   @override
   List<Object?> get props => [];
 }
 
 class KonumYuklendi extends KonumState {
-  final Position konum;
-  final List<Placemark>adres;
+  final Position? konum;
+  final List<Placemark>? adres;
 
   const KonumYuklendi(this.konum, this.adres);
 

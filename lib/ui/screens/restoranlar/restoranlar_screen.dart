@@ -1,6 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_sliver_list.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_sliver_persistent_header.dart';
@@ -19,15 +20,17 @@ class _RestaurantEkran extends State<RestoranEkran> {
   void initState() {
     super.initState();
     context.read<RestoranCubit>().initialize();
+    context.read<KonumCubit>().getLocation();
+    context.read<KonumCubit>().checkPermission();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const SliverHeader(),
+            SliverHeader(),
             SliverListesi(),
           ],
         ),
