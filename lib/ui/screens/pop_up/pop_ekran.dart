@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 // import 'package:flutter/services.dart';
-import 'package:hesap/ui/widgets/hesap_button.dart';
+import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
 // component
 import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
@@ -94,7 +94,7 @@ class _PopUpEkran extends State<PopUpEkran> {
               SizedBox(
                 height: 75,
                 width: 300,
-                child: HesapButton(
+                child: HesapButtonNotFlexible(
                   label: 'Masaya Oturun',
                   filled: true,
                   textSize: 24,
@@ -108,7 +108,7 @@ class _PopUpEkran extends State<PopUpEkran> {
               SizedBox(
                 height: 65,
                 width: 200,
-                child: HesapButton(
+                child: HesapButtonNotFlexible(
                   label: 'İptal',
                   filled: false,
                   textSize: 24,
