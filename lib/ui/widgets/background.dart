@@ -3,12 +3,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 class HesapBackGround extends StatelessWidget {
-  const HesapBackGround({Key? key}) : super(key: key);
+  const HesapBackGround(Key? key, this.additionalWidget) : super(key: key);
+  static const double maxYukseklik = 300;
+  
+  final Widget additionalWidget;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
+      alignment: AlignmentDirectional.topEnd,
       children: [
+        const SizedBox(
+          height: maxYukseklik,
+        ),
         Transform.scale(
           scale: 1.05,
           child: ClipRRect(
@@ -24,6 +31,7 @@ class HesapBackGround extends StatelessWidget {
           ),
         ),
         SvgPicture.asset('assets/images/background.svg'),
+        additionalWidget.isNotEmpty ? additionalWidget : null,
       ],
     );
   }
