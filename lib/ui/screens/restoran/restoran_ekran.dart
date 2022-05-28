@@ -1,16 +1,18 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
+import 'package:hesap/ui/widgets/background.dart';
 
 // components
 import 'package:hesap/ui/widgets/hesap_image_card.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 class RestaurantEkran extends StatefulWidget {
-  const RestaurantEkran({Key? key, required this.onChangedTab})
-      : super(key: key);
+  const RestaurantEkran(Key? key) : super(key: key);
 
-  final ValueChanged<int> onChangedTab;
+  // final ValueChanged<int> onChangedTab;
 
   @override
   State<RestaurantEkran> createState() => _RestaurantEkran();
@@ -32,7 +34,8 @@ class _RestaurantEkran extends State<RestaurantEkran> {
             SliverList(
                 delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return HesapImageCard(onChangedTab: widget.onChangedTab);
+                // return HesapImageCard(onChangedTab: widget.onChangedTab);
+                return const HesapImageCard();
               },
               childCount: 20,
             ))
@@ -61,21 +64,8 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
         SizedBox(
           height: maxYukseklik,
         ),
-        Transform.scale(
-          scale: 1.05,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(70),
-              bottomRight: Radius.circular(70),
-            ),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: 210,
-              color: AppColors.primary,
-            ),
-          ),
-        ),
-        SvgPicture.asset('assets/images/background.svg'),
+        // const HesapBackGround(),
+        // SvgPicture.asset('assets/images/background.svg'),
         SizedBox(
           width: MediaQuery.of(context).size.width,
           child: const Padding(

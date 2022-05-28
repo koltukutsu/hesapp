@@ -1,5 +1,6 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:hesap/ui/widgets/HesapSearch.dart';
 // components
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
@@ -42,6 +43,7 @@ class HesapUpSide extends StatelessWidget {
           textColor: AppColors.lightBackground,
           cardColor: AppColors.primary,
         ),
+        // HesapSearch()
       ],
     );
   }

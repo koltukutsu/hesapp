@@ -10,11 +10,14 @@ import 'package:hesap/util/constants.dart';
 // import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 
 class HesapFloatingActionButton extends StatefulWidget {
+  // const HesapFloatingActionButton(
+  //     {Key? key, required this.index, required this.onChangedButton})
+  //     : super(key: key);
   const HesapFloatingActionButton(
-      {Key? key, required this.index, required this.onChangedButton})
+      {Key? key, required this.index})
       : super(key: key);
   final int index;
-  final ValueChanged<int> onChangedButton;
+  // final ValueChanged<int> onChangedButton;
 
   // void _floatingActionButtonFuction() {}
   // required this.floatingActionButtonFuction, this.icon = Icons.qr_code_scanner

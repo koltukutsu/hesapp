@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // components
 import 'package:hesap/ui/screens/common_screen_sections/hesap_middle_side.dart';
 import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
+import 'package:hesap/ui/screens/siparis/components/hesap_up_side_with_search.dart';
+import 'package:hesap/ui/widgets/HesapSearch.dart';
 
 class SiparisEkran extends StatefulWidget {
   const SiparisEkran({Key? key}) : super(key: key);
@@ -85,7 +87,7 @@ class _SiparisEkran extends State<SiparisEkran> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          HesapUpSide(
+          HesapUpSideWithSearch(
             mekanIsmi: data["Kafe Ismi"],
           ),
           HesapMiddleSide(data: data),

@@ -4,9 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
+import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/constants.dart';
 
 class SliverHeader extends StatefulWidget {
   const SliverHeader({
@@ -217,11 +219,12 @@ class QRKodOkutma extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 //TODO: ROUTE olacak
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const QrOkumaEkran(),
-                  ),
-                );
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (context) => const QrOkumaEkran(),
+                //   ),
+                // );
+                Navigator.of(context).pushNamed(ROUTE_QR_SCREEN);
               },
               child: Row(
                 mainAxisSize: MainAxisSize.max,

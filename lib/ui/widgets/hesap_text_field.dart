@@ -7,11 +7,12 @@ class HesapTextField extends StatelessWidget {
   const HesapTextField({
     Key? key,
     required this.label,
+    required this.onChanged,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.prefixIcon,
     this.maxLength,
-    required this.onChanged,
+    this.borderColor = AppColors.primary,
   }) : super(key: key);
 
   final String label;
@@ -20,6 +21,7 @@ class HesapTextField extends StatelessWidget {
   final int? maxLength;
   final Icon? prefixIcon;
   final Function(String) onChanged;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +31,15 @@ class HesapTextField extends StatelessWidget {
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Insets.m),
-            borderSide: const BorderSide(
-              color: AppColors.gray,
+            borderSide: BorderSide(
+              color: borderColor,
               width: 2.0,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Insets.m),
-            borderSide: const BorderSide(
-              color: AppColors.primary,
+            borderSide: BorderSide(
+              color: borderColor,
               width: 2.0,
             ),
           ),
@@ -47,8 +49,9 @@ class HesapTextField extends StatelessWidget {
             fontSize: 16.0,
           ),
           labelText: label,
-          labelStyle: const TextStyle(
+          labelStyle: TextStyle(
             fontFamily: 'Ubuntu',
+            color: borderColor
           ),
           hintStyle: const TextStyle(
             color: AppColors.gray,
@@ -60,7 +63,8 @@ class HesapTextField extends StatelessWidget {
           counterText: "",
         ),
         keyboardType: keyboardType,
-        style: const TextStyle(
+        style: TextStyle(
+          color: borderColor,
           fontFamily: 'Ubuntu',
           fontSize: 16.0,
           letterSpacing: 0.2,

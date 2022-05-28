@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 // theme
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/constants.dart';
 
 class QrOkumaEkran extends StatefulWidget {
   const QrOkumaEkran({Key? key}) : super(key: key);
@@ -24,7 +25,16 @@ class _QrOkumaEkran extends State<QrOkumaEkran> {
         backgroundColor: AppColors.primary,
         elevation: 1,
       ),
-      body: Container(),
+      body: Container(
+          child: Center(
+        child: Column(
+          children: [IconButton(
+            icon: const Icon(Icons.arrow_right),
+            onPressed: () {
+            Navigator.of(context).pushNamed(ROUTE_MAIN);
+          })],
+        ),
+      )),
     );
   }
 }

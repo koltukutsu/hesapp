@@ -101,7 +101,7 @@ class _PopUpEkran extends State<PopUpEkran> {
                   onPressed: () {
                     // Navigator.of(context).pop();
                     //   Navigator.pop(context, 1);
-                      BlocProvider.of<DegisenEkranlarCubit>(context).onChangedButton(1);
+                      BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
                   },
                 ),
               ),
@@ -114,7 +114,7 @@ class _PopUpEkran extends State<PopUpEkran> {
                   textSize: 24,
                   onPressed: () {
                     // Navigator.of(context).pop(0);
-                    BlocProvider.of<DegisenEkranlarCubit>(context).onChangedButton(0);
+                    BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0);
                   },
                 ),
               ),

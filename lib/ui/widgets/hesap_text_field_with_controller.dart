@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 import '../theme/insets.dart';
 
-class HesapTextField extends StatelessWidget {
-  const HesapTextField({
+class HesapTextFieldwController extends StatelessWidget {
+  const HesapTextFieldwController({
     Key? key,
     required this.label,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.prefixIcon,
     this.maxLength,
-    required this.onChanged,
+    required this.onValueChange,
   }) : super(key: key);
 
   final String label;
@@ -19,7 +19,8 @@ class HesapTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final int? maxLength;
   final Icon? prefixIcon;
-  final Function(String) onChanged;
+
+  final Function(String) onValueChange;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,9 @@ class HesapTextField extends StatelessWidget {
         ),
         obscureText: obscureText,
         maxLength: maxLength,
-        onChanged: onChanged,
+        // controller: controller,
+        onChanged: onValueChange,
+
       ),
     );
   }

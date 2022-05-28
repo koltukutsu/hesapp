@@ -4,26 +4,20 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hesap/data/model/restoran.dart';
 import 'package:hesap/ui/widgets/hesap_restoranlar_resimli_card.dart';
 
-
 class RestoranAramaTemsilcisi extends SearchDelegate {
-
-
-
   RestoranAramaTemsilcisi({
-    required String hintText, required this.liste, required this.konum,
+    required String hintText,
+    required this.liste,
+    required this.konum,
   }) : super(
-    searchFieldLabel: hintText,
-  );
+          searchFieldLabel: hintText,
+        );
   final List<Restoran> liste;
   final Position? konum;
 
-
-
-
-
   isimler() {
     List restoranlar = [];
-    for (int i=0; i<liste.length; i++) {
+    for (int i = 0; i < liste.length; i++) {
       restoranlar.add(liste[i].isim);
     }
     return restoranlar;
@@ -33,9 +27,7 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
     double restoranEnlem = liste[index].konum.enlem;
     double restoranBoylam = liste[index].konum.boylam;
     var uzaklik = Geolocator.distanceBetween(
-        konum!.latitude, konum!.longitude,
-        restoranEnlem, restoranBoylam
-    );
+        konum!.latitude, konum!.longitude, restoranEnlem, restoranBoylam);
     return uzaklik.toInt();
   }
 

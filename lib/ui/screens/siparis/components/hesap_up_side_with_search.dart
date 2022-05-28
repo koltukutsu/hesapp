@@ -1,6 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:hesap/ui/widgets/HesapSearch.dart';
+import 'package:hesap/ui/widgets/background.dart';
 // components
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
@@ -9,8 +10,8 @@ import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
 
-class HesapUpSide extends StatelessWidget {
-  const HesapUpSide({
+class HesapUpSideWithSearch extends StatelessWidget {
+  const HesapUpSideWithSearch({
     Key? key,
     this.mekanIsmi = "Kafe 24",
     this.secondText = "Masa 24",
@@ -30,6 +31,7 @@ class HesapUpSide extends StatelessWidget {
         SizedBox(
           height: yukariUzunluk,
         ),
+        // HesapBackGround(),
         HesapNormalText(
             text: mekanIsmi,
             fontSize: Insets.xll,
