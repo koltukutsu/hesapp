@@ -7,6 +7,7 @@ import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
 // component
 import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
+import 'package:hesap/util/constants.dart';
 
 class PopUpEkran extends StatefulWidget {
   const PopUpEkran({Key? key, required this.text}) : super(key: key);
@@ -114,7 +115,10 @@ class _PopUpEkran extends State<PopUpEkran> {
                   textSize: 24,
                   onPressed: () {
                     // Navigator.of(context).pop(0);
-                    BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0);
+                    // BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0); //TODO: 1. sayfayla ilgili olan ve restoran kismina donme
+                    BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
+                    Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+
                   },
                 ),
               ),

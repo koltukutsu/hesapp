@@ -10,8 +10,8 @@ class HesapBackGround extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.topEnd,
+    return Column(
+      // alignment: AlignmentDirectional.topEnd,
       children: [
         const SizedBox(
           height: maxYukseklik,
@@ -31,7 +31,7 @@ class HesapBackGround extends StatelessWidget {
           ),
         ),
         SvgPicture.asset('assets/images/background.svg'),
-        additionalWidget.isNotEmpty ? additionalWidget : null,
+        additionalWidget,
       ],
     );
   }

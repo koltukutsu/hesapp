@@ -5,6 +5,7 @@ import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 
 // theme
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/constants.dart';
 
 class HesapBottomNavigationBar extends StatefulWidget {
   const HesapBottomNavigationBar({Key? key, required this.index})
@@ -51,8 +52,9 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
         child: IconButton(
             icon: icon,
             onPressed: () {
-              if (index == 0) {
-                BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0);
+              if (index == 0) { // TODO: buradaki 1. sayda mantigi duzeltilmeli
+                BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
+                Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
               } else if (index == 1) {
                 BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
               } else if (index == 2) {
