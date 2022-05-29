@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/navigation/navigation_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
+import 'package:hesap/ui/screens/garson/garson_cagir_ekran.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
+import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
 import 'package:hesap/util/constants.dart';
 
@@ -52,8 +54,9 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
       // const RestoranEkran(),
       const PopUpEkran(text: "herhangi bir kafe ismi"),
       const SiparisEkran(),
-      const PopUpEkran(text: "herhangi bir kafe ismi"),
-      const PopUpEkran(text: "herhangi bir kafe ismi  "),
+      const GarsonCagirEkran(),
+      const ProfileScreen()
+      // const PopUpEkran(text: "herhangi bir kafe ismi  "),
     ];
 
     return BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
