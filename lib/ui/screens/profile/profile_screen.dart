@@ -4,6 +4,10 @@ import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/screens/profile/components/profile_text_field.dart';
+import "package:flutter/cupertino.dart";
+import 'package:hesap/ui/widgets/hesap_correct_snack_bar.dart';
+import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
+import 'package:hesap/ui/widgets/hesap_information_snack_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -34,7 +38,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 label: Text(isEditing ? 'Kaydet' : 'Profili Düzenle'),
                 icon: Icon(isEditing ? Icons.save : Icons.edit),
                 onPressed: () {
-                  context.read<ProfileCubit>().toggleEditMode();
+                  if (BlocProvider.of<ProfileCubit>(context).isEditing ==
+                      false) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text("Bilgi Değiştirme"),
+                        content: const Text(
+                            "Bilgilerini Değiştirmek İstiyor musun?"),
+                        actions: [
+                          TextButton(
+                            child: const Text("Hayır"),
+                            onPressed: () {
+                              // context.read<ProfileCubit>().toggleEditMode();
+                              Navigator.of(context).pop();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(informationSnackbar("Profil Bilgileri Değiştirilmedi"));
+                              // buraya eski hallerine getirilmesi icin bir ozellik eklenmesi lazim, ufak bir fonksiyon ile halledilir
+                              // TODO: ozelligi eklemeye gerek kalmadi, otomatik olarak halledildi
+                            },
+                          ),
+                          TextButton(
+                            child: const Text("Evet"),
+                            onPressed: () {
+                              context.read<ProfileCubit>().toggleEditMode();
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  } else {
+                    context.read<ProfileCubit>().toggleEditMode();
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(correctSnackbar("Profil Bilgileri Kaydedildi"));
+                  }
+
+                  // context.read<ProfileCubit>().toggleEditMode();
                 },
               ),
               ProfileTextField(
