@@ -24,10 +24,6 @@ import 'package:hesap/ui/screens/uye_ol/uye_ol_ekran.dart';
 import 'package:hesap/ui/theme/themes.dart';
 import 'package:hesap/util/constants.dart';
 
-import '../util/theme_manager.dart';
-
-ThemeManager _themeManager = ThemeManager();
-
 class HesapApp extends StatelessWidget {
   const HesapApp({Key? key}) : super(key: key);
 
@@ -59,7 +55,8 @@ class HesapApp extends StatelessWidget {
           ),
         ),
         BlocProvider(create: (context) => MenuAramaCubit()),
-        BlocProvider(create: (context) => ProfileCubit())
+        BlocProvider(create: (context) => ProfileCubit()),
+        BlocProvider(create: (context) => ThemeCubit())
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {

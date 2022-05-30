@@ -7,12 +7,11 @@ class HesapTextField extends StatelessWidget {
   const HesapTextField({
     Key? key,
     required this.label,
-    required this.onChanged,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.prefixIcon,
     this.maxLength,
-    this.borderColor = AppColors.primary,
+    required this.onChanged,
   }) : super(key: key);
 
   final String label;
@@ -21,7 +20,6 @@ class HesapTextField extends StatelessWidget {
   final int? maxLength;
   final Icon? prefixIcon;
   final Function(String) onChanged;
-  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +28,16 @@ class HesapTextField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Insets.m),
-            borderSide: BorderSide(
-              color: borderColor,
+            borderRadius: BorderRadius.circular(Insets.s),
+            borderSide: const BorderSide(
+              color: AppColors.gray,
               width: 2.0,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Insets.m),
-            borderSide: BorderSide(
-              color: borderColor,
+            borderRadius: BorderRadius.circular(Insets.s),
+            borderSide: const BorderSide(
+              color: AppColors.primary,
               width: 2.0,
             ),
           ),
@@ -49,22 +47,19 @@ class HesapTextField extends StatelessWidget {
             fontSize: 16.0,
           ),
           labelText: label,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             fontFamily: 'Ubuntu',
-            color: borderColor
           ),
           hintStyle: const TextStyle(
             color: AppColors.gray,
           ),
           isDense: false,
           filled: true,
-          fillColor: Theme.of(context).backgroundColor,
           contentPadding: const EdgeInsets.fromLTRB(20, 24, 12, 8),
           counterText: "",
         ),
         keyboardType: keyboardType,
-        style: TextStyle(
-          color: borderColor,
+        style: const TextStyle(
           fontFamily: 'Ubuntu',
           fontSize: 16.0,
           letterSpacing: 0.2,
