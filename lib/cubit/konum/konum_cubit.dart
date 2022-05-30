@@ -9,6 +9,7 @@ part 'konum_state.dart';
 class KonumCubit extends Cubit<KonumState> {
   final KonumRepository _konumRepository;
 
+
   KonumCubit(this._konumRepository) : super(KonumInitial()) {
     checkPermission();
   }
@@ -17,7 +18,9 @@ class KonumCubit extends Cubit<KonumState> {
     await _konumRepository.checkPermission();
   }
 
+
   Future getLocation() async {
+
 
     try {
       emit(const KonumYukleniyor());

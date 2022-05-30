@@ -31,6 +31,8 @@ class RestoranAramaTemsilcisi extends SearchDelegate {
     return uzaklik.toInt();
   }
 
+
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [

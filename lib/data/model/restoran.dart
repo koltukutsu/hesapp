@@ -15,6 +15,7 @@ class Restoran {
   final int toplamKapasite;
   final List<Masalar> masalar;
   final List<Menu> menu;
+  int? uzaklik;
 
 
   Restoran({required this.id, required this.isim, required this.resim, required this.adres, required this.konum, required this.masaSayisi, required this.toplamKapasite, required this.masalar, required this.menu, });
@@ -35,6 +36,8 @@ class Restoran {
         menu : menuList.map((x) => Menu.fromJson(x)).toList(),
     );
   }
+
+
 
 /*  Map<String, dynamic> toMap() => {
     'id': id,

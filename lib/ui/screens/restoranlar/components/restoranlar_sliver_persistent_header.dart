@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
-import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
-import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
-import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/util/constants.dart';
@@ -47,56 +45,12 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
-        const SizedBox(
-          height: maxYukseklik,
-        ),
-        Transform.scale(
-          scale: 1.05,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(70),
-              bottomRight: Radius.circular(70),
-            ),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: topPadding - 55,
-              color: AppColors.primary,
-            ),
-          ),
-        ),
+        const SizedBox(height: maxYukseklik,),
+        MaviKisim(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
         UserIkonu(topPadding: topPadding, offset: offset),
         HesapYazisi(topPadding: topPadding),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 210,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.location_on_outlined,
-                color: AppColors.white,
-                size: 25,
-              ),
-              BlocBuilder<KonumCubit, KonumState>(
-                builder: (context, state) {
-                  if (state is KonumYuklendi) {
-                    return Text(
-                      '${state.adres?.first.street.toString()} ${state.adres?.first.subLocality}, ${state.adres?.first.locality}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: AppColors.white,
-                          fontSize: 15,
-                          fontFamily: 'Ubuntu',
-                          fontWeight: FontWeight.w300),
-                    );
-                  }
-                  return Container();
-                },
-              )
-            ],
-          ),
-        ),
+        const KonumBilgisi(),
         QRKodOkutma(offset: offset),
         YakinimdakiMekanlar(offset: offset),
       ],
@@ -112,6 +66,76 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       oldDelegate.maxExtent != maxExtent || oldDelegate.minExtent != minExtent;
+}
+
+class KonumBilgisi extends StatelessWidget {
+  const KonumBilgisi({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 210,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.location_on_outlined,
+            color: AppColors.white,
+            size: 25,
+          ),
+          BlocBuilder<KonumCubit, KonumState>(
+            builder: (context, state) {
+              if (state is KonumYuklendi) {
+                return Text(
+                  '${state.adres?.first.street.toString()} ${state.adres?.first.subLocality}, ${state.adres?.first.locality}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 15,
+                      fontFamily: 'Ubuntu',
+                      fontWeight: FontWeight.w300),
+                );
+              } else if (state is KonumYukleniyor) {
+                return const Center(child: Text('Konum Yükleniyor...'));
+              } else {
+                return Container();
+              }
+            },
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MaviKisim extends StatelessWidget {
+  const MaviKisim({
+    Key? key,
+    required this.topPadding,
+  }) : super(key: key);
+
+  final double topPadding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.scale(
+      scale: 1.05,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(70),
+          bottomRight: Radius.circular(70),
+        ),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: topPadding - 55,
+          color: AppColors.primary,
+        ),
+      ),
+    );
+  }
 }
 
 class UserIkonu extends StatelessWidget {
@@ -298,10 +322,21 @@ class YakinimdakiMekanlar extends StatelessWidget {
                   builder: (context, state) {
                     if (state is RestoranYuklendi) {
                       var restoranList = state.restoranList;
+                      double restoranEnlem(index) => state.restoranList[index].konum.enlem;
+                      double restoranBoylam(index) => state.restoranList[index].konum.boylam;
                       return BlocBuilder<KonumCubit, KonumState>(
                         builder: (context, state) {
                           if (state is KonumYuklendi) {
                             var konum = state.konum;
+                            for (int i=0; i < restoranList.length; i++) {
+                              restoranList[i].uzaklik  = Geolocator.distanceBetween(
+                                  konum!.latitude,
+                                  state.konum!.longitude,
+                                  restoranEnlem(i),
+                                  restoranBoylam(i)).toInt();
+                            }
+                            int siralama<Restoran> (x,y) => x.uzaklik!.compareTo(y.uzaklik!);
+                            restoranList.sort(siralama);
                             return IconButton(
                               icon: const Icon(
                                 Icons.search,
@@ -323,7 +358,7 @@ class YakinimdakiMekanlar extends StatelessWidget {
                             return const Center(child: CircularProgressIndicator());
                           } else if (state is KonumYuklenemedi) {
                             KonumRepository().checkPermission();
-                            return const Center(child: Text('Lütfen Konum Bilgisi Giriniz'));
+                            return const Center(child: Text('Konum Yok'));
                           } else {
                             return const Center(child: Text('Hata'));
                           }
@@ -331,8 +366,6 @@ class YakinimdakiMekanlar extends StatelessWidget {
                       );
                     } else if (state is RestoranYukleniyor) {
                       return const Center(child: CircularProgressIndicator());
-                    } else if (state is RestoranYuklenemedi) {
-                      return const Center(child: Text('Restoran Yüklenemedi'));
                     } else {
                       return const Center(child: Text('Hata'));
                     }

@@ -11,19 +11,20 @@ class SliverListesi extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+
   @override
   State<SliverListesi> createState() => _SliverListesiState();
 }
 
 class _SliverListesiState extends State<SliverListesi> {
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RestoranCubit, RestoranState>(
       builder: (context, state) {
         if (state is RestoranYuklendi) {
           double restoranEnlem(index) => state.restoranList[index].konum.enlem;
-          double restoranBoylam(index) =>
-              state.restoranList[index].konum.boylam;
+          double restoranBoylam(index) => state.restoranList[index].konum.boylam;
           final restoranList = state.restoranList;
           return BlocBuilder<KonumCubit, KonumState>(
             builder: (context, state) {
@@ -32,15 +33,19 @@ class _SliverListesiState extends State<SliverListesi> {
                 return SliverList(
                     delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                  var uzaklik = Geolocator.distanceBetween(
-                          konum!.latitude,
-                          state.konum!.longitude,
-                          restoranEnlem(index),
-                          restoranBoylam(index)).toInt();
+                          for (int i=0; i < restoranList.length; i++) {
+                            restoranList[i].uzaklik  = Geolocator.distanceBetween(
+                                konum!.latitude,
+                                state.konum!.longitude,
+                                restoranEnlem(i),
+                                restoranBoylam(i)).toInt();
+                          }
+                          int siralama<Restoran> (x,y) => x.uzaklik!.compareTo(y.uzaklik!);
+                          restoranList.sort(siralama);
                   return HesapResimliCard(
                     isim: restoranList[index].isim,
                     resim: restoranList[index].resim,
-                    uzaklik: uzaklik,
+                    uzaklik: restoranList[index].uzaklik,
                   );
                 }, childCount: restoranList.length));
               } else if (state is KonumYukleniyor) {

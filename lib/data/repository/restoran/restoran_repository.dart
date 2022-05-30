@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:hesap/data/model/konum.dart';
 import 'package:hesap/data/model/restoran.dart';
 
 
@@ -17,7 +16,6 @@ class RestoranRepository {
      restoranList = decodedJson.map((restoran) => Restoran.fromJson(restoran)).toList();
      return restoranList;
   }
-
 
 
 
