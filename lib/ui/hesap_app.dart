@@ -40,6 +40,7 @@ class HesapApp extends StatelessWidget {
             AuthRepository(),
           ),
         ),
+
         // BlocProvider(
         //   create: (context) => QRCubit(),
         // ),
