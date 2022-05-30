@@ -11,4 +11,5 @@ class AppColors {
   static const Color chosen = Color(0xFF32A7DA);
   static const Color unchosen = Color(0xFFFAFAFA);
   static const Color accept = Color(0xFF33B864);
+  static const Color information = Colors.orangeAccent;
 }

@@ -10,7 +10,7 @@ SnackBar informationSnackbar(String message) {
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.all(Radius.circular(Insets.m))),
     elevation: 0,
-    backgroundColor: Colors.orangeAccent,
+    backgroundColor: AppColors.information,
     content: Text(message),
   );
 }
