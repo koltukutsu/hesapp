@@ -63,12 +63,10 @@ class HesapApp extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: _themeManager.themeMode,
-        // initialRoute: ROUTE_BASE,
         initialRoute: ROUTE_RESTAURANTS,
         routes: {
           ROUTE_BASE: (context) => const AcilisEkran(),
           ROUTE_MAIN: (context) => const AnaEkran(),
-          // diger ekranlar arasinda gecis yapacak kisim
           ROUTE_SIGN_IN: (context) => const GirisYapEkran(),
           ROUTE_SIGN_UP: (context) => const UyeOlEkran(),
           ROUTE_RESTAURANTS: (context) => const RestoranEkran(),

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
-import 'package:hesap/cubit/navigation/navigation_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/screens/garson/garson_cagir_ekran.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
-import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
-import 'package:hesap/util/constants.dart';
 
 // pages
-import 'package:hesap/ui/screens/restoran/restoran_ekran.dart';
 import 'package:hesap/ui/screens/siparis/siparis_ekran.dart';
 
 // components
@@ -45,22 +41,16 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
         0.0; // floating action button bunu kullanarak yukari gitmeyecek
 
     final pages = <Widget>[
-      // BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
-      //     builder: (context, state) {
-      //   return RestaurantEkran(
-      //       onChangedTab:
-      //           BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab);
-      // }),
-      // const RestoranEkran(),
       const PopUpEkran(text: "herhangi bir kafe ismi"),
-      const SiparisEkran(),
-      const GarsonCagirEkran(),
-      const ProfileScreen()
+      const SiparisEkran(), // 1
+      const GarsonCagirEkran(), // 2
+      const ProfileScreen() // 3
       // const PopUpEkran(text: "herhangi bir kafe ismi  "),
     ];
 
     return BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
       builder: (context, state) => Scaffold(
+        appBar: null,
         body: AnimatedSwitcher(
             duration: const Duration(milliseconds: 280),
             transitionBuilder: (Widget child, Animation<double> animation) {

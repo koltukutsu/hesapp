@@ -20,7 +20,6 @@ class SliverHeader extends StatefulWidget {
 }
 
 class _SliverHeaderState extends State<SliverHeader> {
-
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
@@ -41,11 +40,12 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
     double offset = (minExtent - adjustedShrinkOffset) - 20;
     double topPadding = MediaQuery.of(context).padding.top + 250;
 
-
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
-        const SizedBox(height: maxYukseklik,),
+        const SizedBox(
+          height: maxYukseklik,
+        ),
         MaviKisim(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
         UserIkonu(topPadding: topPadding, offset: offset),
@@ -238,12 +238,6 @@ class QRKodOkutma extends StatelessWidget {
                 ]),
             child: InkWell(
               onTap: () {
-                //TODO: ROUTE olacak
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (context) => const QrOkumaEkran(),
-                //   ),
-                // );
                 Navigator.of(context).pushNamed(ROUTE_QR_SCREEN);
               },
               child: Row(
@@ -322,48 +316,53 @@ class YakinimdakiMekanlar extends StatelessWidget {
                   builder: (context, state) {
                     if (state is RestoranYuklendi) {
                       var restoranList = state.restoranList;
-                      double restoranEnlem(index) => state.restoranList[index].konum.enlem;
-                      double restoranBoylam(index) => state.restoranList[index].konum.boylam;
+                      double restoranEnlem(index) =>
+                          state.restoranList[index].konum.enlem;
+                      double restoranBoylam(index) =>
+                          state.restoranList[index].konum.boylam;
                       return BlocBuilder<KonumCubit, KonumState>(
-                        builder: (context, state) {
-                          if (state is KonumYuklendi) {
-                            var konum = state.konum;
-                            for (int i=0; i < restoranList.length; i++) {
-                              restoranList[i].uzaklik  = Geolocator.distanceBetween(
-                                  konum!.latitude,
-                                  state.konum!.longitude,
-                                  restoranEnlem(i),
-                                  restoranBoylam(i)).toInt();
-                            }
-                            int siralama<Restoran> (x,y) => x.uzaklik!.compareTo(y.uzaklik!);
-                            restoranList.sort(siralama);
-                            return IconButton(
-                              icon: const Icon(
-                                Icons.search,
-                                size: 40,
-                                color: AppColors.darkBackground,
-                              ),
-                              onPressed: () {
-                                showSearch(
-                                  context: context,
-                                  delegate: RestoranAramaTemsilcisi(
-                                    hintText: 'Restoran Ara',
-                                    liste: restoranList,
-                                    konum: konum,
-                                  ),
-                                );
-                              },
-                            );
-                          } else if (state is KonumYukleniyor) {
-                            return const Center(child: CircularProgressIndicator());
-                          } else if (state is KonumYuklenemedi) {
-                            KonumRepository().checkPermission();
-                            return const Center(child: Text('Konum Yok'));
-                          } else {
-                            return const Center(child: Text('Hata'));
+                          builder: (context, state) {
+                        if (state is KonumYuklendi) {
+                          var konum = state.konum;
+                          for (int i = 0; i < restoranList.length; i++) {
+                            restoranList[i].uzaklik =
+                                Geolocator.distanceBetween(
+                                        konum!.latitude,
+                                        state.konum!.longitude,
+                                        restoranEnlem(i),
+                                        restoranBoylam(i))
+                                    .toInt();
                           }
+                          int siralama<Restoran>(x, y) =>
+                              x.uzaklik!.compareTo(y.uzaklik!);
+                          restoranList.sort(siralama);
+                          return IconButton(
+                            icon: const Icon(
+                              Icons.search,
+                              size: 40,
+                              color: AppColors.darkBackground,
+                            ),
+                            onPressed: () {
+                              showSearch(
+                                context: context,
+                                delegate: RestoranAramaTemsilcisi(
+                                  hintText: 'Restoran Ara',
+                                  liste: restoranList,
+                                  konum: konum,
+                                ),
+                              );
+                            },
+                          );
+                        } else if (state is KonumYukleniyor) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (state is KonumYuklenemedi) {
+                          KonumRepository().checkPermission();
+                          return const Center(child: Text('Konum Yok'));
+                        } else {
+                          return const Center(child: Text('Hata'));
                         }
-                      );
+                      });
                     } else if (state is RestoranYukleniyor) {
                       return const Center(child: CircularProgressIndicator());
                     } else {
