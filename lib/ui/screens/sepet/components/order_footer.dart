@@ -14,11 +14,11 @@ class SepetFooter extends StatefulWidget {
 class _SepetFooterState extends State<SepetFooter> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 150,
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: 150,
           child: Column(
@@ -26,12 +26,12 @@ class _SepetFooterState extends State<SepetFooter> {
               SvgPicture.asset("assets/images/sepet_divider.svg",
                   width: MediaQuery.of(context).size.width),
               Padding(
-                padding: EdgeInsets.only(left: 13.0),
+                padding: const EdgeInsets.only(left: 13.0),
                 child: TextFormField(
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Not Ekle',
-                    labelStyle: const TextStyle(
+                    labelStyle: TextStyle(
                         fontFamily: 'Ubuntu',
                         fontSize: 16,
                         color: AppColors.gray),
@@ -41,12 +41,12 @@ class _SepetFooterState extends State<SepetFooter> {
               SvgPicture.asset("assets/images/sepet_divider.svg",
                   width: MediaQuery.of(context).size.width),
               Padding(
-                padding:
-                    EdgeInsets.only(left: 20, right: 7, top: 14, bottom: 14),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 7, top: 14, bottom: 14),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
+                    const Text(
                       "Toplam Tutar:",
                       style: TextStyle(fontSize: 20, fontFamily: 'ubuntu'),
                     ),
@@ -54,11 +54,11 @@ class _SepetFooterState extends State<SepetFooter> {
                       height: 48,
                       width: 84,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                           color: AppColors.amountBox,
                         ),
-                        child: Align(
+                        child: const Align(
                           alignment: AlignmentDirectional.center,
                           child: Text(
                             "45,00",
@@ -75,8 +75,10 @@ class _SepetFooterState extends State<SepetFooter> {
                       height: 48.0,
                       width: 84,
                       child: OutlinedButton(
-                        onPressed: null,
-                        child: Text(
+                        onPressed: () {
+                          // TODO: alertDialog eklenecek, odeme tamamlandi
+                        },
+                        child: const Text(
                           "ÖDE",
                           style: TextStyle(
                               fontFamily: 'Ubuntu',

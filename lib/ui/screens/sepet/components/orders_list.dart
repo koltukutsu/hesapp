@@ -32,10 +32,10 @@ class _OrdersListState extends State<OrdersList> {
 
       return InkWell(
           child: Padding(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             color: AppColors.basketItemBackground.withOpacity(0.1),
           ),
           child: Row(
@@ -49,11 +49,11 @@ class _OrdersListState extends State<OrdersList> {
                   image: DecorationImage(image: NetworkImage(order.image)),
                 ),
                 alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.all(20),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Column(
                   children: [
                     Align(
