@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "559194613522",
+    "project_id": "hesap-app",
+    "storage_bucket": "hesap-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559194613522:android:b69657f6c8695e2cb1b5cb",
+        "android_client_info": {
+          "package_name": "com.yirmidort.hesap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559194613522-0n41s9u0o3eeav2eifbtr13311mvpk5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfN_4HfaG5c6o6qAUEC0Okk-R55e-kjMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559194613522-0n41s9u0o3eeav2eifbtr13311mvpk5k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "559194613522-dgfvnnbdf6fli4ulic8sufg4tsl1m21l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hesap"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
