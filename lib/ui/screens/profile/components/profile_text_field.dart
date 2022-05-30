@@ -29,6 +29,7 @@ class ProfileTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
+          fillColor: Colors.transparent,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Insets.s),
             borderSide: const BorderSide(
@@ -39,8 +40,8 @@ class ProfileTextField extends StatelessWidget {
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Insets.s),
             borderSide: const BorderSide(
-              color: AppColors.gray,
-              width: 1.0,
+              color: Colors.transparent,
+              width: 0.0,
             ),
           ),
           focusedBorder: OutlineInputBorder(
@@ -65,7 +66,6 @@ class ProfileTextField extends StatelessWidget {
           ),
           isDense: false,
           filled: true,
-          fillColor: Theme.of(context).backgroundColor,
           contentPadding: const EdgeInsets.fromLTRB(20, 24, 12, 8),
           counterText: "",
         ),
