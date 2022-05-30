@@ -7,13 +7,15 @@ import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
-import 'package:hesap/data/repository/auth/auth_repository_impl.dart';
+import 'package:hesap/data/repository/auth_repository.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
-import 'package:hesap/ui/screens/acilis/acilis_ekran.dart';
+
+import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 
 // import 'package:hesap/ui/screens/ana/ana_ekran_semih.dart';
+import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/qr_code/qr_okuma_ekran.dart';
@@ -35,13 +37,14 @@ class HesapApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AuthCubit(
-            AuthRepositoryImpl(),
+            AuthRepository(),
           ),
         ),
         // BlocProvider(
         //   create: (context) => QRCubit(),
         // ),
         BlocProvider(
+          // Ana Sayfa, Degisen Ekranlar
           create: (context) => DegisenEkranlarCubit(),
         ),
         BlocProvider(
@@ -63,12 +66,13 @@ class HesapApp extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: _themeManager.themeMode,
-        initialRoute: ROUTE_RESTAURANTS,
+        initialRoute: ROUTE_ON_BOARDING,
         routes: {
-          ROUTE_BASE: (context) => const AcilisEkran(),
+          ROUTE_BASE: (context) => const BaseScreen(),
+          ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
           ROUTE_MAIN: (context) => const AnaEkran(),
-          ROUTE_SIGN_IN: (context) => const GirisYapEkran(),
-          ROUTE_SIGN_UP: (context) => const UyeOlEkran(),
+          ROUTE_LOGIN: (context) => const GirisYapEkran(),
+          ROUTE_REGISTER: (context) => const UyeOlEkran(),
           ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
           ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
           // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)

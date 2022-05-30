@@ -6,11 +6,15 @@ class Menu {
   final List<AraSicaklar>? araSicaklar;
   final List<Icecekler>? icecekler;
 
-  Menu({required this.kategori, this.corbalar, this.yemekler, this.tatlilar,
-       this.araSicaklar, this.icecekler});
+  Menu(
+      {required this.kategori,
+      this.corbalar,
+      this.yemekler,
+      this.tatlilar,
+      this.araSicaklar,
+      this.icecekler});
 
   factory Menu.fromJson(Map<String, dynamic> json) {
-
     List? corbaList;
     corbaList != null ? json['corbalar'] as List : ['yok'];
     List? yemekList;
@@ -22,15 +26,13 @@ class Menu {
     List? iceceklerList;
     iceceklerList != null ? json['icecekler'] as List : ['yok'];
     return Menu(
-        kategori : json['kategori'],
-        corbalar : corbaList?.map((x) => Corbalar.fromJson(x)).toList(),
-        yemekler : yemekList?.map((x) => Yemekler.fromJson(x)).toList(),
-        tatlilar : tatliList?.map((x) => Tatlilar.fromJson(x)).toList(),
-        araSicaklar : araSicakList?.map((x) => AraSicaklar.fromJson(x)).toList(),
-        icecekler : iceceklerList?.map((x) => Icecekler.fromJson(x)).toList()
-    );
+        kategori: json['kategori'],
+        corbalar: corbaList?.map((x) => Corbalar.fromJson(x)).toList(),
+        yemekler: yemekList?.map((x) => Yemekler.fromJson(x)).toList(),
+        tatlilar: tatliList?.map((x) => Tatlilar.fromJson(x)).toList(),
+        araSicaklar: araSicakList?.map((x) => AraSicaklar.fromJson(x)).toList(),
+        icecekler: iceceklerList?.map((x) => Icecekler.fromJson(x)).toList());
   }
-
 }
 
 class Corbalar {
@@ -41,12 +43,11 @@ class Corbalar {
 
   Corbalar(this.isim, this.resim, this.fiyat, this.sure);
 
-  Corbalar.fromJson (Map<String, dynamic> json)
+  Corbalar.fromJson(Map<String, dynamic> json)
       : isim = json['corba-ismi'],
         resim = json['resim'],
         fiyat = json['fiyat'],
         sure = json['sure'];
-
 }
 
 class Yemekler {

@@ -8,7 +8,6 @@ import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
-
 class HesapUpSide extends StatelessWidget {
   const HesapUpSide({
     Key? key,
@@ -22,10 +21,8 @@ class HesapUpSide extends StatelessWidget {
   final double yukariUzunluk;
   @override
   Widget build(BuildContext context) {
-    // var secondText = "Menu";
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Center(
+        child: Column(
       children: [
         SizedBox(
           height: yukariUzunluk,
@@ -45,6 +42,6 @@ class HesapUpSide extends StatelessWidget {
         ),
         // HesapSearch()
       ],
-    );
+    ));
   }
 }

@@ -14,20 +14,16 @@ class UyeOlAppBar extends StatelessWidget with PreferredSizeWidget {
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
         ),
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.gray,
         title: const Text("Üye Ol"),
         titleTextStyle: const TextStyle(
           fontFamily: 'Ubuntu',
-          fontSize: 20.0,
+          fontSize: 16.0,
           color: AppColors.gray,
           height: 1.6,
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: AppColors.gray,
-          onPressed: onBack,
-        ),
         elevation: 0);
   }
 
