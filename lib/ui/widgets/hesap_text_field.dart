@@ -55,7 +55,6 @@ class HesapTextField extends StatelessWidget {
           ),
           isDense: false,
           filled: true,
-          fillColor: Theme.of(context).backgroundColor,
           contentPadding: const EdgeInsets.fromLTRB(20, 24, 12, 8),
           counterText: "",
         ),

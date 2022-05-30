@@ -1,12 +1,15 @@
 import 'package:bloc/bloc.dart';
+import 'package:hesap/data/repository/preferences_repository.dart';
 
 class ProfileCubit extends Cubit<bool> {
-  ProfileCubit() : super(false);
+  PreferencesRepository _profileRepository;
+
+  ProfileCubit(this._profileRepository) : super(false);
 
   bool isEditing = false;
 
   toggleEditMode() {
-    emit(!isEditing);
     isEditing = !isEditing;
+    emit(isEditing);
   }
 }

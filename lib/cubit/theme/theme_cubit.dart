@@ -8,13 +8,11 @@ class ThemeCubit extends Cubit<ThemeData> {
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
-    backgroundColor: AppColors.lightBackground,
   );
 
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: AppColors.primary,
-    backgroundColor: AppColors.darkBackground,
   );
 
   toggleTheme() {
