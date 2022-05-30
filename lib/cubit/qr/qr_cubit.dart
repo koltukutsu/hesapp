@@ -21,6 +21,4 @@ class QRCubit extends Cubit<QRState> {
   dispose() {
     controller?.dispose();
   }
-
-  /// QR kodundan gelen veriyi işlemek için: qrResult.code!
 }

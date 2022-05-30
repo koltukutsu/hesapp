@@ -30,7 +30,7 @@ class ProfileAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
         ),
         SvgPicture.asset('assets/images/background.svg'),
-        Align(
+        const Align(
           alignment: Alignment.center,
           child: Text("Profil"),
         )

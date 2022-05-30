@@ -18,6 +18,7 @@ dependencies:
   cloud_firestore: ^3.1.14
   flutter_svg: ^1.0.3
   qr_code_scanner: ^0.7.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

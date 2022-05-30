@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
 class ProfileExpandableButton extends StatefulWidget {
-  const ProfileExpandableButton({Key? key, required this.title})
+  const ProfileExpandableButton(
+      {Key? key,
+      required this.title,
+      required this.expanded,
+      required this.toggle})
       : super(key: key);
 
   final String title;
+  final bool expanded;
+  final VoidCallback toggle;
 
   @override
   State<ProfileExpandableButton> createState() =>
@@ -15,17 +21,11 @@ class ProfileExpandableButton extends StatefulWidget {
 class _ProfileExpandableButtonState extends State<ProfileExpandableButton> {
   @override
   Widget build(BuildContext context) {
-    bool isExpanded = false;
-
     return Padding(
       padding: const EdgeInsets.all(Insets.s),
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
-        onLongPress: () {
-          setState(() {
-            isExpanded = !isExpanded;
-          });
-        },
+        onTap: widget.toggle,
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -44,7 +44,7 @@ class _ProfileExpandableButtonState extends State<ProfileExpandableButton> {
               children: [
                 Text(widget.title),
                 Icon(
-                  isExpanded
+                  widget.expanded
                       ? Icons.arrow_drop_up_rounded
                       : Icons.arrow_drop_down_rounded,
                 ),
