@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/navigation/navigation_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
+import 'package:hesap/ui/screens/garson/garson_cagir_ekran.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
+import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
 import 'package:hesap/util/constants.dart';
 
@@ -52,13 +54,35 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
       // const RestoranEkran(),
       const PopUpEkran(text: "herhangi bir kafe ismi"),
       const SiparisEkran(),
-      const PopUpEkran(text: "herhangi bir kafe ismi"),
-      const PopUpEkran(text: "herhangi bir kafe ismi  "),
+      const GarsonCagirEkran(),
+      const ProfileScreen()
+      // const PopUpEkran(text: "herhangi bir kafe ismi  "),
     ];
 
     return BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
       builder: (context, state) => Scaffold(
-        body: pages[state.index],
+        body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 280),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return SlideTransition(
+                position: // TODO: ekranin saga mi sola mi gectigini kontrol icin bir onceki degeri bilmemiz gerekiyor
+                    Tween<Offset>(
+                            begin: const Offset(1.2, 0),
+                            end: const Offset(0.0, 0))
+                        .animate(animation),
+                // state.index > state.lastIndex
+                //     ? Tween<Offset>(
+                //             begin: const Offset(1.2, 0),
+                //             end: const Offset(0.0, 0))
+                //         .animate(animation)
+                //     : Tween<Offset>(
+                //             begin: const Offset(-1.2, 0),
+                //             end: const Offset(0.0, 0))
+                //         .animate(animation),
+                child: child,
+              );
+            },
+            child: pages[state.index]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: keyboardIsOpened
             ? null

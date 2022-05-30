@@ -4,6 +4,7 @@ import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
+import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/auth/auth_repository_impl.dart';
@@ -53,7 +54,8 @@ class HesapApp extends StatelessWidget {
             KonumRepository(),
           ),
         ),
-        BlocProvider(create: (context) => MenuAramaCubit())
+        BlocProvider(create: (context) => MenuAramaCubit()),
+        BlocProvider(create: (context) => ProfileCubit())
       ],
       child: MaterialApp(
         title: 'Hesap',
@@ -71,6 +73,7 @@ class HesapApp extends StatelessWidget {
           ROUTE_SIGN_UP: (context) => const UyeOlEkran(),
           ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
           ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
+          // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
           // ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
         },
       ),
