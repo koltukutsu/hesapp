@@ -5,8 +5,8 @@ import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
-import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
+import 'package:hesap/cubit/theme/theme_cubit.dart';
 import 'package:hesap/data/repository/auth_repository.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
@@ -61,23 +61,26 @@ class HesapApp extends StatelessWidget {
         BlocProvider(create: (context) => MenuAramaCubit()),
         BlocProvider(create: (context) => ProfileCubit())
       ],
-      child: MaterialApp(
-        title: 'Hesap',
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: _themeManager.themeMode,
-        initialRoute: ROUTE_ON_BOARDING,
-        routes: {
-          ROUTE_BASE: (context) => const BaseScreen(),
-          ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
-          ROUTE_MAIN: (context) => const AnaEkran(),
-          ROUTE_LOGIN: (context) => const GirisYapEkran(),
-          ROUTE_REGISTER: (context) => const UyeOlEkran(),
-          ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
-          ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
-          // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
-          // ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
+      child: BlocBuilder<ThemeCubit, ThemeData>(
+        builder: (context, theme) {
+          return MaterialApp(
+            title: 'Hesap',
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            themeMode: ThemeMode.system,
+            initialRoute: ROUTE_BASE,
+            routes: {
+              ROUTE_BASE: (context) => const BaseScreen(),
+              ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
+              ROUTE_MAIN: (context) => const AnaEkran(),
+              ROUTE_LOGIN: (context) => const GirisYapEkran(),
+              ROUTE_REGISTER: (context) => const UyeOlEkran(),
+              ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
+              ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
+              // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
+              // ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
+            },
+          );
         },
       ),
     );
