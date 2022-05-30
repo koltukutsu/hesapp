@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
+import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
 import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'components/loading_screen.dart';
@@ -28,7 +30,7 @@ class _BaseScreenState extends State<BaseScreen> {
       },
       builder: (context, state) {
         if (state is AuthSignInSuccessful) {
-          return const ProfileScreen();
+          return const RestoranEkran();
           //return const QRScannerScreen();
         } else if (state is AuthNotSignedIn) {
           return const OnBoardingScreen();
