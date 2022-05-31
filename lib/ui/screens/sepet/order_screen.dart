@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hesap/ui/screens/sepet/components/order_footer.dart';
 import 'package:hesap/ui/screens/sepet/components/order_header.dart';
+import 'package:hesap/ui/screens/sepet/components/sepet_app_bar.dart';
 
 import '../../../data/model/OrdersModel.dart';
 import '../../../data/repository/Order/OrderServices.dart';
@@ -26,6 +27,8 @@ class _OrdersState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: SepetAppBar(),
+      resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
           const SliverHeader(),

@@ -82,11 +82,12 @@ class _OrdersListState extends State<OrdersList> {
                             ),
                           ),
                           IconButton(
-                            icon: SvgPicture.asset(
-                              "assets/images/negative.svg",
-                              width: 25,
-                              height: 25,
-                            ),
+                            // icon: SvgPicture.asset(
+                            //   "assets/images/negative.svg",
+                            //   width: 25,
+                            //   height: 25,
+                            // ),
+                            icon: const Icon(Icons.remove_circle_outline_outlined, color: AppColors.primary),
                             onPressed: () {
                               setState(() {
                                 if (order.quantity > 0) {
@@ -118,11 +119,12 @@ class _OrdersListState extends State<OrdersList> {
                             ),
                           ),
                           IconButton(
-                            icon: SvgPicture.asset(
-                              "assets/images/plus_icon.svg",
-                              width: 25,
-                              height: 25,
-                            ),
+                            // icon: SvgPicture.asset(
+                            //   "assets/images/plus_icon.svg",
+                            //   width: 25,
+                            //   height: 25,
+                            // ),
+                            icon: const Icon(Icons.add_circle_outline_rounded, color: AppColors.primary),
                             onPressed: () {
                               setState(() {
                                 order.quantity++;

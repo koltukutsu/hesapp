@@ -71,7 +71,7 @@ class HesapApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             themeMode: ThemeMode.system,
-            initialRoute: ROUTE_BASE,
+            initialRoute: ROUTE_RESTAURANTS,
             routes: {
               ROUTE_BASE: (context) => const BaseScreen(),
               ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
