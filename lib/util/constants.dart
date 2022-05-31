@@ -7,4 +7,4 @@ const String ROUTE_MAIN = '/main';
 const String ROUTE_QR_SCREEN = '/qr_screen';
 const String ROUTE_RESTAURANTS = '/restaurants';
 const String ROUTE_POP_EKRAN = '/pop_ekran';
-const String ROUTE_SEPET_EKRAN = "sepet_ekran";
+const String ROUTE_SEPET_EKRAN = "/sepet_ekran";

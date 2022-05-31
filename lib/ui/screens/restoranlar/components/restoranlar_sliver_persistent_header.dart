@@ -46,7 +46,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
         const SizedBox(
           height: maxYukseklik,
         ),
-        MaviKisim(topPadding: topPadding),
+        MaviKisim1(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
         UserIkonu(topPadding: topPadding, offset: offset),
         HesapYazisi(topPadding: topPadding),
@@ -111,8 +111,8 @@ class KonumBilgisi extends StatelessWidget {
   }
 }
 
-class MaviKisim extends StatelessWidget {
-  const MaviKisim({
+class MaviKisim1 extends StatelessWidget {
+  const MaviKisim1({
     Key? key,
     required this.topPadding,
   }) : super(key: key);

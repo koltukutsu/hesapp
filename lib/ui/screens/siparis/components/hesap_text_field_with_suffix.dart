@@ -58,7 +58,7 @@ class HesapTextFieldSuffix extends StatelessWidget {
           ),
           isDense: false,
           filled: true,
-          fillColor: Theme.of(context).backgroundColor,
+          fillColor: Colors.white,
           contentPadding: const EdgeInsets.fromLTRB(20, 24, 12, 8),
           counterText: "",
         ),

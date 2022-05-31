@@ -20,7 +20,7 @@ class _SiparisEkran extends State<SiparisEkran> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _startingFunction());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
   }
 
   final Map data = {
@@ -80,19 +80,16 @@ class _SiparisEkran extends State<SiparisEkran> {
   };
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          HesapUpSideWithSearch(
-            mekanIsmi: data["Kafe Ismi"],
-          ),
-          HesapMiddleSide(data: data),
-        ],
-      )),
+        body: CustomScrollView(
+          slivers: [
+            SliverUpSideWithSearch(data: data,
+            ),
+            HesapMiddleSide(data: data),
+          ],
+        )
     );
   }
 }
