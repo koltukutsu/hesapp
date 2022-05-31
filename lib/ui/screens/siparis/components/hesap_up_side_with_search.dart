@@ -12,42 +12,123 @@ import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
-class HesapUpSideWithSearch extends StatelessWidget {
-  const HesapUpSideWithSearch({
-    Key? key,
-    this.mekanIsmi = "Kafe 24",
-    this.secondText = "Masa 24",
-    this.yukariUzunluk = 100,
+import '../../common_screen_sections/hesap_up_side.dart';
+import '../../restoranlar/components/restoranlar_sliver_persistent_header.dart';
+
+class SliverUpSideWithSearch extends StatefulWidget {
+  const SliverUpSideWithSearch({
+    Key? key, required this.data,
   }) : super(key: key);
 
-  final String mekanIsmi;
-  final String secondText;
-  final double yukariUzunluk;
+  final Map data;
+
+  @override
+  State<SliverUpSideWithSearch> createState() => _SliverUpSideWithSearchState();
+}
+
+class _SliverUpSideWithSearchState extends State<SliverUpSideWithSearch> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return SliverPersistentHeader(
+      delegate: HesapUpSideWithSearch(
+        mekanIsmi: widget.data["Kafe Ismi"],
+        secondText: "Menü"
+      ),
+      pinned: true,
+    );
+  }
+}
+
+class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
+  static const double maxYukseklik = 240;
+
+  const HesapUpSideWithSearch({
+    required this.mekanIsmi,
+    required this.secondText,
+  }) : super();
+
+  final String mekanIsmi;
+  final String secondText;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    var adjustedShrinkOffset =
+    shrinkOffset > minExtent ? minExtent : shrinkOffset;
+    double offset = (minExtent - adjustedShrinkOffset) - 20;
+    double topPadding = MediaQuery.of(context).padding.top + 250;
+
+    return Stack(
+      alignment: AlignmentDirectional.topEnd,
       children: [
-        SizedBox(
-          height: yukariUzunluk,
-        ),
-        HesapNormalText(
-            text: mekanIsmi,
-            fontSize: Insets.xll,
-            textColor: AppColors.primary),
         const SizedBox(
-          height: 20,
+          height: maxYukseklik,
         ),
-        HesapTextCard(
-          text: secondText,
-          fontSize: Insets.xll,
-          textColor: AppColors.lightBackground,
-          cardColor: AppColors.primary,
-        ),
-        HesapSearch()
+        MaviKisim2(topPadding: topPadding),
+        SvgPicture.asset('assets/images/background.svg'),
+        MekanYazisi(topPadding: topPadding, offset: offset, mekanIsmi: mekanIsmi),
+        MenuYazisi(offset: offset),
+        AramaKismi(topPadding: topPadding,maxYukseklik: maxYukseklik, offset: offset)
       ],
+    );
+  }
+
+  @override
+  double get maxExtent => maxYukseklik;
+
+  @override
+  double get minExtent => 150;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      oldDelegate.maxExtent != maxExtent || oldDelegate.minExtent != minExtent;
+
+}
+
+class MenuYazisi extends StatelessWidget {
+  const MenuYazisi({
+    Key? key,
+    required this.offset,
+  }) : super(key: key);
+
+  final double offset;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: HesapNormalText(
+        text: 'Menü',
+        textColor: AppColors.white,
+        fontWeight: FontWeight.normal,
+        fontSize: 35,
+      ),
+    );
+  }
+}
+
+class AramaKismi extends StatelessWidget {
+  const AramaKismi({
+    Key? key,
+    required this.maxYukseklik,
+    required this.offset, required this.topPadding,
+  }) : super(key: key);
+
+  final double maxYukseklik;
+  final double offset;
+  final double topPadding;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: topPadding -30,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: SizedBox(
+          height: 60,
+          child: HesapSearch(),
+        ),
+      ),
     );
   }
 }
