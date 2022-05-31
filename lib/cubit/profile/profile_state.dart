@@ -9,17 +9,38 @@ class ProfileInitial extends ProfileState {
   List<Object> get props => [];
 }
 
-class ProfileSetState extends ProfileState {
-  const ProfileSetState(
-    this.isEditing,
-    this.cardsExpanded,
-    this.ordersExpanded,
-  );
+class ProfileEditModeState extends ProfileState {
+  const ProfileEditModeState(this.isEditing);
 
   final bool isEditing;
-  final bool cardsExpanded;
-  final bool ordersExpanded;
 
   @override
-  List<Object> get props => [isEditing, cardsExpanded, ordersExpanded];
+  List<Object> get props => [isEditing];
+}
+
+class ProfileCardListState extends ProfileState {
+  const ProfileCardListState(this.cardListExpanded);
+
+  final bool cardListExpanded;
+
+  @override
+  List<Object?> get props => [cardListExpanded];
+}
+
+class ProfileOrderListState extends ProfileState {
+  const ProfileOrderListState(this.orderListExpanded);
+
+  final bool orderListExpanded;
+
+  @override
+  List<Object?> get props => [orderListExpanded];
+}
+
+class ProfileOrderListLoaded extends ProfileState {
+  const ProfileOrderListLoaded(this.orderList);
+
+  final List<Order> orderList;
+
+  @override
+  List<Object?> get props => [orderList];
 }

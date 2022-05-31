@@ -1,31 +1,36 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hesap/data/repository/preferences_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/data/model/order.dart';
+import 'package:hesap/data/repository/profile_repository.dart';
 
 part 'profile_state.dart';
 
-class ProfileCubit extends Cubit<ProfileSetState> {
-  PreferencesRepository _preferencesRepository;
+class ProfileCubit extends Cubit<ProfileState> {
+  final ProfileRepository _preferencesRepository;
 
-  ProfileCubit(this._preferencesRepository)
-      : super(const ProfileSetState(false, false, false));
+  ProfileCubit(this._preferencesRepository) : super(ProfileInitial());
 
   bool isEditing = false;
-  bool cardsExpanded = false;
-  bool ordersExpanded = false;
+  bool cardListExpanded = false;
+  bool orderListExpanded = false;
+
+  Future<List<Order>> fetchOrderHistory() {
+    return _preferencesRepository.fetchOrderHistory();
+  }
 
   toggleEditMode() {
     isEditing = !isEditing;
-    emit(ProfileSetState(isEditing, cardsExpanded, ordersExpanded));
+    emit(ProfileEditModeState(isEditing));
   }
 
   toggleSavedCards() {
-    cardsExpanded = !cardsExpanded;
-    emit(ProfileSetState(isEditing, cardsExpanded, ordersExpanded));
+    cardListExpanded = !cardListExpanded;
+    emit(ProfileCardListState(cardListExpanded));
   }
 
   toggleOrderHistory() {
-    ordersExpanded = !ordersExpanded;
-    emit(ProfileSetState(isEditing, cardsExpanded, ordersExpanded));
+    orderListExpanded = !orderListExpanded;
+    emit(ProfileOrderListState(orderListExpanded));
   }
 }

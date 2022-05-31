@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
 class ProfileExpandableButton extends StatefulWidget {
-  const ProfileExpandableButton(
-      {Key? key,
-      required this.title,
-      required this.expanded,
-      required this.toggle})
-      : super(key: key);
+  const ProfileExpandableButton({
+    Key? key,
+    required this.title,
+    required this.expanded,
+    required this.toggle,
+  }) : super(key: key);
 
   final String title;
   final bool expanded;
@@ -34,7 +34,6 @@ class _ProfileExpandableButtonState extends State<ProfileExpandableButton> {
             borderRadius: const BorderRadius.all(
               Radius.circular(Insets.s),
             ),
-            color: Colors.grey.shade300,
           ),
           child: Padding(
             padding: const EdgeInsets.all(Insets.m),

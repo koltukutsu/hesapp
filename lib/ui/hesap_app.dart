@@ -9,7 +9,7 @@ import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/cubit/theme/theme_cubit.dart';
 import 'package:hesap/data/repository/auth_repository.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
-import 'package:hesap/data/repository/preferences_repository.dart';
+import 'package:hesap/data/repository/profile_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 
 import 'package:hesap/ui/screens/base/base_screen.dart';
@@ -58,7 +58,7 @@ class HesapApp extends StatelessWidget {
         BlocProvider(create: (context) => MenuAramaCubit()),
         BlocProvider(
           create: (context) => ProfileCubit(
-            PreferencesRepository(),
+            ProfileRepository(),
           ),
         ),
         BlocProvider(create: (context) => ThemeCubit())
