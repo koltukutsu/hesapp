@@ -22,7 +22,7 @@ class HesapSearch extends StatelessWidget {
         children: [
           Container(
             height: 80,
-            width: 280,
+            width: MediaQuery.of(context).size.width*0.8,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
