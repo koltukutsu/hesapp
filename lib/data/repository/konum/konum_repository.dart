@@ -37,4 +37,5 @@ class KonumRepository {
       throw HesapException("Konum alınamadı.");
     }
   }
+
 }
