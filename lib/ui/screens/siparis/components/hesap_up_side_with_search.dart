@@ -87,8 +87,7 @@ class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
 }
 
 class MenuYazisi extends StatelessWidget {
-  const MenuYazisi({
-    Key? key,
+  MenuYazisi({Key? key,
     required this.offset,
   }) : super(key: key);
 
@@ -96,7 +95,8 @@ class MenuYazisi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return SizedBox(
+      height: 270 + offset ,
       child: HesapNormalText(
         text: 'Menü',
         textColor: AppColors.white,
