@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hesap/data/model/order.dart';
 
 class ProfileOrderItem extends StatelessWidget {
   const ProfileOrderItem({
     Key? key,
-    required this.name,
-    required this.date,
-    required this.sum,
+    required this.order,
   }) : super(key: key);
 
-  final String name;
-  final String date;
-  final String sum;
+  final Order order;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +23,15 @@ class ProfileOrderItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    order.place,
                     style: const TextStyle(
                       fontFamily: 'Ubuntu',
-                      fontSize: 18.0,
+                      fontSize: 16.0,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
-                    date,
+                    order.date,
                     style: const TextStyle(
                       fontFamily: 'Ubuntu',
                       fontSize: 14.0,
@@ -45,11 +42,10 @@ class ProfileOrderItem extends StatelessWidget {
             ),
           ),
           Text(
-            '$sum ₺',
+            '${order.sum} ₺',
             style: const TextStyle(
               fontFamily: 'Ubuntu',
-              fontSize: 18.0,
-              fontWeight: FontWeight.w700,
+              fontSize: 16.0,
             ),
           ),
         ],
