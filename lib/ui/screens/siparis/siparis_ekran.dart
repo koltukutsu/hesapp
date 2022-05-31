@@ -82,17 +82,13 @@ class _SiparisEkran extends State<SiparisEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          HesapUpSideWithSearch(
-            mekanIsmi: data["Kafe Ismi"],
+      body: CustomScrollView(
+        slivers: [
+          SliverUpSideWithSearch(data: data,
           ),
           HesapMiddleSide(data: data),
         ],
-      )),
+      )
     );
   }
 }
