@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 // components
 import 'package:hesap/ui/screens/common_screen_sections/hesap_middle_side.dart';
+import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
 import 'package:hesap/ui/screens/siparis/components/hesap_up_side_with_search.dart';
+import 'package:hesap/ui/widgets/HesapSearch.dart';
 
 class SiparisEkran extends StatefulWidget {
   const SiparisEkran({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class _SiparisEkran extends State<SiparisEkran> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _startingFunction());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
   }
 
   final Map data = {
@@ -80,12 +82,17 @@ class _SiparisEkran extends State<SiparisEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverUpSideWithSearch(data: data),
+      body: SingleChildScrollView(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          HesapUpSideWithSearch(
+            mekanIsmi: data["Kafe Ismi"],
+          ),
           HesapMiddleSide(data: data),
         ],
-      ),
+      )),
     );
   }
 }

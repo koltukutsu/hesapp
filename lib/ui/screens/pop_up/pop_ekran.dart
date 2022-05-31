@@ -27,11 +27,11 @@ class _PopUpEkran extends State<PopUpEkran> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _startingFunction());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
   }
 
   final Map data = {
-    "Masa Ismi": "Masa 42",
+    "Masa Ismi": "Flutter Kafe",
     "kisiler": [
       {
         "ismi": "Merve",
@@ -74,76 +74,64 @@ class _PopUpEkran extends State<PopUpEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   systemOverlayStyle: const SystemUiOverlayStyle(
+      //     statusBarColor: Colors.transparent,
+      //     statusBarIconBrightness: Brightness.dark,
+      //   ),
+      //   backgroundColor: AppColors.primary,
+      //   elevation: 1,
+      // ),
       body: BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
           builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        return SingleChildScrollView(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            HesapUpSide(
+              mekanIsmi: widget.text,
+              secondText: "Masa 24",
+            ),
+            HesapMiddleSide2(data: data),
+
             SizedBox(
-              height: MediaQuery.of(context).size.height-150,
-              child: CustomScrollView(
-                slivers: [
-                  const SliverUpSide(),
-                  HesapMiddleSide2(data: data), // HesapMiddleSide(data: data),
-                ],
+              height: 75,
+              width: 300,
+              child: HesapButtonNotFlexible(
+                label: 'Masaya Oturun',
+                filled: true,
+                textSize: 24,
+                onPressed: () {
+                  // Navigator.of(context).pop();
+                  //   Navigator.pop(context, 1);
+                  BlocProvider.of<DegisenEkranlarCubit>(context)
+                      .onChangedTab(1);
+                  Navigator.of(context).pushNamed(ROUTE_MAIN);
+                },
               ),
             ),
-            const MasayaOturun(),
-            const Iptal(),
+            SizedBox(
+              height: 65,
+              width: 200,
+              child: HesapButtonNotFlexible(
+                label: 'İptal',
+                filled: false,
+                textSize: 24,
+                onPressed: () {
+                  // Navigator.of(context).pop(0);
+                  // BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0); //TODO: 1. sayfayla ilgili olan ve restoran kismina donme
+                  BlocProvider.of<DegisenEkranlarCubit>(context)
+                      .onChangedTab(1);
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+                },
+              ),
+            ),
+            // HesapMiddleSide(data: data),
           ],
-        );
+        ));
       }),
     );
-  }
-}
-
-class MasayaOturun extends StatelessWidget {
-  const MasayaOturun({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-          return SizedBox(
-            height: 75,
-            width: 300,
-            child: HesapButtonNotFlexible(
-              label: 'Masaya Oturun',
-              filled: true,
-              textSize: 24,
-              onPressed: () {
-                // Navigator.of(context).pop();
-                //   Navigator.pop(context, 1);
-                BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-                Navigator.of(context).pushNamed(ROUTE_MAIN);
-              },
-            ),
-          );
-  }
-}
-
-class Iptal extends StatelessWidget {
-  const Iptal({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-        return SizedBox(
-          height: 65,
-          width: 200,
-          child: HesapButtonNotFlexible(
-            label: 'İptal',
-            filled: false,
-            textSize: 24,
-            onPressed: () {
-              // Navigator.of(context).pop(0);
-              // BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0); //TODO: 1. sayfayla ilgili olan ve restoran kismina donme
-              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-              Navigator.of(context)
-                  .popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
-            },
-          ),
-        );
   }
 }
