@@ -41,7 +41,7 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
         0.0; // floating action button bunu kullanarak yukari gitmeyecek
 
     final pages = <Widget>[
-      const PopUpEkran(text: "herhangi bir kafe ismi"),
+      const PopUpEkran(restoranId: 1, masaId: 1,),
       const SiparisEkran(), // 1
       const GarsonCagirEkran(), // 2
       const ProfileScreen() // 3

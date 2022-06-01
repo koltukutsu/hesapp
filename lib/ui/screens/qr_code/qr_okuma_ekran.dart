@@ -43,7 +43,9 @@ class _QrOkumaEkran extends State<QrOkumaEkran> {
                 onPressed: () {
                   // Navigator.of(context).pushNamed(ROUTE_POP_EKRAN);
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PopUpEkran(text: "Flutter Kafe")));
+                      builder: (context) => const PopUpEkran(restoranId: 1, masaId: 1))
+                  );
+
                 })
           ],
         ),

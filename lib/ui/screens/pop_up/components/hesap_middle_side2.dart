@@ -1,5 +1,6 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:hesap/data/model/restoran.dart';
 
 // components
 // import 'package:hesap/ui/widgets/hesap_image_card.dart';
@@ -13,10 +14,11 @@ class HesapMiddleSide2 extends StatefulWidget {
   // TODO: text ve cardin oldugu kisim ScreenSection icine alinabilir.
   const HesapMiddleSide2({
     Key? key,
-    required this.data,
+    required this.restoran, required this.masaId,
   }) : super(key: key);
 
-  final Map data;
+  final Restoran restoran;
+  final int masaId;
 
   @override
   State<HesapMiddleSide2> createState() => _HesapMiddleSide2State();
@@ -56,7 +58,7 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
             ),
             Column(
               children: List.generate(
-                widget.data["kisiler"].length,
+                widget.restoran.masalar[widget.masaId].oturanlar.length,
                 (innerIndex) => Row(
                   children: [
                     Padding(
@@ -74,7 +76,7 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
                       ),
                     ),
                     HesapTextCard(
-                      text: widget.data["kisiler"][innerIndex]["ismi"],
+                      text: widget.restoran.masalar[widget.masaId].oturanlar[innerIndex].isim,
                       fontSize: Insets.l,
                       textColor: AppColors.darkBackground,
                       fontWeight: FontWeight.w200,
