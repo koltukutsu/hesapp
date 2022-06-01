@@ -8,24 +8,32 @@ class OrderDoneAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("Ödeme Yapıldı"),
-      content: Center(
-          child: Column(
+      title: const Text("Ödeme Tamamlandı"),
+      content: Row(
         children: [
-          Transform.scale(scale: 3, child: const Icon(Icons.check_circle, color: AppColors.primary)),
-          const HesapNormalText(text: "Ödemeniz başarıyla", fontSize: 28),
-          const HesapNormalText(text: "tamamlandı", fontSize: 28),
-          const SizedBox(height: 31),
-          Row(
-            children: const [
-              HesapNormalText(text: "Siparişiniz hazırlanıyor  ", fontSize: 20),
-              Icon(Icons.timer_rounded)
-            ],
-          )
+          Transform.scale(
+              scale: 2,
+              child: const Icon(
+                Icons.check_circle,
+                color: AppColors.primary,
+              )),
+          const SizedBox(width: 25,),
+          const Text("Ödemeniz Başarıyla Tamamlandı")
         ],
-      )),
+      ),
       // actions: [
-      //
+      //   TextButton(
+      //     child: const Text("Hayır"),
+      //     onPressed: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //   ),
+      //   TextButton(
+      //     child: const Text("Event"),
+      //     onPressed: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //   )
       // ],
     );
   }
