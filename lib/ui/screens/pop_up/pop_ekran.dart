@@ -14,7 +14,8 @@ import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/util/constants.dart';
 
 class PopUpEkran extends StatefulWidget {
-  const PopUpEkran({Key? key, required this.restoranId, required this.masaId}) : super(key: key);
+  const PopUpEkran({Key? key, required this.restoranId, required this.masaId})
+      : super(key: key);
   final int restoranId;
   final int masaId;
 
@@ -50,13 +51,18 @@ class _PopUpEkran extends State<PopUpEkran> {
                     List restoranListesi = state.restoranList;
                     return CustomScrollView(
                       slivers: [
-                        SliverUpSide(restoran: restoranListesi[restoranId], masaId: masaId),
-                        HesapMiddleSide2(restoran: restoranListesi[restoranId], masaId: masaId),
+                        SliverUpSide(
+                            restoran: restoranListesi[restoranId],
+                            masaId: masaId),
+                        HesapMiddleSide2(
+                            restoran: restoranListesi[restoranId],
+                            masaId: masaId),
                         // HesapMiddleSide(data: data),
                       ],
                     );
                   } else if (state is RestoranYukleniyor) {
-                    return const HesapNormalText(text:'Restoran Verisi Yükleniyor');
+                    return const HesapNormalText(
+                        text: 'Restoran Verisi Yükleniyor');
                   } else {
                     return const Text('HATA');
                   }
@@ -90,8 +96,10 @@ class MasayaOturun extends StatelessWidget {
           // Navigator.of(context).pop();
           //   Navigator.pop(context, 1);
           BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-          Navigator.of(context).pushNamed(ROUTE_MAIN);
-          //TODO: Buradan veriler sipariş ekranına yollansın
+          // Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+          Navigator.of(context).popAndPushNamed(ROUTE_MAIN);
+          // Navigator.of(context).pop();
+          //TODO: Buradan veriler sipariş ekranına yollansın. DUZELTME: BLOCPROVIDER ile halledebiliriz, veri yollamaya gerek yok
         },
       ),
     );
@@ -116,6 +124,7 @@ class Iptal extends StatelessWidget {
           // Navigator.of(context).pop(0);
           // BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0); //TODO: 1. sayfayla ilgili olan ve restoran kismina donme
           BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
+           Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
           Navigator.of(context)
               .popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
         },
