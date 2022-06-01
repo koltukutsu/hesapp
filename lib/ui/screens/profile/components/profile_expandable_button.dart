@@ -41,7 +41,10 @@ class _ProfileExpandableButtonState extends State<ProfileExpandableButton> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(widget.title),
+                Text(
+                  widget.title,
+                  style: const TextStyle(fontSize: 16.0),
+                ),
                 Icon(
                   widget.expanded
                       ? Icons.arrow_drop_up_rounded

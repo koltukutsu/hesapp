@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
+import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
+import 'package:hesap/cubit/order/order_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/cubit/theme/theme_cubit.dart';
@@ -57,11 +59,9 @@ class HesapApp extends StatelessWidget {
           ),
         ),
         BlocProvider(create: (context) => MenuAramaCubit()),
-        BlocProvider(
-          create: (context) => ProfileCubit(
-            ProfileRepository(),
-          ),
-        ),
+        BlocProvider(create: (context) => ProfileCubit()),
+        BlocProvider(create: (context) => CardCubit(ProfileRepository())),
+        BlocProvider(create: (context) => OrderCubit(ProfileRepository())),
         BlocProvider(create: (context) => ThemeCubit())
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
@@ -71,7 +71,7 @@ class HesapApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             themeMode: ThemeMode.system,
-            initialRoute: ROUTE_BASE,
+            initialRoute: ROUTE_RESTAURANTS,
             routes: {
               ROUTE_BASE: (context) => const BaseScreen(),
               ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),

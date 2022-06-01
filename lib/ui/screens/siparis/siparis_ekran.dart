@@ -80,15 +80,16 @@ class _SiparisEkran extends State<SiparisEkran> {
   };
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverUpSideWithSearch(data: data,
-          ),
-          HesapMiddleSide(data: data),
-        ],
-      )
+        body: CustomScrollView(
+          slivers: [
+            SliverUpSideWithSearch(data: data,
+            ),
+            HesapMiddleSide(data: data),
+          ],
+        )
     );
   }
 }
