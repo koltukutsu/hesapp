@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
 
 import '../../../theme/colors.dart';
 
@@ -16,18 +17,14 @@ class _SliverHeaderState extends State<SliverHeader> {
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
-      delegate: SliverAppBar(
-        maxYukseklik: 300.0,
-      ),
+      delegate: SliverAppBar(),
       pinned: true,
     );
   }
 }
 
 class SliverAppBar extends SliverPersistentHeaderDelegate {
-  final double maxYukseklik;
-
-  SliverAppBar({required this.maxYukseklik});
+  static const double maxYukseklik = 240;
 
   @override
   Widget build(
@@ -40,90 +37,12 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
-        SizedBox(
-          height: maxYukseklik,
-        ),
-        Transform.scale(
-          scale: 1.05,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(70),
-              bottomRight: Radius.circular(70),
-            ),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: topPadding - 55,
-              color: AppColors.primary,
-            ),
-          ),
-        ),
+        const SizedBox(height: maxYukseklik,),
+        MaviKisim2(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
-        Positioned(
-          width: MediaQuery.of(context).size.width,
-          top: 30,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset('assets/images/sepet_icon.svg'),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text(
-                  'CAFE FLUTTER',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 32,
-                      fontFamily: 'Quicksand',
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          width: MediaQuery.of(context).size.width,
-          top: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.shopping_basket, color: AppColors.white),
-              Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text(
-                  'Sepet',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 30,
-                      fontFamily: 'Ubuntu',
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          top: 230,
-          width: MediaQuery.of(context).size.width,
-          child: Align(
-            alignment: AlignmentDirectional.center,
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: const Padding(
-                padding: EdgeInsets.all(3.0),
-                child: Text(
-                  'Sepetinizdeki Ürünler',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 22,
-                      fontFamily: ' Quicksand',
-                      color: AppColors.darkBackground,
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-            ),
-          ),
-        ),
+        MekanYazisi(mekanIsmi: "Cafe Flutter", offset: offset, topPadding: topPadding),
+        SepetYazisi(topPadding: topPadding, offset: offset),
+        const SepetinizdekiUrunler(),
       ],
     );
   }
@@ -132,9 +51,79 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
   double get maxExtent => maxYukseklik;
 
   @override
-  double get minExtent => 150;
+  double get minExtent => 100;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       oldDelegate.maxExtent != maxExtent || oldDelegate.minExtent != minExtent;
+}
+
+class SepetYazisi extends StatelessWidget {
+  const SepetYazisi({
+    Key? key,
+    required this.topPadding,
+    required this.offset,
+  }) : super(key: key);
+
+  final double topPadding;
+  final double offset;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 100 + offset/2,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(Icons.shopping_basket, color: AppColors.white),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                'Sepet',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: AppColors.white,
+                    fontSize: 30,
+                    fontFamily: 'Ubuntu',
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SepetinizdekiUrunler extends StatelessWidget {
+  const SepetinizdekiUrunler({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 190,
+      child: Align(
+        alignment: AlignmentDirectional.bottomCenter,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: const Padding(
+            padding: EdgeInsets.all(3.0),
+            child: Text(
+              'Sepetinizdeki Ürünler',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 22,
+                  fontFamily: ' Quicksand',
+                  color: AppColors.darkBackground,
+                  fontWeight: FontWeight.w700),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

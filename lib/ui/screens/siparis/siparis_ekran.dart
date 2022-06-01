@@ -27,7 +27,7 @@ class _SiparisEkran extends State<SiparisEkran> {
     "Kafe Ismi": "Flutter Kafe",
     "Menu": [
       {
-        "ismi": "Corbalar",
+        "ismi": "Çorbalar",
         "elemanlar": [
           {
             "ismi": "1. corba",
@@ -79,7 +79,6 @@ class _SiparisEkran extends State<SiparisEkran> {
     ],
   };
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(

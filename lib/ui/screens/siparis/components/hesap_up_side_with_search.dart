@@ -68,7 +68,7 @@ class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
         MaviKisim2(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
         MekanYazisi(topPadding: topPadding, offset: offset, mekanIsmi: mekanIsmi),
-        MenuYazisi(offset: offset),
+        MenuYazisi(topPadding: topPadding, offset: offset),
         AramaKismi(topPadding: topPadding,maxYukseklik: maxYukseklik, offset: offset)
       ],
     );
@@ -87,21 +87,25 @@ class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
 }
 
 class MenuYazisi extends StatelessWidget {
-  MenuYazisi({Key? key,
-    required this.offset,
+  const MenuYazisi({Key? key,
+    required this.offset, required this.topPadding,
   }) : super(key: key);
 
   final double offset;
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 270 + offset ,
-      child: HesapNormalText(
-        text: 'Menü',
-        textColor: AppColors.white,
-        fontWeight: FontWeight.normal,
-        fontSize: 35,
+      height: 180 + offset,
+      child: const Align(
+        alignment: Alignment.bottomCenter,
+        child: HesapNormalText(
+          text: 'Menü',
+          textColor: AppColors.white,
+          fontWeight: FontWeight.normal,
+          fontSize: 35,
+        ),
       ),
     );
   }
