@@ -28,11 +28,11 @@ class _OrdersState extends State<OrderScreen> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverHeader(),
+          const SliverHeader(),
           OrdersList(),
         ],
       ),
-      bottomNavigationBar: SepetFooter(),
+      bottomNavigationBar: const SepetFooter(),
     );
   }
 }
