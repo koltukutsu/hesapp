@@ -61,7 +61,7 @@ class _SliverListesiState extends State<SliverListesi> {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                      return const Text('Lütfen Konum Bilgisine İzin veriniz');
+                      return const Center(child: Text('Lütfen Konum Bilgisine İzin veriniz'));
                     },
                     childCount: 1,
                   ),
