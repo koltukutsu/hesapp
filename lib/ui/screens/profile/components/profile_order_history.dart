@@ -46,16 +46,21 @@ class _ProfileOrderHistoryState extends State<ProfileOrderHistory> {
             ),
             Visibility(
               visible: expanded,
-              child: ListView.builder(
-                shrinkWrap: true,
-                reverse: true,
-                itemCount: widget.orderList.length,
-                itemBuilder: (context, index) {
-                  return ProfileOrderItem(
-                    order: widget.orderList[index],
-                  );
-                },
-              ),
+              child: widget.orderList.isNotEmpty
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      reverse: true,
+                      itemCount: widget.orderList.length,
+                      itemBuilder: (context, index) {
+                        return ProfileOrderItem(
+                          order: widget.orderList[index],
+                        );
+                      },
+                    )
+                  : const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text("Geçmiş siparişiniz bulunmuyor"),
+                    ),
             )
           ],
         ),

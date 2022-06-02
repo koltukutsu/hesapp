@@ -17,7 +17,8 @@ import '../../restoranlar/components/restoranlar_sliver_persistent_header.dart';
 
 class SliverUpSideWithSearch extends StatefulWidget {
   const SliverUpSideWithSearch({
-    Key? key, required this.data,
+    Key? key,
+    required this.data,
   }) : super(key: key);
 
   final Map data;
@@ -27,14 +28,11 @@ class SliverUpSideWithSearch extends StatefulWidget {
 }
 
 class _SliverUpSideWithSearchState extends State<SliverUpSideWithSearch> {
-
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       delegate: HesapUpSideWithSearch(
-        mekanIsmi: widget.data["Kafe Ismi"],
-        secondText: "Menü"
-      ),
+          mekanIsmi: widget.data["Kafe Ismi"], secondText: "Menü"),
       pinned: true,
     );
   }
@@ -55,7 +53,7 @@ class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     var adjustedShrinkOffset =
-    shrinkOffset > minExtent ? minExtent : shrinkOffset;
+        shrinkOffset > minExtent ? minExtent : shrinkOffset;
     double offset = (minExtent - adjustedShrinkOffset) - 20;
     double topPadding = MediaQuery.of(context).padding.top + 250;
 
@@ -67,9 +65,11 @@ class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
         ),
         MaviKisim2(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
-        MekanYazisi(topPadding: topPadding, offset: offset, mekanIsmi: mekanIsmi),
-        MenuYazisi(topPadding: topPadding, offset: offset),
-        AramaKismi(topPadding: topPadding,maxYukseklik: maxYukseklik, offset: offset)
+        MekanYazisi(
+            topPadding: topPadding, offset: offset, mekanIsmi: mekanIsmi),
+        MenuYazisi(offset: offset),
+        AramaKismi(
+            topPadding: topPadding, maxYukseklik: maxYukseklik, offset: offset)
       ],
     );
   }
@@ -83,29 +83,25 @@ class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
       oldDelegate.maxExtent != maxExtent || oldDelegate.minExtent != minExtent;
-
 }
 
 class MenuYazisi extends StatelessWidget {
-  const MenuYazisi({Key? key,
-    required this.offset, required this.topPadding,
+  MenuYazisi({
+    Key? key,
+    required this.offset,
   }) : super(key: key);
 
   final double offset;
-  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180 + offset,
-      child: const Align(
-        alignment: Alignment.bottomCenter,
-        child: HesapNormalText(
-          text: 'Menü',
-          textColor: AppColors.white,
-          fontWeight: FontWeight.normal,
-          fontSize: 35,
-        ),
+      height: 270 + offset,
+      child: const HesapNormalText(
+        text: 'Menü',
+        textColor: AppColors.white,
+        fontWeight: FontWeight.normal,
+        fontSize: 35,
       ),
     );
   }
@@ -115,7 +111,8 @@ class AramaKismi extends StatelessWidget {
   const AramaKismi({
     Key? key,
     required this.maxYukseklik,
-    required this.offset, required this.topPadding,
+    required this.offset,
+    required this.topPadding,
   }) : super(key: key);
 
   final double maxYukseklik;
@@ -125,7 +122,7 @@ class AramaKismi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: topPadding -30,
+      height: topPadding - 30,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: SizedBox(

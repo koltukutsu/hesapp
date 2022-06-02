@@ -20,14 +20,14 @@ class _SiparisEkran extends State<SiparisEkran> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
+    WidgetsBinding.instance?.addPostFrameCallback((_) => _startingFunction());
   }
 
   final Map data = {
     "Kafe Ismi": "Flutter Kafe",
     "Menu": [
       {
-        "ismi": "Çorbalar",
+        "ismi": "Corbalar",
         "elemanlar": [
           {
             "ismi": "1. corba",
@@ -80,15 +80,17 @@ class _SiparisEkran extends State<SiparisEkran> {
   };
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverUpSideWithSearch(data: data,
-            ),
-            HesapMiddleSide(data: data),
-          ],
-        )
+      body: CustomScrollView(
+        slivers: [
+          SliverUpSideWithSearch(
+            data: data,
+          ),
+          HesapMiddleSide(data: data),
+        ],
+      ),
     );
   }
 }

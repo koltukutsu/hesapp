@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:hesap/data/model/card.dart' as card_model;
+import 'package:hesap/data/model/saved_card.dart' as card_model;
 import 'package:hesap/ui/screens/profile/components/profile_expandable_button.dart';
 import 'package:hesap/ui/screens/profile/components/profile_saved_card_item.dart';
 import 'package:hesap/ui/theme/insets.dart';
@@ -12,7 +12,7 @@ class ProfileSavedCards extends StatefulWidget {
     required this.savedCards,
   }) : super(key: key);
 
-  final List<card_model.Card> savedCards;
+  final List<card_model.SavedCard> savedCards;
 
   @override
   State<ProfileSavedCards> createState() => _ProfileSavedCardsState();
@@ -48,15 +48,20 @@ class _ProfileSavedCardsState extends State<ProfileSavedCards> {
             ),
             Visibility(
               visible: expanded,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget.savedCards.length,
-                itemBuilder: (context, index) {
-                  return ProfileSavedCardItem(
-                    card: widget.savedCards[index],
-                  );
-                },
-              ),
+              child: widget.savedCards.isNotEmpty
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: widget.savedCards.length,
+                      itemBuilder: (context, index) {
+                        return ProfileSavedCardItem(
+                          card: widget.savedCards[index],
+                        );
+                      },
+                    )
+                  : const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text("Kayıtlı kartınız bulunmuyor"),
+                    ),
             ),
           ],
         ),

@@ -4,7 +4,7 @@ import 'package:hesap/ui/screens/sepet/components/order_footer.dart';
 import 'package:hesap/ui/screens/sepet/components/order_header.dart';
 import 'package:hesap/ui/screens/sepet/components/sepet_app_bar.dart';
 
-import '../../../data/model/OrdersModel.dart';
+import '../../../data/model/order_item.dart';
 import '../../../data/repository/Order/OrderServices.dart';
 import 'components/orders_list.dart';
 
@@ -16,7 +16,7 @@ class OrderScreen extends StatefulWidget {
 class _OrdersState extends State<OrderScreen> {
   OrderServices get service => GetIt.I<OrderServices>();
 
-  List<OrdersModel> items = [];
+  List<OrderItem> items = [];
   @override
   void initState() {
     items = OrderServices.getOrderList();

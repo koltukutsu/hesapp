@@ -21,7 +21,7 @@ class CardPanelState extends CardState {
 class CardLoaded extends CardState {
   const CardLoaded(this.savedCards);
 
-  final List<Card> savedCards;
+  final List<SavedCard> savedCards;
 
   @override
   List<Object> get props => [savedCards];

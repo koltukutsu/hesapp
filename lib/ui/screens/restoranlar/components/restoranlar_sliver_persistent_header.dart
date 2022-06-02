@@ -90,7 +90,7 @@ class KonumBilgisi extends StatelessWidget {
             builder: (context, state) {
               if (state is KonumYuklendi) {
                 return Text(
-                  '${state.adres?.first.street.toString()}, ${state.adres?.first.locality}',
+                  '${state.adres?.first.street.toString()} ${state.adres?.first.subLocality}, ${state.adres?.first.locality}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: AppColors.white,

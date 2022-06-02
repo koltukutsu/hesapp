@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/ui/theme/colors.dart';
-import '../../data/model/OrdersModel.dart';
+import '../../data/model/order_item.dart';
 
 class OrdersItem extends StatelessWidget {
-  final OrdersModel order;
+  final OrderItem order;
 
   const OrdersItem({Key? key, required this.order, listenner})
       : assert(order != null),
@@ -71,7 +71,6 @@ class OrdersItem extends StatelessWidget {
                           onPressed: () {
                             print(order.quantity);
                             order.quantity++;
-
                           },
                         ),
                         SizedBox(

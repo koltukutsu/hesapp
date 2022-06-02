@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hesap/data/model/card.dart' as card_model;
+import 'package:hesap/data/model/saved_card.dart' as card_model;
 
 class ProfileSavedCardItem extends StatelessWidget {
   const ProfileSavedCardItem({Key? key, required this.card}) : super(key: key);
 
-  final card_model.Card card;
+  final card_model.SavedCard card;
 
   @override
   Widget build(BuildContext context) {

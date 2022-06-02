@@ -53,6 +53,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   signUp({
+    required String name,
     required String username,
     required String email,
     required String phone,
@@ -63,6 +64,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthLoading());
 
       await _authRepository.signUp(
+        name: name,
         username: username,
         email: email,
         phone: phone,

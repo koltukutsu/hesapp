@@ -1,67 +1,52 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:hesap/data/model/card.dart';
-import 'package:hesap/data/model/order.dart';
+import 'package:hesap/data/model/hesap_user.dart';
+import 'package:hesap/util/hesap_exception.dart';
+import 'package:hesap/util/validators.dart';
 
 class ProfileRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  Future<List<Order>> fetchOrderHistory() async {
+  updateProfile(HesapUser updatedHesapUser) async {
     var _userId = _firebaseAuth.currentUser!.uid;
 
-    List<Order> orderList = [];
+    try {
+      if (updatedHesapUser.name.isEmpty ||
+          updatedHesapUser.username.isEmpty ||
+          updatedHesapUser.email.isEmpty ||
+          updatedHesapUser.phone.isEmpty) {
+        throw HesapException("Lütfen tüm alanları doldurun.");
+      }
 
-    var _userSnapshot = await _firebaseFirestore
-        .collection('users')
-        .where('id', isEqualTo: _userId)
-        .get();
+      if (!Validators.isEmailValid(updatedHesapUser.email)) {
+        throw HesapException('E-posta adresi geçerli değil.');
+      }
 
-    var _userDoc = _userSnapshot.docs[0];
-
-    var _orderSnapshot = await _firebaseFirestore
-        .collection("users/" + _userDoc.id + "/orders")
-        .get();
-
-    for (var value in _orderSnapshot.docs) {
-      orderList.add(Order(
-        id: "",
-        user: "",
-        place: value['place'],
-        date: value['date'],
-        sum: value['sum'],
-      ));
+      _firebaseAuth.currentUser!.updateEmail(updatedHesapUser.email);
+    } on FirebaseAuthException catch (error) {
+      switch (error.code) {
+        case 'email-already-in-use':
+          throw HesapException(
+              'Bu e-posta ile kayıtlı bir kullanıcı zaten var.');
+        default:
+          throw HesapException(
+              'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+      }
     }
 
-    return orderList;
-  }
-
-  Future<List<Card>> fetchSavedCards() async {
-    var _userId = _firebaseAuth.currentUser!.uid;
-
-    List<Card> savedCards = [];
-
-    var _userSnapshot = await _firebaseFirestore
-        .collection('users')
-        .where('id', isEqualTo: _userId)
-        .get();
-
-    var _userDoc = _userSnapshot.docs[0];
-
-    var _cardSnapshot = await _firebaseFirestore
-        .collection("users/" + _userDoc.id + "/cards")
-        .get();
-
-    for (var value in _cardSnapshot.docs) {
-      savedCards.add(
-        Card(
-          number: value['number'],
-          brand: CardBrand.values.byName(value['brand']),
-        ),
-      );
-    }
-
-    return savedCards;
+    await _firebaseFirestore.collection('users').doc(_userId).get().then(
+          (snapshot) => {
+            snapshot.reference.set(
+              {
+                'name': updatedHesapUser.name,
+                'username': updatedHesapUser.username,
+                'email': updatedHesapUser.email,
+                'phone': updatedHesapUser.phone,
+              },
+              SetOptions(merge: true),
+            ),
+          },
+        );
   }
 }

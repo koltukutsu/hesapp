@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
+import 'package:hesap/ui/screens/odeme/payment_screen.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';

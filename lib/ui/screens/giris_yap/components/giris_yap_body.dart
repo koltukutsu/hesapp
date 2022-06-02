@@ -49,7 +49,7 @@ class _GirisYapBodyState extends State<GirisYapBody> {
               label: "Şifre",
               keyboardType: TextInputType.number,
               prefixIcon: const Icon(Icons.password_rounded),
-              maxLength: 6,
+              maxLength: 12,
               obscureText: true,
               onChanged: widget.setPassword,
             ),

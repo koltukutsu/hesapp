@@ -14,5 +14,4 @@ class RestoranRepository {
         decodedJson.map((restoran) => Restoran.fromJson(restoran)).toList();
     return restoranList;
   }
-
 }

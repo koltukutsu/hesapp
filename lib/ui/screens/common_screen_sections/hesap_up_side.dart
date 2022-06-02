@@ -1,7 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hesap/data/model/restoran.dart';
+import 'package:hesap/ui/screens/restoranlar/components/restoranlar_sliver_persistent_header.dart';
+import 'package:hesap/ui/widgets/HesapSearch.dart';
 
 // components
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
@@ -13,11 +14,8 @@ import 'package:hesap/ui/theme/insets.dart';
 
 class SliverUpSide extends StatefulWidget {
   const SliverUpSide({
-    Key? key, required this.restoran, required this.masaId,
+    Key? key,
   }) : super(key: key);
-
-  final Restoran restoran;
-  final int masaId;
 
   @override
   State<SliverUpSide> createState() => _SliverUpSideState();
@@ -27,8 +25,10 @@ class _SliverUpSideState extends State<SliverUpSide> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPersistentHeader(
-      delegate: HesapUpSide(restoran: widget.restoran, masaId: widget.masaId),
+    return const SliverPersistentHeader(
+      delegate: HesapUpSide(
+        mekanIsmi: "Cafe Flutter",
+        secondText: "Masa 24",),
       pinned: true,
     );
   }
@@ -37,12 +37,13 @@ class _SliverUpSideState extends State<SliverUpSide> {
 class HesapUpSide extends SliverPersistentHeaderDelegate {
   static const double maxYukseklik = 240;
 
-  const HesapUpSide({required this.restoran, required this.masaId,
+  const HesapUpSide({
+    required this.mekanIsmi,
+    required this.secondText,
   }) : super();
 
-  final Restoran restoran;
-  final int masaId;
-
+  final String mekanIsmi;
+  final String secondText;
 
   @override
   Widget build(
@@ -61,8 +62,8 @@ class HesapUpSide extends SliverPersistentHeaderDelegate {
         ),
         MaviKisim2(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
-        MekanYazisi(topPadding: topPadding, offset: offset, mekanIsmi: restoran.isim),
-        MasaYazisi(topPadding: topPadding, offset: offset, masaNo: "Masa ${restoran.masalar[masaId].masaNo}"),
+        MekanYazisi(topPadding: topPadding, offset: offset, mekanIsmi: mekanIsmi),
+        MasaYazisi(topPadding: topPadding, offset: offset, secondText: secondText),
         // HesapSearch()
       ],
     );
@@ -108,12 +109,12 @@ class MasaYazisi extends StatelessWidget {
     Key? key,
     required this.topPadding,
     required this.offset,
-    required this.masaNo,
+    required this.secondText,
   }) : super(key: key);
 
   final double topPadding;
   final double offset;
-  final String masaNo;
+  final String secondText;
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +125,7 @@ class MasaYazisi extends StatelessWidget {
         child: SizedBox(
           height: 110,
           child: HesapTextCard(
-            text: masaNo,
+            text: secondText,
             fontSize: Insets.xll,
             textColor: Colors.black87,
             cardColor: AppColors.white,

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hesap/ui/screens/ana/components/hesap_alert_dialog.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
@@ -81,10 +80,10 @@ class _SepetFooterState extends State<SepetFooter> {
                       child: OutlinedButton(
                         onPressed: () {
                           // TODO: alertDialog eklenecek, odeme tamamlandi
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  const OrderDoneAlertDialog());
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (BuildContext context) =>
+                          //         const OrderDoneAlertDialog());
                         },
                         child: const Text(
                           "ÖDE",
