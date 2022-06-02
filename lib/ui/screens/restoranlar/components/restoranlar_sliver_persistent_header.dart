@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hesap/cubit/auth/auth_cubit.dart';
+import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
@@ -33,12 +35,15 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
   static const double maxYukseklik = 300;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset,
+      bool overlapsContent) {
     var adjustedShrinkOffset =
-        shrinkOffset > minExtent ? minExtent : shrinkOffset;
+    shrinkOffset > minExtent ? minExtent : shrinkOffset;
     double offset = (minExtent - adjustedShrinkOffset) - 20;
-    double topPadding = MediaQuery.of(context).padding.top + 250;
+    double topPadding = MediaQuery
+        .of(context)
+        .padding
+        .top + 250;
 
     return Stack(
       alignment: AlignmentDirectional.topEnd,
@@ -48,7 +53,17 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
         ),
         MaviKisim1(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
-        UserIkonu(topPadding: topPadding, offset: offset),
+        BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (state is AuthSignInSuccessful) {
+              return UserIkonu(topPadding: topPadding, offset: offset);
+            } else if (state is AuthLoading) {
+              return const CircularProgressIndicator();
+            } else {
+              return const Center();
+            }
+          },
+        ),
         HesapYazisi(topPadding: topPadding),
         const KonumBilgisi(),
         QRKodOkutma(offset: offset),
@@ -76,7 +91,10 @@ class KonumBilgisi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       height: 210,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +108,8 @@ class KonumBilgisi extends StatelessWidget {
             builder: (context, state) {
               if (state is KonumYuklendi) {
                 return Text(
-                  '${state.adres?.first.street.toString()}, ${state.adres?.first.locality}',
+                  '${state.adres?.first.street.toString()}, ${state.adres?.first
+                      .locality}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: AppColors.white,
@@ -129,7 +148,10 @@ class MaviKisim1 extends StatelessWidget {
           bottomRight: Radius.circular(70),
         ),
         child: Container(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           height: topPadding - 55,
           color: AppColors.primary,
         ),
@@ -150,22 +172,14 @@ class UserIkonu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional.topStart,
-      child: SizedBox(
-        height: topPadding - 180,
-        width: (150 - offset) * 0.7,
-        //TODO: Ya da visible olacak
-        child: IconButton(
-          onPressed: () {
-            //TODO: ROUTE GELECEK
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const GirisYapEkran(),
-              ),
-            );
-          },
-          icon: const Icon(
+    return InkWell(
+      onTap: () => Navigator.of(context).pushNamed(ROUTE_PROFIL_EKRAN),
+      child: Align(
+        alignment: AlignmentDirectional.topStart,
+        child: SizedBox(
+          height: topPadding - 180,
+          width: (150 - offset) * 0.7,
+          child: const Icon(
             Icons.person,
             size: 40,
             color: AppColors.white,
@@ -188,7 +202,10 @@ class HesapYazisi extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: topPadding - 20,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       child: const Padding(
         padding: EdgeInsets.all(18.0),
         child: Text(
@@ -223,7 +240,10 @@ class QRKodOkutma extends StatelessWidget {
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.82,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width * 0.82,
             height: 90,
             margin: const EdgeInsets.only(bottom: 6.0),
             decoration: const BoxDecoration(
@@ -294,7 +314,10 @@ class YakinimdakiMekanlar extends StatelessWidget {
       child: Align(
         alignment: AlignmentDirectional.bottomCenter,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width - 30,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width - 30,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -322,47 +345,47 @@ class YakinimdakiMekanlar extends StatelessWidget {
                           state.restoranList[index].konum.boylam;
                       return BlocBuilder<KonumCubit, KonumState>(
                           builder: (context, state) {
-                        if (state is KonumYuklendi) {
-                          var konum = state.konum;
-                          for (int i = 0; i < restoranList.length; i++) {
-                            restoranList[i].uzaklik =
-                                Geolocator.distanceBetween(
+                            if (state is KonumYuklendi) {
+                              var konum = state.konum;
+                              for (int i = 0; i < restoranList.length; i++) {
+                                restoranList[i].uzaklik =
+                                    Geolocator.distanceBetween(
                                         konum!.latitude,
                                         state.konum!.longitude,
                                         restoranEnlem(i),
                                         restoranBoylam(i))
-                                    .toInt();
-                          }
-                          int siralama<Restoran>(x, y) =>
-                              x.uzaklik!.compareTo(y.uzaklik!);
-                          restoranList.sort(siralama);
-                          return IconButton(
-                            icon: const Icon(
-                              Icons.search,
-                              size: 40,
-                              color: AppColors.darkBackground,
-                            ),
-                            onPressed: () {
-                              showSearch(
-                                context: context,
-                                delegate: RestoranAramaTemsilcisi(
-                                  hintText: 'Restoran Ara',
-                                  liste: restoranList,
-                                  konum: konum,
+                                        .toInt();
+                              }
+                              int siralama<Restoran>(x, y) =>
+                                  x.uzaklik!.compareTo(y.uzaklik!);
+                              restoranList.sort(siralama);
+                              return IconButton(
+                                icon: const Icon(
+                                  Icons.search,
+                                  size: 40,
+                                  color: AppColors.darkBackground,
                                 ),
+                                onPressed: () {
+                                  showSearch(
+                                    context: context,
+                                    delegate: RestoranAramaTemsilcisi(
+                                      hintText: 'Restoran Ara',
+                                      liste: restoranList,
+                                      konum: konum,
+                                    ),
+                                  );
+                                },
                               );
-                            },
-                          );
-                        } else if (state is KonumYukleniyor) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (state is KonumYuklenemedi) {
-                          KonumRepository().checkPermission();
-                          return const Center(child: Text('Konum Yok'));
-                        } else {
-                          return const Center(child: Text('Hata'));
-                        }
-                      });
+                            } else if (state is KonumYukleniyor) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else if (state is KonumYuklenemedi) {
+                              KonumRepository().checkPermission();
+                              return const Center(child: Text('Konum Yok'));
+                            } else {
+                              return const Center(child: Text('Hata'));
+                            }
+                          });
                     } else if (state is RestoranYukleniyor) {
                       return const Center(child: CircularProgressIndicator());
                     } else {
