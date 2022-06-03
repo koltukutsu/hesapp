@@ -82,6 +82,7 @@ class _OrdersListState extends State<OrdersList> {
                             ),
                           ),
                           IconButton(
+                            // TODO: butona tiklandigi vakit getitem ile bulunulan itemin miktari arttirilacak
                             // icon: SvgPicture.asset(
                             //   "assets/images/negative.svg",
                             //   width: 25,
