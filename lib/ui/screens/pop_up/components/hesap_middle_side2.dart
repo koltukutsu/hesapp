@@ -82,7 +82,7 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
                       fontWeight: FontWeight.w200,
                       textAlignment: Alignment.centerLeft,
                       cardColor: AppColors.white,
-                      cardWidth: 320,
+                      cardWidth: 300,
                       cardHeight: 50,
                       paddingLeft: 0,
                       marginTop: 0,

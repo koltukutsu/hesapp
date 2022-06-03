@@ -40,10 +40,7 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
     var adjustedShrinkOffset =
     shrinkOffset > minExtent ? minExtent : shrinkOffset;
     double offset = (minExtent - adjustedShrinkOffset) - 20;
-    double topPadding = MediaQuery
-        .of(context)
-        .padding
-        .top + 250;
+    double topPadding = MediaQuery.of(context).padding.top + 250;
 
     return Stack(
       alignment: AlignmentDirectional.topEnd,
@@ -108,8 +105,7 @@ class KonumBilgisi extends StatelessWidget {
             builder: (context, state) {
               if (state is KonumYuklendi) {
                 return Text(
-                  '${state.adres?.first.street.toString()}, ${state.adres?.first
-                      .locality}',
+                  '${state.adres?.first.street.toString()}, ${state.adres?.first.subAdministrativeArea.toString()}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: AppColors.white,
