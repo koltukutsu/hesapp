@@ -4,18 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/ui/screens/ana/components/hesap_alert_dialog.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
+import 'package:hesap/ui/screens/sepet/components/orders_list.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 class SepetFooter extends StatefulWidget {
-  const SepetFooter({
-    Key? key,
-  }) : super(key: key);
+  String total="";
+
+  SepetFooter(this.total) {}
 
   @override
-  State<SepetFooter> createState() => _SepetFooterState();
+  State<SepetFooter> createState() => _SepetFooterState(total);
 }
 
 class _SepetFooterState extends State<SepetFooter> {
+  String total="";
+  _SepetFooterState(this.total){}
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,9 +34,9 @@ class _SepetFooterState extends State<SepetFooter> {
               SvgPicture.asset("assets/images/sepet_divider.svg",
                   width: MediaQuery.of(context).size.width),
               Padding(
-                padding: const EdgeInsets.only(left: 13.0),
+                padding:  EdgeInsets.only(left: 13.0),
                 child: TextFormField(
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Not Ekle',
                     labelStyle: TextStyle(
@@ -62,11 +66,11 @@ class _SepetFooterState extends State<SepetFooter> {
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                           color: AppColors.amountBox,
                         ),
-                        child: const Align(
+                        child:  Align(
                           alignment: AlignmentDirectional.center,
                           child: Text(
-                            "45,00",
-                            style: TextStyle(
+                            total,
+                            style: const TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontWeight: FontWeight.normal,
                                 fontSize: 20,

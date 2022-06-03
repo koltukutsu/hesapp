@@ -82,9 +82,9 @@ class HesapApp extends StatelessWidget {
               ROUTE_REGISTER: (context) => const UyeOlEkran(),
               ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
               // ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
-              ROUTE_SEPET_EKRAN: (context) => OrderScreen(),
+              ROUTE_SEPET_EKRAN: (context) => const QRScannerScreen(),
               // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
-              ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
+              ROUTE_QR_SCREEN: (context) => OrderScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
             },
           );

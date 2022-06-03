@@ -2,28 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/data/repository/Order/OrderServices.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hesap/ui/screens/sepet/order_screen.dart';
 
 import '../../../../data/model/OrdersModel.dart';
 import '../../../theme/colors.dart';
 import '../../../widgets/sepet_item.dart';
+import 'order_footer.dart';
 
 class OrdersList extends StatefulWidget {
+  List<OrdersModel> items = [];
+  OrdersList(List<OrdersModel> items){
+    this.items = items;
+  }
   @override
-  _OrdersListState createState() => _OrdersListState();
+  _OrdersListState createState() => _OrdersListState(items);
+
+
 }
 
 class _OrdersListState extends State<OrdersList> {
   OrderServices get service => GetIt.I<OrderServices>();
-
   List<OrdersModel> items = [];
+
+  _OrdersListState(List<OrdersModel> items){
+    this.items = items;
+  }
 
   @override
   void initState() {
-    items = OrderServices.getOrderList();
+
 
     super.initState();
   }
-
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.blueAccent;
+  }
   @override
   Widget build(BuildContext context) {
     return SliverList(
@@ -40,6 +61,17 @@ class _OrdersListState extends State<OrdersList> {
           ),
           child: Row(
             children: [
+            Checkbox(
+            checkColor: Colors.white,
+            fillColor: MaterialStateProperty.resolveWith(getColor),
+              value: order.selected,
+              onChanged: (bool? value) {
+                setState(() {
+                  order.selected = value!;
+                  _sepetFooterRefresh(context);
+                });
+              },
+          ),
               Container(
                 width: 105,
                 height: 72,
@@ -49,8 +81,8 @@ class _OrdersListState extends State<OrdersList> {
                   image: DecorationImage(image: NetworkImage(order.image)),
                 ),
                 alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(5),
+                margin: const EdgeInsets.all(10),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
@@ -93,6 +125,7 @@ class _OrdersListState extends State<OrdersList> {
                               setState(() {
                                 if (order.quantity > 0) {
                                   order.quantity--;
+                                  _sepetFooterRefresh(context);
                                 }
                               });
                             },
@@ -129,6 +162,7 @@ class _OrdersListState extends State<OrdersList> {
                             onPressed: () {
                               setState(() {
                                 order.quantity++;
+                                _sepetFooterRefresh(context);
                               });
                             },
                           ),
@@ -144,6 +178,26 @@ class _OrdersListState extends State<OrdersList> {
       ));
     }, childCount: items.length));
   }
+
+  void _sepetFooterRefresh(BuildContext context) {
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SepetFooter(_calculateTotal()),
+        ));
+  }
+
+  String _calculateTotal(){
+    double total = 0;
+    for(var item in items){
+      if(item.selected){
+        total += item.quantity * item.price;
+      }
+    }
+    return total.toString();
+  }
+
 
   void _setState() {
     setState(() {});
