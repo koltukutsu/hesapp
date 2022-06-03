@@ -123,10 +123,13 @@ class Iptal extends StatelessWidget {
         onPressed: () {
           // Navigator.of(context).pop(0);
           // BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0); //TODO: 1. sayfayla ilgili olan ve restoran kismina donme
+
           BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-           Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
-          Navigator.of(context)
-              .popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          //  Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+          // Navigator.of(context)
+          //     .popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
         },
       ),
     );
