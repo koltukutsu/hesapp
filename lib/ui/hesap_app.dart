@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
+import 'package:hesap/cubit/internet_baglantisi/internet_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
 import 'package:hesap/cubit/order/order_cubit.dart';
@@ -60,6 +61,7 @@ class HesapApp extends StatelessWidget {
             KonumRepository(),
           ),
         ),
+        BlocProvider(create: (context) => InternetCubit()),
         BlocProvider(create: (context) => MenuAramaCubit()),
         BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => CardCubit(ProfileRepository())),
@@ -73,7 +75,7 @@ class HesapApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             themeMode: ThemeMode.system,
-            initialRoute: ROUTE_RESTAURANTS,
+            initialRoute: ROUTE_BASE,
             routes: {
               ROUTE_BASE: (context) => const BaseScreen(),
               ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
@@ -86,6 +88,7 @@ class HesapApp extends StatelessWidget {
               // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
               ROUTE_QR_SCREEN: (context) => OrderScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
+              ROUTE_INTERNET_KONTROL: (context) => const ProfileScreen(),
             },
           );
         },

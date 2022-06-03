@@ -21,6 +21,7 @@ dependencies:
   geocoding: ^2.0.4
   get_it: ^7.2.0
   qr_code_scanner: ^1.0.0
+  connectivity_plus: ^2.3.2
   flutter_launcher_icons: ^0.9.0
 #  qr_code_scanner: ^0.7.0
 
@@ -29,6 +30,9 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/icon.png"
+
+
+
 
 dev_dependencies:
   flutter_test:

@@ -55,6 +55,7 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
               if (index == 0) { // TODO: buradaki 1. sayda mantigi duzeltilmeli
                 BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
                 Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+                Navigator.of(context).pushNamed(ROUTE_RESTAURANTS);
               } else if (index == 1) {
                 BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
               } else if (index == 2) {
