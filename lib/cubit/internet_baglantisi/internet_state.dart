@@ -7,15 +7,16 @@ abstract class InternetState extends Equatable {
 }
 
 class InternetConnectionLoading extends InternetState {
-  final bool isOnline;
-  const InternetConnectionLoading({this.isOnline = false});
+  // final bool isOnline;
+  // const InternetConnectionLoading({this.isOnline = false});
 
   @override
-  List<Object?> get props => [isOnline];
+  List<Object?> get props => [];
 }
 
 class InternetConnected extends InternetState {
   final bool isOnline;
+
   const InternetConnected({this.isOnline = true});
 
   @override
@@ -24,6 +25,7 @@ class InternetConnected extends InternetState {
 
 class InternetNotConnected extends InternetState {
   final bool isOnline;
+
   const InternetNotConnected({this.isOnline = false});
 
   @override

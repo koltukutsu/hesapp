@@ -6,26 +6,25 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 part "internet_state.dart";
 
 class InternetCubit extends Cubit<InternetState> {
-  InternetCubit() : super(const InternetConnectionLoading()) {
-    _initialize();
-  }
+  InternetCubit() : super(InternetConnectionLoading());
 
-  _initialize() async {
-    StreamSubscription? connection;
-    connection = Connectivity()
+  initialize() {
+    // final StreamSubscription connection;
+    var connection = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
+      print(123);
       if (result == ConnectivityResult.none) {
         emit(const InternetNotConnected());
       } else if (result == ConnectivityResult.mobile) {
         //connection is mobile data network
-        emit(const InternetConnected());
+        emit(const InternetConnected(isOnline: true));
       } else if (result == ConnectivityResult.wifi) {
         //connection is from wifi
-        emit(const InternetConnected());
+        emit(const InternetConnected(isOnline: true));
       } else if (result == ConnectivityResult.ethernet) {
         //connection is from wired connection
-        emit(const InternetConnected());
+        emit(const InternetConnected(isOnline: true));
       }
     });
   }

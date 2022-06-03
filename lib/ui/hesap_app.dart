@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
@@ -18,6 +20,7 @@ import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 
 import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
+import 'package:hesap/ui/screens/internet/internet_screen.dart';
 
 // import 'package:hesap/ui/screens/ana/ana_ekran_semih.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
@@ -37,6 +40,7 @@ class HesapApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -88,7 +92,7 @@ class HesapApp extends StatelessWidget {
               // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
               ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
-              ROUTE_INTERNET_KONTROL: (context) => const ProfileScreen(),
+              ROUTE_INTERNET_KONTROL: (context) => const InternetScreen(),
             },
           );
         },

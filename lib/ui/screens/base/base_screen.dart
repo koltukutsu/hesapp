@@ -26,7 +26,7 @@ class _BaseScreenState extends State<BaseScreen> {
           ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
-              errorSnackbar(state.errorMessage),
+              errorSnackbar("Giriş Yapmadınız"),
             );
         }
       },
