@@ -18,7 +18,7 @@ class _MenuEkranState extends State<MenuEkran> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: MenuBody(
-        restaurantId: "",
+        restaurantId: "TyZa1uLFz27YKTH7Yhy2",
       ),
     );
   }

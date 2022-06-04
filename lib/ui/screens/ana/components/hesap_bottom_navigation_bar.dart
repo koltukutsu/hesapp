@@ -55,9 +55,9 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
             if (index == 0) {
               // TODO: buradaki 1. sayda mantigi duzeltilmeli
               //context.read<QRCubit>().leaveTable();
-              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
+              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0);
+              // Navigator.of(context).pushNamedAndRemoveUntil(
+              //     ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
             } else if (index == 1) {
               BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
             } else if (index == 2) {

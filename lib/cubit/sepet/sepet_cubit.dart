@@ -48,7 +48,7 @@ class SepetCubit extends Cubit<SepetState> {
   }
 
   decrement(Product product) {
-    if (orderList[product]! > 0) {
+    if (orderList[product]! > 1) {
       orderList[product] = orderList[product]! - 1;
       // sum = sum - product.price;
       emit(SepetSuccess(

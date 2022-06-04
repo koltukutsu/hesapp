@@ -33,8 +33,8 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
         0.0; // floating action button bunu kullanarak yukari gitmeyecek
 
     final pages = <Widget>[
-      const SizedBox(),
-      const MasaTemelEkran(),
+      // const SizedBox(),
+      const MasaTemelEkran(), // 0
       const MenuEkran(), // 1
       const GarsonCagirEkran(), // 2
       const ProfileScreen() // 3
