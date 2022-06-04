@@ -137,6 +137,7 @@ class _OrdersListState extends State<OrdersList> {
                                             context
                                                 .read<SepetCubit>()
                                                 .increment(order);
+
                                           });
                                         },
                                       ),
