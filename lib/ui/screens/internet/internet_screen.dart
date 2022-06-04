@@ -12,39 +12,30 @@ class InternetScreen extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: SizedBox(
-        child: const HesapNormalText(
-          text: "Internet Baglantisi yok",
-        ),
-      )),
-    );
     return BlocConsumer<InternetCubit, InternetState>(
-        listener: (context, state) {
-      if (true) {
-        ScaffoldMessenger.of(context)
-          ..removeCurrentSnackBar()
-          ..showSnackBar(
-            correctSnackbar("Internet Var"),
-          );
-      }
-    }, builder: (context, state) {
-      if (state is InternetConnected) {
-        return Scaffold(
-          body: Center(
-              child: Container(
-            child: const HesapNormalText(text: "İnternete baglandiniz"),
-          )),
-        );
-      } else if (state is InternetNotConnected) {
-        return Scaffold(
-          body: Center(
-              child: Container(
-            child: const HesapNormalText(text: "İnternete bağlanın lütfen"),
-          )),
-        );
-      }
-    });
+      listener: (context, state) {
+        if (state is InternetConnected) {
+          ScaffoldMessenger.of(context)
+            ..removeCurrentSnackBar()
+            ..showSnackBar(
+              correctSnackbar("Internet Var"),
+            );
+        } else {
+          ScaffoldMessenger.of(context)
+            ..removeCurrentSnackBar()
+            ..showSnackBar(errorSnackbar("Internet Baglantiniz yok!!!"));
+        }
+      },
+      builder: (state, context_) {
+        if (state is InternetConnected) {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(ROUTE_BASE);
+        } else {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(ROUTE_BASE);
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 }

@@ -40,7 +40,6 @@ class HesapApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -52,7 +51,6 @@ class HesapApp extends StatelessWidget {
           create: (context) => QRCubit(),
         ),
         BlocProvider(
-          // Ana Sayfa, Degisen Ekranlar
           create: (context) => DegisenEkranlarCubit(),
         ),
         BlocProvider(
@@ -87,10 +85,8 @@ class HesapApp extends StatelessWidget {
               ROUTE_LOGIN: (context) => const GirisYapEkran(),
               ROUTE_REGISTER: (context) => const UyeOlEkran(),
               ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
-              // ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
-              ROUTE_SEPET_EKRAN: (context) =>  OrderScreen(),
-              // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
-              ROUTE_QR_SCREEN: (context) =>const QRScannerScreen(),
+              ROUTE_SEPET_EKRAN: (context) => OrderScreen(),
+              ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
               ROUTE_INTERNET_KONTROL: (context) => const InternetScreen(),
             },

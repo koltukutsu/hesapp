@@ -52,9 +52,11 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
         child: IconButton(
             icon: icon,
             onPressed: () {
-              if (index == 0) { // TODO: buradaki 1. sayda mantigi duzeltilmeli
+              if (index == 0) {
+                // TODO: buradaki 1. sayda mantigi duzeltilmeli
                 BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-                Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
+                Navigator.of(context)
+                    .popUntil(ModalRoute.withName(ROUTE_RESTAURANTS));
                 Navigator.of(context).pushNamed(ROUTE_RESTAURANTS);
               } else if (index == 1) {
                 BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
