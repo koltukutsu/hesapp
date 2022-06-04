@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/ui/theme/colors.dart';
-import '../../data/model/OrdersModel.dart';
+import '../../data/model/order.dart';
 
 class OrdersItem extends StatelessWidget {
-  final OrdersModel order;
+  final Order order;
 
   const OrdersItem({Key? key, required this.order, listenner})
       : assert(order != null),
@@ -27,7 +27,8 @@ class OrdersItem extends StatelessWidget {
               //  color: Colors.red,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
-                image: DecorationImage(image: NetworkImage(order.image)),
+                image:
+                    DecorationImage(image: NetworkImage(order.product.image)),
               ),
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.all(10),
@@ -40,7 +41,7 @@ class OrdersItem extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Text(
-                      order.title,
+                      order.product.title,
                       style: const TextStyle(
                         fontFamily: 'ubuntu',
                         fontWeight: FontWeight.normal,
@@ -54,7 +55,7 @@ class OrdersItem extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          order.price.toString(),
+                          order.product.price.toString(),
                           style: const TextStyle(
                             fontFamily: 'ubuntu',
                             fontWeight: FontWeight.normal,
@@ -71,7 +72,6 @@ class OrdersItem extends StatelessWidget {
                           onPressed: () {
                             print(order.quantity);
                             order.quantity++;
-
                           },
                         ),
                         SizedBox(

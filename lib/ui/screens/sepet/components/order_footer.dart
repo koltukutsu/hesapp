@@ -1,25 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hesap/ui/screens/ana/components/hesap_alert_dialog.dart';
+import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
-import 'package:hesap/ui/screens/sepet/components/orders_list.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 class SepetFooter extends StatefulWidget {
-  String total="";
-
-  SepetFooter(this.total) {}
+  const SepetFooter({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<SepetFooter> createState() => _SepetFooterState(total);
+  State<SepetFooter> createState() => _SepetFooterState();
 }
 
 class _SepetFooterState extends State<SepetFooter> {
-  String total="";
-  _SepetFooterState(this.total){}
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -34,9 +31,9 @@ class _SepetFooterState extends State<SepetFooter> {
               SvgPicture.asset("assets/images/sepet_divider.svg",
                   width: MediaQuery.of(context).size.width),
               Padding(
-                padding:  EdgeInsets.only(left: 13.0),
+                padding: const EdgeInsets.only(left: 13.0),
                 child: TextFormField(
-                  decoration:  InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     labelText: 'Not Ekle',
                     labelStyle: TextStyle(
@@ -66,10 +63,10 @@ class _SepetFooterState extends State<SepetFooter> {
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                           color: AppColors.amountBox,
                         ),
-                        child:  Align(
+                        child: Align(
                           alignment: AlignmentDirectional.center,
                           child: Text(
-                            total,
+                            "${context.watch<SepetCubit>().calculateOrderSum()} ₺",
                             style: const TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontWeight: FontWeight.normal,
@@ -85,10 +82,10 @@ class _SepetFooterState extends State<SepetFooter> {
                       child: OutlinedButton(
                         onPressed: () {
                           // TODO: alertDialog eklenecek, odeme tamamlandi
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  const OrderDoneAlertDialog());
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (BuildContext context) =>
+                          //         const OrderDoneAlertDialog());
                         },
                         child: const Text(
                           "ÖDE",

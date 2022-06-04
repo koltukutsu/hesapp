@@ -27,7 +27,6 @@ class HesapOrderCard extends StatelessWidget {
     this.paddingBottom = 0.0,
     this.cardColor = AppColors.primary,
     this.cardShadowColorOpacity = 0.5,
-    this.cardHeight = 100,
     this.cardWidth = 250,
     this.cardCircularTopLeft = 10,
     this.cardCircularTopRight = 10,
@@ -59,7 +58,6 @@ class HesapOrderCard extends StatelessWidget {
   final double paddingBottom;
 
   final Color cardColor;
-  final double cardHeight;
   final double cardWidth;
   final double cardCircularTopLeft;
   final double cardCircularTopRight;
@@ -80,72 +78,73 @@ class HesapOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 0.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
               child: Image.network(
                 imageSiparisUrl,
-                height: 91,
-                width: 131,
+                width: 100,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 0.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HesapNormalText(text: text, textColor: textColor, fontSize: Insets.l, fontWeight: FontWeight.w600,),
-                HesapNormalText(
-                  text: durationSiparis + " dk",
-                  fontSize: Insets.m,
-                  fontWeight: FontWeight.w400,
-                  textColor: AppColors.gray,
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                HesapNormalText(
-                  text: priceSiparis.toString() + "  TL",
-                  fontSize: Insets.l,
-                  fontWeight: FontWeight.w400,
-                  textColor: AppColors.darkBackground,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HesapNormalText(
+                    text: text,
+                    textColor: textColor,
+                    fontSize: Insets.l,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  HesapNormalText(
+                    text: "$durationSiparis dk",
+                    fontSize: Insets.m,
+                    fontWeight: FontWeight.w400,
+                    textColor: AppColors.gray,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  HesapNormalText(
+                    text: "$priceSiparis TL",
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    textColor: AppColors.darkBackground,
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
+            IconButton(
                 onPressed: () {}, // sepete ekleme burada yapilacak
                 icon: const Icon(
                   Icons.add_box_rounded,
                   color: AppColors.primary,
-                  size: Insets.x3l,
+                  size: Insets.xll,
                 )),
-          ),
-        ],
+          ],
+        ),
       ),
       margin: EdgeInsets.only(
-          left: marginLeft,
-          top: marginTop,
-          right: marginRight,
-          bottom: marginBottom),
-      height: cardHeight,
+        left: marginLeft,
+        top: marginTop,
+        right: marginRight,
+        bottom: marginBottom,
+      ),
       width: cardWidth,
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(cardCircularTopLeft),
-            topRight: Radius.circular(cardCircularTopRight),
-            bottomLeft: Radius.circular(cardCircularBottomLeft),
-            bottomRight: Radius.circular(cardCircularBottomRight)),
+          topLeft: Radius.circular(cardCircularTopLeft),
+          topRight: Radius.circular(cardCircularTopRight),
+          bottomLeft: Radius.circular(cardCircularBottomLeft),
+          bottomRight: Radius.circular(cardCircularBottomRight),
+        ),
         boxShadow: [
           BoxShadow(
             color: cardShadowColor.withOpacity(cardShadowColorOpacity),

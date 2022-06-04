@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hesap/data/model/order.dart';
+import 'package:hesap/data/model/order_history.dart';
 
 class ProfileOrderItem extends StatelessWidget {
   const ProfileOrderItem({
@@ -7,7 +7,7 @@ class ProfileOrderItem extends StatelessWidget {
     required this.order,
   }) : super(key: key);
 
-  final Order order;
+  final OrderHistory order;
 
   @override
   Widget build(BuildContext context) {

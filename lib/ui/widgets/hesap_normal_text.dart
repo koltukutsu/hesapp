@@ -22,7 +22,6 @@ class HesapNormalText extends StatelessWidget {
     this.paddingTop = 0.0,
     this.paddingRight = 0.0,
     this.paddingBottom = 0.0,
-
   }) : super(key: key);
 
   final String text;
@@ -41,10 +40,11 @@ class HesapNormalText extends StatelessWidget {
       alignment: textAlignment,
       child: Padding(
         padding: EdgeInsets.only(
-            left: paddingLeft,
-            top: paddingTop,
-            right: paddingRight,
-            bottom: paddingBottom),
+          left: paddingLeft,
+          top: paddingTop,
+          right: paddingRight,
+          bottom: paddingBottom,
+        ),
         child: Text(
           text,
           style: TextStyle(

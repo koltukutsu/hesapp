@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
+import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_body.dart';
 
 class QRScannerScreen extends StatefulWidget {
@@ -12,15 +13,19 @@ class QRScannerScreen extends StatefulWidget {
 
 class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
+  void initState() {
+    super.initState();
+    context.read<QRCubit>().scanTest();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<QRCubit, QRState>(
       builder: (context, state) {
-        if (state is QRWaiting) {
-          return const QRScannerBody();
-        } else if (state is QRSuccessful) {
-          return Container(); // TODO: Masa özet sayfası açılacak
+        if (state is QRSuccessful) {
+          return PopUpEkran(qrStream: state.qrStream);
         }
-        return Container();
+        return const QRScannerBody();
       },
     );
   }

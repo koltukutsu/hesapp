@@ -31,7 +31,7 @@ class HesapButton extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'Ubuntu',
               fontWeight: FontWeight.w700,
-              fontSize: 14.0,
+              fontSize: 16.0,
               color: enabled
                   ? (filled ? AppColors.white : AppColors.primary)
                   : Colors.grey.shade600,

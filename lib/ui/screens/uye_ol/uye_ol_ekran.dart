@@ -15,6 +15,7 @@ class UyeOlEkran extends StatefulWidget {
 }
 
 class _UyeOlEkranState extends State<UyeOlEkran> {
+  String name = "";
   String username = "";
   String email = "";
   String password = "";
@@ -28,18 +29,25 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
         if (state is AuthSignUpSuccessful) {
           showSignUpVerificationDialog(
             () {
-              Navigator.popUntil(context, ModalRoute.withName(ROUTE_BASE));
+              Navigator.popUntil(
+                context,
+                ModalRoute.withName(ROUTE_BASE),
+              );
             },
           );
         }
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: UyeOlAppBar(
           onBack: () {
             Navigator.pop(context);
           },
         ),
         body: UyeOlBody(
+          setName: (value) {
+            name = value;
+          },
           setUsername: (value) {
             username = value;
           },
@@ -57,6 +65,7 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
           },
           confirm: () {
             context.read<AuthCubit>().signUp(
+                  name: name,
                   username: username,
                   email: email,
                   phone: phone,
@@ -69,7 +78,7 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
     );
   }
 
-  Future<void> showSignUpVerificationDialog(VoidCallback confirm) {
+  Future showSignUpVerificationDialog(VoidCallback confirm) {
     return showDialog(
       context: context,
       barrierDismissible: false,

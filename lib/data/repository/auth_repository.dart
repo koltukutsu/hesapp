@@ -15,16 +15,15 @@ class AuthRepository {
       return null;
     }
 
-    var userData =
-        _firebaseFirestore.collection('users').where("id", isEqualTo: user.uid);
-
-    var value = await userData.get();
+    var userDoc =
+        await _firebaseFirestore.collection('users').doc(user.uid).get();
 
     return HesapUser(
       id: user.uid,
-      username: value.docs[0]['username'],
-      email: value.docs[0]['email'],
-      phone: value.docs[0]['phone'],
+      name: userDoc['name'],
+      username: userDoc['username'],
+      email: userDoc['email'],
+      phone: userDoc['phone'],
     );
   }
 
@@ -57,6 +56,7 @@ class AuthRepository {
   }
 
   signUp({
+    required String name,
     required String username,
     required String email,
     required String phone,
@@ -64,7 +64,8 @@ class AuthRepository {
     required String passwordAgain,
   }) async {
     try {
-      if (username.isEmpty ||
+      if (name.isEmpty ||
+          username.isEmpty ||
           email.isEmpty ||
           phone.isEmpty ||
           password.isEmpty) {
@@ -79,6 +80,10 @@ class AuthRepository {
         throw HesapException('Girdiğiniz şifreler uyuşmuyor.');
       }
 
+      if (password.length < 6) {
+        throw HesapException('Şifre 6 karakterden kısa olamaz.');
+      }
+
       var userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -86,12 +91,10 @@ class AuthRepository {
 
       userCredential.user!.sendEmailVerification();
 
-      _firebaseFirestore.collection('users').add({
-        'id': _firebaseAuth.currentUser!.uid,
-        'username': username,
-        'email': email,
-        'phone': phone
-      });
+      String _userId = _firebaseAuth.currentUser!.uid;
+
+      _firebaseFirestore.collection('users').doc(_userId).set(
+          {'name': name, 'username': username, 'email': email, 'phone': phone});
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
         case 'email-already-in-use':
@@ -102,5 +105,9 @@ class AuthRepository {
               'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
     }
+  }
+
+  signOut() {
+    _firebaseAuth.signOut();
   }
 }
