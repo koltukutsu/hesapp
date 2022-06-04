@@ -29,4 +29,15 @@ class CardRepository {
 
     return savedCards;
   }
+
+  addCard(
+    String brand,
+    String number,
+  ) {
+    var _userId = _firebaseAuth.currentUser!.uid;
+
+    _firebaseFirestore
+        .collection("users/$_userId/cards")
+        .add({'brand': brand, 'number': number});
+  }
 }

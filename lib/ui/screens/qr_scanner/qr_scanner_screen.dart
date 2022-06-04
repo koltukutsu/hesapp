@@ -20,7 +20,12 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QRCubit, QRState>(
+    return BlocConsumer<QRCubit, QRState>(
+      listener: (context, state) {
+        if (state is QRSuccessful) {
+          context.read<QRCubit>().dispose();
+        }
+      },
       builder: (context, state) {
         if (state is QRSuccessful) {
           return PopUpEkran(qrData: state.qrData);

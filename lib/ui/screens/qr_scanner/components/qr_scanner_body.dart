@@ -76,10 +76,4 @@ class _QRScannerBodyState extends State<QRScannerBody> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    context.read<QRCubit>().dispose();
-    super.dispose();
-  }
 }

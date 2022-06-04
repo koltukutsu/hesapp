@@ -125,7 +125,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           label: "Kart Ekle",
                           filled: false,
                           onPressed: () {
-                            print("basildi");
+                            // print("basildi");
+                            Navigator.of(context)
+                                .pushNamed(ROUTE_CREDIT_CARD_ADD);
                           }),
                     ),
                     const ProfileSavedCards(),
