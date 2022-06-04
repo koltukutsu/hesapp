@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/internet_baglantisi/internet_cubit.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/odeme/payment_screen.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
+import 'package:hesap/ui/widgets/hesap_correct_snack_bar.dart';
 import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'components/loading_screen.dart';
@@ -25,7 +27,7 @@ class _BaseScreenState extends State<BaseScreen> {
           ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
-              errorSnackbar(state.errorMessage),
+              errorSnackbar("Giriş Yapmadınız"),
             );
         }
       },
