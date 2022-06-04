@@ -36,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     context.read<OrderCubit>().fetchOrderHistory();
 
     hesapUser = context.read<AuthCubit>().getHesapUser()!;
+    name = hesapUser.name;
     username = hesapUser.username;
     email = hesapUser.email;
     phone = hesapUser.phone;
