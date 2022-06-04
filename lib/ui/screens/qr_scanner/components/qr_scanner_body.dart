@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_view.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/constants.dart';
 
 class QRScannerBody extends StatelessWidget {
   const QRScannerBody({Key? key}) : super(key: key);
@@ -33,6 +34,14 @@ class QRScannerBody extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      Transform.scale(
+                          scale: 4,
+                          child: IconButton( // TODO: burasi sonradan kaldirilacak
+                              icon: const Icon(Icons.play_arrow),
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(ROUTE_POP_EKRAN);
+                              })),
                       const Text(
                         "Masadaki QR kodu okutun",
                         style: TextStyle(

@@ -108,6 +108,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: const Icon(Icons.exit_to_app_rounded),
                       onPressed: () {
                         context.read<AuthCubit>().signOut();
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            ROUTE_BASE, (Route<dynamic> route) => false);
                       },
                     )
                   ],
