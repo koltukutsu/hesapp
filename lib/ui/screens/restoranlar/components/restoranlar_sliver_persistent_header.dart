@@ -164,7 +164,10 @@ class UserIkonu extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       // onTap: () => Navigator.of(context).pushNamed(ROUTE_PROFIL_EKRAN),
-      onTap: () => Navigator.of(context).pushNamed(ROUTE_PROFIL_EKRAN),
+      onTap: () {
+        // print(12313);
+        Navigator.of(context).pushNamed(ROUTE_PROFIL_EKRAN);
+      },
       child: Align(
         alignment: AlignmentDirectional.topStart,
         child: SizedBox(

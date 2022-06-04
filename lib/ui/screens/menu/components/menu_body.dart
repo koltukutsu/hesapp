@@ -29,21 +29,21 @@ class _MenuBodyState extends State<MenuBody> {
   Widget build(BuildContext context) {
     return BlocBuilder<MenuCubit, MenuState>(
       builder: (context, state) {
-        // if (state is MenuLoaded) {
-        // return ListView(
-        //   children: state.menu.map(
-        //     (Product product) {
-        //       return MenuItem(
-        //         product: product,
-        //       );
-        //     },
-        //   ).toList(),
-        // );
-        // }
+        if (state is MenuLoaded) {
+        return ListView(
+          children: state.menu.map(
+            (Product product) {
+              return MenuItem(
+                product: product,
+              );
+            },
+          ).toList(),
+        );
+        }
 
-        // else {
-        // return const Center(child: CircularProgressIndicator());
-        // }
+        else {
+        return const Center(child: CircularProgressIndicator());
+        }
 
         return const Center(child: CircularProgressIndicator());
 
