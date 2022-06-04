@@ -63,15 +63,18 @@ class _OrdersListState extends State<OrdersList> {
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Column(
                               children: [
-                                Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Text(
-                                    order.title,
-                                    style: const TextStyle(
-                                      fontFamily: 'ubuntu',
-                                      fontWeight: FontWeight.normal,
-                                      color: Colors.black,
-                                      fontSize: 20,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text(
+                                      order.title,
+                                      style: const TextStyle(
+                                        fontFamily: 'ubuntu',
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                      ),
                                     ),
                                   ),
                                 ),
