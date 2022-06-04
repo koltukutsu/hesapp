@@ -10,3 +10,4 @@ const String ROUTE_POP_EKRAN = '/pop_ekran';
 const String ROUTE_SEPET_EKRAN = "/sepet_ekran";
 const String ROUTE_PROFIL_EKRAN = "/profil_ekran";
 const String ROUTE_PAYMENT = "/payment";
+const String ROUTE_INTERNET_CONTROL = "/internet_connection_control";

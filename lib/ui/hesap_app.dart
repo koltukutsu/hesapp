@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
+import 'package:hesap/cubit/internet_baglantisi/internet_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/menu/menu_cubit.dart';
 import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
@@ -22,6 +23,7 @@ import 'package:hesap/data/repository/qr_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
+import 'package:hesap/ui/screens/internet/internet_screen.dart';
 import 'package:hesap/ui/screens/odeme/payment_screen.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
@@ -48,6 +50,7 @@ class HesapApp extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 ProfileCubit(ProfileRepository(), AuthRepository())),
+        BlocProvider(create: (context) => InternetCubit()),
         BlocProvider(create: (context) => CardCubit(CardRepository())),
         BlocProvider(create: (context) => OrderCubit(OrderHistoryRepository())),
         BlocProvider(create: (context) => ThemeCubit()),
@@ -66,7 +69,7 @@ class HesapApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             themeMode: ThemeMode.system,
-            initialRoute: ROUTE_BASE,
+            initialRoute: ROUTE_INTERNET_CONTROL,
             routes: {
               ROUTE_BASE: (context) => const BaseScreen(),
               ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
@@ -74,12 +77,11 @@ class HesapApp extends StatelessWidget {
               ROUTE_LOGIN: (context) => const GirisYapEkran(),
               ROUTE_REGISTER: (context) => const UyeOlEkran(),
               ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
-              //ROUTE_QR_SCREEN: (context) => const QrOkumaEkran(),
               ROUTE_SEPET_EKRAN: (context) => OrderScreen(),
               ROUTE_PAYMENT: (context) => const PaymentScreen(),
-              // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
               ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
+              ROUTE_INTERNET_CONTROL: (context) => const InternetScreen()
             },
           );
         },
