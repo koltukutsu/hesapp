@@ -17,21 +17,10 @@ class _OrdersState extends State<OrderScreen> {
       body: CustomScrollView(
         slivers: [
           const SliverHeader(),
-          OrdersList(items),
+          OrdersList(),
         ],
       ),
-      bottomNavigationBar:  SepetFooter(_calculateTotal()),
+      bottomNavigationBar: SepetFooter(),
     );
   }
-
-  String _calculateTotal(){
-    double total = 0;
-    for(var item in items){
-      if(item.selected){
-        total += item.quantity * item.price;
-      }
-    }
-    return total.toString();
-  }
-
 }
