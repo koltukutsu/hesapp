@@ -6,6 +6,7 @@ import 'package:hesap/cubit/order/order_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/theme/insets.dart';
+import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
 import 'package:hesap/util/constants.dart';
 
 import 'components/profile_order_history.dart';
@@ -116,6 +117,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         );
                       },
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: HesapButtonNotFlexible(
+                          label: "Kart Ekle",
+                          filled: false,
+                          onPressed: () {
+                            print("basildi");
+                          }),
                     ),
                     const ProfileSavedCards(),
                     const ProfileOrderHistory(),
