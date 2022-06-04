@@ -19,10 +19,10 @@ class ProfileSavedCards extends StatefulWidget {
 }
 
 class _ProfileSavedCardsState extends State<ProfileSavedCards> {
+  bool expanded = false;
+
   @override
   Widget build(BuildContext context) {
-    bool expanded = context.watch<ProfileCubit>().savedCardsExpanded;
-
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
@@ -41,33 +41,36 @@ class _ProfileSavedCardsState extends State<ProfileSavedCards> {
               title: 'Kayıtlı Kartlarım',
               expanded: expanded,
               toggle: () {
-                context.read<ProfileCubit>().toggleSavedCards();
+                setState(() {
+                  expanded = !expanded;
+                });
               },
             ),
             Visibility(
-                visible: expanded,
-                child: BlocBuilder<CardCubit, CardState>(
-                  builder: (context, state) {
-                    if (state is CardLoaded) {
-                      if (state.savedCards.isEmpty) {
-                        return const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text("Kayıtlı kartınız bulunmuyor"),
-                        );
-                      }
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: state.savedCards.length,
-                        itemBuilder: (context, index) {
-                          return ProfileSavedCardItem(
-                            card: state.savedCards[index],
-                          );
-                        },
+              visible: expanded,
+              child: BlocBuilder<CardCubit, CardState>(
+                builder: (context, state) {
+                  if (state is CardLoaded) {
+                    if (state.savedCards.isEmpty) {
+                      return const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text("Kayıtlı kartınız bulunmuyor"),
                       );
                     }
-                    return const SizedBox();
-                  },
-                )),
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.savedCards.length,
+                      itemBuilder: (context, index) {
+                        return ProfileSavedCardItem(
+                          card: state.savedCards[index],
+                        );
+                      },
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
           ],
         ),
       ),

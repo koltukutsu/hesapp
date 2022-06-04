@@ -10,10 +10,10 @@ class QRInitial extends QRState {
 }
 
 class QRSuccessful extends QRState {
-  const QRSuccessful(this.qrStream);
+  const QRSuccessful(this.qrData);
 
-  final Stream<QuerySnapshot<Map<String, dynamic>>> qrStream;
+  final List<String> qrData;
 
   @override
-  List<Object?> get props => [qrStream];
+  List<Object?> get props => [qrData];
 }

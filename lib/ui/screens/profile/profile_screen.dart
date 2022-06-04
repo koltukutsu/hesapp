@@ -20,11 +20,24 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool isEditing = false;
+
+  late HesapUser hesapUser;
+  String name = "";
+  String username = "";
+  String email = "";
+  String phone = "";
+
   @override
   void initState() {
     super.initState();
     context.read<CardCubit>().fetchSavedCards();
     context.read<OrderCubit>().fetchOrderHistory();
+
+    hesapUser = context.read<AuthCubit>().getHesapUser()!;
+    username = hesapUser.username;
+    email = hesapUser.email;
+    phone = hesapUser.phone;
   }
 
   @override
@@ -37,11 +50,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: const Text("Profil"),
               actions: [
                 IconButton(
-                  icon: Icon(context.watch<ProfileCubit>().isEditing
-                      ? Icons.save
-                      : Icons.edit),
+                  icon: Icon(isEditing ? Icons.save : Icons.edit),
                   onPressed: () {
-                    context.read<ProfileCubit>().toggleEditMode();
+                    setState(() {
+                      isEditing = !isEditing;
+                    });
                   },
                 )
               ],
@@ -52,54 +65,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      children: [
-                        ProfileTextField(
-                          controller: TextEditingController(
-                            text: context.watch<AuthCubit>().hesapUser!.name,
-                          ),
-                          label: "Ad Soyadı",
-                          enabled: context.watch<ProfileCubit>().isEditing,
-                          suffixIcon: const Icon(Icons.person),
-                          onChanged: (value) {
-                            context.read<ProfileCubit>().setName(value);
-                          },
-                        ),
-                        ProfileTextField(
-                          controller: TextEditingController(
-                            text:
-                                context.watch<AuthCubit>().hesapUser!.username,
-                          ),
-                          label: "Kullanıcı Adı",
-                          enabled: context.watch<ProfileCubit>().isEditing,
-                          suffixIcon: const Icon(Icons.person),
-                          onChanged: (value) {
-                            context.read<ProfileCubit>().setUsername(value);
-                          },
-                        ),
-                        ProfileTextField(
-                          controller: TextEditingController(
-                            text: context.watch<AuthCubit>().hesapUser!.email,
-                          ),
-                          label: "E-posta Adresi",
-                          enabled: context.watch<ProfileCubit>().isEditing,
-                          suffixIcon: const Icon(Icons.mail),
-                          onChanged: (value) {
-                            context.read<ProfileCubit>().setEmail(value);
-                          },
-                        ),
-                        ProfileTextField(
-                          controller: TextEditingController(
-                              text:
-                                  context.watch<AuthCubit>().hesapUser!.phone),
-                          label: "Telefon No",
-                          enabled: context.watch<ProfileCubit>().isEditing,
-                          suffixIcon: const Icon(Icons.phone),
-                          onChanged: (value) {
-                            context.read<ProfileCubit>().setPhone(value);
-                          },
-                        ),
-                      ],
+                    BlocBuilder<ProfileCubit, ProfileState>(
+                      builder: (context, state) {
+                        return Column(
+                          children: [
+                            ProfileTextField(
+                              controller: TextEditingController(
+                                text: name,
+                              ),
+                              label: "Ad Soyadı",
+                              enabled: isEditing,
+                              suffixIcon: const Icon(Icons.person),
+                              onChanged: (value) {
+                                name = value;
+                              },
+                            ),
+                            ProfileTextField(
+                              controller: TextEditingController(
+                                text: username,
+                              ),
+                              label: "Kullanıcı Adı",
+                              enabled: isEditing,
+                              suffixIcon: const Icon(Icons.person),
+                              onChanged: (value) {
+                                username = value;
+                              },
+                            ),
+                            ProfileTextField(
+                              controller: TextEditingController(
+                                text: email,
+                              ),
+                              label: "E-posta Adresi",
+                              enabled: isEditing,
+                              suffixIcon: const Icon(Icons.mail),
+                              onChanged: (value) {
+                                email = value;
+                              },
+                            ),
+                            ProfileTextField(
+                              controller: TextEditingController(
+                                text: phone,
+                              ),
+                              label: "Telefon No",
+                              enabled: isEditing,
+                              suffixIcon: const Icon(Icons.phone),
+                              onChanged: (value) {
+                                phone = value;
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     ),
                     const ProfileSavedCards(),
                     const ProfileOrderHistory(),

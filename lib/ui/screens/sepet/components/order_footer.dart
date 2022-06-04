@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/constants.dart';
 
 class SepetFooter extends StatefulWidget {
   const SepetFooter({
@@ -81,11 +82,7 @@ class _SepetFooterState extends State<SepetFooter> {
                       width: 84,
                       child: OutlinedButton(
                         onPressed: () {
-                          // TODO: alertDialog eklenecek, odeme tamamlandi
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (BuildContext context) =>
-                          //         const OrderDoneAlertDialog());
+                          Navigator.pushNamed(context, ROUTE_PAYMENT);
                         },
                         child: const Text(
                           "ÖDE",
