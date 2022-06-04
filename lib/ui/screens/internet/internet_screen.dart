@@ -32,7 +32,7 @@ class InternetScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state.isOnline == false) {
+        if (state.isOnline) {
           return const BaseScreen();
         } else {
           return Scaffold(

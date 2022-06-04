@@ -42,6 +42,7 @@ class _OrdersListState extends State<OrdersList> {
                         color: AppColors.basketItemBackground.withOpacity(0.1),
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
                             width: 105,
