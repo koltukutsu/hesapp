@@ -22,32 +22,14 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context_2, state) {
+      listener: (context, state) {
         if (state is AuthError) {
-          ScaffoldMessenger.of(context_2)
+          ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
               errorSnackbar("Giriş Yapmadınız"),
             );
         }
-        // {
-        //   context.read<InternetCubit>().initialInternetControl();
-        //   print(context.read<InternetCubit>().getInternetCondition);
-        //   if (context.read<InternetCubit>().getInternetCondition == true) {
-        //     ScaffoldMessenger.of(context)
-        //       ..removeCurrentSnackBar()
-        //       ..showSnackBar(
-        //         correctSnackbar("Internete Baglisiniz"),
-        //       );
-        //   } else if (context.read<InternetCubit>().getInternetCondition ==
-        //       false) {
-        //     ScaffoldMessenger.of(context)
-        //       ..removeCurrentSnackBar()
-        //       ..showSnackBar(
-        //         errorSnackbar("Internet Baglantiniz Yok"),
-        //       );
-        //   }
-        // }
       },
       builder: (context, state) {
         if (state is AuthSignInSuccessful) {

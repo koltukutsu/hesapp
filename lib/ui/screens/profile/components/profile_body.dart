@@ -98,7 +98,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               builder: (context, state) {
                 if (state is CardLoaded) {
                   return ProfileSavedCards(
-                    savedCards: state.savedCards,
+                    // savedCards: state.savedCards,
                   );
                 } else {
                   return Container();
@@ -109,7 +109,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               builder: (context, state) {
                 if (state is OrdersLoaded) {
                   return ProfileOrderHistory(
-                    orderList: state.orderList,
+                    // orderList: state.orderList,
                   );
                 } else {
                   return Container();

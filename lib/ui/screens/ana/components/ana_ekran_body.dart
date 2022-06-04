@@ -46,15 +46,19 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
             transitionBuilder: (Widget child, Animation<double> animation) {
               return SlideTransition(
                 position: // TODO: ekranin saga mi sola mi gectigini kontrol icin bir onceki degeri bilmemiz gerekiyor
-                    state.index > context.read<DegisenEkranlarCubit>().prevIndex
-                        ? Tween<Offset>(
-                                begin: const Offset(1.2, 0),
-                                end: const Offset(0.0, 0))
-                            .animate(animation)
-                        : Tween<Offset>(
-                                begin: const Offset(-2.2, 0),
-                                end: const Offset(0.0, 0))
-                            .animate(animation),
+                    Tween<Offset>(
+                            begin: const Offset(1.2, 0),
+                            end: const Offset(0.0, 0))
+                        .animate(animation),
+                // state.index > state.lastIndex
+                //     ? Tween<Offset>(
+                //             begin: const Offset(1.2, 0),
+                //             end: const Offset(0.0, 0))
+                //         .animate(animation)
+                //     : Tween<Offset>(
+                //             begin: const Offset(-1.2, 0),
+                //             end: const Offset(0.0, 0))
+                //         .animate(animation),
                 child: child,
               );
             },
