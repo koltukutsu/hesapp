@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/data/model/product.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/ui/widgets/hesap_image_card.dart';
 
 class MenuItemCustom extends StatelessWidget {
   const MenuItemCustom({Key? key, required this.product}) : super(key: key);
@@ -19,14 +20,20 @@ class MenuItemCustom extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: Image.network(
-              product.image,
-              height: 96,
-              cacheHeight: 96,
-            ),
+          Ink.image(
+            image: NetworkImage(
+                "https://www.refikaninmutfagi.com/wp-content/uploads/2021/04/3O7A3397-scaled.jpg"),
+            height: 99,
+            fit: BoxFit.cover,
           ),
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(16.0),
+          //   child:
+          //       Image.network(
+          //         product.image,
+          //         height: 96,
+          //         cacheHeight: 96,
+          //       ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -34,6 +41,10 @@ class MenuItemCustom extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.asset("assets/images/kazandibi.jpg"),
+                  ),
                   Text(
                     product.title,
                     style: const TextStyle(
