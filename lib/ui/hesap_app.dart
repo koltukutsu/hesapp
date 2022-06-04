@@ -25,6 +25,8 @@ import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/odeme/payment_screen.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
+import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
+import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
 import 'package:hesap/ui/screens/sepet/order_screen.dart';
@@ -77,6 +79,7 @@ class HesapApp extends StatelessWidget {
               ROUTE_PAYMENT: (context) => const PaymentScreen(),
               // ROUTE_POP_EKRAN: (context) => const PopUpEkran(text: text)
               ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
+              ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
             },
           );
         },

@@ -30,18 +30,21 @@ class _MenuBodyState extends State<MenuBody> {
     return BlocBuilder<MenuCubit, MenuState>(
       builder: (context, state) {
         if (state is MenuLoaded) {
-          return ListView(
-            children: state.menu.map(
-              (Product product) {
-                return MenuItem(
-                  product: product,
-                );
-              },
-            ).toList(),
-          );
-        } else {
-          return const Center(child: CircularProgressIndicator());
+        return ListView(
+          children: state.menu.map(
+            (Product product) {
+              return MenuItemCustom(
+                product: product,
+              );
+            },
+          ).toList(),
+        );
         }
+        else {
+        return const Center(child: CircularProgressIndicator());
+        }
+        // return const Center(child: CircularProgressIndicator());
+
       },
     );
   }

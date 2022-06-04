@@ -47,15 +47,16 @@ class _OrdersListState extends State<OrdersList> {
                             width: 105,
                             height: 72,
                             //  color: Colors.red,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              image: DecorationImage(
-                                  image: NetworkImage(order.image)),
-                            ),
-                            alignment: Alignment.bottomCenter,
-                            padding: const EdgeInsets.all(10),
-                            margin: const EdgeInsets.all(20),
+                            // decoration: BoxDecoration(
+                            //   borderRadius:
+                            //       const BorderRadius.all(Radius.circular(10)),
+                            //   image: DecorationImage(
+                            //       image: NetworkImage(order.image)),
+                            // ),
+                            // alignment: Alignment.bottomCenter,
+                            // padding: const EdgeInsets.all(10),
+                            // margin: const EdgeInsets.all(20),
+                            child: Image.asset("assets/images/kazandibi.jpg"),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -88,16 +89,17 @@ class _OrdersListState extends State<OrdersList> {
                                         ),
                                       ),
                                       IconButton(
-                                        // icon: SvgPicture.asset(
-                                        //   "assets/images/negative.svg",
-                                        //   width: 25,
-                                        //   height: 25,
-                                        // ),
                                         icon: const Icon(
                                           Icons.remove_circle_outline_outlined,
                                           color: AppColors.primary,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            context
+                                                .read<SepetCubit>()
+                                                .decrement(order);
+                                          });
+                                        },
                                       ),
                                       SizedBox(
                                         height: 34,
@@ -108,12 +110,16 @@ class _OrdersListState extends State<OrdersList> {
                                                 Radius.circular(10)),
                                             color: AppColors.white,
                                           ),
-                                          child: const Align(
+                                          child: Align(
                                             alignment:
                                                 AlignmentDirectional.center,
                                             child: Text(
-                                              "",
-                                              style: TextStyle(
+                                              context
+                                                  .watch<SepetCubit>()
+                                                  .orderList[order]
+                                                  .toString(),
+                                              // state.orderList[order].toString(),
+                                              style: const TextStyle(
                                                   fontFamily: 'Ubuntu',
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 19,
@@ -123,15 +129,17 @@ class _OrdersListState extends State<OrdersList> {
                                         ),
                                       ),
                                       IconButton(
-                                        // icon: SvgPicture.asset(
-                                        //   "assets/images/plus_icon.svg",
-                                        //   width: 25,
-                                        //   height: 25,
-                                        // ),
                                         icon: const Icon(
                                             Icons.add_circle_outline_rounded,
                                             color: AppColors.primary),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            context
+                                                .read<SepetCubit>()
+                                                .increment(order);
+
+                                          });
+                                        },
                                       ),
                                     ],
                                   ),

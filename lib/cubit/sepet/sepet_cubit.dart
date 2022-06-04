@@ -9,6 +9,8 @@ part 'sepet_state.dart';
 class SepetCubit extends Cubit<SepetState> {
   SepetCubit() : super(SepetInitial());
 
+  // double sum = 0.0;
+
   Map<Product, int> orderList = {};
 
   loadOrders() {
@@ -17,10 +19,11 @@ class SepetCubit extends Cubit<SepetState> {
 
   double calculateOrderSum() {
     double sum = 0.0;
+
     return orderList.keys.fold<double>(
       0.0,
       (previousValue, order) {
-        sum = sum + order.price;
+        sum = sum + order.price * orderList[order]!;
         return sum;
       },
     );
@@ -31,6 +34,27 @@ class SepetCubit extends Cubit<SepetState> {
       orderList[product] = 1;
     } else {
       orderList[product] = orderList[product]! + 1;
+    }
+  }
+
+  void deleteItemAndReturnZero(Product product) {
+    orderList.removeWhere((key, _) => key == product);
+    emit(SepetSuccess(orderList));
+  }
+
+  increment(Product product) {
+    orderList[product] = orderList[product]! + 1;
+    // sum = sum - product.price;
+  }
+
+  decrement(Product product) {
+    if (orderList[product]! > 0) {
+      orderList[product] = orderList[product]! - 1;
+      // sum = sum - product.price;
+      emit(SepetSuccess(
+          orderList)); // TODO: emit duzgun calismiyor, ekranda gozukmuyor
+    } else {
+      deleteItemAndReturnZero(product);
     }
   }
 }

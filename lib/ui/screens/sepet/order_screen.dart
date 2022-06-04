@@ -12,7 +12,9 @@ class _OrdersState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: SepetAppBar(),
+      appBar: AppBar(
+        // title: const Text(""),
+      ),
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
@@ -20,7 +22,7 @@ class _OrdersState extends State<OrderScreen> {
           OrdersList(),
         ],
       ),
-      bottomNavigationBar: SepetFooter(),
+      bottomNavigationBar: const SepetFooter(),
     );
   }
 }

@@ -29,7 +29,7 @@ class _PopUpEkran extends State<PopUpEkran> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _startingFunction());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
   }
 
   @override
@@ -42,9 +42,10 @@ class _PopUpEkran extends State<PopUpEkran> {
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
+                // TODO: restoran ismi ve masa numarasi eklenecek
                 HesapMiddleSide2(
                   qrStream: widget.qrStream,
                 ),
@@ -72,7 +73,10 @@ class MasayaOturun extends StatelessWidget {
         label: 'Masaya Oturun',
         filled: true,
         onPressed: () {
-          Navigator.of(context).pushNamed(ROUTE_MAIN);
+          // Navigator.of(context).push
+          context.read<QRCubit>().sitAtTableTest();
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              ROUTE_MAIN, (Route<dynamic> route) => false);
         },
       ),
     );
@@ -93,7 +97,8 @@ class Iptal extends StatelessWidget {
         filled: false,
         onPressed: () {
           context.read<QRCubit>().leaveTable();
-          Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_BASE));
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
         },
       ),
     );

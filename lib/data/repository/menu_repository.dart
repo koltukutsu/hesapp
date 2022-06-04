@@ -19,8 +19,11 @@ class MenuRepository {
           productId: value.id,
           title: value['isim'],
           duration: value['sure'],
+          // image:
+          //     'https://firebasestorage.googleapis.com/v0/b/hesap-app.appspot.com/o/TyZa1uLFz27YKTH7Yhy2%2F85SlUdPiNLtdGyesK5MM.jpg?alt=media&token=3791a119-b614-494e-b14d-abcf2d6be63e',
           image:
-              'https://firebasestorage.googleapis.com/v0/b/hesap-app.appspot.com/o/TyZa1uLFz27YKTH7Yhy2%2F85SlUdPiNLtdGyesK5MM.jpg?alt=media&token=3791a119-b614-494e-b14d-abcf2d6be63e',
+              "https://www.refikaninmutfagi.com/wp-content/uploads/2021/04/3O7A3397-scaled.jpg",
+          // image: value["resim"],
           price: value['fiyat'],
           category: '',
         ),
