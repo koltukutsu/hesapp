@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
+import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/screens/garson/garson_cagir_ekran.dart';
+import 'package:hesap/ui/screens/masada_oturanlar/masa_temel_ekran.dart';
 import 'package:hesap/ui/screens/menu/menu_ekran.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
@@ -32,6 +34,7 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
 
     final pages = <Widget>[
       const SizedBox(),
+      // MasaTemelEkran(qrStream: context.read<QRCubit>().qr,),
       const MenuEkran(), // 1
       const GarsonCagirEkran(), // 2
       const ProfileScreen() // 3

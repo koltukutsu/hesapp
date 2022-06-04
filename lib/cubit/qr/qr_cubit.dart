@@ -25,7 +25,7 @@ class QRCubit extends Cubit<QRState> {
       (scanData) {
         qr = scanData;
         List<String> decodedData = decode(qr!);
-        _sitAtTable(decodedData);
+        // _sitAtTable(decodedData);
         var qrStream = _qrRepository.getPeopleAtTable(decodedData);
         emit(QRSuccessful(qrStream));
       },
@@ -34,7 +34,7 @@ class QRCubit extends Cubit<QRState> {
 
   scanTest() {
     List<String> decodedData = ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"];
-    _sitAtTableTest();
+    // _sitAtTableTest();
     var qrStream = _qrRepository.getPeopleAtTable(decodedData);
     emit(QRSuccessful(qrStream));
   }
@@ -45,7 +45,7 @@ class QRCubit extends Cubit<QRState> {
   }
 
   // TODO: Herhangi bir QR kod ile hızlıca pop-up ekranına geçmek için. Daha sonra silinecek
-  _sitAtTableTest() async {
+  sitAtTableTest() async {
     HesapUser? hesapUser = await _authRepository.getHesapUser();
     _qrRepository.sitAtTable(
         ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"], hesapUser!);

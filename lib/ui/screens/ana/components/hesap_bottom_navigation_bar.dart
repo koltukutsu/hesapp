@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
+import 'package:hesap/cubit/qr/qr_cubit.dart';
 
 // theme
 import 'package:hesap/ui/theme/colors.dart';
@@ -53,6 +54,7 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
           onPressed: () {
             if (index == 0) {
               // TODO: buradaki 1. sayda mantigi duzeltilmeli
+              context.read<QRCubit>().leaveTable();
               BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
               Navigator.of(context).pushNamedAndRemoveUntil(
                   ROUTE_RESTAURANTS, (Route<dynamic> route) => false);

@@ -23,8 +23,8 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
     return BlocBuilder<QRCubit, QRState>(
       builder: (context, state) {
         if (state is QRSuccessful) {
-          print(state.qrStream);
-          print(state.qrStream);
+          // print(state.qrStream);
+          // print(state.qrStream);
           return PopUpEkran(qrStream: state.qrStream);
         }
         return const QRScannerBody();

@@ -73,7 +73,10 @@ class MasayaOturun extends StatelessWidget {
         label: 'Masaya Oturun',
         filled: true,
         onPressed: () {
-          Navigator.of(context).pushNamed(ROUTE_MAIN);
+          // Navigator.of(context).push
+          context.read<QRCubit>().sitAtTableTest();
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              ROUTE_MAIN, (Route<dynamic> route) => false);
         },
       ),
     );
