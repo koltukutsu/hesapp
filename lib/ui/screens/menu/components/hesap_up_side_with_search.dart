@@ -1,8 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hesap/ui/screens/restoranlar/components/restoranlar_sliver_persistent_header.dart';
 import 'package:hesap/ui/widgets/HesapSearch.dart';
+import 'package:hesap/ui/widgets/background.dart';
 
 // components
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
@@ -12,32 +12,35 @@ import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
-class SliverUpSide extends StatefulWidget {
-  const SliverUpSide({
+import '../../common_screen_sections/hesap_up_side.dart';
+import '../../restoranlar/components/restoranlar_sliver_persistent_header.dart';
+
+class SliverUpSideWithSearch extends StatefulWidget {
+  const SliverUpSideWithSearch({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SliverUpSide> createState() => _SliverUpSideState();
+  State<SliverUpSideWithSearch> createState() => _SliverUpSideWithSearchState();
 }
 
-class _SliverUpSideState extends State<SliverUpSide> {
+class _SliverUpSideWithSearchState extends State<SliverUpSideWithSearch> {
   @override
   Widget build(BuildContext context) {
-    return const SliverPersistentHeader(
-      delegate: HesapUpSide(
-        mekanIsmi: "Cafe Flutter",
-        secondText: "Masa 24",
+    return SliverPersistentHeader(
+      delegate: HesapUpSideWithSearch(
+        mekanIsmi: "Kafe Ismi",
+        secondText: "Menü",
       ),
       pinned: true,
     );
   }
 }
 
-class HesapUpSide extends SliverPersistentHeaderDelegate {
+class HesapUpSideWithSearch extends SliverPersistentHeaderDelegate {
   static const double maxYukseklik = 240;
 
-  const HesapUpSide({
+  const HesapUpSideWithSearch({
     required this.mekanIsmi,
     required this.secondText,
   }) : super();
@@ -53,7 +56,6 @@ class HesapUpSide extends SliverPersistentHeaderDelegate {
     double offset = (minExtent - adjustedShrinkOffset) - 20;
     double topPadding = MediaQuery.of(context).padding.top + 250;
 
-    // var secondText = "Menu";
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
@@ -64,9 +66,9 @@ class HesapUpSide extends SliverPersistentHeaderDelegate {
         SvgPicture.asset('assets/images/background.svg'),
         MekanYazisi(
             topPadding: topPadding, offset: offset, mekanIsmi: mekanIsmi),
-        MasaYazisi(
-            topPadding: topPadding, offset: offset, secondText: secondText),
-        // HesapSearch()
+        MenuYazisi(offset: offset),
+        AramaKismi(
+            topPadding: topPadding, maxYukseklik: maxYukseklik, offset: offset)
       ],
     );
   }
@@ -82,81 +84,49 @@ class HesapUpSide extends SliverPersistentHeaderDelegate {
       oldDelegate.maxExtent != maxExtent || oldDelegate.minExtent != minExtent;
 }
 
-class MekanYazisi extends StatelessWidget {
-  MekanYazisi({
+class MenuYazisi extends StatelessWidget {
+  MenuYazisi({
     Key? key,
-    required this.mekanIsmi,
     required this.offset,
-    required this.topPadding,
   }) : super(key: key);
 
-  final String mekanIsmi;
   final double offset;
-  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: topPadding - 210 + (offset * 0.66),
-      child: HesapNormalText(
-          text: mekanIsmi, fontSize: Insets.xll, textColor: AppColors.white),
-    );
-  }
-}
-
-class MasaYazisi extends StatelessWidget {
-  const MasaYazisi({
-    Key? key,
-    required this.topPadding,
-    required this.offset,
-    required this.secondText,
-  }) : super(key: key);
-
-  final double topPadding;
-  final double offset;
-  final String secondText;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: topPadding + 20,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: SizedBox(
-          height: 100,
-          child: HesapTextCard(
-            text: secondText,
-            fontSize: Insets.xl,
-            textColor: Colors.black87,
-            cardColor: AppColors.white,
-          ),
-        ),
+      height: 270 + offset,
+      child: const HesapNormalText(
+        text: 'Menü',
+        textColor: AppColors.white,
+        fontWeight: FontWeight.normal,
+        fontSize: 35,
       ),
     );
   }
 }
 
-class MaviKisim2 extends StatelessWidget {
-  const MaviKisim2({
+class AramaKismi extends StatelessWidget {
+  const AramaKismi({
     Key? key,
+    required this.maxYukseklik,
+    required this.offset,
     required this.topPadding,
   }) : super(key: key);
 
+  final double maxYukseklik;
+  final double offset;
   final double topPadding;
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: 1.05,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(70),
-          bottomRight: Radius.circular(70),
-        ),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: topPadding - 95,
-          color: AppColors.primary,
+    return SizedBox(
+      height: topPadding - 30,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: SizedBox(
+          height: 60,
+          child: HesapSearch(),
         ),
       ),
     );

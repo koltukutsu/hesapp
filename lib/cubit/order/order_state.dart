@@ -12,7 +12,7 @@ class OrderInitial extends OrderState {
 class OrdersLoaded extends OrderState {
   const OrdersLoaded(this.orderList);
 
-  final List<Order> orderList;
+  final List<OrderHistory> orderList;
 
   @override
   List<Object> get props => [orderList];

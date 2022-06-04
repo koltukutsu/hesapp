@@ -32,8 +32,7 @@ class _BaseScreenState extends State<BaseScreen> {
       builder: (context, state) {
         if (state is AuthSignInSuccessful) {
           return const RestoranEkran();
-          //return const QRScannerScreen();
-        } else if (state is AuthNotSignedIn) {
+        } else if (state is AuthNotSignedIn || state is AuthSignUpSuccessful) {
           return const OnBoardingScreen();
         }
         return const LoadingScreen();

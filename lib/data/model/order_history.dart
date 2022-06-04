@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class Order extends Equatable {
+class OrderHistory extends Equatable {
   final String place;
   final String date;
   final String sum;
 
-  const Order({
+  const OrderHistory({
     required this.place,
     required this.date,
     required this.sum,

@@ -23,7 +23,6 @@ class HesapTextCard extends StatelessWidget {
     this.paddingBottom = 0.0,
     this.cardColor = AppColors.primary,
     this.cardShadowColorOpacity = 0.5,
-    this.cardHeight = 100,
     this.cardWidth = 250,
     this.cardCircularTopLeft = 10,
     this.cardCircularTopRight = 10,
@@ -51,7 +50,7 @@ class HesapTextCard extends StatelessWidget {
   final double paddingBottom;
 
   final Color cardColor;
-  final double cardHeight;
+
   final double cardWidth;
   final double cardCircularTopLeft;
   final double cardCircularTopRight;
@@ -84,19 +83,20 @@ class HesapTextCard extends StatelessWidget {
         paddingBottom: paddingBottom,
       ),
       margin: EdgeInsets.only(
-          left: marginLeft,
-          top: marginTop,
-          right: marginRight,
-          bottom: marginBottom),
-      height: cardHeight,
+        left: marginLeft,
+        top: marginTop,
+        right: marginRight,
+        bottom: marginBottom,
+      ),
       width: cardWidth,
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(cardCircularTopLeft),
-            topRight: Radius.circular(cardCircularTopRight),
-            bottomLeft: Radius.circular(cardCircularBottomLeft),
-            bottomRight: Radius.circular(cardCircularBottomRight)),
+          topLeft: Radius.circular(cardCircularTopLeft),
+          topRight: Radius.circular(cardCircularTopRight),
+          bottomLeft: Radius.circular(cardCircularBottomLeft),
+          bottomRight: Radius.circular(cardCircularBottomRight),
+        ),
         boxShadow: [
           BoxShadow(
             color: cardShadowColor.withOpacity(cardShadowColorOpacity),

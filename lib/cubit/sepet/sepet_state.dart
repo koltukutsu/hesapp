@@ -12,7 +12,7 @@ class SepetInitial extends SepetState {
 class SepetSuccess extends SepetState {
   const SepetSuccess(this.orderList);
 
-  final List<OrderItem> orderList;
+  final Map<Product, int> orderList;
 
   @override
   List<Object?> get props => [];

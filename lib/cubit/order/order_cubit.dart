@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hesap/data/model/order.dart';
+import 'package:hesap/data/model/order_history.dart';
 import 'package:hesap/data/repository/order_history_repository.dart';
 
 part 'order_state.dart';
@@ -10,7 +10,8 @@ class OrderCubit extends Cubit<OrderState> {
   OrderCubit(this._orderHistoryRepository) : super(OrderInitial());
 
   fetchOrderHistory() async {
-    List<Order> orderList = await _orderHistoryRepository.fetchOrderHistory();
+    List<OrderHistory> orderList =
+        await _orderHistoryRepository.fetchOrderHistory();
     emit(OrdersLoaded(orderList));
   }
 }

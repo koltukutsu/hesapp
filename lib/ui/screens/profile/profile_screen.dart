@@ -6,6 +6,7 @@ import 'package:hesap/cubit/order/order_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/theme/insets.dart';
+import 'package:hesap/util/constants.dart';
 
 import 'components/profile_order_history.dart';
 import 'components/profile_saved_cards.dart';
@@ -19,135 +20,114 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late HesapUser hesapUser;
-  String name = "";
-  String username = "";
-  String email = "";
-  String phone = "";
-
   @override
   void initState() {
     super.initState();
     context.read<CardCubit>().fetchSavedCards();
     context.read<OrderCubit>().fetchOrderHistory();
-
-    hesapUser = context.read<AuthCubit>().getHesapUser()!;
-    name = hesapUser.name;
-    username = hesapUser.username;
-    email = hesapUser.email;
-    phone = hesapUser.phone;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profil"),
-        actions: [
-          BlocBuilder<ProfileCubit, ProfileState>(
-            builder: (context, state) {
-              if (state is ProfileSuccessful) {
-                return IconButton(
-                  icon: Icon(state.isEditing ? Icons.save : Icons.edit),
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        if (state is AuthSignInSuccessful) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text("Profil"),
+              actions: [
+                IconButton(
+                  icon: Icon(context.watch<ProfileCubit>().isEditing
+                      ? Icons.save
+                      : Icons.edit),
                   onPressed: () {
-                    context.read<ProfileCubit>().toggleEditMode(
-                          updatedHesapUser: HesapUser(
-                            id: hesapUser.id,
-                            name: name,
-                            username: username,
-                            email: email,
-                            phone: phone,
-                          ),
-                        );
+                    context.read<ProfileCubit>().toggleEditMode();
                   },
-                );
-              } else {
-                return const SizedBox();
-              }
-            },
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(Insets.s),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              BlocBuilder<ProfileCubit, ProfileState>(
-                builder: (context, state) {
-                  if (state is ProfileSuccessful) {
-                    return Column(
+                )
+              ],
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(Insets.s),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
                       children: [
                         ProfileTextField(
-                          controller: TextEditingController(text: name),
+                          controller: TextEditingController(
+                            text: context.watch<AuthCubit>().hesapUser!.name,
+                          ),
                           label: "Ad Soyadı",
-                          enabled: state.isEditing,
+                          enabled: context.watch<ProfileCubit>().isEditing,
                           suffixIcon: const Icon(Icons.person),
                           onChanged: (value) {
-                            name = value;
+                            context.read<ProfileCubit>().setName(value);
                           },
                         ),
                         ProfileTextField(
-                          controller: TextEditingController(text: username),
+                          controller: TextEditingController(
+                            text:
+                                context.watch<AuthCubit>().hesapUser!.username,
+                          ),
                           label: "Kullanıcı Adı",
-                          enabled: state.isEditing,
+                          enabled: context.watch<ProfileCubit>().isEditing,
                           suffixIcon: const Icon(Icons.person),
                           onChanged: (value) {
-                            username = value;
+                            context.read<ProfileCubit>().setUsername(value);
                           },
                         ),
                         ProfileTextField(
-                          controller: TextEditingController(text: email),
+                          controller: TextEditingController(
+                            text: context.watch<AuthCubit>().hesapUser!.email,
+                          ),
                           label: "E-posta Adresi",
-                          enabled: state.isEditing,
+                          enabled: context.watch<ProfileCubit>().isEditing,
                           suffixIcon: const Icon(Icons.mail),
                           onChanged: (value) {
-                            email = value;
+                            context.read<ProfileCubit>().setEmail(value);
                           },
                         ),
                         ProfileTextField(
-                          controller: TextEditingController(text: phone),
+                          controller: TextEditingController(
+                              text:
+                                  context.watch<AuthCubit>().hesapUser!.phone),
                           label: "Telefon No",
-                          enabled: state.isEditing,
+                          enabled: context.watch<ProfileCubit>().isEditing,
                           suffixIcon: const Icon(Icons.phone),
                           onChanged: (value) {
-                            phone = value;
+                            context.read<ProfileCubit>().setPhone(value);
                           },
                         ),
                       ],
-                    );
-                  } else {
-                    return const SizedBox();
-                  }
+                    ),
+                    const ProfileSavedCards(),
+                    const ProfileOrderHistory(),
+                    TextButton.icon(
+                      label: const Text("Çıkış Yap"),
+                      icon: const Icon(Icons.exit_to_app_rounded),
+                      onPressed: () {
+                        context.read<AuthCubit>().signOut();
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: Center(
+              child: ElevatedButton(
+                child: const Text("Lütfen giriş yapın"),
+                onPressed: () {
+                  Navigator.pushNamed(context, ROUTE_ON_BOARDING);
                 },
               ),
-              BlocBuilder<CardCubit, CardState>(
-                builder: (context, state) {
-                  if (state is CardLoaded) {
-                    return ProfileSavedCards(
-                      savedCards: state.savedCards,
-                    );
-                  } else {
-                    return Container();
-                  }
-                },
-              ),
-              BlocBuilder<OrderCubit, OrderState>(
-                builder: (context, state) {
-                  if (state is OrdersLoaded) {
-                    return ProfileOrderHistory(
-                      orderList: state.orderList,
-                    );
-                  } else {
-                    return Container();
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        }
+      },
     );
   }
 }

@@ -12,6 +12,6 @@ class AppColors {
   static const Color unchosen = Color(0xFFFAFAFA);
   static const Color accept = Color(0xFF33B864);
   static const Color information = Colors.orangeAccent;
-  static const Color amountBox = Color(0xFFBEBEBE);
+  static const Color amountBox = Color(0xFFDADADA);
   static const Color basketItemBackground = Color(0xFFC4C4C4);
 }

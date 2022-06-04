@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/card/card_cubit.dart';
+import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/saved_card.dart' as card_model;
 import 'package:hesap/ui/screens/profile/components/profile_expandable_button.dart';
 import 'package:hesap/ui/screens/profile/components/profile_saved_card_item.dart';
@@ -9,20 +12,17 @@ import 'package:hesap/ui/theme/insets.dart';
 class ProfileSavedCards extends StatefulWidget {
   const ProfileSavedCards({
     Key? key,
-    required this.savedCards,
   }) : super(key: key);
-
-  final List<card_model.SavedCard> savedCards;
 
   @override
   State<ProfileSavedCards> createState() => _ProfileSavedCardsState();
 }
 
 class _ProfileSavedCardsState extends State<ProfileSavedCards> {
-  bool expanded = false;
-
   @override
   Widget build(BuildContext context) {
+    bool expanded = context.watch<ProfileCubit>().savedCardsExpanded;
+
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
@@ -41,28 +41,33 @@ class _ProfileSavedCardsState extends State<ProfileSavedCards> {
               title: 'Kayıtlı Kartlarım',
               expanded: expanded,
               toggle: () {
-                setState(() {
-                  expanded = !expanded;
-                });
+                context.read<ProfileCubit>().toggleSavedCards();
               },
             ),
             Visibility(
-              visible: expanded,
-              child: widget.savedCards.isNotEmpty
-                  ? ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: widget.savedCards.length,
-                      itemBuilder: (context, index) {
-                        return ProfileSavedCardItem(
-                          card: widget.savedCards[index],
+                visible: expanded,
+                child: BlocBuilder<CardCubit, CardState>(
+                  builder: (context, state) {
+                    if (state is CardLoaded) {
+                      if (state.savedCards.isEmpty) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text("Kayıtlı kartınız bulunmuyor"),
                         );
-                      },
-                    )
-                  : const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text("Kayıtlı kartınız bulunmuyor"),
-                    ),
-            ),
+                      }
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.savedCards.length,
+                        itemBuilder: (context, index) {
+                          return ProfileSavedCardItem(
+                            card: state.savedCards[index],
+                          );
+                        },
+                      );
+                    }
+                    return const SizedBox();
+                  },
+                )),
           ],
         ),
       ),

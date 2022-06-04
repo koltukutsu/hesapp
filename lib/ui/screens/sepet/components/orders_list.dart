@@ -5,7 +5,7 @@ import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/data/repository/Order/OrderServices.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../data/model/order_item.dart';
+import '../../../../data/model/order.dart';
 import '../../../theme/colors.dart';
 import '../../../widgets/sepet_item.dart';
 
@@ -15,13 +15,9 @@ class OrdersList extends StatefulWidget {
 }
 
 class _OrdersListState extends State<OrdersList> {
-  //OrderServices get service => GetIt.I<OrderServices>();
-
-  //List<OrderItem> items = [];
-
   @override
   void initState() {
-    //items = OrderServices.getOrderList();
+    context.read<SepetCubit>().loadOrders();
 
     super.initState();
   }
@@ -34,7 +30,7 @@ class _OrdersListState extends State<OrdersList> {
           return SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                final order = state.orderList[index];
+                final order = state.orderList.keys.toList()[index];
 
                 return InkWell(
                   child: Padding(
@@ -83,7 +79,7 @@ class _OrdersListState extends State<OrdersList> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        order.price.toString(),
+                                        "${order.price} ₺",
                                         style: const TextStyle(
                                           fontFamily: 'ubuntu',
                                           fontWeight: FontWeight.normal,
@@ -98,16 +94,10 @@ class _OrdersListState extends State<OrdersList> {
                                         //   height: 25,
                                         // ),
                                         icon: const Icon(
-                                            Icons
-                                                .remove_circle_outline_outlined,
-                                            color: AppColors.primary),
-                                        onPressed: () {
-                                          setState(() {
-                                            if (order.quantity > 0) {
-                                              order.quantity--;
-                                            }
-                                          });
-                                        },
+                                          Icons.remove_circle_outline_outlined,
+                                          color: AppColors.primary,
+                                        ),
+                                        onPressed: () {},
                                       ),
                                       SizedBox(
                                         height: 34,
@@ -118,12 +108,12 @@ class _OrdersListState extends State<OrdersList> {
                                                 Radius.circular(10)),
                                             color: AppColors.white,
                                           ),
-                                          child: Align(
+                                          child: const Align(
                                             alignment:
                                                 AlignmentDirectional.center,
                                             child: Text(
-                                              order.quantity.toString(),
-                                              style: const TextStyle(
+                                              "",
+                                              style: TextStyle(
                                                   fontFamily: 'Ubuntu',
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 19,
@@ -141,11 +131,7 @@ class _OrdersListState extends State<OrdersList> {
                                         icon: const Icon(
                                             Icons.add_circle_outline_rounded,
                                             color: AppColors.primary),
-                                        onPressed: () {
-                                          setState(() {
-                                            order.quantity++;
-                                          });
-                                        },
+                                        onPressed: () {},
                                       ),
                                     ],
                                   ),

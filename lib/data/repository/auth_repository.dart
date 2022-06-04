@@ -80,6 +80,10 @@ class AuthRepository {
         throw HesapException('Girdiğiniz şifreler uyuşmuyor.');
       }
 
+      if (password.length < 6) {
+        throw HesapException('Şifre 6 karakterden kısa olamaz.');
+      }
+
       var userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -101,5 +105,9 @@ class AuthRepository {
               'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
     }
+  }
+
+  signOut() {
+    _firebaseAuth.signOut();
   }
 }

@@ -29,12 +29,16 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
         if (state is AuthSignUpSuccessful) {
           showSignUpVerificationDialog(
             () {
-              Navigator.pushNamed(context, ROUTE_ON_BOARDING);
+              Navigator.popUntil(
+                context,
+                ModalRoute.withName(ROUTE_BASE),
+              );
             },
           );
         }
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: UyeOlAppBar(
           onBack: () {
             Navigator.pop(context);
@@ -74,7 +78,7 @@ class _UyeOlEkranState extends State<UyeOlEkran> {
     );
   }
 
-  Future<void> showSignUpVerificationDialog(VoidCallback confirm) {
+  Future showSignUpVerificationDialog(VoidCallback confirm) {
     return showDialog(
       context: context,
       barrierDismissible: false,

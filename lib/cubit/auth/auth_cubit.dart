@@ -78,6 +78,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  signOut() {
+    _authRepository.signOut();
+    emit(AuthNotSignedIn());
+  }
+
   HesapUser? getHesapUser() {
     return hesapUser;
   }

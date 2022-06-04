@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/screens/garson/garson_cagir_ekran.dart';
+import 'package:hesap/ui/screens/menu/menu_ekran.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
 
 // pages
-import 'package:hesap/ui/screens/siparis/siparis_ekran.dart';
 
 // components
 import "package:hesap/ui/widgets/floatingActionButton.dart";
@@ -16,24 +16,14 @@ import 'package:hesap/ui/screens/ana/components/hesap_bottom_navigation_bar.dart
 class AnaEkranBody extends StatefulWidget {
   const AnaEkranBody({
     Key? key,
-    required this.hesapUser,
   }) : super(key: key);
-
-  final HesapUser? hesapUser;
 
   @override
   State<AnaEkranBody> createState() => _AnaEkranBodyState();
 }
 
 class _AnaEkranBodyState extends State<AnaEkranBody> {
-  late bool isAnonymous;
   int index = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    isAnonymous = widget.hesapUser == null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +31,8 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
         0.0; // floating action button bunu kullanarak yukari gitmeyecek
 
     final pages = <Widget>[
-      const PopUpEkran(text: "herhangi bir kafe ismi"),
-      const SiparisEkran(), // 1
+      const SizedBox(),
+      const MenuEkran(), // 1
       const GarsonCagirEkran(), // 2
       const ProfileScreen() // 3
       // const PopUpEkran(text: "herhangi bir kafe ismi  "),

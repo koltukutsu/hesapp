@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
@@ -61,11 +63,11 @@ class _SepetFooterState extends State<SepetFooter> {
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                           color: AppColors.amountBox,
                         ),
-                        child: const Align(
+                        child: Align(
                           alignment: AlignmentDirectional.center,
                           child: Text(
-                            "45,00",
-                            style: TextStyle(
+                            "${context.watch<SepetCubit>().calculateOrderSum()} ₺",
+                            style: const TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontWeight: FontWeight.normal,
                                 fontSize: 20,

@@ -26,7 +26,8 @@ class UyeOlBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+      width: double.infinity,
+      height: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/qr.png"),
@@ -38,7 +39,6 @@ class UyeOlBody extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
               HesapTextField(
                 label: "Ad Soyadı",

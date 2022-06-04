@@ -25,7 +25,7 @@ class HesapHeaderText extends StatelessWidget {
               fontFamily: 'Ubuntu',
               fontWeight: FontWeight.w700,
               color: AppColors.primary,
-              fontSize: 40.0,
+              fontSize: 32,
               letterSpacing: -2,
             ),
           ),
