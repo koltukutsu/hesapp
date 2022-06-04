@@ -93,7 +93,8 @@ class Iptal extends StatelessWidget {
         filled: false,
         onPressed: () {
           context.read<QRCubit>().leaveTable();
-          Navigator.of(context).popUntil(ModalRoute.withName(ROUTE_BASE));
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
         },
       ),
     );
