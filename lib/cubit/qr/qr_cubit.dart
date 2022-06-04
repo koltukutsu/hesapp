@@ -1,24 +1,48 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/data/repository/auth_repository.dart';
-import 'package:hesap/data/repository/qr_repository.dart';
+import 'package:hesap/data/repository/table_repository.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 part 'qr_state.dart';
 
 class QRCubit extends Cubit<QRState> {
-  final QRRepository _qrRepository;
+  final TableRepository _tableRepository;
   final AuthRepository _authRepository;
 
   QRViewController? controller;
   Barcode? qr;
-  String restaurantId = "TyZa1uLFz27YKTH7Yhy2"; //TODO: Boş olacak.
-  String tableId = "";
 
-  QRCubit(this._qrRepository, this._authRepository) : super(QRInitial());
+  QRCubit(this._tableRepository, this._authRepository) : super(QRInitial());
 
+  scan(QRViewController controller) {
+    this.controller = controller;
+    List<String> decodedQRData = [
+      "TyZa1uLFz27YKTH7Yhy2",
+      "JcDxVOOOxQy0ZQQxPIOm"
+    ];
+    emit(QRSuccessful(decodedQRData));
+
+    /*
+    controller.scannedDataStream.listen(
+      (scanData) {
+        qr = scanData;
+        List<String> decodedQRData = decodeQR(qr!);
+        emit(QRSuccessful(decodedQRData));
+      },
+    );
+     */
+  }
+
+  List<String> decodeQR(Barcode qrResult) {
+    return qrResult.code!.split('/');
+  }
+
+  dispose() {
+    controller?.dispose();
+  }
+
+/*
   scan(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen(
@@ -27,17 +51,25 @@ class QRCubit extends Cubit<QRState> {
         List<String> decodedData = decode(qr!);
         // _sitAtTable(decodedData);
         var qrStream = _qrRepository.getPeopleAtTable(decodedData);
-        emit(QRSuccessful(qrStream));
+        emit(QRSuccessful(qrStream, decodedData));
       },
     );
+  }
+
+  getPeopleOnTable() {
+    List<String> decodedData = decode(qr!);
+    var qrStream = _qrRepository.getPeopleAtTable(decodedData);
+    emit(QRSuccessful(qrStream, decodedData));
   }
 
   scanTest() {
     List<String> decodedData = ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"];
     // _sitAtTableTest();
     var qrStream = _qrRepository.getPeopleAtTable(decodedData);
-    emit(QRSuccessful(qrStream));
+    emit(QRSuccessful(qrStream, decodedData));
   }
+
+  getTableInfo() {}
 
   _sitAtTable(List<String> decodedData) async {
     HesapUser? hesapUser = await _authRepository.getHesapUser();
@@ -58,13 +90,10 @@ class QRCubit extends Cubit<QRState> {
   }
 
   List<String> decode(Barcode qrResult) {
-    var qrDecoded = qrResult.code!.split('/');
-    restaurantId = qrDecoded[0];
-    tableId = qrDecoded[1];
-    return qrDecoded;
+    return qrResult.code!.split('/');
   }
 
   dispose() {
     controller?.dispose();
-  }
+  }*/
 }

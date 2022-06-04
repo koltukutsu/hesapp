@@ -5,6 +5,7 @@ import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/internet_baglantisi/internet_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
+import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/menu/menu_cubit.dart';
 import 'package:hesap/cubit/menu_arama/menu_arama_cubit.dart';
 import 'package:hesap/cubit/order/order_cubit.dart';
@@ -19,7 +20,7 @@ import 'package:hesap/data/repository/konum/konum_repository.dart';
 import 'package:hesap/data/repository/menu_repository.dart';
 import 'package:hesap/data/repository/order_history_repository.dart';
 import 'package:hesap/data/repository/profile_repository.dart';
-import 'package:hesap/data/repository/qr_repository.dart';
+import 'package:hesap/data/repository/table_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
 import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
@@ -56,10 +57,13 @@ class HesapApp extends StatelessWidget {
         BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(create: (context) => MenuCubit(MenuRepository())),
         BlocProvider(
-          create: (context) => QRCubit(QRRepository(), AuthRepository()),
+          create: (context) => QRCubit(TableRepository(), AuthRepository()),
         ),
         BlocProvider(
           create: (context) => SepetCubit(),
+        ),
+        BlocProvider(
+          create: (context) => MasaCubit(TableRepository()),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

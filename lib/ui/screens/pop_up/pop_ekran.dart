@@ -1,13 +1,10 @@
 // necessary
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
-import 'package:hesap/cubit/qr/qr_cubit.dart';
+import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
-import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
 
 // component
@@ -15,21 +12,22 @@ import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
 import 'package:hesap/util/constants.dart';
 
 class PopUpEkran extends StatefulWidget {
-  const PopUpEkran({Key? key, required this.qrStream}) : super(key: key);
+  const PopUpEkran({
+    Key? key,
+    required this.qrData,
+  }) : super(key: key);
 
-  final Stream<QuerySnapshot<Map<String, dynamic>>> qrStream;
+  final List<String> qrData;
 
   @override
   State<PopUpEkran> createState() => _PopUpEkran();
 }
 
 class _PopUpEkran extends State<PopUpEkran> {
-  void _startingFunction() {}
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _startingFunction());
+    context.read<MasaCubit>().setIds(widget.qrData);
   }
 
   @override
@@ -45,9 +43,14 @@ class _PopUpEkran extends State<PopUpEkran> {
                 const SizedBox(
                   height: 100,
                 ),
-                // TODO: restoran ismi ve masa numarasi eklenecek
+                Column(
+                  children: [
+                    Text(widget.qrData[0].toString()),
+                    Text(widget.qrData[1].toString()),
+                  ],
+                ),
                 HesapMiddleSide2(
-                  qrStream: widget.qrStream,
+                  qrStream: context.read<MasaCubit>().getPeopleOnTable(),
                 ),
               ],
             )),
@@ -74,7 +77,7 @@ class MasayaOturun extends StatelessWidget {
         filled: true,
         onPressed: () {
           // Navigator.of(context).push
-          context.read<QRCubit>().sitAtTableTest();
+          //context.read<QRCubit>().sitAtTableTest();
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_MAIN, (Route<dynamic> route) => false);
         },
@@ -96,7 +99,7 @@ class Iptal extends StatelessWidget {
         label: 'İptal',
         filled: false,
         onPressed: () {
-          context.read<QRCubit>().leaveTable();
+          //context.read<QRCubit>().leaveTable();
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
         },

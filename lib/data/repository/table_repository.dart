@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 
-class QRRepository {
+class TableRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
@@ -41,5 +42,25 @@ class QRRepository {
         .collection(query)
         .doc(_firebaseAuth.currentUser!.uid)
         .delete();
+  }
+
+  Future<List<String>> getTableInfo(String restoranId, String masaId) async {
+    List<String> tableInfo = [];
+
+    await _firebaseFirestore
+        .collection('restoranlar')
+        .doc(restoranId)
+        .get()
+        .then((value) => {tableInfo.add(value['isim'])});
+
+    await _firebaseFirestore
+        .collection('restoranlar/$restoranId/masalar')
+        .doc(masaId)
+        .get()
+        .then((value) => {tableInfo.add(value['no'])});
+
+    debugPrint("TABLE_INFO: $tableInfo");
+
+    return tableInfo;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/data/repository/auth_repository.dart';
 import 'package:hesap/data/repository/profile_repository.dart';
@@ -9,6 +10,7 @@ part 'profile_state.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepository _profileRepository;
   final AuthRepository _authRepository;
+
   ProfileCubit(this._profileRepository, this._authRepository)
       : super(ProfileInitial());
 
@@ -51,12 +53,11 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   toggleSavedCards() {
     savedCardsExpanded = !savedCardsExpanded;
-    emit(state);
+    debugPrint("CARDS: $savedCardsExpanded");
   }
 
   toggleOrderHistory() {
     orderHistoryExpanded = !orderHistoryExpanded;
-    emit(state);
   }
 
   _updateProfile() async {
@@ -74,6 +75,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   signOut() {
     _authRepository.signOut();
+    emit(state);
   }
 
   setInitialValues(HesapUser hesapUser) {

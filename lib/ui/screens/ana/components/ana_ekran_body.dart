@@ -34,7 +34,7 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
 
     final pages = <Widget>[
       const SizedBox(),
-      // MasaTemelEkran(qrStream: context.read<QRCubit>().qr,),
+      const MasaTemelEkran(),
       const MenuEkran(), // 1
       const GarsonCagirEkran(), // 2
       const ProfileScreen() // 3

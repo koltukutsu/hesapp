@@ -5,9 +5,14 @@ import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_view.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/util/constants.dart';
 
-class QRScannerBody extends StatelessWidget {
+class QRScannerBody extends StatefulWidget {
   const QRScannerBody({Key? key}) : super(key: key);
 
+  @override
+  State<QRScannerBody> createState() => _QRScannerBodyState();
+}
+
+class _QRScannerBodyState extends State<QRScannerBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +41,8 @@ class QRScannerBody extends StatelessWidget {
                     children: [
                       Transform.scale(
                           scale: 4,
-                          child: IconButton( // TODO: burasi sonradan kaldirilacak
+                          child: IconButton(
+                              // TODO: burasi sonradan kaldirilacak
                               icon: const Icon(Icons.play_arrow),
                               onPressed: () {
                                 Navigator.of(context)
@@ -69,5 +75,11 @@ class QRScannerBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    context.read<QRCubit>().dispose();
+    super.dispose();
   }
 }

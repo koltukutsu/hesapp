@@ -15,7 +15,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<QRCubit>().scanTest();
+    //context.read<QRCubit>().scanTest();
   }
 
   @override
@@ -23,18 +23,10 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
     return BlocBuilder<QRCubit, QRState>(
       builder: (context, state) {
         if (state is QRSuccessful) {
-          // print(state.qrStream);
-          // print(state.qrStream);
-          return PopUpEkran(qrStream: state.qrStream);
+          return PopUpEkran(qrData: state.qrData);
         }
         return const QRScannerBody();
       },
     );
-  }
-
-  @override
-  void dispose() {
-    context.read<QRCubit>().dispose();
-    super.dispose();
   }
 }

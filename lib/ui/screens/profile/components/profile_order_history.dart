@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/order/order_cubit.dart';
-import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/ui/screens/profile/components/profile_expandable_button.dart';
 import 'package:hesap/ui/screens/profile/components/profile_order_item.dart';
 import 'package:hesap/ui/theme/insets.dart';
@@ -16,6 +15,8 @@ class ProfileOrderHistory extends StatefulWidget {
 }
 
 class _ProfileOrderHistoryState extends State<ProfileOrderHistory> {
+  bool expanded = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,35 +35,38 @@ class _ProfileOrderHistoryState extends State<ProfileOrderHistory> {
           children: [
             ProfileExpandableButton(
               title: 'Geçmiş Siparişlerim',
-              expanded: context.watch<ProfileCubit>().orderHistoryExpanded,
+              expanded: expanded,
               toggle: () {
-                context.read<ProfileCubit>().toggleOrderHistory();
+                setState(() {
+                  expanded = !expanded;
+                });
               },
             ),
             Visibility(
-                visible: context.watch<ProfileCubit>().orderHistoryExpanded,
-                child: BlocBuilder<OrderCubit, OrderState>(
-                  builder: (context, state) {
-                    if (state is OrdersLoaded) {
-                      if (state.orderList.isEmpty) {
-                        return const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text("Geçmiş siparişiniz bulunmuyor"),
-                        );
-                      }
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: state.orderList.length,
-                        itemBuilder: (context, index) {
-                          return ProfileOrderItem(
-                            order: state.orderList[index],
-                          );
-                        },
+              visible: expanded,
+              child: BlocBuilder<OrderCubit, OrderState>(
+                builder: (context, state) {
+                  if (state is OrdersLoaded) {
+                    if (state.orderList.isEmpty) {
+                      return const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text("Geçmiş siparişiniz bulunmuyor"),
                       );
                     }
-                    return const SizedBox();
-                  },
-                )),
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.orderList.length,
+                      itemBuilder: (context, index) {
+                        return ProfileOrderItem(
+                          order: state.orderList[index],
+                        );
+                      },
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
           ],
         ),
       ),
