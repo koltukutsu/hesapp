@@ -45,6 +45,7 @@ class _PopUpEkran extends State<PopUpEkran> {
                 const SizedBox(
                   height: 100,
                 ),
+                // TODO: restoran ismi ve masa numarasi eklenecek
                 HesapMiddleSide2(
                   qrStream: widget.qrStream,
                 ),
