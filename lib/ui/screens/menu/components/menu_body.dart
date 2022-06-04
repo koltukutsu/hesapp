@@ -33,19 +33,17 @@ class _MenuBodyState extends State<MenuBody> {
         return ListView(
           children: state.menu.map(
             (Product product) {
-              return MenuItem(
+              return MenuItemCustom(
                 product: product,
               );
             },
           ).toList(),
         );
         }
-
         else {
         return const Center(child: CircularProgressIndicator());
         }
-
-        return const Center(child: CircularProgressIndicator());
+        // return const Center(child: CircularProgressIndicator());
 
       },
     );

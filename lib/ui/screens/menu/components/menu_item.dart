@@ -4,8 +4,8 @@ import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/data/model/product.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
-class MenuItem extends StatelessWidget {
-  const MenuItem({Key? key, required this.product}) : super(key: key);
+class MenuItemCustom extends StatelessWidget {
+  const MenuItemCustom({Key? key, required this.product}) : super(key: key);
 
   final Product product;
 

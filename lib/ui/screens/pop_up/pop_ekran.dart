@@ -42,7 +42,7 @@ class _PopUpEkran extends State<PopUpEkran> {
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 HesapMiddleSide2(
