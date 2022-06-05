@@ -10,6 +10,7 @@ import 'package:like_button/like_button.dart';
 import '../../../../data/model/order.dart';
 import '../../../theme/colors.dart';
 import '../../../widgets/sepet_item.dart';
+import 'order_footer.dart';
 
 class OrdersList extends StatefulWidget {
   @override
@@ -46,6 +47,17 @@ class _OrdersListState extends State<OrdersList> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor: MaterialStateProperty.resolveWith(getColor),
+                            value: false,
+                            onChanged: (bool? value) {
+                              /*//setState(() {
+
+                                //_sepetFooterRefresh(context);
+                              });*/
+                            },
+                          ),
                           Container(
                             width: 105,
                             height: 72,
@@ -184,4 +196,26 @@ class _OrdersListState extends State<OrdersList> {
       },
     );
   }
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.blueAccent;
+  }
+
+  void _sepetFooterRefresh(BuildContext context) {
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SepetFooter(),
+        ));
+  }
+
+
 }
