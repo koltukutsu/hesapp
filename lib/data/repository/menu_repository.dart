@@ -11,41 +11,33 @@ class MenuRepository {
     // Map(String, Map(String, Product))
     Map<String, List<Product>> menuMap = {};
 
-    await _firebaseFirestore
+    var menuSnapshot = await _firebaseFirestore
         .collection('restoranlar/$restaurantId/menu')
-        .get()
-        .then(
-      (menu) {
-        debugPrint("MENU_SIZE: ${menu.size}");
+        .get();
 
-        for (var category in menu.docs) {
-          debugPrint("CATEGORY_ID: ${category.id}");
+    for (var category in menuSnapshot.docs) {
+      debugPrint("CATEGORY_ID: ${category.id}");
 
-          List<Product> productList = [];
+      List<Product> productList = [];
 
-          _firebaseFirestore
-              .collection(
-                  "restoranlar/$restaurantId/menu/${category.id}/urunler")
-              .get()
-              .then(
-            (products) {
-              for (var urun in products.docs) {
-                debugPrint("PRODUCT_ID: ${urun.id}");
-                productList.add(
-                  Product(
-                    productId: urun.id,
-                    title: urun['isim'],
-                    price: urun['fiyat'],
-                    image: urun['resim'],
-                    duration: urun['sure'],
-                  ),
-                );
-              }
-            },
-          ).then((value) => {menuMap[category['kategori-isim']] = productList});
-        }
-      },
-    );
+      var categorySnapshot = await _firebaseFirestore
+          .collection("restoranlar/$restaurantId/menu/${category.id}/urunler")
+          .get();
+
+      for (var product in categorySnapshot.docs) {
+        productList.add(
+          Product(
+            productId: product.id,
+            title: product['isim'],
+            price: product['fiyat'],
+            image: product['resim'],
+            duration: product['sure'],
+          ),
+        );
+      }
+
+      menuMap[category['kategori-isim']] = productList;
+    }
 
     debugPrint("MENU_MAP: $menuMap");
 
