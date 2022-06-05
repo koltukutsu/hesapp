@@ -8,6 +8,7 @@ import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/util/constants.dart';
 import 'components/profile_order_history.dart';
 import 'components/profile_saved_cards.dart';
@@ -149,15 +150,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           );
         } else {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
-              child: ElevatedButton(
-                child: const Text("Lütfen giriş yapın"),
-                onPressed: () {
-                  Navigator.pushNamed(context, ROUTE_ON_BOARDING);
-                },
-              ),
+              child: HesapNormalText(text: "Lütfen giriş yapın", ),
             ),
+            // body: Center(
+            //   child: ElevatedButton(
+            //     child: const Text("Lütfen giriş yapın"),
+            //     onPressed: () {
+            //       Navigator.pushNamed(context, ROUTE_ON_BOARDING);
+            //     },
+            //   ),
+            // ),
           );
         }
       },
