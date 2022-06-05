@@ -107,27 +107,27 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 enabled: true,
               ),
             ),
-            HesapButtonAnimated(
-                label: "Buraya Bir Tikla Bakalim",
-                onPressed: () {},
-                filled: true,
-                enabled: true),
-            AnimatedCrossFade(
-              crossFadeState: _crossFadeState,
-              duration: const Duration(milliseconds: 500),
-              firstCurve: Curves.easeOut,
-              secondCurve: Curves.easeIn,
-              firstChild: HesapButtonAnimated(
-                  label: "Buraya Bir Tikla Bakalim",
-                  onPressed: widget.navigateToRegisterScreen,
-                  filled: false,
-                  enabled: false),
-              secondChild: HesapButtonAnimated(
-                  label: "Buraya Bir Tikla Bakalim",
-                  onPressed: widget.navigateToRegisterScreen,
-                  filled: false,
-                  enabled: true),
-            ),
+            // HesapButtonAnimated(
+            //     label: "Buraya Bir Tikla Bakalim",
+            //     onPressed: () {},
+            //     filled: true,
+            //     enabled: true),
+            // AnimatedCrossFade(
+            //   crossFadeState: _crossFadeState,
+            //   duration: const Duration(milliseconds: 500),
+            //   firstCurve: Curves.easeOut,
+            //   secondCurve: Curves.easeIn,
+            //   firstChild: HesapButtonAnimated(
+            //       label: "Buraya Bir Tikla Bakalim",
+            //       onPressed: widget.navigateToRegisterScreen,
+            //       filled: false,
+            //       enabled: false),
+            //   secondChild: HesapButtonAnimated(
+            //       label: "Buraya Bir Tikla Bakalim",
+            //       onPressed: widget.navigateToRegisterScreen,
+            //       filled: false,
+            //       enabled: true),
+            // ),
             AnimatedCrossFade(
               crossFadeState: _crossFadeState,
               duration: const Duration(milliseconds: 500),
