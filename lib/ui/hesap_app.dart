@@ -22,6 +22,7 @@ import 'package:hesap/data/repository/order_history_repository.dart';
 import 'package:hesap/data/repository/profile_repository.dart';
 import 'package:hesap/data/repository/table_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
+import 'package:hesap/ui/screens/animated_splash_screen/animated_splash_screen.dart';
 import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/internet/internet_screen.dart';
@@ -73,7 +74,7 @@ class HesapApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             themeMode: ThemeMode.system,
-            initialRoute: ROUTE_INTERNET_CONTROL,
+            initialRoute: ROUTE_ANIMATED_SPLASH_SCREEN,
             routes: {
               ROUTE_BASE: (context) => const BaseScreen(),
               ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
@@ -87,6 +88,7 @@ class HesapApp extends StatelessWidget {
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
               ROUTE_INTERNET_CONTROL: (context) => const InternetScreen(),
               ROUTE_CREDIT_CARD_ADD: (context) => HesapAddCreditCard(),
+              ROUTE_ANIMATED_SPLASH_SCREEN: (context) => HesapAnimatedSplashScreen(),
             },
           );
         },

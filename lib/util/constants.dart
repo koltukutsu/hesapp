@@ -12,3 +12,4 @@ const String ROUTE_PROFIL_EKRAN = "/profile_screen";
 const String ROUTE_PAYMENT = "/payment";
 const String ROUTE_INTERNET_CONTROL = "/internet_connection_control";
 const String ROUTE_CREDIT_CARD_ADD = "/profil_ekran/add_credit_card";
+const String ROUTE_ANIMATED_SPLASH_SCREEN = "/animated_splash_screen";

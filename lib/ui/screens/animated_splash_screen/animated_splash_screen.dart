@@ -24,26 +24,24 @@ class HesapAnimatedSplashScreen extends StatefulWidget {
   const HesapAnimatedSplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<HesapAnimatedSplashScreen> createState() => _HesapAnimatedSplashScreenState();
+  State<HesapAnimatedSplashScreen> createState() =>
+      _HesapAnimatedSplashScreenState();
 }
 
 class _HesapAnimatedSplashScreenState extends State<HesapAnimatedSplashScreen> {
-  //
-  // @override
-  // initState(){
-  //   super.initState();
-  //   context.read<RestoranCubit>().initialize();
-  //   context.read<KonumCubit>().getLocation();
-  //   context.read<KonumCubit>().checkPermission();
-  // }
+  @override
+  initState() {
+    super.initState();
+    context.read<RestoranCubit>().initialize();
+    context.read<KonumCubit>().getLocation();
+    context.read<KonumCubit>().checkPermission();
+  }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-        duration: 3000,
-        splash: const HesapNormalText(
-          text: "Hesap",
-        ),
+        duration: 2000,
+        splash: Transform.scale(scale: 10, child: const Icon(Icons.ac_unit)),
         nextScreen: const InternetScreen(),
         splashTransition: SplashTransition.fadeTransition,
         // pageTransitionType: PageTransitionType.scale,
