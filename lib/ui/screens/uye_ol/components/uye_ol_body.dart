@@ -78,7 +78,7 @@ class UyeOlBody extends StatelessWidget {
                 obscureText: true,
                 onChanged: setPasswordAgain,
               ),
-              HesapButton(
+              HesapAnimatedButton(
                 enabled: true,
                 label: 'Kaydı Tamamla',
                 filled: true,

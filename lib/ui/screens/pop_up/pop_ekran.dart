@@ -7,6 +7,7 @@ import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 
 // component
 import 'package:hesap/util/constants.dart';
@@ -61,8 +62,8 @@ class MasayaOturun extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: HesapButton(
-        label: 'Masaya Oturun',
+      child: HesapButtonAnimated(
+        label: "Masaya Oturun",
         filled: true,
         onPressed: () {
           context.read<MasaCubit>().sitAtTableTest();
@@ -83,7 +84,7 @@ class Iptal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: HesapButton(
+      child: HesapButtonAnimated(
         label: 'İptal',
         filled: false,
         onPressed: () {

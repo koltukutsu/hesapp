@@ -45,14 +45,14 @@ class HesapAydinlanmaMetniCheckBox extends StatelessWidget {
                       TextSpan(text: "'ni kabul edin", style: TextStyle(
                         color: AppColors.gray,
                         decoration: TextDecoration.none,
-                        fontSize: 16
+                        fontSize: 10
                       ),)
                     ],
                     text: label,
                     style: const TextStyle(
                       color: AppColors.primary,
                       decoration: TextDecoration.underline,
-                        fontSize: 16
+                        fontSize: 12
 
                     ),
                     recognizer: TapGestureRecognizer()

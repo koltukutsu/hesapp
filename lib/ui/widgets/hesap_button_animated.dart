@@ -30,10 +30,10 @@ class _HesapButtonAnimatedState extends State<HesapButtonAnimated> {
     return Padding(
       padding: const EdgeInsets.all(Insets.s),
       child: AnimatedButton(
-        onPressed: () => widget.enabled ? widget.onPressed : null,
+        onPressed: widget.onPressed,
         enabled: widget.enabled,
-        width: MediaQuery.of(context).size.width*0.95,
-        height: 55,
+        width: MediaQuery.of(context).size.width * 0.8,
+        height: 50,
         color: widget.enabled
             ? (widget.filled ? AppColors.primary : AppColors.white)
             : Colors.grey.shade300,
