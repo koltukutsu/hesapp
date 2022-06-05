@@ -1,12 +1,9 @@
 // necessary
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
-import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/theme/colors.dart';
-import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/screens/masada_oturanlar/components/hesap_middle_side2.dart';
@@ -32,6 +29,19 @@ class _MasaTemelEkran extends State<MasaTemelEkran> {
       ),
       body: Column(
         children: [
+          // HesapNormalText(
+          //         text: context.read<MasaCubit>().restaurantName,
+          //         fontSize: 32,
+          //         textColor: AppColors.primary,
+          //         paddingTop: 10,
+          //         paddingBottom: 10),
+          //     HesapTextCard(
+          //         text: "Masa ${context.read<MasaCubit>().tableName}",
+          //       cardColor: AppColors.primary,
+          //       textColor: AppColors.white,
+          //       paddingTop: 10,
+          //       paddingBottom: 10,
+          //         fontSize: 28),
           SizedBox(
             // height: MediaQuery.of(context).size.height - 150,
             height: MediaQuery.of(context).size.height * 0.65,

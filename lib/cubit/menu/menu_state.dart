@@ -19,7 +19,7 @@ class MenuLoading extends MenuState {
 class MenuLoaded extends MenuState {
   const MenuLoaded(this.menu);
 
-  final List<Product> menu;
+  final Map<String, List<Product>> menu;
 
   @override
   List<Object> get props => [menu];
