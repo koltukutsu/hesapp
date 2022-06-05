@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hesap/ui/screens/on_boarding/components/hesap_linked_label_check_box.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/insets.dart';
@@ -106,12 +107,34 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 enabled: true,
               ),
             ),
+            HesapButtonAnimated(
+                label: "Buraya Bir Tikla Bakalim",
+                onPressed: () {},
+                filled: true,
+                enabled: true),
             AnimatedCrossFade(
               crossFadeState: _crossFadeState,
               duration: const Duration(milliseconds: 500),
               firstCurve: Curves.easeOut,
               secondCurve: Curves.easeIn,
-              firstChild: const Padding( // izin verilmiyor
+              firstChild: HesapButtonAnimated(
+                  label: "Buraya Bir Tikla Bakalim",
+                  onPressed: widget.navigateToRegisterScreen,
+                  filled: false,
+                  enabled: false),
+              secondChild: HesapButtonAnimated(
+                  label: "Buraya Bir Tikla Bakalim",
+                  onPressed: widget.navigateToRegisterScreen,
+                  filled: false,
+                  enabled: true),
+            ),
+            AnimatedCrossFade(
+              crossFadeState: _crossFadeState,
+              duration: const Duration(milliseconds: 500),
+              firstCurve: Curves.easeOut,
+              secondCurve: Curves.easeIn,
+              firstChild: const Padding(
+                // izin verilmiyor
                 padding: EdgeInsets.all(Insets.m),
                 child: TextButton(
                   onPressed: null,
@@ -121,7 +144,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   ),
                 ),
               ),
-              secondChild: Padding( // izin veriliyor
+              secondChild: Padding(
+                // izin veriliyor
                 padding: const EdgeInsets.all(Insets.m),
                 child: TextButton(
                   onPressed: widget.signInAnonymously,

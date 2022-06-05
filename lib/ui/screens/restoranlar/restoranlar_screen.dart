@@ -19,9 +19,9 @@ class _RestaurantEkran extends State<RestoranEkran> {
   @override
   void initState() {
     super.initState();
-    context.read<RestoranCubit>().initialize();
     context.read<KonumCubit>().getLocation();
-    context.read<KonumCubit>().checkPermission();
+    context.read<RestoranCubit>().initialize();
+    // context.read<KonumCubit>().checkPermission();
   }
 
   @override
