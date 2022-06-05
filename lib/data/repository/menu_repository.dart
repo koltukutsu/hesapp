@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hesap/data/model/product.dart';
 
 class MenuRepository {
@@ -8,7 +7,6 @@ class MenuRepository {
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
   Future<Map<String, List<Product>>> fetchMenu(String restaurantId) async {
-    // Map(String, Map(String, Product))
     Map<String, List<Product>> menuMap = {};
 
     var menuSnapshot = await _firebaseFirestore
@@ -16,8 +14,6 @@ class MenuRepository {
         .get();
 
     for (var category in menuSnapshot.docs) {
-      debugPrint("CATEGORY_ID: ${category.id}");
-
       List<Product> productList = [];
 
       var categorySnapshot = await _firebaseFirestore
@@ -39,26 +35,6 @@ class MenuRepository {
       menuMap[category['kategori-isim']] = productList;
     }
 
-    debugPrint("MENU_MAP: $menuMap");
-
     return menuMap;
-
-    /*
-      menu.add(
-        Product(
-          restaurantId: restaurantId,
-          productId: value.id,
-          title: value['isim'],
-          duration: value['sure'],
-          // image:
-          //     'https://firebasestorage.googleapis.com/v0/b/hesap-app.appspot.com/o/TyZa1uLFz27YKTH7Yhy2%2F85SlUdPiNLtdGyesK5MM.jpg?alt=media&token=3791a119-b614-494e-b14d-abcf2d6be63e',
-          image:
-              "https://www.refikaninmutfagi.com/wp-content/uploads/2021/04/3O7A3397-scaled.jpg",
-          // image: value["resim"],
-          price: value['fiyat'],
-          category: '',
-        ),
-      );
-    */
   }
 }

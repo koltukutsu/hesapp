@@ -59,6 +59,8 @@ class HesapMiddleSide extends StatelessWidget {
                       data.values.elementAt(index)[innerIndex].duration,
                   priceSiparis:
                       data.values.elementAt(index)[innerIndex].price.toString(),
+                  imageSiparisUrl:
+                      data.values.elementAt(index)[innerIndex].image,
                   fontSize: Insets.l,
                   textColor: AppColors.darkBackground,
                   fontWeight: FontWeight.w200,
