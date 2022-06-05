@@ -20,13 +20,13 @@ class InternetScreen extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
-              correctSnackbar("İnternete bağlanıldı"),
+              correctSnackbar("İnternete Bağlanıldı"),
             );
         } else if (state.isOnline == false) {
           ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
-              errorSnackbar("İnternet Yükleniyor"),
+              errorSnackbar("İnternete Bağlanılmadı"),
             );
         }
       },
