@@ -71,7 +71,7 @@ class UyeOlBody extends StatelessWidget {
                 obscureText: true,
                 suffixIcon: true,
                 passwordShow: true,
-                hintText: "12 karakter girin",
+                hintText: "12 karaktere kadar girebilirsiniz",
                 onChanged: setPassword,
               ),
 
@@ -91,7 +91,7 @@ class UyeOlBody extends StatelessWidget {
                 obscureText: true,
                 suffixIcon: true,
                 passwordShow: true,
-                hintText: "12 karakter girin",
+                hintText: "12 karaktere kadar girebilirsiniz",
                 onChanged: setPasswordAgain,
               ),
               // HesapTextField(

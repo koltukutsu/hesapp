@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/util/constants.dart';
 
 class HesapAydinlatmaMetni extends StatelessWidget {
   const HesapAydinlatmaMetni({Key? key}) : super(key: key);
@@ -11,10 +13,18 @@ class HesapAydinlatmaMetni extends StatelessWidget {
         title: const Text("Aydınlatma Metni"),
       ),
       // TODO: aydinlatma metni hazirlanacak
-      body: const SizedBox(
-        child: HesapNormalText(
-          text: "aydinlatma metni",
-        ),
+      body: SingleChildScrollView(
+        child: SizedBox(
+            child: RichText(
+          text: const TextSpan(
+            text: AYDINLATMA_METNI,
+            style: TextStyle(color: AppColors.darkBackground, fontSize: 10),
+          ),
+        )
+            // child: HesapNormalText(
+            //   text: "aydinlatma metni",
+            // ),
+            ),
       ),
     );
   }

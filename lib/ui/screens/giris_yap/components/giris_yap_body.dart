@@ -53,7 +53,7 @@ class _GirisYapBodyState extends State<GirisYapBody> {
               onChanged: widget.setPassword,
               suffixIcon: true,
               passwordShow: true,
-              hintText: "12 karakter girin",
+              hintText: "12 karaktere kadar girebilirsiniz",
             ),
             HesapButtonAnimated(
               label: 'Giriş Yap',
