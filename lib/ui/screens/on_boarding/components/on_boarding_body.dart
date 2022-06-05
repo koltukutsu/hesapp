@@ -80,7 +80,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               label: 'Giriş Yap',
               filled: true,
               onPressed: widget.navigateToLoginScreen,
-              enabled: _isSelectedAydinlatmaMetni,
+              // enabled: _isSelectedAydinlatmaMetni,
             ),
             HesapButton(
               label: 'Üye Ol',
