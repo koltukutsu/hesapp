@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 
 // components
 // import 'package:hesap/ui/widgets/hesap_image_card.dart';
@@ -50,48 +51,71 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
           stream: widget.qrStream,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: const Text("Yükleniyor"));
-            }
-            return ListView(
-              shrinkWrap: true,
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
+              return const Center(
+                  child: HesapNormalText(paddingTop: 20, text: "Yükleniyor"));
+            } else if (snapshot.hasData) {
+              // TODO: data olup olmadigi kontrol edildi. Burasi guzellestirilecek
+              return Center(
+                  child: SizedBox(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 100),
+                    Transform.scale(
+                      scale: 8,
+                      child:
+                          const Icon(Icons.info_sharp, color: Color(0xffFFC107)),
+                    ),
+                    const HesapNormalText(
+                        paddingTop: 90, text: "Bu Masa boş"),
+                    const HesapNormalText(
+                        paddingTop: 25, text: "İlk oturan sen olabilirsin"),
+                  ],
+                ),
+              ));
+            } else {
+              return ListView(
+                shrinkWrap: true,
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 4,
-                    horizontal: 8,
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 46,
-                        width: 46,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4,
+                      horizontal: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 46,
+                          width: 46,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary,
+                          ),
+                          child: const Icon(
+                            Icons.person_rounded,
+                            color: Colors.white,
+                          ),
+                          alignment: Alignment.center,
                         ),
-                        child: const Icon(
-                          Icons.person_rounded,
-                          color: Colors.white,
+                        const SizedBox(
+                          width: 8,
                         ),
-                        alignment: Alignment.center,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        data['ismi'],
-                        style: const TextStyle(
-                          fontSize: 20,
+                        Text(
+                          data['ismi'],
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            );
+                      ],
+                    ),
+                  );
+                }).toList(),
+              );
+            }
           },
         )
       ],
