@@ -1,18 +1,57 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hesap/data/model/product.dart';
 
 class MenuRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
-  Future<List<Product>> fetchMenu(String restaurantId) async {
-    var _menuSnapshot = await _firebaseFirestore
-        .collection('restoranlar/$restaurantId/menu')
-        .get();
+  Future<Map<String, List<Product>>> fetchMenu(String restaurantId) async {
+    // Map(String, Map(String, Product))
+    Map<String, List<Product>> menuMap = {};
 
-    List<Product> menu = [];
-    for (var value in _menuSnapshot.docs) {
+    await _firebaseFirestore
+        .collection('restoranlar/$restaurantId/menu')
+        .get()
+        .then(
+      (menu) {
+        debugPrint("MENU_SIZE: ${menu.size}");
+
+        for (var category in menu.docs) {
+          debugPrint("CATEGORY_ID: ${category.id}");
+
+          List<Product> productList = [];
+
+          _firebaseFirestore
+              .collection(
+                  "restoranlar/$restaurantId/menu/${category.id}/urunler")
+              .get()
+              .then(
+            (products) {
+              for (var urun in products.docs) {
+                debugPrint("PRODUCT_ID: ${urun.id}");
+                productList.add(
+                  Product(
+                    productId: urun.id,
+                    title: urun['isim'],
+                    price: urun['fiyat'],
+                    image: urun['resim'],
+                    duration: urun['sure'],
+                  ),
+                );
+              }
+            },
+          ).then((value) => {menuMap[category['kategori-isim']] = productList});
+        }
+      },
+    );
+
+    debugPrint("MENU_MAP: $menuMap");
+
+    return menuMap;
+
+    /*
       menu.add(
         Product(
           restaurantId: restaurantId,
@@ -28,8 +67,6 @@ class MenuRepository {
           category: '',
         ),
       );
-    }
-
-    return menu;
+    */
   }
 }

@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
-import 'package:hesap/cubit/qr/qr_cubit.dart';
-import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/ui/widgets/hesap_text_card.dart';
 
 // component
 import 'package:hesap/util/constants.dart';
@@ -34,13 +35,25 @@ class _PopUpEkran extends State<PopUpEkran> {
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Column(
             children: [
-              Text(context.read<MasaCubit>().restaurantName),
-              Text("Masa ${context.read<MasaCubit>().tableName}"),
+              HesapNormalText(
+                text: context.read<MasaCubit>().restaurantName,
+                fontSize: 32,
+                textColor: AppColors.primary,
+                paddingTop: 10,
+              ),
+              // paddingBottom: 10),
+              HesapTextCard(
+                  text: "Masa ${context.read<MasaCubit>().tableName}",
+                  cardColor: AppColors.primary,
+                  textColor: AppColors.white,
+                  paddingTop: 10,
+                  // paddingBottom: 10,
+                  fontSize: 28),
               Expanded(
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 100,
+                      height: 25,
                     ),
                     HesapMiddleSide2(
                       qrStream: context.read<MasaCubit>().getPeopleOnTable(),
