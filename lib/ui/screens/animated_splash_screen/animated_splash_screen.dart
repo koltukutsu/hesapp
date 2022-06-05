@@ -32,8 +32,8 @@ class _HesapAnimatedSplashScreenState extends State<HesapAnimatedSplashScreen> {
   @override
   initState() {
     super.initState();
-    //context.read<RestoranCubit>().initialize();
-    //context.read<KonumCubit>().getLocation();
+    // context.read<RestoranCubit>().initialize();
+    // context.read<KonumCubit>().getLocation();
     context.read<KonumCubit>().checkPermission();
   }
 
