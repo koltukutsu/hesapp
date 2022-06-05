@@ -18,8 +18,6 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
-  bool useGlassMorphism = false;
-  bool useBackgroundImage = false;
   OutlineInputBorder? border;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -53,8 +51,6 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
                 height: 30,
               ),
               CreditCardWidget(
-                glassmorphismConfig:
-                    useGlassMorphism ? Glassmorphism.defaultConfig() : null,
                 cardNumber: cardNumber,
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
@@ -65,8 +61,6 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
                 labelCardHolder: 'KART SAHiBi',
                 isHolderNameVisible: true,
                 cardBgColor: AppColors.primary,
-                backgroundImage:
-                    useBackgroundImage ? 'assets/card_bg.png' : null,
                 isSwipeGestureEnabled: true,
                 onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {},
               ),

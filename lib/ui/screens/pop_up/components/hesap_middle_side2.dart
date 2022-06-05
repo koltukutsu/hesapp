@@ -65,11 +65,10 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
                     const SizedBox(height: 100),
                     Transform.scale(
                       scale: 8,
-                      child:
-                          const Icon(Icons.info_sharp, color: Color(0xffFFC107)),
+                      child: const Icon(Icons.info_sharp,
+                          color: Color(0xffFFC107)),
                     ),
-                    const HesapNormalText(
-                        paddingTop: 90, text: "Bu Masa boş"),
+                    const HesapNormalText(paddingTop: 90, text: "Bu Masa boş"),
                     const HesapNormalText(
                         paddingTop: 25, text: "İlk oturan sen olabilirsin"),
                   ],
@@ -97,7 +96,7 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
                             color: AppColors.primary,
                           ),
                           child: randomAvatar(
-                            DateTime.now().toIso8601String(),
+                            data["ismi"],
                             height: 50,
                             width: 52,
                           ),

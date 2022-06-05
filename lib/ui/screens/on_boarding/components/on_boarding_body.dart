@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hesap/ui/screens/on_boarding/components/hesap_linked_label_check_box.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/insets.dart';
@@ -22,6 +23,8 @@ class OnBoardingBody extends StatefulWidget {
 }
 
 class _OnBoardingBodyState extends State<OnBoardingBody> {
+  bool _isSelectedAydinlatmaMetni = false; // inside the widget not the build
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,6 +62,16 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                       color: AppColors.gray,
                     ),
                     textAlign: TextAlign.center,
+                  ),
+                  HesapAydinlanmaMetniCheckBox(
+                    label: "Aydınlanma Metnini kabul et",
+                    padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 40), // TODO: aydinlatma metninin pozisyonu ayarlanacak
+                    value: _isSelectedAydinlatmaMetni,
+                    onChanged: (bool newState) {
+                      setState(() {
+                        _isSelectedAydinlatmaMetni = newState;
+                      });
+                    },
                   ),
                 ],
               ),
