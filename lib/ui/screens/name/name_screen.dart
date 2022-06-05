@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_text_field.dart';
 
 class NameScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class NameScreen extends StatelessWidget {
                   },
                 ),
               ),
-              HesapButton(
+              HesapButtonAnimated(
                 label: "Devam Et",
                 onPressed: () {
                   Navigator.pop(context);

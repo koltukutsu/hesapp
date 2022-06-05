@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import '../../../theme/insets.dart';
 import '../../../widgets/hesap_button.dart';
 import '../../../widgets/hesap_text_field.dart';
@@ -66,19 +67,42 @@ class UyeOlBody extends StatelessWidget {
                 label: "Şifre",
                 prefixIcon: const Icon(Icons.password_rounded),
                 keyboardType: TextInputType.text,
-                maxLength: 6,
+                maxLength: 12,
                 obscureText: true,
+                suffixIcon: true,
+                passwordShow: true,
+                hintText: "12 karakter girin",
                 onChanged: setPassword,
               ),
+
+              // HesapTextField(
+              //   label: "Şifre",
+              //   prefixIcon: const Icon(Icons.password_rounded),
+              //   keyboardType: TextInputType.text,
+              //   maxLength: 6,
+              //   obscureText: true,
+              //   onChanged: setPassword,
+              // ),
               HesapTextField(
                 label: "Şifre (Tekrar)",
                 prefixIcon: const Icon(Icons.password_rounded),
                 keyboardType: TextInputType.text,
-                maxLength: 6,
+                maxLength: 12,
                 obscureText: true,
+                suffixIcon: true,
+                passwordShow: true,
+                hintText: "12 karakter girin",
                 onChanged: setPasswordAgain,
               ),
-              HesapAnimatedButton(
+              // HesapTextField(
+              //   label: "Şifre (Tekrar)",
+              //   prefixIcon: const Icon(Icons.password_rounded),
+              //   keyboardType: TextInputType.text,
+              //   maxLength: 6,
+              //   obscureText: true,
+              //   onChanged: setPasswordAgain,
+              // ),
+              HesapButtonAnimated(
                 enabled: true,
                 label: 'Kaydı Tamamla',
                 filled: true,

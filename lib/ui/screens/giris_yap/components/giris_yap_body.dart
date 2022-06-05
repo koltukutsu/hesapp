@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hesap/ui/theme/insets.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_text_field.dart';
 
 class GirisYapBody extends StatefulWidget {
@@ -45,13 +46,16 @@ class _GirisYapBodyState extends State<GirisYapBody> {
             ),
             HesapTextField(
               label: "Şifre",
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               prefixIcon: const Icon(Icons.password_rounded),
               maxLength: 12,
               obscureText: true,
               onChanged: widget.setPassword,
+              suffixIcon: true,
+              passwordShow: true,
+              hintText: "12 karakter girin",
             ),
-            HesapButton(
+            HesapButtonAnimated(
               label: 'Giriş Yap',
               filled: true,
               onPressed: widget.signIn,

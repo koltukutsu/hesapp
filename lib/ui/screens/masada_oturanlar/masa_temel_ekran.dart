@@ -10,6 +10,7 @@ import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/screens/masada_oturanlar/components/hesap_middle_side2.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 
 // component
 import 'package:hesap/util/constants.dart';
@@ -64,9 +65,10 @@ class AnaEkranaDon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: HesapButton(
+      child: HesapButtonAnimated(
         label: 'Masadan Kalk',
         filled: true,
+
         onPressed: () {
           // Navigator.of(context).push
           // context.read<QRCubit>().sitAtTableTest();
