@@ -11,6 +11,7 @@ import 'package:hesap/ui/widgets/hesap_text_card.dart';
 // theme
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
+import 'package:random_avatar/random_avatar.dart';
 
 class HesapMiddleSide2 extends StatefulWidget {
   const HesapMiddleSide2({
@@ -50,47 +51,50 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
           stream: widget.qrStream,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: const Text("Yükleniyor"));
+              return const Center(child: Text("Yükleniyor"));
             }
-            return ListView(
-              shrinkWrap: true,
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                Map<String, dynamic> data =
-                    document.data()! as Map<String, dynamic>;
+            return SingleChildScrollView(
+              child: ListView(
+                shrinkWrap: true,
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 4,
-                    horizontal: 8,
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 46,
-                        width: 46,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.primary,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4,
+                      horizontal: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 46,
+                          width: 46,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primary,
+                          ),
+                          child: randomAvatar(
+                            data["ismi"],
+                            height: 50,
+                            width: 52,
+                          ),
+                          alignment: Alignment.center,
                         ),
-                        child: const Icon(
-                          Icons.person_rounded,
-                          color: Colors.white,
+                        const SizedBox(
+                          width: 8,
                         ),
-                        alignment: Alignment.center,
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        data['ismi'],
-                        style: const TextStyle(
-                          fontSize: 20,
+                        Text(
+                          data['ismi'],
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
             );
           },
         )

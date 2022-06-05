@@ -33,18 +33,17 @@ class _MasaTemelEkran extends State<MasaTemelEkran> {
       body: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height - 150,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  HesapMiddleSide2(
-                    qrStream: context.read<MasaCubit>().getPeopleOnTable(),
-                  ),
-                ],
-              ),
+            // height: MediaQuery.of(context).size.height - 150,
+            height: MediaQuery.of(context).size.height * 0.65,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                HesapMiddleSide2(
+                  qrStream: context.read<MasaCubit>().getPeopleOnTable(),
+                ),
+              ],
             ),
           ),
           // const MasayaOturun(),
@@ -68,7 +67,6 @@ class AnaEkranaDon extends StatelessWidget {
       child: HesapButtonAnimated(
         label: 'Masadan Kalk',
         filled: true,
-
         onPressed: () {
           // Navigator.of(context).push
           // context.read<QRCubit>().sitAtTableTest();
