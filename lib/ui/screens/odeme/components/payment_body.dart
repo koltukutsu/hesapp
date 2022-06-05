@@ -7,6 +7,7 @@ import 'package:hesap/ui/screens/odeme/components/payment_item.dart';
 import 'package:hesap/ui/screens/odeme/components/paymeny_agreement.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 
 class PaymentBody extends StatefulWidget {
   const PaymentBody({Key? key, required this.orderList}) : super(key: key);
@@ -36,83 +37,91 @@ class _PaymentBodyState extends State<PaymentBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: widget.orderList.length,
-            itemBuilder: (context, index) {
-              return PaymentItem(
-                orderItem: widget.orderList[index],
-              );
-            },
-          ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Kart Bilgileri",
-                  style: TextStyle(
-                    fontFamily: 'Ubuntu',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                TextButton(
-                  child: const Text(
-                    "Yeni Kart Ekle",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.darkBackground,
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
-          BlocBuilder<CardCubit, CardState>(
-            builder: (context, state) {
-              if (state is CardLoaded) {
-                return PaymentCardList(
-                  cardList: state.savedCards,
+    if (widget.orderList.length == 0) {
+      return Center(
+          child: HesapNormalText(
+        text: "Alinacak bir sey yok",
+      ));
+    } else {
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.orderList.length,
+              itemBuilder: (context, index) {
+                return PaymentItem(
+                  orderItem: widget.orderList[index],
                 );
-              } else {
-                return Container();
-              }
-            },
-          ),
-          const PaymentAgreement(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    "Toplam Tutar : $sum ₺",
-                    style: const TextStyle(
-                      fontSize: 16,
+              },
+            ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Kart Bilgileri",
+                    style: TextStyle(
+                      fontFamily: 'Ubuntu',
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                ),
-                Expanded(
-                  child: HesapButton(
-                    filled: true,
-                    label: "Onayla ve Bitir",
+                  TextButton(
+                    child: const Text(
+                      "Yeni Kart Ekle",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.darkBackground,
+                      ),
+                    ),
                     onPressed: () {},
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )
-        ],
-      ),
-    );
+            BlocBuilder<CardCubit, CardState>(
+              builder: (context, state) {
+                if (state is CardLoaded) {
+                  return PaymentCardList(
+                    cardList: state.savedCards,
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+            const PaymentAgreement(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      "Toplam Tutar : $sum ₺",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: HesapButton(
+                      filled: true,
+                      label: "Onayla ve Bitir",
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+
+    }
   }
 }

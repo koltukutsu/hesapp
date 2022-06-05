@@ -78,34 +78,15 @@ class _SepetFooterState extends State<SepetFooter> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                        height: 48.0,
-                        width: 84,
-                        child: HesapButtonAnimated(
-                          label: "ÖDE",
-                          onPressed: () =>
-                              Navigator.pushNamed(context, ROUTE_PAYMENT),
-                          filled: true,
-                          enabled: true,
-                        )
-                        // OutlinedButton(
-                        //   onPressed: () {
-                        //   },
-                        //   child: const Text(
-                        //     "ÖDE",
-                        //     style: TextStyle(
-                        //         fontFamily: 'Ubuntu',
-                        //         fontWeight: FontWeight.normal,
-                        //         fontSize: 20,
-                        //         color: AppColors.white),
-                        //   ),
-                        //   style: OutlinedButton.styleFrom(
-                        //       shape: RoundedRectangleBorder(
-                        //         borderRadius: BorderRadius.circular(16),
-                        //       ),
-                        //       backgroundColor: AppColors.primary),
-                        // ),
-                        ),
+                    HesapButtonAnimated(
+                      label: "ÖDE",
+                      onPressed: () =>
+                          Navigator.pushNamed(context, ROUTE_PAYMENT),
+                      filled: true,
+                      enabled: true,
+                      height: 50,
+                      widthRatio: 0.25,
+                    ),
                   ],
                 ),
               ),

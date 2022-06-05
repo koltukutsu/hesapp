@@ -10,6 +10,8 @@ class HesapButtonAnimated extends StatefulWidget {
     required this.label,
     this.enabled = true,
     this.filled = false,
+    this.widthRatio = 0.8,
+    this.height = 50,
     required this.onPressed,
   }) : super(key: key);
 
@@ -17,6 +19,8 @@ class HesapButtonAnimated extends StatefulWidget {
   final bool filled;
   final bool enabled;
   final VoidCallback onPressed;
+  final double widthRatio;
+  final double height;
 
   @override
   State<HesapButtonAnimated> createState() => _HesapButtonAnimatedState();
@@ -32,8 +36,8 @@ class _HesapButtonAnimatedState extends State<HesapButtonAnimated> {
       child: AnimatedButton(
         onPressed: widget.onPressed,
         enabled: widget.enabled,
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: 50,
+        width: MediaQuery.of(context).size.width * widget.widthRatio,
+        height: widget.height,
         color: widget.enabled
             ? (widget.filled ? AppColors.primary : AppColors.white)
             : Colors.grey.shade300,

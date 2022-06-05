@@ -143,6 +143,7 @@ class _OrdersListState extends State<OrdersList> {
                                             });
                                             return !isLiked;
                                           },
+                                          animationDuration: const Duration(milliseconds: 500),
                                           size: 36,
                                           likeBuilder: (isLiked) {
                                             return const Icon(
