@@ -41,7 +41,7 @@ class _HesapAnimatedSplashScreenState extends State<HesapAnimatedSplashScreen> {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
         duration: 2000,
-        splash: Transform.scale(scale: 10, child: const Icon(Icons.ac_unit)),
+        splash: Transform.scale(scale: 10, child: const Icon(Icons.ac_unit)), // TODO: splash ekrani ozel animasyon yada resim
         nextScreen: const InternetScreen(),
         splashTransition: SplashTransition.fadeTransition,
         // pageTransitionType: PageTransitionType.scale,
