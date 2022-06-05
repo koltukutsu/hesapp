@@ -14,7 +14,7 @@ class QRCubit extends Cubit<QRState> {
 
   QRCubit(this._tableRepository, this._authRepository) : super(QRInitial());
 
-  scan(Barcode qrData) {
+  scan() {
     emit(const QRSuccessful());
 
     /*

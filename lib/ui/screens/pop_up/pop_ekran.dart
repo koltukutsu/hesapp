@@ -1,6 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
@@ -66,7 +67,9 @@ class MasayaOturun extends StatelessWidget {
         label: "Masaya Oturun",
         filled: true,
         onPressed: () {
-          context.read<MasaCubit>().sitAtTableTest();
+          context
+              .read<MasaCubit>()
+              .sitAtTableTest(context.read<AuthCubit>().hesapUser!);
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_MAIN, (Route<dynamic> route) => false);
         },

@@ -4,8 +4,6 @@ import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/util/hesap_exception.dart';
 import 'package:hesap/util/validators.dart';
 
-enum UserState { newUser, userLoggedIn, userAnonymous }
-
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -18,7 +16,7 @@ class AuthRepository {
     } else if (user.isAnonymous) {
       return HesapUser(
         id: "",
-        name: "",
+        name: user.displayName!,
         username: "",
         email: "",
         phone: "",
@@ -65,8 +63,8 @@ class AuthRepository {
 
   signInAnonymously(String username) async {
     await _firebaseAuth.signInAnonymously().then(
-          (value) => {
-            value.user!.updateDisplayName(username),
+          (auth) => {
+            auth.user!.updateDisplayName(username),
           },
         );
   }

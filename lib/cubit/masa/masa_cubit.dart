@@ -23,17 +23,26 @@ class MasaCubit extends Cubit<MasaState> {
     emit(const MasaInState());
   }
 
+  scanTest() {
+    List<String> decodedQRData = [
+      "TyZa1uLFz27YKTH7Yhy2",
+      "JcDxVOOOxQy0ZQQxPIOm"
+    ];
+    restaurantId = decodedQRData[0];
+    tableId = decodedQRData[1];
+    emit(const MasaInState());
+  }
+
   getPeopleOnTable() {
     var tableStream =
         _tableRepository.getPeopleAtTable([restaurantId, tableId]);
     return tableStream;
   }
 
-  sitAtTableTest() async {
-    HesapUser? hesapUser = await _authRepository.getHesapUser();
+  sitAtTableTest(HesapUser hesapUser) async {
     _tableRepository.sitAtTable(
       ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"],
-      hesapUser!,
+      hesapUser,
     );
   }
 }

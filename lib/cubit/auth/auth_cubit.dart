@@ -44,8 +44,18 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(const AuthLoading());
 
-      await _authRepository.signInAnonymously(username);
-      hesapUser = await _authRepository.getHesapUser();
+      await _authRepository.signInAnonymously(username).then(
+            (value) => {
+              hesapUser = HesapUser(
+                id: "",
+                name: username,
+                username: "",
+                email: "",
+                phone: "",
+                anonymous: true,
+              )
+            },
+          );
 
       emit(const AuthSignInSuccessful());
     } catch (error) {

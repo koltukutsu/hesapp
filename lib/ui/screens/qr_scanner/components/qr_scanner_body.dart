@@ -18,6 +18,13 @@ class _QRScannerBodyState extends State<QRScannerBody> {
   QRViewController? controller;
 
   @override
+  void initState() {
+    // TODO: QR okutma ekranını hızlıca geçmek için. Silinecek.
+    super.initState();
+    context.read<MasaCubit>().scanTest();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
@@ -31,7 +38,7 @@ class _QRScannerBodyState extends State<QRScannerBody> {
                   (scanData) {
                     setState(
                       () {
-                        context.read<MasaCubit>().scan(scanData);
+                        //context.read<MasaCubit>().scan(scanData);
                       },
                     );
                   },
