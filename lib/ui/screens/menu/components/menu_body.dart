@@ -1,8 +1,11 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/menu/menu_cubit.dart';
 import 'package:hesap/ui/screens/menu/components/hesap_middle_side.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/ui/widgets/hesap_text_card.dart';
 
 class MenuBody extends StatefulWidget {
   // TODO: text ve cardin oldugu kisim ScreenSection icine alinabilir.
@@ -31,8 +34,19 @@ class _MenuBodyState extends State<MenuBody> {
         if (state is MenuLoaded) {
           debugPrint("ilk kontrol");
           debugPrint(state.menu.toString());
-          return SingleChildScrollView(
-              child: HesapMiddleSide(data: state.menu));
+          return Column(
+            children: [
+              // HesapUpSide(mekanIsmi: , secondText: ),
+              Column(
+                children: [
+                  HesapNormalText(
+                      text: context.read<MasaCubit>().restaurantName),
+                  HesapTextCard(text: context.read<MasaCubit>().tableName),
+                ],
+              ),
+              SingleChildScrollView(child: HesapMiddleSide(data: state.menu)),
+            ],
+          );
         } else {
           return const Center(
             child: CircularProgressIndicator(),
