@@ -21,7 +21,6 @@ class HesapMiddleSide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("asdfdf : ${data.toString()}");
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,8 +61,6 @@ class HesapMiddleSide extends StatelessWidget {
                               .elementAt(index)[innerIndex]
                               .price
                               .toString(),
-                          imageSiparisUrl:
-                              data.values.elementAt(index)[innerIndex].image,
                           fontSize: Insets.l,
                           textColor: AppColors.darkBackground,
                           fontWeight: FontWeight.w200,
