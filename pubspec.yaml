@@ -26,6 +26,7 @@ dependencies:
   flutter_credit_card: ^3.0.1
   like_button: ^2.0.4
   animated_icon_button: ^1.0.2
+  animated_splash_screen: ^1.2.0
 
 dev_dependencies:
   flutter_test:
