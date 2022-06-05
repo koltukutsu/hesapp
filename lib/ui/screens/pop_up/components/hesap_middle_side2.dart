@@ -12,6 +12,7 @@ import 'package:hesap/ui/widgets/hesap_text_card.dart';
 // theme
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
+import 'package:random_avatar/random_avatar.dart';
 
 class HesapMiddleSide2 extends StatefulWidget {
   const HesapMiddleSide2({
@@ -95,10 +96,15 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
                             shape: BoxShape.circle,
                             color: AppColors.primary,
                           ),
-                          child: const Icon(
-                            Icons.person_rounded,
-                            color: Colors.white,
+                          child: randomAvatar(
+                            DateTime.now().toIso8601String(),
+                            height: 50,
+                            width: 52,
                           ),
+                          // child: const Icon(
+                          //   Icons.person_rounded,
+                          //   color: Colors.white,
+                          // ),
                           alignment: Alignment.center,
                         ),
                         const SizedBox(
