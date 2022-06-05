@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_body.dart';
@@ -17,9 +18,9 @@ class QRScannerScreen extends StatefulWidget {
 class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<QRCubit, QRState>(
+    return BlocConsumer<MasaCubit, MasaState>(
       listener: (context, state) {
-        if (state is QRSuccessful) {
+        if (state is MasaInState) {
           Navigator.pop(context);
           Navigator.pushNamed(context, ROUTE_POP_EKRAN);
         }

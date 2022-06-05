@@ -12,27 +12,29 @@ class NameScreen extends StatelessWidget {
     String username = "";
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const Text("Masadakiler seni hangi isimle tanısın?"),
-            Expanded(
-              child: HesapTextField(
-                label: "Kullanıcı Adı",
-                onChanged: (value) {
-                  username = value;
-                },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const Text("Masadakiler seni hangi isimle tanısın?"),
+              Expanded(
+                child: HesapTextField(
+                  label: "Kullanıcı Adı",
+                  onChanged: (value) {
+                    username = value;
+                  },
+                ),
               ),
-            ),
-            HesapButton(
-              label: "Devam Et",
-              onPressed: () {
-                Navigator.pop(context);
-                context.read<AuthCubit>().signInAnonymously(username);
-              },
-            )
-          ],
+              HesapButton(
+                label: "Devam Et",
+                onPressed: () {
+                  Navigator.pop(context);
+                  context.read<AuthCubit>().signInAnonymously(username);
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

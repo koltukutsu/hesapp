@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_view.dart';
 import 'package:hesap/ui/theme/colors.dart';
@@ -30,7 +31,7 @@ class _QRScannerBodyState extends State<QRScannerBody> {
                   (scanData) {
                     setState(
                       () {
-                        context.read<QRCubit>().scan(scanData);
+                        context.read<MasaCubit>().scan(scanData);
                       },
                     );
                   },

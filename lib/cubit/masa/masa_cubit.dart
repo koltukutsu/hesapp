@@ -3,20 +3,24 @@ import 'package:equatable/equatable.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/data/repository/auth_repository.dart';
 import 'package:hesap/data/repository/table_repository.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 part 'masa_state.dart';
 
 class MasaCubit extends Cubit<MasaState> {
   final TableRepository _tableRepository;
   final AuthRepository _authRepository;
+
   MasaCubit(this._tableRepository, this._authRepository) : super(MasaInitial());
 
   String restaurantId = "";
   String tableId = "";
 
-  setIds(List<String> qrData) {
-    restaurantId = qrData[0];
-    tableId = qrData[1];
+  scan(Barcode qrData) {
+    var decodedData = qrData.code!.split('/');
+    restaurantId = decodedData[0];
+    tableId = decodedData[1];
+    emit(const MasaInState());
   }
 
   getPeopleOnTable() {
@@ -28,13 +32,8 @@ class MasaCubit extends Cubit<MasaState> {
   sitAtTableTest() async {
     HesapUser? hesapUser = await _authRepository.getHesapUser();
     _tableRepository.sitAtTable(
-        ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"], hesapUser);
+      ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"],
+      hesapUser!,
+    );
   }
-
-/*
-  getTableInfo() async {
-    var masaData = await _tableRepository.getTableInfo(restaurantId, tableId);
-    emit(MasaBilgiYuklendi(masaData));
-  }
-  */
 }

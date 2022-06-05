@@ -6,11 +6,12 @@ class HesapUser {
   String phone;
   bool anonymous;
 
-  HesapUser(
-      {required this.id,
-      required this.name,
-      required this.username,
-      required this.email,
-      required this.phone,
-      required this.anonymous});
+  HesapUser({
+    required this.id,
+    required this.name,
+    required this.username,
+    required this.email,
+    required this.phone,
+    required this.anonymous,
+  });
 }

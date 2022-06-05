@@ -24,15 +24,6 @@ class PopUpEkran extends StatefulWidget {
 }
 
 class _PopUpEkran extends State<PopUpEkran> {
-  late List<String> decodedData;
-
-  @override
-  void initState() {
-    super.initState();
-    decodedData = context.read<QRCubit>().decodedQRData;
-    context.read<MasaCubit>().setIds(decodedData);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,22 +32,17 @@ class _PopUpEkran extends State<PopUpEkran> {
           SizedBox(
             height: MediaQuery.of(context).size.height - 150,
             child: SingleChildScrollView(
-                child: Column(
-              children: [
-                const SizedBox(
-                  height: 100,
-                ),
-                Column(
-                  children: [
-                    Text(decodedData[0].toString()),
-                    Text(decodedData[1].toString()),
-                  ],
-                ),
-                HesapMiddleSide2(
-                  qrStream: context.read<MasaCubit>().getPeopleOnTable(),
-                ),
-              ],
-            )),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  HesapMiddleSide2(
+                    qrStream: context.read<MasaCubit>().getPeopleOnTable(),
+                  ),
+                ],
+              ),
+            ),
           ),
           const MasayaOturun(),
           const Iptal(),

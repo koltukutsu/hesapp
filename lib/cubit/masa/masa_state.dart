@@ -8,3 +8,10 @@ class MasaInitial extends MasaState {
   @override
   List<Object> get props => [];
 }
+
+class MasaInState extends MasaState {
+  const MasaInState();
+
+  @override
+  List<Object> get props => [];
+}
