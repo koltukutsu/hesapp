@@ -64,8 +64,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                     textAlign: TextAlign.center,
                   ),
                   HesapAydinlanmaMetniCheckBox(
-                    label: "Aydınlanma Metnini kabul et",
-                    padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 40), // TODO: aydinlatma metninin pozisyonu ayarlanacak
+                    label: "Aydınlanma Metni",
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 15, left: 40, right: 40), // TODO: aydinlatma metninin pozisyonu ayarlanacak
                     value: _isSelectedAydinlatmaMetni,
                     onChanged: (bool newState) {
                       setState(() {
