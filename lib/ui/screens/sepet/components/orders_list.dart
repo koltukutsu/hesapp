@@ -1,9 +1,11 @@
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/data/repository/Order/OrderServices.dart';
 import 'package:get_it/get_it.dart';
+import 'package:like_button/like_button.dart';
 
 import '../../../../data/model/order.dart';
 import '../../../theme/colors.dart';
@@ -132,18 +134,34 @@ class _OrdersListState extends State<OrdersList> {
                                           ),
                                         ),
                                       ),
-                                      IconButton(
-                                        icon: const Icon(
-                                            Icons.add_circle_outline_rounded,
-                                            color: AppColors.primary),
-                                        onPressed: () {
-                                          setState(() {
-                                            context
-                                                .read<SepetCubit>()
-                                                .increment(order);
-                                          });
-                                        },
-                                      ),
+                                      LikeButton(
+                                          onTap: (bool isLiked) async {
+                                            setState(() {
+                                              context
+                                                  .read<SepetCubit>()
+                                                  .increment(order);
+                                            });
+                                            return !isLiked;
+                                          },
+                                          size: 36,
+                                          likeBuilder: (isLiked) {
+                                            return const Icon(
+                                                Icons
+                                                    .add_circle_outline_rounded,
+                                                color: AppColors.primary);
+                                          }),
+                                      // IconButton(
+                                      //   icon: const Icon(
+                                      //       Icons.add_circle_outline_rounded,
+                                      //       color: AppColors.primary),
+                                      //   onPressed: () {
+                                      //     setState(() {
+                                      //       context
+                                      //           .read<SepetCubit>()
+                                      //           .increment(order);
+                                      //     });
+                                      //   },
+                                      // ),
                                     ],
                                   ),
                                 ),

@@ -1,3 +1,4 @@
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
@@ -74,16 +75,33 @@ class MenuItemCustom extends StatelessWidget {
               ),
             ),
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.add_box_rounded,
-              color: AppColors.primary,
-            ),
-            iconSize: 36,
+          AnimatedIconButton(
+            size: 36,
             onPressed: () {
               context.read<SepetCubit>().addToCart(product);
             },
+            duration: const Duration(milliseconds: 1000),
+            splashColor: Colors.transparent,
+            icons: const <AnimatedIconItem>[
+              AnimatedIconItem(
+                // onPressed: () {
+                //   context.read<SepetCubit>().addToCart(product);
+                // },
+                icon: Icon(Icons.add_circle_rounded, color: AppColors.primary),
+              ),
+            ],
           ),
+          //
+          // IconButton(
+          //   icon: const Icon(
+          //     Icons.add_box_rounded,
+          //     color: AppColors.primary,
+          //   ),
+          //   iconSize: 36,
+          //   onPressed: () {
+          //     context.read<SepetCubit>().addToCart(product);
+          //   },
+          // ),
         ],
       ),
     );
