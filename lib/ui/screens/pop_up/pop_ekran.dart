@@ -29,26 +29,30 @@ class _PopUpEkran extends State<PopUpEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            // height: MediaQuery.of(context).size.height - 150,
-
-            height: MediaQuery.of(context).size.height * 0.65,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 100,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            children: [
+              Text(context.read<MasaCubit>().restaurantName),
+              Text("Masa ${context.read<MasaCubit>().tableName}"),
+              Expanded(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    HesapMiddleSide2(
+                      qrStream: context.read<MasaCubit>().getPeopleOnTable(),
+                    ),
+                  ],
                 ),
-                HesapMiddleSide2(
-                  qrStream: context.read<MasaCubit>().getPeopleOnTable(),
-                ),
-              ],
-            ),
+              ),
+              const MasayaOturun(),
+              const Iptal(),
+            ],
           ),
-          const MasayaOturun(),
-          const Iptal(),
-        ],
+        ),
       ),
     );
   }
@@ -91,7 +95,9 @@ class Iptal extends StatelessWidget {
         label: 'İptal',
         filled: false,
         onPressed: () {
-          //context.read<QRCubit>().leaveTable();
+          context
+              .read<MasaCubit>()
+              .leaveTable(context.read<AuthCubit>().hesapUser!);
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
         },

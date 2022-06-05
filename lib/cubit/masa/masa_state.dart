@@ -10,8 +10,10 @@ class MasaInitial extends MasaState {
 }
 
 class MasaInState extends MasaState {
-  const MasaInState();
+  const MasaInState(this.tableInfo);
+
+  final List<String> tableInfo;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [tableInfo];
 }

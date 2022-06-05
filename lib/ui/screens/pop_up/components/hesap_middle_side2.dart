@@ -29,59 +29,38 @@ class HesapMiddleSide2 extends StatefulWidget {
 class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: double.infinity,
-            color: AppColors.amountBox,
-            child: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Masadakiler",
-                style: TextStyle(
-                  fontFamily: 'Ubuntu',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-          StreamBuilder<QuerySnapshot>(
-            stream: widget.qrStream,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                    child: HesapNormalText(paddingTop: 20, text: "Yükleniyor"));
-              } else if (snapshot.hasData) {
-                // TODO: data olup olmadigi kontrol edildi. Burasi guzellestirilecek
-                return Center(
-                    child: SizedBox(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 100),
-                      Transform.scale(
-                        scale: 8,
-                        child: const Icon(Icons.info_sharp,
-                            color: Color(0xffFFC107)),
+    return StreamBuilder<QuerySnapshot>(
+      stream: widget.qrStream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasData) {
+          if (snapshot.data!.size > 0) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: double.infinity,
+                  color: AppColors.amountBox,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Masadakiler",
+                      style: TextStyle(
+                        fontFamily: 'Ubuntu',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
                       ),
-                      const HesapNormalText(
-                          paddingTop: 90, text: "Bu Masa boş"),
-                      const HesapNormalText(
-                          paddingTop: 25, text: "İlk oturan sen olabilirsin"),
-                    ],
+                    ),
                   ),
-                ));
-              } else {
-                return SingleChildScrollView(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children:
-                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  children: snapshot.data!.docs.map(
+                    (DocumentSnapshot document) {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
 
@@ -122,14 +101,39 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
                           ],
                         ),
                       );
-                    }).toList(),
+                    },
+                  ).toList(),
+                ),
+              ],
+            );
+          }
+          return Center(
+            child: SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 100),
+                  Transform.scale(
+                    scale: 8,
+                    child:
+                        const Icon(Icons.info_sharp, color: Color(0xffFFC107)),
                   ),
-                );
-              }
-            },
-          )
-        ],
-      ),
+                  const HesapNormalText(
+                    paddingTop: 90,
+                    text: "Bu Masa boş",
+                  ),
+                  const HesapNormalText(
+                    paddingTop: 25,
+                    text: "İlk oturan sen olabilirsin",
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+        return SizedBox();
+      },
     );
   }
 }

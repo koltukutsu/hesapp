@@ -44,22 +44,32 @@ class TableRepository {
         .delete();
   }
 
-  Future<List<String>> getTableInfo(String restoranId, String masaId) async {
+  Future<List<String>> getTableInfo(String restaurantId, String tableId) async {
     List<String> tableInfo = [];
 
     await _firebaseFirestore
         .collection('restoranlar')
-        .doc(restoranId)
+        .doc(restaurantId)
         .get()
-        .then((value) => {tableInfo.add(value['isim'])});
+        .then(
+          (value) => {
+            tableInfo.add(
+              value['isim'],
+            ),
+          },
+        );
 
     await _firebaseFirestore
-        .collection('restoranlar/$restoranId/masalar')
-        .doc(masaId)
+        .collection('restoranlar/$restaurantId/masalar')
+        .doc(tableId)
         .get()
-        .then((value) => {tableInfo.add(value['no'])});
-
-    debugPrint("TABLE_INFO: $tableInfo");
+        .then(
+          (value) => {
+            tableInfo.add(
+              value['no'].toString(),
+            ),
+          },
+        );
 
     return tableInfo;
   }
