@@ -26,10 +26,12 @@ import 'package:hesap/ui/screens/animated_splash_screen/animated_splash_screen.d
 import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/internet/internet_screen.dart';
+import 'package:hesap/ui/screens/name/name_screen.dart';
 import 'package:hesap/ui/screens/odeme/payment_screen.dart';
 import 'package:hesap/ui/screens/on_boarding/components/hesap_aydinlatma_metni.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
+import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/profile/components/profile_card_add.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
@@ -65,7 +67,7 @@ class HesapApp extends StatelessWidget {
           create: (context) => SepetCubit(),
         ),
         BlocProvider(
-          create: (context) => MasaCubit(TableRepository()),
+          create: (context) => MasaCubit(TableRepository(), AuthRepository()),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
@@ -92,6 +94,8 @@ class HesapApp extends StatelessWidget {
               ROUTE_ANIMATED_SPLASH_SCREEN: (context) =>
                   const HesapAnimatedSplashScreen(),
               ROUTE_AYINLATMA_METNI: (context) => const HesapAydinlatmaMetni(),
+              ROUTE_NAME: (context) => const NameScreen(),
+              ROUTE_POP_EKRAN: (context) => const PopUpEkran(),
             },
           );
         },

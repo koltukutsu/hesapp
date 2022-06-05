@@ -4,6 +4,7 @@ import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_view.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/util/constants.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRScannerBody extends StatefulWidget {
   const QRScannerBody({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class QRScannerBody extends StatefulWidget {
 }
 
 class _QRScannerBodyState extends State<QRScannerBody> {
+  QRViewController? controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +25,16 @@ class _QRScannerBodyState extends State<QRScannerBody> {
           children: [
             QRScanner(
               onQRViewCreated: (controller) {
-                context.read<QRCubit>().scan(controller);
+                this.controller = controller;
+                controller.scannedDataStream.listen(
+                  (scanData) {
+                    setState(
+                      () {
+                        context.read<QRCubit>().scan(scanData);
+                      },
+                    );
+                  },
+                );
               },
             ),
             Wrap(
@@ -32,22 +44,24 @@ class _QRScannerBodyState extends State<QRScannerBody> {
                   clipBehavior: Clip.hardEdge,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16.0),
-                        bottomRight: Radius.circular(16.0)),
+                      bottomLeft: Radius.circular(16.0),
+                      bottomRight: Radius.circular(16.0),
+                    ),
                     color: AppColors.primary,
                   ),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
                       Transform.scale(
-                          scale: 4,
-                          child: IconButton(
-                              // TODO: burasi sonradan kaldirilacak
-                              icon: const Icon(Icons.play_arrow),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(ROUTE_POP_EKRAN);
-                              })),
+                        scale: 4,
+                        child: IconButton(
+                          // TODO: burasi sonradan kaldirilacak
+                          icon: const Icon(Icons.play_arrow),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(ROUTE_POP_EKRAN);
+                          },
+                        ),
+                      ),
                       const Text(
                         "Masadaki QR kodu okutun",
                         style: TextStyle(
@@ -75,5 +89,11 @@ class _QRScannerBodyState extends State<QRScannerBody> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
   }
 }

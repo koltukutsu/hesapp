@@ -2,32 +2,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
+import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
 
 // component
-import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
 import 'package:hesap/util/constants.dart';
 
 class PopUpEkran extends StatefulWidget {
   const PopUpEkran({
     Key? key,
-    required this.qrData,
+    //required this.qrData,
   }) : super(key: key);
 
-  final List<String> qrData;
+  //final List<String> qrData;
 
   @override
   State<PopUpEkran> createState() => _PopUpEkran();
 }
 
 class _PopUpEkran extends State<PopUpEkran> {
+  late List<String> decodedData;
+
   @override
   void initState() {
     super.initState();
-    context.read<MasaCubit>().setIds(widget.qrData);
+    decodedData = context.read<QRCubit>().decodedQRData;
+    context.read<MasaCubit>().setIds(decodedData);
   }
 
   @override
@@ -45,8 +48,8 @@ class _PopUpEkran extends State<PopUpEkran> {
                 ),
                 Column(
                   children: [
-                    Text(widget.qrData[0].toString()),
-                    Text(widget.qrData[1].toString()),
+                    Text(decodedData[0].toString()),
+                    Text(decodedData[1].toString()),
                   ],
                 ),
                 HesapMiddleSide2(
@@ -76,8 +79,7 @@ class MasayaOturun extends StatelessWidget {
         label: 'Masaya Oturun',
         filled: true,
         onPressed: () {
-          // Navigator.of(context).push
-          //context.read<QRCubit>().sitAtTableTest();
+          context.read<MasaCubit>().sitAtTableTest();
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_MAIN, (Route<dynamic> route) => false);
         },

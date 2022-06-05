@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_body.dart';
+import 'package:hesap/util/constants.dart';
 
 class QRScannerScreen extends StatefulWidget {
   const QRScannerScreen({Key? key}) : super(key: key);
@@ -13,23 +16,15 @@ class QRScannerScreen extends StatefulWidget {
 
 class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
-  void initState() {
-    super.initState();
-    //context.read<QRCubit>().scanTest();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocConsumer<QRCubit, QRState>(
       listener: (context, state) {
         if (state is QRSuccessful) {
-          context.read<QRCubit>().dispose();
+          Navigator.pop(context);
+          Navigator.pushNamed(context, ROUTE_POP_EKRAN);
         }
       },
       builder: (context, state) {
-        if (state is QRSuccessful) {
-          return PopUpEkran(qrData: state.qrData);
-        }
         return const QRScannerBody();
       },
     );

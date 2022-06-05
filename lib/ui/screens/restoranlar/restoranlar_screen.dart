@@ -16,14 +16,13 @@ class RestoranEkran extends StatefulWidget {
 }
 
 class _RestaurantEkran extends State<RestoranEkran> {
-// TODO: HesapAnimatedSplashScreen'e konum izinleri tasindi. Konum izinleri restoran ekraninda duzgun calisiyor mu? Kontrol Edilmeli.
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   context.read<RestoranCubit>().initialize();
-  //   context.read<KonumCubit>().getLocation();
-  //   context.read<KonumCubit>().checkPermission();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    context.read<RestoranCubit>().initialize();
+    context.read<KonumCubit>().getLocation();
+    context.read<KonumCubit>().checkPermission();
+  }
 
   @override
   Widget build(BuildContext context) {

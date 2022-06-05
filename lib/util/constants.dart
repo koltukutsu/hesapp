@@ -14,3 +14,4 @@ const String ROUTE_INTERNET_CONTROL = "/internet_connection_control";
 const String ROUTE_CREDIT_CARD_ADD = "/profil_ekran/add_credit_card";
 const String ROUTE_ANIMATED_SPLASH_SCREEN = "/animated_splash_screen";
 const String ROUTE_AYINLATMA_METNI = "/aydinlatma_metni";
+const String ROUTE_NAME = "/name";

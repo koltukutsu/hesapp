@@ -8,11 +8,18 @@ class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  Future<HesapUser?> getHesapUser() async {
+  Future<HesapUser> getHesapUser() async {
     User? user = _firebaseAuth.currentUser;
 
     if (user == null) {
-      return null;
+      return HesapUser(
+        id: "",
+        name: "",
+        username: "",
+        email: "",
+        phone: "",
+        anonymous: true,
+      );
     }
 
     var userDoc =
@@ -24,6 +31,7 @@ class AuthRepository {
       username: userDoc['username'],
       email: userDoc['email'],
       phone: userDoc['phone'],
+      anonymous: false,
     );
   }
 
@@ -51,8 +59,8 @@ class AuthRepository {
     }
   }
 
-  signInAnonymously() async {
-    await _firebaseAuth.signInAnonymously();
+  Future<UserCredential> signInAnonymously() async {
+    return await _firebaseAuth.signInAnonymously();
   }
 
   signUp({

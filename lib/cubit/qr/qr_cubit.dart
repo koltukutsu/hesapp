@@ -10,18 +10,12 @@ class QRCubit extends Cubit<QRState> {
   final TableRepository _tableRepository;
   final AuthRepository _authRepository;
 
-  QRViewController? controller;
-  Barcode? qr;
+  List<String> decodedQRData = ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"];
 
   QRCubit(this._tableRepository, this._authRepository) : super(QRInitial());
 
-  scan(QRViewController controller) {
-    this.controller = controller;
-    List<String> decodedQRData = [
-      "TyZa1uLFz27YKTH7Yhy2",
-      "JcDxVOOOxQy0ZQQxPIOm"
-    ];
-    emit(QRSuccessful(decodedQRData));
+  scan(Barcode qrData) {
+    emit(const QRSuccessful());
 
     /*
     controller.scannedDataStream.listen(
@@ -36,10 +30,6 @@ class QRCubit extends Cubit<QRState> {
 
   List<String> decodeQR(Barcode qrResult) {
     return qrResult.code!.split('/');
-  }
-
-  dispose() {
-    controller?.dispose();
   }
 
 /*

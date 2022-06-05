@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/degisen_ekranlar/degisen_ekranlar_cubit.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/qr/qr_cubit.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
@@ -24,6 +25,10 @@ class _MasaTemelEkran extends State<MasaTemelEkran> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Masadakiler"),
+        backgroundColor: AppColors.primary,
+      ),
       body: Column(
         children: [
           SizedBox(
