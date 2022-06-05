@@ -25,6 +25,7 @@ class OnBoardingBody extends StatefulWidget {
 class _OnBoardingBodyState extends State<OnBoardingBody> {
   bool _isSelectedAydinlatmaMetni = false; // inside the widget not the build
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,15 +66,16 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   ),
                   HesapAydinlanmaMetniCheckBox(
                     label: "Aydınlanma Metni",
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 15, left: 40, right: 40), // TODO: aydinlatma metninin pozisyonu ayarlanacak
+                    padding: const EdgeInsets.only(
+                        top: 8.0, bottom: 15, left: 40, right: 40),
+                    // TODO: aydinlatma metninin pozisyonu ayarlanacak
                     value: _isSelectedAydinlatmaMetni,
                     onChanged: (bool newState) {
                       setState(() {
                         _isSelectedAydinlatmaMetni = newState;
                         if (_isSelectedAydinlatmaMetni) {
                           _crossFadeState = CrossFadeState.showSecond;
-
-                        }else {
+                        } else {
                           _crossFadeState = CrossFadeState.showFirst;
                         }
                       });
@@ -104,13 +106,29 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 enabled: true,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(Insets.m),
-              child: TextButton(
-                onPressed: widget.signInAnonymously,
-                child: const Text(
-                  "Üye Olmadan Devam Et",
-                  style: TextStyle(color: AppColors.gray),
+            AnimatedCrossFade(
+              crossFadeState: _crossFadeState,
+              duration: const Duration(milliseconds: 500),
+              firstCurve: Curves.easeOut,
+              secondCurve: Curves.easeIn,
+              firstChild: const Padding( // izin verilmiyor
+                padding: EdgeInsets.all(Insets.m),
+                child: TextButton(
+                  onPressed: null,
+                  child: Text(
+                    "Üye Olmadan Devam Et",
+                    style: TextStyle(color: AppColors.gray),
+                  ),
+                ),
+              ),
+              secondChild: Padding( // izin veriliyor
+                padding: const EdgeInsets.all(Insets.m),
+                child: TextButton(
+                  onPressed: widget.signInAnonymously,
+                  child: const Text(
+                    "Üye Olmadan Devam Et",
+                    style: TextStyle(color: AppColors.gray),
+                  ),
                 ),
               ),
             ),
