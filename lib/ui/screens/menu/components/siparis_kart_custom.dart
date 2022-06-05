@@ -90,13 +90,13 @@ class HesapOrderCardCustom extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.only(right: 0.0),
+            padding: const EdgeInsets.only(left: 4, right: 0.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               child: Image.network(
                 imageSiparisUrl,
                 height: 91,
-                width: 131,
+                width: 110,
               ),
             ),
           ),

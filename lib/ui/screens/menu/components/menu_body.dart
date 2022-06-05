@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/menu/menu_cubit.dart';
 import 'package:hesap/ui/screens/menu/components/hesap_middle_side.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
 
@@ -37,14 +38,8 @@ class _MenuBodyState extends State<MenuBody> {
           return Column(
             children: [
               // HesapUpSide(mekanIsmi: , secondText: ),
-              Column(
-                children: [
-                  HesapNormalText(
-                      text: context.read<MasaCubit>().restaurantName),
-                  HesapTextCard(text: context.read<MasaCubit>().tableName),
-                ],
-              ),
-              SingleChildScrollView(child: HesapMiddleSide(data: state.menu)),
+              HesapTextCard(text: context.read<MasaCubit>().restaurantName, textColor: AppColors.white),
+              HesapMiddleSide(data: state.menu),
             ],
           );
         } else {

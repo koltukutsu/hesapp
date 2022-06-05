@@ -21,8 +21,10 @@ class _MenuEkranState extends State<MenuEkran> {
         //   title: const Text("Menü"),
         //   backgroundColor: AppColors.primary,
         // ),
-        body: MenuBody(
+        body: SingleChildScrollView(
+          child: MenuBody(
       restaurantId: "TyZa1uLFz27YKTH7Yhy2",
-    ));
+    ),
+        ));
   }
 }
