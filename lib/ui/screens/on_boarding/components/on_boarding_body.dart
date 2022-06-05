@@ -24,7 +24,7 @@ class OnBoardingBody extends StatefulWidget {
 
 class _OnBoardingBodyState extends State<OnBoardingBody> {
   bool _isSelectedAydinlatmaMetni = false; // inside the widget not the build
-
+  CrossFadeState _crossFadeState = CrossFadeState.showFirst;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,6 +70,12 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                     onChanged: (bool newState) {
                       setState(() {
                         _isSelectedAydinlatmaMetni = newState;
+                        if (_isSelectedAydinlatmaMetni) {
+                          _crossFadeState = CrossFadeState.showSecond;
+
+                        }else {
+                          _crossFadeState = CrossFadeState.showFirst;
+                        }
                       });
                     },
                   ),
@@ -82,10 +88,21 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               onPressed: widget.navigateToLoginScreen,
               // enabled: _isSelectedAydinlatmaMetni,
             ),
-            HesapButton(
-              label: 'Üye Ol',
-              onPressed: widget.navigateToRegisterScreen,
-              enabled: _isSelectedAydinlatmaMetni,
+            AnimatedCrossFade(
+              crossFadeState: _crossFadeState,
+              duration: const Duration(milliseconds: 500),
+              firstCurve: Curves.easeOut,
+              secondCurve: Curves.easeIn,
+              firstChild: HesapButton(
+                label: 'Üye Ol',
+                onPressed: widget.navigateToRegisterScreen,
+                enabled: false,
+              ),
+              secondChild: HesapButton(
+                label: 'Üye Ol',
+                onPressed: widget.navigateToRegisterScreen,
+                enabled: true,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(Insets.m),
