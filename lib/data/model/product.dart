@@ -1,7 +1,7 @@
 class Product {
   String productId;
   String title;
-  double price;
+  num price;
   String image;
   String duration;
 

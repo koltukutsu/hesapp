@@ -10,7 +10,7 @@ import 'package:hesap/ui/widgets/hesap_text_card.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
-class HesapMiddleSide extends StatelessWidget {
+class HesapMiddleSide extends StatefulWidget {
   // TODO: text ve cardin oldugu kisim ScreenSection icine alinabilir.
   const HesapMiddleSide({
     Key? key,
@@ -20,16 +20,23 @@ class HesapMiddleSide extends StatelessWidget {
   final Map<String, List<Product>> data;
 
   @override
+  State<HesapMiddleSide> createState() => _HesapMiddleSideState();
+}
+
+class _HesapMiddleSideState extends State<HesapMiddleSide> {
+  @override
   Widget build(BuildContext context) {
+    debugPrint("veri kontrol");
+    debugPrint(this.widget.data.toString());
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(
-            data.length, // kategori uzunluklari kadar
+            widget.data.length, // kategori uzunluklari kadar
             (index) => Column(
                   children: [
                     HesapTextCard(
-                      text: data.keys.elementAt(index),
+                      text: widget.data.keys.elementAt(index),
                       fontSize: Insets.l,
                       textColor: AppColors.darkBackground,
                       textAlignment: Alignment.centerLeft,
@@ -52,12 +59,12 @@ class HesapMiddleSide extends StatelessWidget {
                     ),
                     Column(
                       children: List.generate(
-                        data.values.elementAt(index).length,
+                        widget.data.values.elementAt(index).length,
                         (innerIndex) => HesapOrderCardCustom(
-                          text: data.values.elementAt(index)[innerIndex].title,
+                          text: widget.data.values.elementAt(index)[innerIndex].title,
                           durationSiparis:
-                              data.values.elementAt(index)[innerIndex].duration,
-                          priceSiparis: data.values
+                              widget.data.values.elementAt(index)[innerIndex].duration,
+                          priceSiparis: widget.data.values
                               .elementAt(index)[innerIndex]
                               .price
                               .toString(),
