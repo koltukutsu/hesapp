@@ -54,6 +54,7 @@ class HesapMiddleSide extends StatelessWidget {
               children: List.generate(
                 data.values.elementAt(index).length,
                 (innerIndex) => HesapOrderCardCustom(
+                  product: data.values.elementAt(index)[innerIndex],
                   text: data.values.elementAt(index)[innerIndex].title,
                   durationSiparis:
                       data.values.elementAt(index)[innerIndex].duration,

@@ -1,5 +1,9 @@
 // necessary
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/sepet/sepet_cubit.dart';
+import 'package:hesap/data/model/product.dart';
 
 // components
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
@@ -12,6 +16,7 @@ class HesapOrderCardCustom extends StatelessWidget {
   // TODO: card radius.circular kisimlarini da kullanicidan alsin
   const HesapOrderCardCustom({
     Key? key,
+    required this.product,
     required this.text,
     this.imageSiparisUrl =
         "https://cdn.yemek.com/mnresize/940/940/uploads/2014/06/mercimek-corbasi-yemekcom.jpg",
@@ -43,8 +48,8 @@ class HesapOrderCardCustom extends StatelessWidget {
     this.cardOffset = const Offset(0, 3),
   }) : super(key: key);
 
+  final Product product;
   final String text;
-
   final String imageSiparisUrl;
   final String priceSiparis;
   final String durationSiparis;
@@ -127,13 +132,20 @@ class HesapOrderCardCustom extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-                onPressed: () {}, // sepete ekleme burada yapilacak
-                icon: const Icon(
-                  Icons.add_box_rounded,
-                  color: AppColors.primary,
-                  size: Insets.x3l,
-                )),
+            child: AnimatedIconButton(
+              size: 36,
+              onPressed: () {
+                context.read<SepetCubit>().addToCart(product);
+              },
+              duration: const Duration(milliseconds: 1000),
+              splashColor: Colors.transparent,
+              icons: const <AnimatedIconItem>[
+                AnimatedIconItem(
+                  icon:
+                      Icon(Icons.add_circle_rounded, color: AppColors.primary),
+                ),
+              ],
+            ),
           ),
         ],
       ),
