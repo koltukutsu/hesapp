@@ -29,6 +29,8 @@ class _MenuBodyState extends State<MenuBody> {
     return BlocBuilder<MenuCubit, MenuState>(
       builder: (context, state) {
         if (state is MenuLoaded) {
+          debugPrint("ilk kontrol");
+          debugPrint(state.menu.toString());
           return SingleChildScrollView(
               child: HesapMiddleSide(data: state.menu));
         } else {
