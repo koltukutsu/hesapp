@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/data/repository/Order/OrderServices.dart';
-import 'package:get_it/get_it.dart';
+// import 'package:get_it/get_it.dart';
 
 import '../../../../data/model/order.dart';
 import '../../../theme/colors.dart';
