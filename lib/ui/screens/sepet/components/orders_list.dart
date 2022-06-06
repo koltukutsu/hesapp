@@ -101,7 +101,7 @@ class _OrdersListState extends State<OrdersList> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${order.price} ₺",
+                                        "${order.price} tl",
                                         style: const TextStyle(
                                           fontFamily: 'ubuntu',
                                           fontWeight: FontWeight.normal,
@@ -124,7 +124,7 @@ class _OrdersListState extends State<OrdersList> {
                                       ),
                                       SizedBox(
                                         height: 34,
-                                        width: 46,
+                                        width: 30,
                                         child: Container(
                                           decoration: const BoxDecoration(
                                             borderRadius: BorderRadius.all(

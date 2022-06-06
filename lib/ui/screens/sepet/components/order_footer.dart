@@ -68,7 +68,7 @@ class _SepetFooterState extends State<SepetFooter> {
                         child: Align(
                           alignment: AlignmentDirectional.center,
                           child: Text(
-                            "${context.watch<SepetCubit>().calculateOrderSum()} ₺",
+                            "${context.watch<SepetCubit>().calculateOrderSum()} tl",
                             style: const TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontWeight: FontWeight.normal,

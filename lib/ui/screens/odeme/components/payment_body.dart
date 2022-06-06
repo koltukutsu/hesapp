@@ -43,38 +43,40 @@ class _PaymentBodyState extends State<PaymentBody> {
   @override
   Widget build(BuildContext context) {
     if (widget.orderList.length == 0) {
-      return Center(
-          child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+      return SingleChildScrollView(
+        child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const HesapNormalText(
-                  text: "Seçili Kart",
-                ),
-                const PaymentChosenCard(),
-                const HesapNormalText(
-                  text: "Ödemek İçin Kartızını Seçin",
-                ),
-                const PaymentSavedCards(),
-                const SizedBox(
-                  height: 30,
-                ),
-                HesapButtonAnimated(
-                  label: "Öde",
-                  onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          const OrderDoneAlertDialog()),
-                )
-              ],
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const HesapNormalText(
+                    text: "Seçili Kart",
+                  ),
+                  const PaymentChosenCard(),
+                  const HesapNormalText(
+                    text: "Ödemek İçin Kartızını Seçin",
+                  ),
+                  const PaymentSavedCards(),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  HesapButtonAnimated(
+                    label: "Öde",
+                    onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            const OrderDoneAlertDialog()),
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
-      ));
+          ],
+        )),
+      );
     } else {
       return SingleChildScrollView(
         child: Column(

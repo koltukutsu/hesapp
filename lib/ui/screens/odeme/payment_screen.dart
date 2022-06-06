@@ -16,8 +16,8 @@ class PaymentScreen extends StatefulWidget {
 class _PaymentScreenState extends State<PaymentScreen> {
   @override
   initState(){
-    context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
-
+    // context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
+    // context.read<CardCubit>().fetchChosenCard();
   }
 
   @override
@@ -27,7 +27,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         title: const Text("Ödeme Ekranı"),
         backgroundColor: AppColors.primary,
       ),
-      body: PaymentBody(
+      body: const PaymentBody(
         orderList: [],
       ),
     );
