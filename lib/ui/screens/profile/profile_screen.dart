@@ -5,11 +5,12 @@ import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/cubit/order/order_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
+import 'package:hesap/ui/screens/profile/components/profile_card_add.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
-import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/util/animated_route.dart';
 import 'package:hesap/util/constants.dart';
 import 'components/profile_order_history.dart';
 import 'components/profile_saved_cards.dart';
@@ -131,9 +132,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           filled: false,
                           widthRatio: 0.28,
                           onPressed: () {
-                            // print("basildi");
-                            Navigator.of(context)
-                                .pushNamed(ROUTE_CREDIT_CARD_ADD);
+                            Navigator.push(
+                                context,
+                                FadeInRoute(
+                                    page: const HesapAddCreditCard(),
+                                    routeName: ROUTE_CREDIT_CARD_ADD));
                           }),
                     ),
                     const ProfileSavedCards(),
