@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hesap/ui/screens/on_boarding/components/hesap_aydinlatma_metni.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/animated_route.dart';
 import 'package:hesap/util/constants.dart';
 
 // bool _isSelected = false; // inside the widget not the build
@@ -58,7 +60,10 @@ class HesapAydinlanmaMetniCheckBox extends StatelessWidget {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         // debugPrint('Aydinlatma Metni Cikacak');
-                        Navigator.of(context).pushNamed(ROUTE_AYINLATMA_METNI);
+                        FadeInRoute(
+                            page: const HesapAydinlatmaMetni(),
+                            routeName: ROUTE_AYINLATMA_METNI);
+                        // Navigator.of(context).pushNamed(ROUTE_AYINLATMA_METNI);
                       },
                   ),
                 ),

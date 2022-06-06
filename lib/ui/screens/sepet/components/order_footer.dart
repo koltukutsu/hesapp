@@ -5,8 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
+import 'package:hesap/ui/screens/odeme/payment_screen.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
+import 'package:hesap/util/animated_route.dart';
 import 'package:hesap/util/constants.dart';
 
 class SepetFooter extends StatefulWidget {
@@ -80,8 +82,10 @@ class _SepetFooterState extends State<SepetFooter> {
                     ),
                     HesapButtonAnimated(
                       label: "ÖDE",
-                      onPressed: () =>
-                          Navigator.pushNamed(context, ROUTE_PAYMENT),
+                      onPressed: () =>FadeInRoute(
+                          page: const PaymentScreen(),
+                          routeName: ROUTE_PAYMENT),
+                          // Navigator.pushNamed(context, ROUTE_PAYMENT),
                       filled: true,
                       enabled: true,
                       height: 50,
