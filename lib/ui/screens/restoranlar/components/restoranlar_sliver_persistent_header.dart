@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
+import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/util/constants.dart';
@@ -40,28 +41,16 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
     double topPadding = MediaQuery.of(context).padding.top + 250;
 
     return Stack(
+      alignment: AlignmentDirectional.topEnd,
       children: [
-        MaviKisim1(topPadding: topPadding),
-        Align(
-          alignment: Alignment.topRight,
-          child: SvgPicture.asset('assets/images/background.svg'),
+        const SizedBox(
+          height: maxYukseklik,
         ),
-        const UserIkonu(),
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: Column(
-              children: const [
-                HesapYazisi(),
-              ],
-            ),
-          ),
-        ),
-        const Align(
-          alignment: Alignment.center,
-          child: KonumBilgisi(),
-        ),
+        MaviKisim(topPadding: topPadding),
+        SvgPicture.asset('assets/images/background.svg'),
+        UserIkonu(topPadding: topPadding, offset: offset),
+        HesapYazisi(topPadding: topPadding),
+        const KonumBilgisi(),
         QRKodOkutma(offset: offset),
         YakinimdakiMekanlar(offset: offset),
       ],
@@ -86,40 +75,44 @@ class KonumBilgisi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          Icons.location_on_outlined,
-          color: AppColors.white,
-          size: 25,
-        ),
-        BlocBuilder<KonumCubit, KonumState>(
-          builder: (context, state) {
-            if (state is KonumYuklendi) {
-              return Text(
-                '${state.adres?.first.street.toString()}, ${state.adres?.first.locality}',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: AppColors.white,
-                    fontSize: 15,
-                    fontFamily: 'Ubuntu',
-                    fontWeight: FontWeight.w300),
-              );
-            } else if (state is KonumYukleniyor) {
-              return const Center(child: Text('Konum Yükleniyor...'));
-            } else {
-              return Container();
-            }
-          },
-        )
-      ],
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 210,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.location_on_outlined,
+            color: AppColors.white,
+            size: 25,
+          ),
+          BlocBuilder<KonumCubit, KonumState>(
+            builder: (context, state) {
+              if (state is KonumYuklendi) {
+                return Text(
+                  '${state.adres?.first.street.toString()} ${state.adres?.first.subLocality}, ${state.adres?.first.locality}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      color: AppColors.white,
+                      fontSize: 15,
+                      fontFamily: 'Ubuntu',
+                      fontWeight: FontWeight.w300),
+                );
+              } else if (state is KonumYukleniyor) {
+                return const Center(child: Text('Konum Yükleniyor...'));
+              } else {
+                return Container();
+              }
+            },
+          )
+        ],
+      ),
     );
   }
 }
 
-class MaviKisim1 extends StatelessWidget {
-  const MaviKisim1({
+class MaviKisim extends StatelessWidget {
+  const MaviKisim({
     Key? key,
     required this.topPadding,
   }) : super(key: key);
@@ -132,8 +125,8 @@ class MaviKisim1 extends StatelessWidget {
       scale: 1.05,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(60),
-          bottomRight: Radius.circular(60),
+          bottomLeft: Radius.circular(70),
+          bottomRight: Radius.circular(70),
         ),
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -146,19 +139,38 @@ class MaviKisim1 extends StatelessWidget {
 }
 
 class UserIkonu extends StatelessWidget {
-  const UserIkonu({Key? key}) : super(key: key);
+  const UserIkonu({
+    Key? key,
+    required this.topPadding,
+    required this.offset,
+  }) : super(key: key);
+
+  final double topPadding;
+  final double offset;
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: AlignmentDirectional.topStart,
-      child: IconButton(
-        icon: const Icon(
-          Icons.person,
-          color: AppColors.white,
+      child: SizedBox(
+        height: topPadding - 180,
+        width: (150 - offset) * 0.7,
+        //TODO: Ya da visible olacak
+        child: IconButton(
+          onPressed: () {
+            //TODO: ROUTE GELECEK
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const GirisYapEkran(),
+              ),
+            );
+          },
+          icon: const Icon(
+            Icons.person,
+            size: 40,
+            color: AppColors.white,
+          ),
         ),
-        onPressed: () {},
-        iconSize: 36,
       ),
     );
   }
@@ -167,17 +179,28 @@ class UserIkonu extends StatelessWidget {
 class HesapYazisi extends StatelessWidget {
   const HesapYazisi({
     Key? key,
+    required this.topPadding,
   }) : super(key: key);
+
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'hesap',
-      style: TextStyle(
-        fontFamily: 'Ubuntu',
-        color: AppColors.white,
-        fontSize: 32,
-        fontWeight: FontWeight.w700,
+    return SizedBox(
+      height: topPadding - 20,
+      width: MediaQuery.of(context).size.width,
+      child: const Padding(
+        padding: EdgeInsets.all(18.0),
+        child: Text(
+          'hesap',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Ubuntu',
+            color: AppColors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     );
   }
@@ -277,11 +300,11 @@ class YakinimdakiMekanlar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Padding(
-                padding: EdgeInsets.all(4.0),
+                padding: EdgeInsets.all(3.0),
                 child: Text(
                   'Yakındaki Mekanlar',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 22,
                     fontFamily: ' Ubuntu',
                     color: AppColors.darkBackground,
                   ),
@@ -316,7 +339,7 @@ class YakinimdakiMekanlar extends StatelessWidget {
                           return IconButton(
                             icon: const Icon(
                               Icons.search,
-                              size: 32,
+                              size: 40,
                               color: AppColors.darkBackground,
                             ),
                             onPressed: () {
