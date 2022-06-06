@@ -43,7 +43,8 @@ class _ProfileExpandableButtonState extends State<ProfileExpandableButton> {
               children: [
                 Text(
                   widget.title,
-                  style: const TextStyle(fontSize: 16.0),
+                  style: const TextStyle(
+                      fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
                 Icon(
                   widget.expanded

@@ -55,7 +55,7 @@ class _ProfileSavedCardsState extends State<ProfileSavedCards> {
                     if (state.savedCards.isEmpty) {
                       return const Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Text("Kayıtlı kartınız bulunmuyor"),
+                        child: Text("Kayıtlı kartınız bulunmuyor. Kart Ekle kısmından ekleyebilirsiniz"),
                       );
                     }
                     return ListView.builder(

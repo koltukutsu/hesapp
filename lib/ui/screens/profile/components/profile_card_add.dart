@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_correct_snack_bar.dart';
@@ -224,6 +226,8 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
             correctSnackbar(
                 "Kartın eklendi. Eklenen kartını Kartlarım kısmından görebilirsin"),
           );
+        context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
+
       }
     }
 

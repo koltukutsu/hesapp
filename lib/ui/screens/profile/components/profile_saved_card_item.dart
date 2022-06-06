@@ -32,7 +32,7 @@ class _ProfileSavedCardItemState extends State<ProfileSavedCardItem> {
           //   width: 48,
           // ),
           SvgPicture.asset(
-            'assets/images/card_visa.svg',
+            'assets/images/card.svg',
             width: 48,
           ),
           Expanded(
