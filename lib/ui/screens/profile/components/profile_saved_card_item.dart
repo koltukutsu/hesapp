@@ -21,6 +21,63 @@ class ProfileSavedCardItem extends StatefulWidget {
 class _ProfileSavedCardItemState extends State<ProfileSavedCardItem> {
   @override
   Widget build(BuildContext context) {
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          // SvgPicture.asset(
+          //   'assets/images/card_${card.brand.name}.svg',
+          //   width: 48,
+          // ),
+          SvgPicture.asset(
+            'assets/images/card.svg',
+            width: 48,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  widget.card.number,
+                  style: const TextStyle(
+                    fontFamily: 'Ubuntu',
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  widget.card.name,
+                  style: const TextStyle(
+                    fontFamily: 'Ubuntu',
+                    fontSize: 14.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          HesapButtonAnimated(
+              label: "Sil",
+              color: AppColors.magenta,
+              filled: true,
+              widthRatio: 0.15,
+              onPressed: () {
+                kartSil(cardNumber: widget.card.number);
+                setState((){
+                  context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
+                });
+                ScaffoldMessenger.of(context)
+                  ..removeCurrentSnackBar()
+                  ..showSnackBar(
+                    correctSnackbar(
+                        "Kartın başarıyla silindi"),
+                  );
+              })
+        ],
+      ),
+    );
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(

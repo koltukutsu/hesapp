@@ -62,6 +62,7 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
               );
             },
             child: pages[state.index]),
+
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: keyboardIsOpened
             ? null
