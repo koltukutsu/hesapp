@@ -90,7 +90,7 @@ class HesapApp extends StatelessWidget {
               ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
               ROUTE_INTERNET_CONTROL: (context) => const InternetScreen(),
-              ROUTE_CREDIT_CARD_ADD: (context) => HesapAddCreditCard(),
+              ROUTE_CREDIT_CARD_ADD: (context) => const HesapAddCreditCard(),
               ROUTE_ANIMATED_SPLASH_SCREEN: (context) =>
                   const HesapAnimatedSplashScreen(),
               ROUTE_AYINLATMA_METNI: (context) => const HesapAydinlatmaMetni(),

@@ -44,7 +44,7 @@ class MenuItemCustom extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: Image.asset("assets/images/kazandibi.jpg"),
+                    child: Image.asset(""),
                   ),
                   Text(
                     product.title,

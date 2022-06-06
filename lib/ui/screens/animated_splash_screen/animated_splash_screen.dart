@@ -7,19 +7,6 @@ import 'package:hesap/ui/screens/internet/internet_screen.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 
-enum PageTransitionType {
-  fade,
-  rightToLeft,
-  leftToRight,
-  upToDown,
-  downToUp,
-  scale,
-  rotate,
-  size,
-  rightToLeftWithFade,
-  leftToRightWithFade,
-}
-
 class HesapAnimatedSplashScreen extends StatefulWidget {
   const HesapAnimatedSplashScreen({Key? key}) : super(key: key);
 
@@ -40,21 +27,22 @@ class _HesapAnimatedSplashScreenState extends State<HesapAnimatedSplashScreen> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-        duration: 2000,
-        splash: const Center(
-          child: HesapNormalText(
-              text: "hesap", fontSize: 60, textColor: AppColors.white),
-          // child: Transform.scale(
-          //     scale: 10,
-          //     child: const Icon(
-          //       Icons.ac_unit,
-          //       color: AppColors.white,
-          //     ))
-        ),
-        // TODO: splash ekrani ozel animasyon yada resim
-        nextScreen: const InternetScreen(),
-        splashTransition: SplashTransition.fadeTransition,
-        // pageTransitionType: PageTransitionType.scale,
-        backgroundColor: AppColors.primary);
+      duration: 2000,
+      splash: const Center(
+        child: HesapNormalText(
+            text: "hesap", fontSize: 60, textColor: AppColors.white),
+        // child: Transform.scale(
+        //     scale: 10,
+        //     child: const Icon(
+        //       Icons.ac_unit,
+        //       color: AppColors.white,
+        //     ))
+      ),
+      // TODO: splash ekrani ozel animasyon yada resim
+      nextScreen: const InternetScreen(),
+      splashTransition: SplashTransition.fadeTransition,
+      // pageTransitionType: PageTransitionType.scale,
+      backgroundColor: AppColors.primary,
+    );
   }
 }

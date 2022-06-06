@@ -1,8 +1,8 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hesap/ui/widgets/HesapSearch.dart';
-import 'package:hesap/ui/widgets/background.dart';
+import 'package:hesap/ui/widgets/hesap_search.dart';
+import 'package:hesap/ui/widgets/hesap_background.dart';
 
 // components
 import 'package:hesap/ui/widgets/hesap_text_card.dart';

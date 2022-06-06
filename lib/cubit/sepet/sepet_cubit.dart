@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hesap/data/model/order.dart';
 import 'package:hesap/data/model/product.dart';
-import 'package:hesap/data/repository/Order/OrderServices.dart';
 
 part 'sepet_state.dart';
 

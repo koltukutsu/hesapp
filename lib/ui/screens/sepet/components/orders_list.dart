@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
-import 'package:hesap/data/repository/Order/OrderServices.dart';
-import 'package:get_it/get_it.dart';
 import 'package:like_button/like_button.dart';
 
 import '../../../../data/model/order.dart';
@@ -20,9 +18,8 @@ class OrdersList extends StatefulWidget {
 class _OrdersListState extends State<OrdersList> {
   @override
   void initState() {
-    context.read<SepetCubit>().loadOrders();
-
     super.initState();
+    context.read<SepetCubit>().loadOrders();
   }
 
   @override
@@ -49,7 +46,8 @@ class _OrdersListState extends State<OrdersList> {
                         children: [
                           Checkbox(
                             checkColor: Colors.white,
-                            fillColor: MaterialStateProperty.resolveWith(getColor),
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
                             value: false,
                             onChanged: (bool? value) {
                               /*//setState(() {
@@ -71,7 +69,7 @@ class _OrdersListState extends State<OrdersList> {
                             // alignment: Alignment.bottomCenter,
                             // padding: const EdgeInsets.all(10),
                             // margin: const EdgeInsets.all(20),
-                            child: Image.asset("assets/images/kazandibi.jpg"),
+                            child: Image.asset(""),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -155,7 +153,8 @@ class _OrdersListState extends State<OrdersList> {
                                             });
                                             return !isLiked;
                                           },
-                                          animationDuration: const Duration(milliseconds: 500),
+                                          animationDuration:
+                                              const Duration(milliseconds: 500),
                                           size: 36,
                                           likeBuilder: (isLiked) {
                                             return const Icon(
@@ -196,6 +195,7 @@ class _OrdersListState extends State<OrdersList> {
       },
     );
   }
+
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
@@ -209,13 +209,10 @@ class _OrdersListState extends State<OrdersList> {
   }
 
   void _sepetFooterRefresh(BuildContext context) {
-
     Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => SepetFooter(),
         ));
   }
-
-
 }

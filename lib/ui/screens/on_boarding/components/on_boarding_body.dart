@@ -55,39 +55,39 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  Stack(alignment: Alignment.bottomCenter, children: [
-                    SvgPicture.asset('assets/images/on_boarding_1.svg'),
-                    Column(
-                      children: [
-                        const Text(
-                          "QR kodu okutarak garsonu beklemeden siparişinizi verebilir ve kasaya gitmeden hızlıca ödeme yapabilirsiniz.",
-                          style: TextStyle(
-                            fontFamily: 'Ubuntu',
-                            fontSize: 10,
-                            color: AppColors.gray,
-                          ),
-                          textAlign: TextAlign.center,
+                  SvgPicture.asset('assets/images/on_boarding_1.svg'),
+                  Column(
+                    children: [
+                      const Text(
+                        "QR kodu okutarak garsonu beklemeden siparişinizi verebilir ve kasaya gitmeden hızlıca ödeme yapabilirsiniz.",
+                        style: TextStyle(
+                          fontFamily: 'Ubuntu',
+                          fontSize: 18,
+                          color: AppColors.gray,
                         ),
-                        HesapAydinlanmaMetniCheckBox(
-                          label: "Aydınlanma Metni",
-                          padding: const EdgeInsets.only(
-                              top: 0, bottom: 0, left: 40, right: 40),
-                          // TODO: aydinlatma metninin pozisyonu ayarlanacak
-                          value: _isSelectedAydinlatmaMetni,
-                          onChanged: (bool newState) {
-                            setState(() {
+                        textAlign: TextAlign.center,
+                      ),
+                      HesapAydinlanmaMetniCheckBox(
+                        label: "Aydınlanma Metni",
+                        padding: const EdgeInsets.only(
+                            top: 0, bottom: 0, left: 40, right: 40),
+                        // TODO: aydinlatma metninin pozisyonu ayarlanacak
+                        value: _isSelectedAydinlatmaMetni,
+                        onChanged: (bool newState) {
+                          setState(
+                            () {
                               _isSelectedAydinlatmaMetni = newState;
                               if (_isSelectedAydinlatmaMetni) {
                                 _crossFadeState = CrossFadeState.showSecond;
                               } else {
                                 _crossFadeState = CrossFadeState.showFirst;
                               }
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ]),
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

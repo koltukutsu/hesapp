@@ -1,8 +1,6 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hesap/ui/screens/restoranlar/components/restoranlar_sliver_persistent_header.dart';
-import 'package:hesap/ui/widgets/HesapSearch.dart';
 
 // components
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
