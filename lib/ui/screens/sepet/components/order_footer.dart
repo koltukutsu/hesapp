@@ -82,10 +82,14 @@ class _SepetFooterState extends State<SepetFooter> {
                     ),
                     HesapButtonAnimated(
                       label: "ÖDE",
-                      onPressed: () =>FadeInRoute(
-                          page: const PaymentScreen(),
-                          routeName: ROUTE_PAYMENT),
-                          // Navigator.pushNamed(context, ROUTE_PAYMENT),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            FadeInRoute(
+                                page: const PaymentScreen(),
+                                routeName: ROUTE_PAYMENT));
+                      },
+                      // Navigator.pushNamed(context, ROUTE_PAYMENT),
                       filled: true,
                       enabled: true,
                       height: 50,

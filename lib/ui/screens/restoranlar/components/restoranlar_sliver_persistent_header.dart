@@ -5,8 +5,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
+import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/components/restoranlar_arama_temsilcisi.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/util/animated_route.dart';
 import 'package:hesap/util/constants.dart';
 
 class SliverHeader extends StatefulWidget {
@@ -156,7 +158,12 @@ class UserIkonu extends StatelessWidget {
           color: AppColors.white,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, ROUTE_PROFIL_EKRAN);
+          Navigator.push(
+              context,
+              FadeInRoute(
+                  page: const ProfileScreen(), routeName: ROUTE_PROFIL_EKRAN));
+
+          // Navigator.pushNamed(context, ROUTE_PROFIL_EKRAN);
         },
         iconSize: 36,
       ),

@@ -44,25 +44,26 @@ class HesapAydinlanmaMetniCheckBox extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     children: const <TextSpan>[
-                      TextSpan(text: "'ni kabul edin", style: TextStyle(
-                        color: AppColors.gray,
-                        decoration: TextDecoration.none,
-                        fontSize: 10
-                      ),)
+                      TextSpan(
+                        text: "'ni kabul edin",
+                        style: TextStyle(
+                            color: AppColors.gray,
+                            decoration: TextDecoration.none,
+                            fontSize: 10),
+                      )
                     ],
                     text: label,
                     style: const TextStyle(
-                      color: AppColors.primary,
-                      decoration: TextDecoration.underline,
-                        fontSize: 12
-
-                    ),
+                        color: AppColors.primary,
+                        decoration: TextDecoration.underline,
+                        fontSize: 12),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        // debugPrint('Aydinlatma Metni Cikacak');
-                        FadeInRoute(
-                            page: const HesapAydinlatmaMetni(),
-                            routeName: ROUTE_AYINLATMA_METNI);
+                        Navigator.push(
+                            context,
+                            FadeInRoute(
+                                page: const HesapAydinlatmaMetni(),
+                                routeName: ROUTE_AYINLATMA_METNI));
                         // Navigator.of(context).pushNamed(ROUTE_AYINLATMA_METNI);
                       },
                   ),

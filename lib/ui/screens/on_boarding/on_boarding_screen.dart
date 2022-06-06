@@ -24,21 +24,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       appBar: const OnBoardingAppBar(),
       body: OnBoardingBody(
         navigateToRegisterScreen: () {
-          FadeInRoute(
-              page: const UyeOlEkran(),
-              routeName: ROUTE_REGISTER);
+          Navigator.push(context,
+              FadeInRoute(page: const UyeOlEkran(), routeName: ROUTE_REGISTER));
+
           // Navigator.pushNamed(context, ROUTE_REGISTER);
         },
         navigateToLoginScreen: () {
-          FadeInRoute(
-              page: const GirisYapEkran(),
-              routeName: ROUTE_LOGIN);
+          Navigator.push(context,
+              FadeInRoute(page: const GirisYapEkran(), routeName: ROUTE_LOGIN));
+
           // Navigator.pushNamed(context, ROUTE_LOGIN);
         },
         signInAnonymously: () {
-          FadeInRoute(
-              page: const NameScreen(),
-              routeName: ROUTE_NAME);
+          Navigator.push(context,
+              FadeInRoute(page: const NameScreen(), routeName: ROUTE_NAME));
           // Navigator.pushNamed(context, ROUTE_NAME);
         },
       ),
