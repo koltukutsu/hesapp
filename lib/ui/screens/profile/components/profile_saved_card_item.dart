@@ -28,10 +28,6 @@ class _ProfileSavedCardItemState extends State<ProfileSavedCardItem> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // SvgPicture.asset(
-          //   'assets/images/card_${card.brand.name}.svg',
-          //   width: 48,
-          // ),
           SvgPicture.asset(
             'assets/images/card.svg',
             width: 48,
