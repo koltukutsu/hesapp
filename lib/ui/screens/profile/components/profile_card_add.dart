@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_correct_snack_bar.dart';
 import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HesapAddCreditCard extends StatefulWidget {
   const HesapAddCreditCard({Key? key}) : super(key: key);
@@ -23,8 +25,16 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
   OutlineInputBorder? border;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  // late final prefs;
+
   @override
   void initState() {
+    Future<void> callSharedPreference() async {
+      // shared preferences yuklendi
+    }
+
+    callSharedPreference();
+
     border = OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.grey.withOpacity(0.7),
@@ -127,42 +137,33 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
                       const SizedBox(
                         height: 20,
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          primary: AppColors.primary,
-                        ),
-                        child: Container(
-                          margin: const EdgeInsets.all(12),
-                          child: const Text(
-                            'Kontrol Et',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'halter',
-                              fontSize: 14,
-                              package: 'flutter_credit_card',
-                            ),
-                          ),
-                        ),
+                      HesapButtonAnimated(
+                        label: "Kartını Ekle",
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            print(formKey.currentState);
-                            ScaffoldMessenger.of(context)
-                              ..removeCurrentSnackBar()
-                              ..showSnackBar(
-                                correctSnackbar("Kart eklendi"),
-                              );
+                            sharedPreferenceAddCard(
+                                cardNumber: cardNumber,
+                                expiryDate: expiryDate,
+                                cardHolderName: cardHolderName,
+                                cvvCode: cvvCode);
                           } else {
                             ScaffoldMessenger.of(context)
                               ..removeCurrentSnackBar()
                               ..showSnackBar(
-                                errorSnackbar("Kart Eklenmedi"),
+                                errorSnackbar("Kart Bilgilerin Eksik"),
                               );
                           }
                         },
-                      ),
+                        widthRatio: 0.35,
+                        filled: true,
+                        enabled: ((cardNumber.length != 0) &&
+                                    (expiryDate.length != 0) &&
+                                    (cvvCode.length != 0) &&
+                                    (cardHolderName.length != 0)) ==
+                                true
+                            ? true
+                            : false,
+                      )
                     ],
                   ),
                 ),
@@ -182,5 +183,50 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
       cvvCode = creditCardModel.cvvCode;
       isCvvFocused = creditCardModel.isCvvFocused;
     });
+  }
+
+  Future<void> sharedPreferenceAddCard(
+      {required String cardNumber,
+      required String expiryDate,
+      required String cardHolderName,
+      required String cvvCode}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? kayitliKullaniciKartlari =
+        prefs.getStringList('kullanici_kartlar');
+
+    if (kayitliKullaniciKartlari == null) {
+      // await prefs.setStringList('kullanici_kartlar', <String>[]);
+      // List<String>? kayit_kullanici_kartlar =
+      prefs.getStringList('kullanici_kartlar');
+      kayitliKullaniciKartlari = [];
+      final String kullaniciKart =
+          "$cardNumber-$cardHolderName-$expiryDate-$cvvCode";
+      kayitliKullaniciKartlari.add(kullaniciKart);
+
+      await prefs.setStringList('kullanici_kartlar', kayitliKullaniciKartlari);
+    } else {
+      final String kullaniciKart =
+          "$cardNumber-$cardHolderName-$expiryDate-$cvvCode";
+      if (kayitliKullaniciKartlari.indexOf(kullaniciKart) != -1) {
+        ScaffoldMessenger.of(context)
+          ..removeCurrentSnackBar()
+          ..showSnackBar(
+            errorSnackbar("Bu Kart Daha Önce Girilmiş"),
+          );
+      } else {
+        kayitliKullaniciKartlari.add(kullaniciKart);
+
+        await prefs.setStringList(
+            'kullanici_kartlar', kayitliKullaniciKartlari);
+        ScaffoldMessenger.of(context)
+          ..removeCurrentSnackBar()
+          ..showSnackBar(
+            correctSnackbar(
+                "Kartın eklendi. Eklenen kartını Kartlarım kısmından görebilirsin"),
+          );
+      }
+    }
+
+    debugPrint(kayitliKullaniciKartlari.toString());
   }
 }

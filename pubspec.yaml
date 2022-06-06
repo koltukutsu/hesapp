@@ -29,6 +29,8 @@ dependencies:
   animated_splash_screen: ^1.2.0
   random_avatar: ^0.0.7
   animated_button: ^0.2.0
+  shared_preferences: ^2.0.15
+  shared_preferences_android: ^2.0.12
 
 dev_dependencies:
   flutter_test:
