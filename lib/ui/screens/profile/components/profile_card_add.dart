@@ -35,7 +35,7 @@ class _HesapAddCreditCard extends State<HesapAddCreditCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text("Kart Ekle"),
       ),

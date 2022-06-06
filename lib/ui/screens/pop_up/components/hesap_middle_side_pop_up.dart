@@ -62,52 +62,55 @@ class _HesapMiddleSidePopUpState extends State<HesapMiddleSidePopUp> {
                 Scrollbar(
                   thumbVisibility: true,
                   controller: _scrollBarController,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: snapshot.data!.docs.map(
-                      (DocumentSnapshot document) {
-                        Map<String, dynamic> data =
-                            document.data()! as Map<String, dynamic>;
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: snapshot.data!.docs.map(
+                        (DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
 
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 4,
-                            horizontal: 8,
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 46,
-                                width: 46,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.primary,
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 8,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 46,
+                                  width: 46,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.primary,
+                                  ),
+                                  child: randomAvatar(
+                                    data["ismi"],
+                                    height: 50,
+                                    width: 52,
+                                  ),
+                                  // child: const Icon(
+                                  //   Icons.person_rounded,
+                                  //   color: Colors.white,
+                                  // ),
+                                  alignment: Alignment.center,
                                 ),
-                                child: randomAvatar(
-                                  data["ismi"],
-                                  height: 50,
-                                  width: 52,
+                                const SizedBox(
+                                  width: 8,
                                 ),
-                                // child: const Icon(
-                                //   Icons.person_rounded,
-                                //   color: Colors.white,
-                                // ),
-                                alignment: Alignment.center,
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                data['ismi'],
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                Text(
+                                  data['ismi'],
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ).toList(),
+                              ],
+                            ),
+                          );
+                        },
+                      ).toList(),
+                    ),
                   ),
                 ),
               ],
