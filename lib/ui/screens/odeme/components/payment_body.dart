@@ -24,8 +24,8 @@ class _PaymentBodyState extends State<PaymentBody> {
   @override
   void initState() {
     super.initState();
-    context.read<CardCubit>().fetchSavedCards();
-
+    // context.read<CardCubit>().fetchSavedCards();
+    context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
     widget.orderList.fold<double>(
       0.0,
       (previousValue, order) {
@@ -121,7 +121,6 @@ class _PaymentBodyState extends State<PaymentBody> {
           ],
         ),
       );
-
     }
   }
 }

@@ -22,7 +22,7 @@ class CardRepository {
         SavedCard(
           name: value['name'],
           number: value['number'],
-          brand: CardBrand.values.byName(value['brand']),
+          // brand: CardBrand.values.byName(value['brand']),
         ),
       );
     }

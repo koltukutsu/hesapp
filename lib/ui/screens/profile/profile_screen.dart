@@ -34,7 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CardCubit>().fetchSavedCards();
+    // context.read<CardCubit>().fetchSavedCards();
+    context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
     context.read<OrderCubit>().fetchOrderHistory();
 
     hesapUser = context.read<AuthCubit>().getHesapUser()!;
@@ -156,8 +157,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             body: Center(
               child: Column(
                 children: const [
-                  HesapNormalText(text: "Giriş Ekranına Yönlendiriliyorsunuz",),
-                  SizedBox(width:50, height:50, child: CircularProgressIndicator())
+                  HesapNormalText(
+                    text: "Giriş Ekranına Yönlendiriliyorsunuz",
+                  ),
+                  SizedBox(
+                      width: 50, height: 50, child: CircularProgressIndicator())
                 ],
               ),
             ),
