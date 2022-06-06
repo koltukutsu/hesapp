@@ -61,6 +61,7 @@ class _HesapMiddleSideMasaState extends State<HesapMiddleSideMasa> {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.385,
                 child: ListView(
+                  controller: _scrollBarController,
                   shrinkWrap: true,
                   children: snapshot.data!.docs.map((DocumentSnapshot document) {
                     Map<String, dynamic> data =

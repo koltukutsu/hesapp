@@ -65,6 +65,7 @@ class _HesapMiddleSidePopUpState extends State<HesapMiddleSidePopUp> {
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.4,
                     child: ListView(
+                      controller: _scrollBarController,
                       shrinkWrap: true,
                       children: snapshot.data!.docs.map(
                         (DocumentSnapshot document) {

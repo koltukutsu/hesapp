@@ -6,6 +6,8 @@ import 'package:hesap/ui/widgets/hesap_correct_snack_bar.dart';
 import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
 
 class HesapAddCreditCard extends StatefulWidget {
+  const HesapAddCreditCard({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HesapAddCreditCard();
