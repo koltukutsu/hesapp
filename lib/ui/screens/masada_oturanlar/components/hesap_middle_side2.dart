@@ -26,6 +26,8 @@ class HesapMiddleSide2 extends StatefulWidget {
 }
 
 class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
+  final ScrollController _scrollBarController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,7 +55,9 @@ class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: Text("Yükleniyor"));
             }
-            return SingleChildScrollView(
+            return Scrollbar(
+              thumbVisibility: true,
+              controller: _scrollBarController,
               child: ListView(
                 shrinkWrap: true,
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {

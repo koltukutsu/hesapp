@@ -8,6 +8,8 @@ import 'package:hesap/ui/theme/colors.dart';
 // import 'package:flutter/services.dart';
 import 'package:hesap/ui/screens/masada_oturanlar/components/hesap_middle_side2.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/ui/widgets/hesap_text_card.dart';
 
 // component
 import 'package:hesap/util/constants.dart';
@@ -29,35 +31,33 @@ class _MasaTemelEkran extends State<MasaTemelEkran> {
       ),
       body: Column(
         children: [
-          // HesapNormalText(
-          //         text: context.read<MasaCubit>().restaurantName,
-          //         fontSize: 32,
-          //         textColor: AppColors.primary,
-          //         paddingTop: 10,
-          //         paddingBottom: 10),
-          //     HesapTextCard(
-          //         text: "Masa ${context.read<MasaCubit>().tableName}",
-          //       cardColor: AppColors.primary,
-          //       textColor: AppColors.white,
-          //       paddingTop: 10,
-          //       paddingBottom: 10,
-          //         fontSize: 28),
+          HesapNormalText(
+              text: context.read<MasaCubit>().restaurantName,
+              fontSize: 32,
+              textColor: AppColors.primary,
+              paddingTop: 10,
+              paddingBottom: 10),
+          HesapTextCard(
+              text: "Masa ${context.read<MasaCubit>().tableName}",
+              cardColor: AppColors.primary,
+              textColor: AppColors.white,
+              paddingTop: 10,
+              paddingBottom: 10,
+              fontSize: 28),
           SizedBox(
             // height: MediaQuery.of(context).size.height - 150,
-            height: MediaQuery.of(context).size.height * 0.65,
+            // height: MediaQuery.of(context).size.height * 0.1,
             child: Column(
               children: [
-                const SizedBox(
-                  height: 100,
-                ),
+                // const SizedBox(
+                //   height: 100,
+                // ),
                 HesapMiddleSide2(
                   qrStream: context.read<MasaCubit>().getPeopleOnTable(),
                 ),
               ],
             ),
           ),
-          // const MasayaOturun(),
-          // const Iptal(),
           const AnaEkranaDon(),
         ],
       ),
@@ -78,11 +78,6 @@ class AnaEkranaDon extends StatelessWidget {
         label: 'Masadan Kalk',
         filled: true,
         onPressed: () {
-          // Navigator.of(context).push
-          // context.read<QRCubit>().sitAtTableTest();
-          // Navigator.of(context).pushNamedAndRemoveUntil(
-          //     ROUTE_MAIN, (Route<dynamic> route) => false);
-          //context.read<QRCubit>().leaveTable();
           BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
