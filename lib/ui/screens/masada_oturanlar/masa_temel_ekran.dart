@@ -6,7 +6,7 @@ import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 // import 'package:flutter/services.dart';
-import 'package:hesap/ui/screens/masada_oturanlar/components/hesap_middle_side2.dart';
+import 'package:hesap/ui/screens/masada_oturanlar/components/hesap_middle_side_masa.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/ui/widgets/hesap_text_card.dart';
@@ -52,7 +52,7 @@ class _MasaTemelEkran extends State<MasaTemelEkran> {
                 // const SizedBox(
                 //   height: 100,
                 // ),
-                HesapMiddleSide2(
+                HesapMiddleSideMasa(
                   qrStream: context.read<MasaCubit>().getPeopleOnTable(),
                 ),
               ],

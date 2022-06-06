@@ -13,8 +13,8 @@ import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 import 'package:random_avatar/random_avatar.dart';
 
-class HesapMiddleSide2 extends StatefulWidget {
-  const HesapMiddleSide2({
+class HesapMiddleSideMasa extends StatefulWidget {
+  const HesapMiddleSideMasa({
     Key? key,
     required this.qrStream,
   }) : super(key: key);
@@ -22,10 +22,10 @@ class HesapMiddleSide2 extends StatefulWidget {
   final Stream<QuerySnapshot<Map<String, dynamic>>> qrStream;
 
   @override
-  State<HesapMiddleSide2> createState() => _HesapMiddleSide2State();
+  State<HesapMiddleSideMasa> createState() => _HesapMiddleSideMasaState();
 }
 
-class _HesapMiddleSide2State extends State<HesapMiddleSide2> {
+class _HesapMiddleSideMasaState extends State<HesapMiddleSideMasa> {
   final ScrollController _scrollBarController = ScrollController();
 
   @override

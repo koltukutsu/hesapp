@@ -5,7 +5,7 @@ import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
 
 // import 'package:flutter/services.dart';
-import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
+import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side_pop_up.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
@@ -55,7 +55,7 @@ class _PopUpEkran extends State<PopUpEkran> {
                     const SizedBox(
                       height: 25,
                     ),
-                    HesapMiddleSide2(
+                    HesapMiddleSidePopUp(
                       qrStream: context.read<MasaCubit>().getPeopleOnTable(),
                     ),
                   ],
