@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../cubit/masa/masa_cubit.dart';
 import '../../../theme/colors.dart';
 
 class SliverHeader extends StatefulWidget {
@@ -64,13 +66,12 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/images/sepet_icon.svg'),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  'CAFE FLUTTER',
+                  context.read<MasaCubit>().restaurantName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 32,
                       fontFamily: 'Quicksand',

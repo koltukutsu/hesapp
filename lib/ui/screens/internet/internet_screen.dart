@@ -5,9 +5,8 @@ import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_correct_snack_bar.dart';
 import 'package:hesap/ui/widgets/hesap_error_snack_bar.dart';
-import 'package:hesap/ui/widgets/hesap_information_snack_bar.dart';
+// import 'package:hesap/ui/widgets/hesap_information_snack_bar.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
-import 'package:hesap/util/constants.dart';
 
 class InternetScreen extends StatelessWidget {
   const InternetScreen({Key? key}) : super(key: key);
@@ -21,13 +20,13 @@ class InternetScreen extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
-              correctSnackbar("İnternete bağlanıldı"),
+              correctSnackbar("İnternete Bağlanıldı"),
             );
         } else if (state.isOnline == false) {
           ScaffoldMessenger.of(context)
             ..removeCurrentSnackBar()
             ..showSnackBar(
-              errorSnackbar("İnternet Yükleniyor"),
+              errorSnackbar("İnternete Bağlanılmadı"),
             );
         }
       },
@@ -42,7 +41,8 @@ class InternetScreen extends StatelessWidget {
               children: [
                 Transform.scale(
                   scale: 8,
-                  child: const Icon(Icons.report_problem, color: AppColors.magenta),
+                  child: const Icon(Icons.report_problem,
+                      color: AppColors.magenta),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 70.0),
@@ -52,8 +52,8 @@ class InternetScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(top: 6.0),
                   child: SizedBox(
-                      child: HesapNormalText(
-                          text: "Bağlantınızı kontrol edin")),
+                      child:
+                          HesapNormalText(text: "Bağlantınızı kontrol edin")),
                 ),
               ],
             ),

@@ -1,23 +1,26 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
-import 'package:hesap/ui/widgets/hesap_button.dart';
 
 // import 'package:flutter/services.dart';
-import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side2.dart';
+import 'package:hesap/ui/screens/pop_up/components/hesap_middle_side_pop_up.dart';
+import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/ui/widgets/hesap_text_card.dart';
 
 // component
-import 'package:hesap/ui/screens/common_screen_sections/hesap_up_side.dart';
 import 'package:hesap/util/constants.dart';
 
 class PopUpEkran extends StatefulWidget {
   const PopUpEkran({
     Key? key,
-    required this.qrData,
+    //required this.qrData,
   }) : super(key: key);
 
-  final List<String> qrData;
+  //final List<String> qrData;
 
   @override
   State<PopUpEkran> createState() => _PopUpEkran();
@@ -25,39 +28,44 @@ class PopUpEkran extends StatefulWidget {
 
 class _PopUpEkran extends State<PopUpEkran> {
   @override
-  void initState() {
-    super.initState();
-    context.read<MasaCubit>().setIds(widget.qrData);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height - 150,
-            child: SingleChildScrollView(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            children: [
+              HesapNormalText(
+                text: context.read<MasaCubit>().restaurantName,
+                fontSize: 32,
+                textColor: AppColors.primary,
+                paddingTop: 10,
+              ),
+              // paddingBottom: 10),
+              HesapTextCard(
+                  text: "Masa ${context.read<MasaCubit>().tableName}",
+                  cardColor: AppColors.primary,
+                  textColor: AppColors.white,
+                  paddingTop: 10,
+                  // paddingBottom: 10,
+                  fontSize: 28),
+              Expanded(
                 child: Column(
-              children: [
-                const SizedBox(
-                  height: 100,
-                ),
-                Column(
                   children: [
-                    Text(widget.qrData[0].toString()),
-                    Text(widget.qrData[1].toString()),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    HesapMiddleSidePopUp(
+                      qrStream: context.read<MasaCubit>().getPeopleOnTable(),
+                    ),
                   ],
                 ),
-                HesapMiddleSide2(
-                  qrStream: context.read<MasaCubit>().getPeopleOnTable(),
-                ),
-              ],
-            )),
+              ),
+              const MasayaOturun(),
+              const Iptal(),
+            ],
           ),
-          const MasayaOturun(),
-          const Iptal(),
-        ],
+        ),
       ),
     );
   }
@@ -72,12 +80,13 @@ class MasayaOturun extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: HesapButton(
-        label: 'Masaya Oturun',
+      child: HesapButtonAnimated(
+        label: "Masaya Oturun",
         filled: true,
         onPressed: () {
-          // Navigator.of(context).push
-          //context.read<QRCubit>().sitAtTableTest();
+          context
+              .read<MasaCubit>()
+              .sitAtTable(context.read<AuthCubit>().hesapUser!);
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_MAIN, (Route<dynamic> route) => false);
         },
@@ -95,11 +104,13 @@ class Iptal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: HesapButton(
+      child: HesapButtonAnimated(
         label: 'İptal',
         filled: false,
         onPressed: () {
-          //context.read<QRCubit>().leaveTable();
+          context
+              .read<MasaCubit>()
+              .leaveTable(context.read<AuthCubit>().hesapUser!);
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
         },

@@ -1,9 +1,13 @@
 // necessary
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/masa/masa_cubit.dart';
 import 'package:hesap/cubit/menu/menu_cubit.dart';
-import 'package:hesap/data/model/product.dart';
-import 'package:hesap/ui/screens/menu/components/menu_item.dart';
+import 'package:hesap/ui/screens/menu/components/hesap_middle_side.dart';
+import 'package:hesap/ui/screens/menu/components/menu_header.dart';
+import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/ui/widgets/hesap_text_card.dart';
 
 class MenuBody extends StatefulWidget {
   // TODO: text ve cardin oldugu kisim ScreenSection icine alinabilir.
@@ -30,21 +34,20 @@ class _MenuBodyState extends State<MenuBody> {
     return BlocBuilder<MenuCubit, MenuState>(
       builder: (context, state) {
         if (state is MenuLoaded) {
-        return ListView(
-          children: state.menu.map(
-            (Product product) {
-              return MenuItemCustom(
-                product: product,
-              );
-            },
-          ).toList(),
-        );
-        }
-        else {
-        return const Center(child: CircularProgressIndicator());
+          debugPrint("ilk kontrol");
+          debugPrint(state.menu.toString());
+          return Column(
+            children: [
+              // HesapUpSide(mekanIsmi: , secondText: ),
+              HesapMiddleSide(data: state.menu),
+            ],
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
         // return const Center(child: CircularProgressIndicator());
-
       },
     );
   }

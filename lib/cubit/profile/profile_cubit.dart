@@ -69,6 +69,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         username: username,
         email: email,
         phone: phone,
+        anonymous: false,
       ),
     );
   }

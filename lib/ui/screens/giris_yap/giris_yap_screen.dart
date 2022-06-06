@@ -34,13 +34,11 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
             password = value;
           },
           navigateToRegisterScreen: () {
+            Navigator.pop(context);
             Navigator.pushNamed(context, ROUTE_REGISTER);
           },
           signIn: () {
             context.read<AuthCubit>().signIn(email.trim(), password.trim());
-          },
-          signInAnonymously: () {
-            context.read<AuthCubit>().signInAnonymously();
           },
         ),
       ),

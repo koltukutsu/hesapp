@@ -22,13 +22,17 @@ import 'package:hesap/data/repository/order_history_repository.dart';
 import 'package:hesap/data/repository/profile_repository.dart';
 import 'package:hesap/data/repository/table_repository.dart';
 import 'package:hesap/data/repository/restoran/restoran_repository.dart';
+import 'package:hesap/ui/screens/animated_splash_screen/animated_splash_screen.dart';
 import 'package:hesap/ui/screens/base/base_screen.dart';
 import 'package:hesap/ui/screens/ana/ana_ekran.dart';
 import 'package:hesap/ui/screens/internet/internet_screen.dart';
+import 'package:hesap/ui/screens/name/name_screen.dart';
 import 'package:hesap/ui/screens/odeme/payment_screen.dart';
+import 'package:hesap/ui/screens/on_boarding/components/hesap_aydinlatma_metni.dart';
 import 'package:hesap/ui/screens/on_boarding/on_boarding_screen.dart';
 import 'package:hesap/ui/screens/giris_yap/giris_yap_screen.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
+import 'package:hesap/ui/screens/profile/components/profile_card_add.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/qr_scanner/qr_scanner_screen.dart';
 import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
@@ -63,7 +67,7 @@ class HesapApp extends StatelessWidget {
           create: (context) => SepetCubit(),
         ),
         BlocProvider(
-          create: (context) => MasaCubit(TableRepository()),
+          create: (context) => MasaCubit(TableRepository(), AuthRepository()),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
@@ -73,7 +77,7 @@ class HesapApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             themeMode: ThemeMode.system,
-            initialRoute: ROUTE_INTERNET_CONTROL,
+            initialRoute: ROUTE_ANIMATED_SPLASH_SCREEN,
             routes: {
               ROUTE_BASE: (context) => const BaseScreen(),
               ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
@@ -85,7 +89,13 @@ class HesapApp extends StatelessWidget {
               ROUTE_PAYMENT: (context) => const PaymentScreen(),
               ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
               ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
-              ROUTE_INTERNET_CONTROL: (context) => const InternetScreen()
+              ROUTE_INTERNET_CONTROL: (context) => const InternetScreen(),
+              ROUTE_CREDIT_CARD_ADD: (context) => const HesapAddCreditCard(),
+              ROUTE_ANIMATED_SPLASH_SCREEN: (context) =>
+                  const HesapAnimatedSplashScreen(),
+              ROUTE_AYINLATMA_METNI: (context) => const HesapAydinlatmaMetni(),
+              ROUTE_NAME: (context) => const NameScreen(),
+              ROUTE_POP_EKRAN: (context) => const PopUpEkran(),
             },
           );
         },

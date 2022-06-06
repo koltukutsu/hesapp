@@ -1,0 +1,116 @@
+{
+    "oturanlar": {
+        "erdem1ID1233": {
+            "isim": "erdem kalyoncu",
+            "alinanlar": {
+                "urun_unique_idsi": 3,
+                "urun_unique_idsi": 10
+            }
+        },
+        "semih2ID12313": {
+            "isim": "mehmet semih babacan",
+            "alinanlar": {
+                "urun_unique_idsi": 3,
+                "urun_unique_idsi": 10
+            }
+        },
+    }
+}
+// oturanlar<key>/oturan_id<key> => obk
+
+oturanlar.getKeys() => [
+    10 kisilik bir liste
+]
+oturan_id.getKeys() => [
+    20 urun
+]
+"$oturan_id/$urun_id"
+//////////////
+// menu<collection> -> kategori_unique_id -> (kategori-ismi<key>: "corbalar", ve, urunler<map>)
+{
+    "menu": {
+        "SDAJDLKSDKLAKD": {
+            "kategori-isim": "corbalar",
+            "urunler": {
+                "ASD123131": {
+                    "isim": "mercimek",
+                    "fiyat": 15,
+                    "sure": "10 dk",
+                    "resim": "url"
+                },
+                "ASD123131": {
+                    "isim": "mercimek",
+                    "fiyat": 15,
+                    "sure": "10 dk",
+                    "resim": "url"
+                }
+            }
+        },
+        "kategori_unique_id": {
+            "kategori-isim": "tatlilar",
+            "urunler": {
+                "ASD123131": {
+                    "isim": "mercimek",
+                    "fiyat": 15,
+                    "sure": "10 dk",
+                    "resim": "url"
+                },
+                "ASD123131": {
+                    "isim": "mercimek",
+                    "fiyat": 15,
+                    "sure": "10 dk",
+                    "resim": "url"
+                }
+            }
+        }
+    }
+}
+
+1. kategorik alinca hizlica menude gosterebiliriz
+2. musterilerden gelen unique urun id si ile 
+
+doc("menu").where("urunId", isEqualto: _urunId)
+
+// for kategore in kategories:
+//     for urunler_keys in menu[kategori]["urunler"].keys():
+//         if urunler_keys == aranan_unique_urun:
+//             aranan_urun = menu[kategori][""]
+{
+    "Tatlilar": [
+        "Sufle",
+        "Kazandibi",
+        "Sutlac"
+    ],
+    "Izgara & Kebap": [
+        "Adana Kebap",
+        "Urfa Kebap",
+        "Izgara Kofte"
+    ],
+    "Icecekler": [
+        "salgam suyu 200ml",
+        "ayran 300ml",
+        "portakal suyu 200ml"
+    ],
+}
+
+
+void main() {
+    final testMap = {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5
+    };
+    for (final mapEntry in testMap.entries) {
+      final key = mapEntry.key;
+      final value = mapEntry.value;
+      print('Key: $key, Value: $value'); // Key: a, Value: 1 ...
+    }
+  
+
+  Key: a, Value: 1
+Key: b, Value: 2
+Key: c, Value: 3
+Key: d, Value: 4
+Key: e, Value: 5

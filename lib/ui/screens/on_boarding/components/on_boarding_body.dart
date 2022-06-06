@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hesap/ui/screens/on_boarding/components/hesap_linked_label_check_box.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/insets.dart';
@@ -22,6 +24,9 @@ class OnBoardingBody extends StatefulWidget {
 }
 
 class _OnBoardingBodyState extends State<OnBoardingBody> {
+  bool _isSelectedAydinlatmaMetni = false; // inside the widget not the build
+  CrossFadeState _crossFadeState = CrossFadeState.showFirst;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -51,34 +56,88 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                     textAlign: TextAlign.center,
                   ),
                   SvgPicture.asset('assets/images/on_boarding_1.svg'),
-                  const Text(
-                    "QR kodu okutarak garsonu beklemeden siparişinizi verebilir ve kasaya gitmeden hızlıca ödeme yapabilirsiniz.",
-                    style: TextStyle(
-                      fontFamily: 'Ubuntu',
-                      fontSize: 16,
-                      color: AppColors.gray,
-                    ),
-                    textAlign: TextAlign.center,
+                  Column(
+                    children: [
+                      const Text(
+                        "QR kodu okutarak garsonu beklemeden siparişinizi verebilir ve kasaya gitmeden hızlıca ödeme yapabilirsiniz.",
+                        style: TextStyle(
+                          fontFamily: 'Ubuntu',
+                          fontSize: 18,
+                          color: AppColors.gray,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      HesapAydinlanmaMetniCheckBox(
+                        label: "Aydınlanma Metni",
+                        padding: const EdgeInsets.only(
+                            top: 0, bottom: 0, left: 40, right: 40),
+                        // TODO: aydinlatma metninin pozisyonu ayarlanacak
+                        value: _isSelectedAydinlatmaMetni,
+                        onChanged: (bool newState) {
+                          setState(
+                            () {
+                              _isSelectedAydinlatmaMetni = newState;
+                              if (_isSelectedAydinlatmaMetni) {
+                                _crossFadeState = CrossFadeState.showSecond;
+                              } else {
+                                _crossFadeState = CrossFadeState.showFirst;
+                              }
+                            },
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            HesapButton(
-              label: 'Giriş Yap',
-              filled: true,
+            HesapButtonAnimated(
+              label: "Giriş Yap",
               onPressed: widget.navigateToLoginScreen,
+              filled: true,
+              enabled: true,
             ),
-            HesapButton(
-              label: 'Üye Ol',
-              onPressed: widget.navigateToRegisterScreen,
+            AnimatedCrossFade(
+              crossFadeState: _crossFadeState,
+              duration: const Duration(milliseconds: 500),
+              firstCurve: Curves.easeOut,
+              secondCurve: Curves.easeIn,
+              firstChild: HesapButtonAnimated(
+                  label: "Üye Ol",
+                  onPressed: widget.navigateToRegisterScreen,
+                  filled: false,
+                  enabled: false),
+              secondChild: HesapButtonAnimated(
+                  label: "Üye Ol",
+                  onPressed: widget.navigateToRegisterScreen,
+                  filled: false,
+                  enabled: true),
             ),
-            Padding(
-              padding: const EdgeInsets.all(Insets.m),
-              child: TextButton(
-                onPressed: widget.signInAnonymously,
-                child: const Text(
-                  "Üye Olmadan Devam Et",
-                  style: TextStyle(color: AppColors.gray),
+            AnimatedCrossFade(
+              crossFadeState: _crossFadeState,
+              duration: const Duration(milliseconds: 500),
+              firstCurve: Curves.easeOut,
+              secondCurve: Curves.easeIn,
+              firstChild: const Padding(
+                // izin verilmiyor
+                padding: EdgeInsets.all(Insets.m),
+                child: TextButton(
+                  onPressed: null,
+                  child: Text(
+                    "Üye Olmadan Devam Et",
+                    style: TextStyle(color: AppColors.gray),
+                  ),
+                ),
+              ),
+              secondChild: Padding(
+                // izin veriliyor
+                padding: const EdgeInsets.all(Insets.m),
+                child: TextButton(
+                  onPressed: widget.signInAnonymously,
+                  child: const Text(
+                    "Üye Olmadan Devam Et",
+                    style: TextStyle(color: AppColors.gray),
+                  ),
                 ),
               ),
             ),

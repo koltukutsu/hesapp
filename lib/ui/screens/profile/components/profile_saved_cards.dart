@@ -7,6 +7,7 @@ import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/saved_card.dart' as card_model;
 import 'package:hesap/ui/screens/profile/components/profile_expandable_button.dart';
 import 'package:hesap/ui/screens/profile/components/profile_saved_card_item.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 
 class ProfileSavedCards extends StatefulWidget {
@@ -52,9 +53,25 @@ class _ProfileSavedCardsState extends State<ProfileSavedCards> {
                 builder: (context, state) {
                   if (state is CardLoaded) {
                     if (state.savedCards.isEmpty) {
-                      return const Padding(
+                      return Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Text("Kayıtlı kartınız bulunmuyor"),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Transform.scale(
+                              scale: 2.5,
+                              child: const Icon(Icons.report_problem,
+                                  color: AppColors.magenta),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text("Kayıtlı kartınız bulunmuyor."),
+                                Text(" Kart Ekle kısmından ekleyebilirsiniz")
+                              ],
+                            ),
+                          ],
+                        ),
                       );
                     }
                     return ListView.builder(

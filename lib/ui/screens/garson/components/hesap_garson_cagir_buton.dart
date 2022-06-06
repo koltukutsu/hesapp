@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/ui/widgets/hesap_information_snack_bar.dart';
 
 class HesapGarsonCagirButton extends StatelessWidget {
   const HesapGarsonCagirButton({Key? key}) : super(key: key);
@@ -7,7 +8,14 @@ class HesapGarsonCagirButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {}, // TODO: Fonksiyonellik eklenecek
+      onTap: () {
+        ScaffoldMessenger.of(context)
+          ..removeCurrentSnackBar()
+          ..showSnackBar(
+            informationSnackbar(
+                "Garson Çağrıldı. Garsonumuz sizinle ilgilenecektir."),
+          );
+      }, // TODO: Fonksiyonellik eklenecek
       child: Padding(
         padding: const EdgeInsets.all(1.0),
         child: Container(

@@ -2,11 +2,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hesap/util/hesap_exception.dart';
 
 class KonumRepository {
-  /// Son pozisyonu alır
-/*  Future<Position?> getLastKnownPosition() async {
-    return await Geolocator.getLastKnownPosition();
-  }*/
-
   Future<LocationPermission> checkPermission() async {
     LocationPermission permission;
 

@@ -6,30 +6,35 @@ class MenuRepository {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
-  Future<List<Product>> fetchMenu(String restaurantId) async {
-    var _menuSnapshot = await _firebaseFirestore
+  Future<Map<String, List<Product>>> fetchMenu(String restaurantId) async {
+    Map<String, List<Product>> menuMap = {};
+
+    var menuSnapshot = await _firebaseFirestore
         .collection('restoranlar/$restaurantId/menu')
         .get();
 
-    List<Product> menu = [];
-    for (var value in _menuSnapshot.docs) {
-      menu.add(
-        Product(
-          restaurantId: restaurantId,
-          productId: value.id,
-          title: value['isim'],
-          duration: value['sure'],
-          // image:
-          //     'https://firebasestorage.googleapis.com/v0/b/hesap-app.appspot.com/o/TyZa1uLFz27YKTH7Yhy2%2F85SlUdPiNLtdGyesK5MM.jpg?alt=media&token=3791a119-b614-494e-b14d-abcf2d6be63e',
-          image:
-              "https://www.refikaninmutfagi.com/wp-content/uploads/2021/04/3O7A3397-scaled.jpg",
-          // image: value["resim"],
-          price: value['fiyat'],
-          category: '',
-        ),
-      );
+    for (var category in menuSnapshot.docs) {
+      List<Product> productList = [];
+
+      var categorySnapshot = await _firebaseFirestore
+          .collection("restoranlar/$restaurantId/menu/${category.id}/urunler")
+          .get();
+
+      for (var product in categorySnapshot.docs) {
+        productList.add(
+          Product(
+            productId: product.id,
+            title: product['isim'],
+            price: product['fiyat'],
+            image: product['resim'],
+            duration: product['sure'],
+          ),
+        );
+      }
+
+      menuMap[category['kategori-isim']] = productList;
     }
 
-    return menu;
+    return menuMap;
   }
 }

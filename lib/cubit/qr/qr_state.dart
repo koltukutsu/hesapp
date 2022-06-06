@@ -10,10 +10,8 @@ class QRInitial extends QRState {
 }
 
 class QRSuccessful extends QRState {
-  const QRSuccessful(this.qrData);
-
-  final List<String> qrData;
+  const QRSuccessful();
 
   @override
-  List<Object?> get props => [qrData];
+  List<Object?> get props => [];
 }

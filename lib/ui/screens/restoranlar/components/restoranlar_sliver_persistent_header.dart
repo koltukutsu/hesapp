@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hesap/cubit/auth/auth_cubit.dart';
-import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/cubit/konum/konum_cubit.dart';
 import 'package:hesap/cubit/restoran/restoran_cubit.dart';
 import 'package:hesap/data/repository/konum/konum_repository.dart';
@@ -48,19 +46,9 @@ class SliverAppBar extends SliverPersistentHeaderDelegate {
         const SizedBox(
           height: maxYukseklik,
         ),
-        MaviKisim1(topPadding: topPadding),
+        MaviKisim(topPadding: topPadding),
         SvgPicture.asset('assets/images/background.svg'),
-        BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is AuthSignInSuccessful) {
-              return UserIkonu(topPadding: topPadding, offset: offset);
-            } else if (state is AuthLoading) {
-              return const CircularProgressIndicator();
-            } else {
-              return const Center();
-            }
-          },
-        ),
+        UserIkonu(topPadding: topPadding, offset: offset),
         HesapYazisi(topPadding: topPadding),
         const KonumBilgisi(),
         QRKodOkutma(offset: offset),
@@ -102,7 +90,7 @@ class KonumBilgisi extends StatelessWidget {
             builder: (context, state) {
               if (state is KonumYuklendi) {
                 return Text(
-                  '${state.adres?.first.street.toString()}, ${state.adres?.first.locality}',
+                  '${state.adres?.first.street.toString()} ${state.adres?.first.subLocality}, ${state.adres?.first.locality}',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: AppColors.white,
@@ -123,8 +111,8 @@ class KonumBilgisi extends StatelessWidget {
   }
 }
 
-class MaviKisim1 extends StatelessWidget {
-  const MaviKisim1({
+class MaviKisim extends StatelessWidget {
+  const MaviKisim({
     Key? key,
     required this.topPadding,
   }) : super(key: key);
@@ -162,18 +150,22 @@ class UserIkonu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      // onTap: () => Navigator.of(context).pushNamed(ROUTE_PROFIL_EKRAN),
-      onTap: () {
-        // print(12313);
-        Navigator.of(context).pushNamed(ROUTE_PROFIL_EKRAN);
-      },
-      child: Align(
-        alignment: AlignmentDirectional.topStart,
-        child: SizedBox(
-          height: topPadding - 180,
-          width: (150 - offset) * 0.7,
-          child: const Icon(
+    return Align(
+      alignment: AlignmentDirectional.topStart,
+      child: SizedBox(
+        height: topPadding - 180,
+        width: (150 - offset) * 0.7,
+        //TODO: Ya da visible olacak
+        child: IconButton(
+          onPressed: () {
+            //TODO: ROUTE GELECEK
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const GirisYapEkran(),
+              ),
+            );
+          },
+          icon: const Icon(
             Icons.person,
             size: 40,
             color: AppColors.white,
@@ -308,11 +300,11 @@ class YakinimdakiMekanlar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Padding(
-                padding: EdgeInsets.all(4.0),
+                padding: EdgeInsets.all(3.0),
                 child: Text(
                   'Yakındaki Mekanlar',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 22,
                     fontFamily: ' Ubuntu',
                     color: AppColors.darkBackground,
                   ),
@@ -347,7 +339,7 @@ class YakinimdakiMekanlar extends StatelessWidget {
                           return IconButton(
                             icon: const Icon(
                               Icons.search,
-                              size: 32,
+                              size: 40,
                               color: AppColors.darkBackground,
                             ),
                             onPressed: () {

@@ -26,7 +26,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Navigator.pushNamed(context, ROUTE_LOGIN);
         },
         signInAnonymously: () {
-          context.read<AuthCubit>().signInAnonymously();
+          Navigator.pushNamed(context, ROUTE_NAME);
         },
       ),
     );

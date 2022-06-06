@@ -5,9 +5,13 @@ import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/cubit/order/order_cubit.dart';
 import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
+import 'package:hesap/ui/screens/profile/components/profile_card_add.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
+import 'package:hesap/ui/widgets/hesap_normal_text.dart';
+import 'package:hesap/util/animated_route.dart';
 import 'package:hesap/util/constants.dart';
-
 import 'components/profile_order_history.dart';
 import 'components/profile_saved_cards.dart';
 import 'components/profile_text_field.dart';
@@ -31,10 +35,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<CardCubit>().fetchSavedCards();
+    // context.read<CardCubit>().fetchSavedCards();
+    context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
     context.read<OrderCubit>().fetchOrderHistory();
 
     hesapUser = context.read<AuthCubit>().getHesapUser()!;
+    name = hesapUser.name;
     username = hesapUser.username;
     email = hesapUser.email;
     phone = hesapUser.phone;
@@ -48,6 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return Scaffold(
             appBar: AppBar(
               title: const Text("Profil"),
+              backgroundColor: AppColors.primary,
               actions: [
                 IconButton(
                   icon: Icon(isEditing ? Icons.save : Icons.edit),
@@ -61,7 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(Insets.s),
+                padding: const EdgeInsets.symmetric(
+                    vertical: Insets.l, horizontal: Insets.s),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -117,6 +125,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         );
                       },
                     ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: HesapButtonAnimated(
+                          label: "Kart Ekle",
+                          filled: false,
+                          widthRatio: 0.28,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                FadeInRoute(
+                                    page: const HesapAddCreditCard(),
+                                    routeName: ROUTE_CREDIT_CARD_ADD));
+                          }),
+                    ),
                     const ProfileSavedCards(),
                     const ProfileOrderHistory(),
                     TextButton.icon(
@@ -136,11 +158,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         } else {
           return Scaffold(
             body: Center(
-              child: ElevatedButton(
-                child: const Text("Lütfen giriş yapın"),
-                onPressed: () {
-                  Navigator.pushNamed(context, ROUTE_ON_BOARDING);
-                },
+              child: Column(
+                children: const [
+                  HesapNormalText(
+                    text: "Giriş Ekranına Yönlendiriliyorsunuz",
+                  ),
+                  SizedBox(
+                      width: 50, height: 50, child: CircularProgressIndicator())
+                ],
               ),
             ),
           );

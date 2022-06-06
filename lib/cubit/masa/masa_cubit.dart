@@ -1,32 +1,45 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:hesap/data/model/hesap_user.dart';
+import 'package:hesap/data/repository/auth_repository.dart';
 import 'package:hesap/data/repository/table_repository.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 part 'masa_state.dart';
 
 class MasaCubit extends Cubit<MasaState> {
   final TableRepository _tableRepository;
-  MasaCubit(this._tableRepository) : super(MasaInitial());
+  final AuthRepository _authRepository;
+
+  MasaCubit(this._tableRepository, this._authRepository) : super(MasaInitial());
 
   String restaurantId = "";
   String tableId = "";
 
-  setIds(List<String> qrData) {
-    restaurantId = qrData[0];
-    tableId = qrData[1];
+  String restaurantName = "";
+  String tableName = "";
+
+  scan(Barcode qrData) {
+    var decodedData = qrData.code!.split('/');
+    restaurantId = decodedData[0];
+    tableId = decodedData[1];
+    emit(MasaInState(decodedData));
   }
 
   getPeopleOnTable() {
-    var tableStream =
-        _tableRepository.getPeopleAtTable([restaurantId, tableId]);
-    return tableStream;
+    return _tableRepository.getPeopleAtTable([restaurantId, tableId]);
   }
 
-/*
-  getTableInfo() async {
-    var masaData = await _tableRepository.getTableInfo(restaurantId, tableId);
-    emit(MasaBilgiYuklendi(masaData));
+  sitAtTable(HesapUser hesapUser) async {
+    _tableRepository.sitAtTable(
+      [restaurantId, tableId],
+      hesapUser,
+    );
   }
-  */
+
+  leaveTable(HesapUser hesapUser) async {
+    _tableRepository.leaveTable([restaurantId, tableId], hesapUser);
+    emit(MasaInitial());
+  }
 }

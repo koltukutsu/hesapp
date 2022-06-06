@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 
 class TableRepository {
@@ -27,9 +26,11 @@ class TableRepository {
     _firebaseFirestore
         .collection(query)
         .doc(_firebaseAuth.currentUser!.uid)
-        .set({
-      'ismi': hesapUser.name,
-    });
+        .set(
+      {
+        'ismi': hesapUser.name,
+      },
+    );
   }
 
   leaveTable(List<String> data, HesapUser hesapUser) {
@@ -44,22 +45,32 @@ class TableRepository {
         .delete();
   }
 
-  Future<List<String>> getTableInfo(String restoranId, String masaId) async {
+  Future<List<String>> getTableInfo(String restaurantId, String tableId) async {
     List<String> tableInfo = [];
 
     await _firebaseFirestore
         .collection('restoranlar')
-        .doc(restoranId)
+        .doc(restaurantId)
         .get()
-        .then((value) => {tableInfo.add(value['isim'])});
+        .then(
+          (value) => {
+            tableInfo.add(
+              value['isim'],
+            ),
+          },
+        );
 
     await _firebaseFirestore
-        .collection('restoranlar/$restoranId/masalar')
-        .doc(masaId)
+        .collection('restoranlar/$restaurantId/masalar')
+        .doc(tableId)
         .get()
-        .then((value) => {tableInfo.add(value['no'])});
-
-    debugPrint("TABLE_INFO: $tableInfo");
+        .then(
+          (value) => {
+            tableInfo.add(
+              value['no'].toString(),
+            ),
+          },
+        );
 
     return tableInfo;
   }

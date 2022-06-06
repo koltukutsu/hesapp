@@ -1,13 +1,14 @@
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
-import 'package:hesap/data/repository/Order/OrderServices.dart';
-// import 'package:get_it/get_it.dart';
+import 'package:like_button/like_button.dart';
 
 import '../../../../data/model/order.dart';
 import '../../../theme/colors.dart';
 import '../../../widgets/sepet_item.dart';
+import 'order_footer.dart';
 
 class OrdersList extends StatefulWidget {
   @override
@@ -17,9 +18,8 @@ class OrdersList extends StatefulWidget {
 class _OrdersListState extends State<OrdersList> {
   @override
   void initState() {
-    context.read<SepetCubit>().loadOrders();
-
     super.initState();
+    context.read<SepetCubit>().loadOrders();
   }
 
   @override
@@ -44,6 +44,18 @@ class _OrdersListState extends State<OrdersList> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: false,
+                            onChanged: (bool? value) {
+                              /*//setState(() {
+
+                                //_sepetFooterRefresh(context);
+                              });*/
+                            },
+                          ),
                           Container(
                             width: 105,
                             height: 72,
@@ -57,7 +69,12 @@ class _OrdersListState extends State<OrdersList> {
                             // alignment: Alignment.bottomCenter,
                             // padding: const EdgeInsets.all(10),
                             // margin: const EdgeInsets.all(20),
-                            child: Image.asset("assets/images/kazandibi.jpg"),
+                            // child: Image.asset(""),
+                            child: Image.network(
+                              order.image,
+                              height: 91,
+                              width: 110,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -84,7 +101,7 @@ class _OrdersListState extends State<OrdersList> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${order.price} ₺",
+                                        "${order.price} tl",
                                         style: const TextStyle(
                                           fontFamily: 'ubuntu',
                                           fontWeight: FontWeight.normal,
@@ -107,7 +124,7 @@ class _OrdersListState extends State<OrdersList> {
                                       ),
                                       SizedBox(
                                         height: 34,
-                                        width: 46,
+                                        width: 30,
                                         child: Container(
                                           decoration: const BoxDecoration(
                                             borderRadius: BorderRadius.all(
@@ -132,18 +149,36 @@ class _OrdersListState extends State<OrdersList> {
                                           ),
                                         ),
                                       ),
-                                      IconButton(
-                                        icon: const Icon(
-                                            Icons.add_circle_outline_rounded,
-                                            color: AppColors.primary),
-                                        onPressed: () {
-                                          setState(() {
-                                            context
-                                                .read<SepetCubit>()
-                                                .increment(order);
-                                          });
-                                        },
-                                      ),
+                                      LikeButton(
+                                          onTap: (bool isLiked) async {
+                                            setState(() {
+                                              context
+                                                  .read<SepetCubit>()
+                                                  .increment(order);
+                                            });
+                                            return !isLiked;
+                                          },
+                                          animationDuration:
+                                              const Duration(milliseconds: 500),
+                                          size: 36,
+                                          likeBuilder: (isLiked) {
+                                            return const Icon(
+                                                Icons
+                                                    .add_circle_outline_rounded,
+                                                color: AppColors.primary);
+                                          }),
+                                      // IconButton(
+                                      //   icon: const Icon(
+                                      //       Icons.add_circle_outline_rounded,
+                                      //       color: AppColors.primary),
+                                      //   onPressed: () {
+                                      //     setState(() {
+                                      //       context
+                                      //           .read<SepetCubit>()
+                                      //           .increment(order);
+                                      //     });
+                                      //   },
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -164,5 +199,25 @@ class _OrdersListState extends State<OrdersList> {
         }
       },
     );
+  }
+
+  Color getColor(Set<MaterialState> states) {
+    const Set<MaterialState> interactiveStates = <MaterialState>{
+      MaterialState.pressed,
+      MaterialState.hovered,
+      MaterialState.focused,
+    };
+    if (states.any(interactiveStates.contains)) {
+      return Colors.blue;
+    }
+    return Colors.blueAccent;
+  }
+
+  void _sepetFooterRefresh(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SepetFooter(),
+        ));
   }
 }

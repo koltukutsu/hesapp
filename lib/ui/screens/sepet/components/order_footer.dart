@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
 import 'package:hesap/ui/theme/colors.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/util/constants.dart';
 
 class SepetFooter extends StatefulWidget {
@@ -67,7 +68,7 @@ class _SepetFooterState extends State<SepetFooter> {
                         child: Align(
                           alignment: AlignmentDirectional.center,
                           child: Text(
-                            "${context.watch<SepetCubit>().calculateOrderSum()} ₺",
+                            "${context.watch<SepetCubit>().calculateOrderSum()} tl",
                             style: const TextStyle(
                                 fontFamily: 'Ubuntu',
                                 fontWeight: FontWeight.normal,
@@ -77,27 +78,14 @@ class _SepetFooterState extends State<SepetFooter> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 48.0,
-                      width: 84,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, ROUTE_PAYMENT);
-                        },
-                        child: const Text(
-                          "ÖDE",
-                          style: TextStyle(
-                              fontFamily: 'Ubuntu',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 20,
-                              color: AppColors.white),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            backgroundColor: AppColors.primary),
-                      ),
+                    HesapButtonAnimated(
+                      label: "ÖDE",
+                      onPressed: () =>
+                          Navigator.pushNamed(context, ROUTE_PAYMENT),
+                      filled: true,
+                      enabled: true,
+                      height: 50,
+                      widthRatio: 0.25,
                     ),
                   ],
                 ),

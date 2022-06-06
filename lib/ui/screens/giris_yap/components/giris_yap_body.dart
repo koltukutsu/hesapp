@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hesap/ui/theme/insets.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_text_field.dart';
 
 class GirisYapBody extends StatefulWidget {
@@ -9,7 +10,6 @@ class GirisYapBody extends StatefulWidget {
     required this.setEmail,
     required this.setPassword,
     required this.signIn,
-    required this.signInAnonymously,
     required this.navigateToRegisterScreen,
   }) : super(key: key);
 
@@ -17,7 +17,6 @@ class GirisYapBody extends StatefulWidget {
   final Function(String) setPassword;
   final VoidCallback signIn;
   final VoidCallback navigateToRegisterScreen;
-  final VoidCallback signInAnonymously;
 
   @override
   State<GirisYapBody> createState() => _GirisYapBodyState();
@@ -47,17 +46,27 @@ class _GirisYapBodyState extends State<GirisYapBody> {
             ),
             HesapTextField(
               label: "Şifre",
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               prefixIcon: const Icon(Icons.password_rounded),
               maxLength: 12,
               obscureText: true,
               onChanged: widget.setPassword,
+              suffixIcon: true,
+              passwordShow: true,
+              hintText: "12 karaktere kadar girebilirsiniz",
             ),
-            HesapButton(
+            HesapButtonAnimated(
               label: 'Giriş Yap',
               filled: true,
               onPressed: widget.signIn,
             ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextButton(
+                child: const Text("Hesabın yok mu? Şimdi üye ol."),
+                onPressed: widget.navigateToRegisterScreen,
+              ),
+            )
           ],
         ),
       ),

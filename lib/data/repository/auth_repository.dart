@@ -13,6 +13,15 @@ class AuthRepository {
 
     if (user == null) {
       return null;
+    } else if (user.isAnonymous) {
+      return HesapUser(
+        id: "",
+        name: user.displayName!,
+        username: "",
+        email: "",
+        phone: "",
+        anonymous: true,
+      );
     }
 
     var userDoc =
@@ -24,6 +33,7 @@ class AuthRepository {
       username: userDoc['username'],
       email: userDoc['email'],
       phone: userDoc['phone'],
+      anonymous: false,
     );
   }
 
@@ -51,8 +61,12 @@ class AuthRepository {
     }
   }
 
-  signInAnonymously() async {
-    await _firebaseAuth.signInAnonymously();
+  signInAnonymously(String username) async {
+    await _firebaseAuth.signInAnonymously().then(
+          (auth) => {
+            auth.user!.updateDisplayName(username),
+          },
+        );
   }
 
   signUp({
