@@ -7,6 +7,7 @@ import 'package:hesap/cubit/profile/profile_cubit.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_button_not_flexible.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 import 'package:hesap/util/constants.dart';
@@ -124,9 +125,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: HesapButtonNotFlexible(
+                      child: HesapButtonAnimated(
                           label: "Kart Ekle",
                           filled: false,
+                          widthRatio: 0.28,
                           onPressed: () {
                             // print("basildi");
                             Navigator.of(context)
@@ -150,18 +152,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           );
         } else {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
-              child: HesapNormalText(text: "Lütfen giriş yapın", ),
+              child: Column(
+                children: const [
+                  HesapNormalText(text: "Giriş Ekranına Yönlendiriliyorsunuz",),
+                  SizedBox(width:50, height:50, child: CircularProgressIndicator())
+                ],
+              ),
             ),
-            // body: Center(
-            //   child: ElevatedButton(
-            //     child: const Text("Lütfen giriş yapın"),
-            //     onPressed: () {
-            //       Navigator.pushNamed(context, ROUTE_ON_BOARDING);
-            //     },
-            //   ),
-            // ),
           );
         }
       },
