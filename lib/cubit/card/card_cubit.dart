@@ -37,4 +37,14 @@ class CardCubit extends Cubit<CardState> {
     }
     emit(CardLoaded(savedCards));
   }
+
+  fetchChosenCard() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? chosenCardAsString = prefs.getString('kullanici_kart');
+    var splittedChosenCardAsString = chosenCardAsString!.split("-");
+    var chosenUserCard = SavedCard(
+        name: splittedChosenCardAsString[1],
+        number: splittedChosenCardAsString[0]);
+    emit(UserCardLoaded(chosenUserCard));
+  }
 }

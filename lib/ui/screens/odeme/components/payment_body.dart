@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/data/model/order.dart';
+import 'package:hesap/ui/screens/odeme/components/order_is_done_alert.dart';
 import 'package:hesap/ui/screens/odeme/components/payment_card_list.dart';
+import 'package:hesap/ui/screens/odeme/components/payment_chosen_card.dart';
 import 'package:hesap/ui/screens/odeme/components/payment_item.dart';
+import 'package:hesap/ui/screens/odeme/components/payment_saved_card_item.dart';
+import 'package:hesap/ui/screens/odeme/components/payment_saved_cards.dart';
 import 'package:hesap/ui/screens/odeme/components/paymeny_agreement.dart';
 import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/widgets/hesap_button.dart';
+import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 import 'package:hesap/ui/widgets/hesap_normal_text.dart';
 
 class PaymentBody extends StatefulWidget {
@@ -24,7 +29,7 @@ class _PaymentBodyState extends State<PaymentBody> {
   @override
   void initState() {
     super.initState();
-    // context.read<CardCubit>().fetchSavedCards();
+    context.read<CardCubit>().fetchChosenCard();
     context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
     widget.orderList.fold<double>(
       0.0,
@@ -39,8 +44,36 @@ class _PaymentBodyState extends State<PaymentBody> {
   Widget build(BuildContext context) {
     if (widget.orderList.length == 0) {
       return Center(
-          child: HesapNormalText(
-        text: "Alinacak bir sey yok",
+          child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const HesapNormalText(
+                  text: "Seçili Kart",
+                ),
+                const PaymentChosenCard(),
+                const HesapNormalText(
+                  text: "Ödemek İçin Kartızını Seçin",
+                ),
+                const PaymentSavedCards(),
+                const SizedBox(
+                  height: 30,
+                ),
+                HesapButtonAnimated(
+                  label: "Öde",
+                  onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          const OrderDoneAlertDialog()),
+                )
+              ],
+            ),
+          ),
+        ],
       ));
     } else {
       return SingleChildScrollView(

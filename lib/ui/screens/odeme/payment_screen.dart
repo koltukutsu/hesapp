@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/card/card_cubit.dart';
 import 'package:hesap/data/model/order.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
 import 'components/payment_body.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  @override
+  initState(){
+    context.read<CardCubit>().fetchSavedCardFromSharedPreferences();
+
+  }
 
   @override
   Widget build(BuildContext context) {

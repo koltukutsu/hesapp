@@ -69,7 +69,12 @@ class _OrdersListState extends State<OrdersList> {
                             // alignment: Alignment.bottomCenter,
                             // padding: const EdgeInsets.all(10),
                             // margin: const EdgeInsets.all(20),
-                            child: Image.asset(""),
+                            // child: Image.asset(""),
+                            child: Image.network(
+                              order.image,
+                              height: 91,
+                              width: 110,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
