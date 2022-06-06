@@ -24,32 +24,16 @@ class MasaCubit extends Cubit<MasaState> {
     var decodedData = qrData.code!.split('/');
     restaurantId = decodedData[0];
     tableId = decodedData[1];
-    //emit(MasaInState());
-  }
-
-  scanTest() async {
-    List<String> decodedQRData = [
-      "TyZa1uLFz27YKTH7Yhy2",
-      "JcDxVOOOxQy0ZQQxPIOm"
-    ];
-    restaurantId = decodedQRData[0];
-    tableId = decodedQRData[1];
-
-    List<String> tableInfo =
-        await _tableRepository.getTableInfo(restaurantId, tableId);
-    restaurantName = tableInfo[0];
-    tableName = tableInfo[1];
-
-    emit(MasaInState(tableInfo));
+    emit(MasaInState(decodedData));
   }
 
   getPeopleOnTable() {
     return _tableRepository.getPeopleAtTable([restaurantId, tableId]);
   }
 
-  sitAtTableTest(HesapUser hesapUser) async {
+  sitAtTable(HesapUser hesapUser) async {
     _tableRepository.sitAtTable(
-      ["TyZa1uLFz27YKTH7Yhy2", "JcDxVOOOxQy0ZQQxPIOm"],
+      [restaurantId, tableId],
       hesapUser,
     );
   }

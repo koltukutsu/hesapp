@@ -18,13 +18,6 @@ class _QRScannerBodyState extends State<QRScannerBody> {
   QRViewController? controller;
 
   @override
-  void initState() {
-    // TODO: QR okutma ekranını hızlıca geçmek için. Silinecek.
-    super.initState();
-    context.read<MasaCubit>().scanTest();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
@@ -38,7 +31,7 @@ class _QRScannerBodyState extends State<QRScannerBody> {
                   (scanData) {
                     setState(
                       () {
-                        //context.read<MasaCubit>().scan(scanData);
+                        context.read<MasaCubit>().scan(scanData);
                       },
                     );
                   },
@@ -60,16 +53,6 @@ class _QRScannerBodyState extends State<QRScannerBody> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Transform.scale(
-                        scale: 4,
-                        child: IconButton(
-                          // TODO: burasi sonradan kaldirilacak
-                          icon: const Icon(Icons.play_arrow),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(ROUTE_POP_EKRAN);
-                          },
-                        ),
-                      ),
                       const Text(
                         "Masadaki QR kodu okutun",
                         style: TextStyle(
