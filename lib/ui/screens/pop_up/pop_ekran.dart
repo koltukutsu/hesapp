@@ -86,7 +86,7 @@ class MasayaOturun extends StatelessWidget {
         onPressed: () {
           context
               .read<MasaCubit>()
-              .sitAtTableTest(context.read<AuthCubit>().hesapUser!);
+              .sitAtTable(context.read<AuthCubit>().hesapUser!);
           Navigator.of(context).pushNamedAndRemoveUntil(
               ROUTE_MAIN, (Route<dynamic> route) => false);
         },
