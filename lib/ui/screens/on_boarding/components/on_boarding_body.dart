@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hesap/cubit/auth/auth_cubit.dart';
 import 'package:hesap/ui/screens/on_boarding/components/hesap_linked_label_check_box.dart';
 import 'package:hesap/ui/widgets/hesap_button_animated.dart';
 
@@ -97,26 +99,42 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               ),
             ),
             HesapButtonAnimated(
-              label: "Giriş Yap",
-              onPressed: widget.navigateToLoginScreen,
-              filled: true,
-              enabled: true,
-            ),
-            AnimatedCrossFade(
-              crossFadeState: _crossFadeState,
-              duration: const Duration(milliseconds: 500),
-              firstCurve: Curves.easeOut,
-              secondCurve: Curves.easeIn,
-              firstChild: HesapButtonAnimated(
-                  label: "Üye Ol",
-                  onPressed: widget.navigateToRegisterScreen,
-                  filled: false,
-                  enabled: false),
-              secondChild: HesapButtonAnimated(
-                  label: "Üye Ol",
-                  onPressed: widget.navigateToRegisterScreen,
-                  filled: false,
-                  enabled: true),
+                label: "Google ile Giriş Yap",
+                onPressed: () async {
+                  await context.read<AuthCubit>().signUpWithGoogle();
+                },
+                filled: false,
+                widthRatio: 0.6,
+                enabled: true),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedCrossFade(
+                  crossFadeState: _crossFadeState,
+                  duration: const Duration(milliseconds: 500),
+                  firstCurve: Curves.easeOut,
+                  secondCurve: Curves.easeIn,
+                  firstChild: HesapButtonAnimated(
+                      label: "Üye Ol",
+                      onPressed: widget.navigateToRegisterScreen,
+                      filled: false,
+                      widthRatio: 0.3,
+                      enabled: false),
+                  secondChild: HesapButtonAnimated(
+                      label: "Üye Ol",
+                      onPressed: widget.navigateToRegisterScreen,
+                      filled: false,
+                      widthRatio: 0.3,
+                      enabled: true),
+                ),
+                HesapButtonAnimated(
+                  label: "Giriş Yap",
+                  onPressed: widget.navigateToLoginScreen,
+                  filled: true,
+                  enabled: true,
+                  widthRatio: 0.3,
+                ),
+              ],
             ),
             AnimatedCrossFade(
               crossFadeState: _crossFadeState,

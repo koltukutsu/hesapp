@@ -79,24 +79,24 @@ class _HesapMiddleSidePopUpState extends State<HesapMiddleSidePopUp> {
                             ),
                             child: Row(
                               children: [
-                                Container(
-                                  height: 46,
-                                  width: 46,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.primary,
-                                  ),
-                                  child: randomAvatar(
-                                    data["ismi"],
-                                    height: 50,
-                                    width: 52,
-                                  ),
-                                  // child: const Icon(
-                                  //   Icons.person_rounded,
-                                  //   color: Colors.white,
-                                  // ),
-                                  alignment: Alignment.center,
-                                ),
+                                // Container(
+                                //   height: 46,
+                                //   width: 46,
+                                //   decoration: const BoxDecoration(
+                                //     shape: BoxShape.circle,
+                                //     color: AppColors.primary,
+                                //   ),
+                                //   child: randomAvatar(
+                                //     data["ismi"],
+                                //     height: 50,
+                                //     width: 52,
+                                //   ),
+                                //   // child: const Icon(
+                                //   //   Icons.person_rounded,
+                                //   //   color: Colors.white,
+                                //   // ),
+                                //   alignment: Alignment.center,
+                                // ),
                                 const SizedBox(
                                   width: 8,
                                 ),

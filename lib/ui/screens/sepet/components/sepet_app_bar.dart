@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
-class SepetAppBar extends StatelessWidget with PreferredSizeWidget {
+class SepetAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SepetAppBar({Key? key}) : super(key: key);
 
   @override

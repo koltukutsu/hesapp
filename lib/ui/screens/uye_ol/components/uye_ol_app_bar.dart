@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../theme/colors.dart';
 
-class UyeOlAppBar extends StatelessWidget with PreferredSizeWidget {
+class UyeOlAppBar extends StatelessWidget implements PreferredSizeWidget {
   const UyeOlAppBar({Key? key, required this.onBack}) : super(key: key);
 
   final VoidCallback onBack;

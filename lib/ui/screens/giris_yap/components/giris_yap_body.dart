@@ -55,18 +55,25 @@ class _GirisYapBodyState extends State<GirisYapBody> {
               passwordShow: true,
               hintText: "12 karaktere kadar girebilirsiniz",
             ),
-            HesapButtonAnimated(
-              label: 'Giriş Yap',
-              filled: true,
-              onPressed: widget.signIn,
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextButton(
+                    child: const Text("Üye Ol."),
+                    onPressed: widget.navigateToRegisterScreen,
+                  ),
+                ),
+                HesapButtonAnimated(
+                  widthRatio: 0.3,
+                  label: 'Giriş Yap',
+                  filled: true,
+                  onPressed: widget.signIn,
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextButton(
-                child: const Text("Hesabın yok mu? Şimdi üye ol."),
-                onPressed: widget.navigateToRegisterScreen,
-              ),
-            )
           ],
         ),
       ),

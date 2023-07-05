@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
-class OnBoardingAppBar extends StatelessWidget with PreferredSizeWidget {
+class OnBoardingAppBar extends StatelessWidget implements PreferredSizeWidget {
   const OnBoardingAppBar({Key? key}) : super(key: key);
 
   @override

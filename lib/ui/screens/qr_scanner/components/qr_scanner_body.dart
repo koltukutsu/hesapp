@@ -29,6 +29,7 @@ class _QRScannerBodyState extends State<QRScannerBody> {
                 this.controller = controller;
                 controller.scannedDataStream.listen(
                   (scanData) {
+                    print("AHHAAHAHA");
                     setState(
                       () {
                         context.read<MasaCubit>().scan(scanData);
