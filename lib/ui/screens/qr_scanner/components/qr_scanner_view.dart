@@ -12,7 +12,7 @@ class QRScanner extends StatelessWidget {
   Widget build(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
-        ? 150.0
+        ? 250.0
         : 300.0;
 
     return QRView(
