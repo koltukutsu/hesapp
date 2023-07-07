@@ -39,6 +39,7 @@ import 'package:hesap/ui/screens/restoranlar/restoranlar_screen.dart';
 import 'package:hesap/ui/screens/sepet/order_screen.dart';
 import 'package:hesap/ui/screens/uye_ol/uye_ol_ekran.dart';
 import 'package:hesap/util/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class HesapApp extends StatelessWidget {
   const HesapApp({Key? key}) : super(key: key);
@@ -72,31 +73,33 @@ class HesapApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {
-          return MaterialApp(
-            title: 'Hesap',
-            debugShowCheckedModeBanner: false,
-            theme: theme,
-            themeMode: ThemeMode.system,
-            initialRoute: ROUTE_ANIMATED_SPLASH_SCREEN,
-            routes: {
-              ROUTE_BASE: (context) => const BaseScreen(),
-              ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
-              ROUTE_MAIN: (context) => const AnaEkran(),
-              ROUTE_LOGIN: (context) => const GirisYapEkran(),
-              ROUTE_REGISTER: (context) => const UyeOlEkran(),
-              ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
-              ROUTE_SEPET_EKRAN: (context) => OrderScreen(),
-              ROUTE_PAYMENT: (context) => const PaymentScreen(),
-              ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
-              ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
-              ROUTE_INTERNET_CONTROL: (context) => const InternetScreen(),
-              ROUTE_CREDIT_CARD_ADD: (context) => const HesapAddCreditCard(),
-              ROUTE_ANIMATED_SPLASH_SCREEN: (context) =>
-                  const HesapAnimatedSplashScreen(),
-              ROUTE_AYINLATMA_METNI: (context) => const HesapAydinlatmaMetni(),
-              ROUTE_NAME: (context) => const NameScreen(),
-              ROUTE_POP_EKRAN: (context) => const PopUpEkran(),
-            },
+          return Sizer(
+            builder:(context, orientation, deviceType) => MaterialApp(
+              title: 'Hesap',
+              debugShowCheckedModeBanner: false,
+              theme: theme,
+              themeMode: ThemeMode.system,
+              initialRoute: ROUTE_ANIMATED_SPLASH_SCREEN,
+              routes: {
+                ROUTE_BASE: (context) => const BaseScreen(),
+                ROUTE_ON_BOARDING: (context) => const OnBoardingScreen(),
+                ROUTE_MAIN: (context) => const AnaEkran(),
+                ROUTE_LOGIN: (context) => const GirisYapEkran(),
+                ROUTE_REGISTER: (context) => const UyeOlEkran(),
+                ROUTE_RESTAURANTS: (context) => const RestoranEkran(),
+                ROUTE_SEPET_EKRAN: (context) => OrderScreen(),
+                ROUTE_PAYMENT: (context) => const PaymentScreen(),
+                ROUTE_QR_SCREEN: (context) => const QRScannerScreen(),
+                ROUTE_PROFIL_EKRAN: (context) => const ProfileScreen(),
+                ROUTE_INTERNET_CONTROL: (context) => const InternetScreen(),
+                ROUTE_CREDIT_CARD_ADD: (context) => const HesapAddCreditCard(),
+                ROUTE_ANIMATED_SPLASH_SCREEN: (context) =>
+                    const HesapAnimatedSplashScreen(),
+                ROUTE_AYINLATMA_METNI: (context) => const HesapAydinlatmaMetni(),
+                ROUTE_NAME: (context) => const NameScreen(),
+                ROUTE_POP_EKRAN: (context) => const PopUpEkran(),
+              },
+            ),
           );
         },
       ),

@@ -10,29 +10,38 @@ class MenuRepository {
     Map<String, List<Product>> menuMap = {};
 
     var menuSnapshot = await _firebaseFirestore
-        .collection('restoranlar/$restaurantId/menu')
+        .collection('restaurants/$restaurantId/menu')
         .get();
-
+    var menudocument = await _firebaseFirestore
+        .doc('restaurants/$restaurantId')
+        .get();
+    print("Restorant Name");
+    print(menudocument["restaurant_name"]);
+    print("MENU Snapshot");
+    print(menuSnapshot.docs.length);
     for (var category in menuSnapshot.docs) {
       List<Product> productList = [];
 
       var categorySnapshot = await _firebaseFirestore
-          .collection("restoranlar/$restaurantId/menu/${category.id}/urunler")
+          .collection("restaurants/$restaurantId/menu/${category.id}/items")
           .get();
-
+      print(category.id);
       for (var product in categorySnapshot.docs) {
         productList.add(
           Product(
             productId: product.id,
-            title: product['isim'],
-            price: product['fiyat'],
-            image: product['resim'],
-            duration: product['sure'],
+            explanation: product['explanation'],
+            stock: product['stock'],
+            title: product['name'],
+            price: product['price'],
+            image: product['picture_url'],
+            duration: product['preparing_time'],
           ),
         );
       }
-
-      menuMap[category['kategori-isim']] = productList;
+      print("HERE IS THE CATR");
+      print(category);
+      menuMap[category['category_name']] = productList;
     }
 
     return menuMap;
