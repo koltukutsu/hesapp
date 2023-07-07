@@ -22,6 +22,8 @@ class _OrdersListState extends State<OrdersList> {
     context.read<SepetCubit>().loadOrders();
   }
 
+  bool changeValue = false;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SepetCubit, SepetState>(
@@ -45,11 +47,14 @@ class _OrdersListState extends State<OrdersList> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Checkbox(
-                            checkColor: Colors.white,
+                            checkColor: Colors.black,
                             fillColor:
                                 MaterialStateProperty.resolveWith(getColor),
-                            value: false,
+                            value: changeValue,
                             onChanged: (bool? value) {
+                              setState(() {
+                                changeValue = value!;
+                              });
                               /*//setState(() {
 
                                 //_sepetFooterRefresh(context);
@@ -119,6 +124,9 @@ class _OrdersListState extends State<OrdersList> {
                                             context
                                                 .read<SepetCubit>()
                                                 .decrement(order);
+                                            context
+                                                .read<SepetCubit>()
+                                                .decrementTotalSumWithoutEmit();
                                           });
                                         },
                                       ),
@@ -155,6 +163,9 @@ class _OrdersListState extends State<OrdersList> {
                                               context
                                                   .read<SepetCubit>()
                                                   .increment(order);
+                                              context
+                                                  .read<SepetCubit>()
+                                                  .incrementTotalSumWithoutEmit();
                                             });
                                             return !isLiked;
                                           },

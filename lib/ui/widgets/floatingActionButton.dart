@@ -34,12 +34,12 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
         // });
       },
       child: BlocBuilder<SepetCubit, SepetState>(
-        buildWhen: (previous, current) {
-          return current is SepetDecrement || current is SepetIncrement;
-        },
+        // buildWhen: (previous, current) {
+        //   return current is SepetDecrement || current is SepetIncrement;
+        // },
         builder: (context, state) => badges.Badge(
-          showBadge: context.read<SepetCubit>().orderSums >= 0,
-          badgeContent: Text(context.read<SepetCubit>().orderSums.toString(),
+          showBadge: context.watch<SepetCubit>().orderSums >= 0,
+          badgeContent: Text(context.watch<SepetCubit>().orderSums.toString(),
               style: TextStyle(
                   color: AppColors.primary,
                   fontWeight: FontWeight.bold,

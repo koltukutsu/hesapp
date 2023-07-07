@@ -75,9 +75,17 @@ class SepetCubit extends Cubit<SepetState> {
     emit(const SepetIncrement());
     emit(SepetSuccess(orderList));
   }
-  decrementTotalSum(){
+  decrementTotalSumWithoutEmit(){
     orderSums--;
     emit(const SepetDecrement());
     emit(SepetSuccess(orderList));
+  }
+  incrementTotalSumWithoutEmit(){
+    orderSums++;
+  }
+  updateSepet(){
+    emit(const SepetDecrement());
+    emit(SepetSuccess(orderList));
+
   }
 }
