@@ -46,8 +46,18 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
           children: [
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  const Text(
+                    "hesap",
+                    style: TextStyle(
+                      fontFamily: 'Ubuntu',
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primary,
+                      fontSize: 40.0,
+                      letterSpacing: -2,
+                    ),
+                  ),
                   const Text(
                     "Hesap ile sipariş ve ödeme çok kolay!",
                     style: TextStyle(

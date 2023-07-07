@@ -42,7 +42,7 @@ class _HesapButtonAnimatedState extends State<HesapButtonAnimated> {
         height: widget.height,
         color: widget.enabled
             ? (widget.filled ? widget.color : AppColors.white)
-            : Colors.grey.shade300,
+            : Colors.grey.shade100,
         child: Text(
           widget.label,
           style: TextStyle(
@@ -51,7 +51,7 @@ class _HesapButtonAnimatedState extends State<HesapButtonAnimated> {
             fontSize: 16.0,
             color: widget.enabled
                 ? (widget.filled ? AppColors.white : AppColors.primary)
-                : Colors.grey.shade600,
+                : Colors.grey.shade100,
           ),
         ),
       ),

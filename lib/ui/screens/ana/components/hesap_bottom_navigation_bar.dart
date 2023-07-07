@@ -35,6 +35,7 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
           children: [
             buildTabItem(index: 0, icon: const Icon(Icons.home)),
             buildTabItem(index: 1, icon: const Icon(Icons.fastfood)),
+            // buildTabItem(index: 2, icon: const Icon(Icons.shopping_basket_outlined)),
             placeHolder,
             buildTabItem(index: 2, icon: const Icon(Icons.room_service)),
             buildTabItem(index: 3, icon: const Icon(Icons.person)),
@@ -60,10 +61,14 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
               //     ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
             } else if (index == 1) {
               BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
-            } else if (index == 2) {
-              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(2);
-            } else if (index == 3) {
+            }
+            // else if (index == 2) {
+            //   BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(2);
+            // }
+            else if (index == 2) {
               BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(3);
+            } else if (index == 3) {
+              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(4);
             }
           }),
     );

@@ -4,6 +4,8 @@ import 'package:hesap/ui/screens/sepet/components/order_header.dart';
 import 'components/orders_list.dart';
 
 class OrderScreen extends StatefulWidget {
+  const OrderScreen({super.key});
+
   @override
   _OrdersState createState() => _OrdersState();
 }
