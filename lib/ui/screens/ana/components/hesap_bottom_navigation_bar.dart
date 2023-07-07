@@ -66,9 +66,9 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
             //   BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(2);
             // }
             else if (index == 2) {
-              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(3);
+              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(2);
             } else if (index == 3) {
-              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(4);
+              BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(3);
             }
           }),
     );

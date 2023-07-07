@@ -11,6 +11,7 @@ class SepetCubit extends Cubit<SepetState> {
   // double sum = 0.0;
 
   Map<Product, int> orderList = {};
+  int orderSums = 0;
 
   loadOrders() {
     emit(SepetSuccess(orderList));
@@ -28,6 +29,15 @@ class SepetCubit extends Cubit<SepetState> {
     );
   }
 
+  // int calculateTotalItems() {
+  //   return orderList.keys.fold<int>(
+  //     0,
+  //     (previousValue, order) {
+  //       return previousValue + orderList[order]!;
+  //     },
+  //   );
+  // }
+
   addToCart(Product product) {
     if (!orderList.containsKey(product)) {
       orderList[product] = 1;
@@ -38,22 +48,36 @@ class SepetCubit extends Cubit<SepetState> {
 
   void deleteItemAndReturnZero(Product product) {
     orderList.removeWhere((key, _) => key == product);
-    emit(SepetSuccess(orderList));
+    emit(const SepetDecrement());
   }
 
   increment(Product product) {
     orderList[product] = orderList[product]! + 1;
     // sum = sum - product.price;
+    // emit(const SepetIncrement());
+    // orderSums++;
   }
 
   decrement(Product product) {
     if (orderList[product]! > 1) {
       orderList[product] = orderList[product]! - 1;
       // sum = sum - product.price;
-      emit(SepetSuccess(
-          orderList)); // TODO: emit duzgun calismiyor, ekranda gozukmuyor
+      // orderSums--;
+      // emit(const SepetDecrement()); // TODO: emit duzgun calismiyor, ekranda gozukmuyor
     } else {
+      // orderSums--;
       deleteItemAndReturnZero(product);
     }
+  }
+
+  incrementTotalSum(){
+    orderSums++;
+    emit(const SepetIncrement());
+    emit(SepetSuccess(orderList));
+  }
+  decrementTotalSum(){
+    orderSums--;
+    emit(const SepetDecrement());
+    emit(SepetSuccess(orderList));
   }
 }

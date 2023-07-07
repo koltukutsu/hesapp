@@ -1,5 +1,7 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/data/model/product.dart';
 import 'package:hesap/ui/screens/menu/components/siparis_kart_custom.dart';
 
@@ -89,7 +91,11 @@ class HesapMiddleSide extends StatelessWidget {
                         CircleAvatar(
                           backgroundColor: AppColors.primary,
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                debugPrint("Pressed");
+                                context.read<SepetCubit>().addToCart(data.elementAt(index));
+                                context.read<SepetCubit>().incrementTotalSum();
+                              },
                               icon: const Icon(
                                 Icons.shopping_basket,
                                 color: AppColors.white,
