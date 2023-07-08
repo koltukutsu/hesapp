@@ -15,7 +15,6 @@ class MenuEkran extends StatefulWidget {
 
 class _MenuEkranState extends State<MenuEkran> {
   @override
-  @override
   Widget build(BuildContext context) {
     return const Scaffold(
       // appBar: AppBar(

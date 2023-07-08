@@ -29,7 +29,9 @@ class _MenuBodyState extends State<MenuBody> {
   @override
   void initState() {
     super.initState();
-    context.read<MenuCubit>().fetchMenu(widget.restaurantId);
+    if(context.read<MenuCubit>().state is MenuInitial) {
+      context.read<MenuCubit>().fetchMenu(widget.restaurantId);
+    }
   }
 
   int currentIndex = 0;
@@ -39,7 +41,6 @@ class _MenuBodyState extends State<MenuBody> {
     return BlocBuilder<MenuCubit, MenuState>(
       builder: (context, state) {
         if (state is MenuLoaded) {
-          debugPrint("ilk kontrol");
           debugPrint(state.menu.toString());
           return SafeArea(
               child: DefaultTabController(
@@ -50,6 +51,9 @@ class _MenuBodyState extends State<MenuBody> {
                         // borderColor: AppColors.primary,
                         onTap: (index) {
                           debugPrint("index: $index");
+                          setState(() {
+                            currentIndex = index;
+                          });
                         },
                         // borderWidth: 2.0,
                         decoration: BoxDecoration(
@@ -78,10 +82,17 @@ class _MenuBodyState extends State<MenuBody> {
                           ),
                         ),
                       ),
-                      Expanded(
-                          child: HesapMiddleSide(
-                              data:
-                                  state.menu.values.elementAt(currentIndex)!)),
+                      state.menu.values.elementAt(currentIndex).isNotEmpty
+                          ? Expanded(
+                              child: HesapMiddleSide(
+                                  data: state.menu.values
+                                      .elementAt(currentIndex)!))
+                          : Expanded(
+                              child: Center(
+                                  child: HesapNormalText(
+                              text:
+                                  "${state.menu.keys.elementAt(currentIndex)} kategorisinde ürün bulunmamaktadır.",
+                            ))),
                     ],
                   )));
         } else {

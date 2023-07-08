@@ -13,7 +13,7 @@ import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/ui/theme/insets.dart';
 import 'package:sizer/sizer.dart';
 
-class HesapMiddleSide extends StatelessWidget {
+class HesapMiddleSide extends StatefulWidget {
   // TODO: text ve cardin oldugu kisim ScreenSection icine alinabilir.
   const HesapMiddleSide({
     Key? key,
@@ -23,13 +23,18 @@ class HesapMiddleSide extends StatelessWidget {
   final List<Product> data;
 
   @override
+  State<HesapMiddleSide> createState() => _HesapMiddleSideState();
+}
+
+class _HesapMiddleSideState extends State<HesapMiddleSide> {
+  @override
   Widget build(BuildContext context) {
     return GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
         // horizontal, this produces 2 rows.
         crossAxisCount: 2,
         // Generate 100 widgets that display their index in the List.
-        children: List.generate(data.length, (index) {
+        children: List.generate(widget.data.length, (index) {
           return Padding(
             padding: EdgeInsets.only(left: 8.0.sp),
             child: Container(
@@ -66,11 +71,11 @@ class HesapMiddleSide extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    data[index].title,
+                    widget.data[index].title,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Text(
-                    "${data[index].price.toString()} ₺",
+                    "${widget.data[index].price.toString()} ₺",
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Padding(
@@ -83,7 +88,7 @@ class HesapMiddleSide extends StatelessWidget {
                           children: [
                             const Icon(Icons.access_time_outlined),
                             Text(
-                              "  ${data[index].duration.toString()} dk",
+                              "  ${widget.data[index].duration.toString()} dk",
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
                           ],
@@ -93,7 +98,7 @@ class HesapMiddleSide extends StatelessWidget {
                           child: IconButton(
                               onPressed: () {
                                 debugPrint("Pressed");
-                                context.read<SepetCubit>().addToCart(data.elementAt(index));
+                                context.read<SepetCubit>().addToCart(widget.data.elementAt(index));
                                 context.read<SepetCubit>().incrementTotalSum();
                               },
                               icon: const Icon(

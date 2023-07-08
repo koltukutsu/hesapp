@@ -59,7 +59,7 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
               BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(0);
               // Navigator.of(context).pushNamedAndRemoveUntil(
               //     ROUTE_RESTAURANTS, (Route<dynamic> route) => false);
-            } else if (index == 1) {
+            } else if (index == 1 ) {
               BlocProvider.of<DegisenEkranlarCubit>(context).onChangedTab(1);
             }
             // else if (index == 2) {
