@@ -1,4 +1,5 @@
 // necessary
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
@@ -61,15 +62,26 @@ class _HesapMiddleSideState extends State<HesapMiddleSide> {
                   SizedBox(
                     height: 6.sp,
                   ),
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(Insets.m),
+                  //   child: Image.network(
+                  //     'https://picsum.photos/250?image=9',
+                  //     width: 121.sp,
+                  //     height: 64.75.sp,
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(Insets.m),
-                    child: Image.network(
-                      'https://picsum.photos/250?image=9',
-                      width: 121.sp,
-                      height: 64.75.sp,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(Insets.m),
+                      child: CachedNetworkImage(
+                          imageUrl: 'https://picsum.photos/250?image=9',
+                          width: 121.sp,
+                          height: 64.75.sp,
+                          fit: BoxFit.cover,
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) => const Center(
+                                    child: RefreshProgressIndicator(),
+                                  ))),
                   Text(
                     widget.data[index].title,
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -98,7 +110,9 @@ class _HesapMiddleSideState extends State<HesapMiddleSide> {
                           child: IconButton(
                               onPressed: () {
                                 debugPrint("Pressed");
-                                context.read<SepetCubit>().addToCart(widget.data.elementAt(index));
+                                context
+                                    .read<SepetCubit>()
+                                    .addToCart(widget.data.elementAt(index));
                                 context.read<SepetCubit>().incrementTotalSum();
                               },
                               icon: const Icon(

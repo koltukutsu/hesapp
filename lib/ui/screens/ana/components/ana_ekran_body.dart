@@ -9,6 +9,7 @@ import 'package:hesap/ui/screens/menu/menu_ekran.dart';
 import 'package:hesap/ui/screens/pop_up/pop_ekran.dart';
 import 'package:hesap/ui/screens/profile/profile_screen.dart';
 import 'package:hesap/ui/screens/sepet/order_screen.dart';
+import 'package:hesap/ui/theme/colors.dart';
 
 // pages
 
@@ -27,7 +28,7 @@ class AnaEkranBody extends StatefulWidget {
 
 class _AnaEkranBodyState extends State<AnaEkranBody> {
   int index = 0;
-
+  String appBarText = "Menü";
   @override
   Widget build(BuildContext context) {
     bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom !=
@@ -45,7 +46,10 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
 
     return BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
       builder: (context, state) => Scaffold(
-        appBar: null,
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: Text(appBarText)
+        ),
         body:pages[state.index],
 
         // AnimatedSwitcher(
@@ -70,8 +74,30 @@ class _AnaEkranBodyState extends State<AnaEkranBody> {
               ),
         bottomNavigationBar: HesapBottomNavigationBar(
           index: state.index,
+          appBarUpdateFunction: getAppBarText,
         ),
       ),
     );
+  }
+
+  getAppBarText(int indexApp) {
+    print("It is triggered $index");
+    if(indexApp == 0) {
+      setState(() {
+        appBarText = "Masa";
+      });
+    } else if(indexApp == 1) {
+      setState(() {
+        appBarText = "Menü";
+      });
+    } else if(indexApp == 2) {
+      setState(() {
+        appBarText = "Garson Çağır";
+      });
+    } else if(indexApp == 3) {
+      setState(() {
+        appBarText = "Profil";
+      });
+    }
   }
 }

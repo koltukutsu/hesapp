@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/ui/screens/sepet/components/order_footer.dart';
 import 'package:hesap/ui/screens/sepet/components/order_header.dart';
+import 'package:hesap/ui/theme/colors.dart';
 import 'components/orders_list.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _OrdersState extends State<OrderScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: AppColors.primary,
           // title: const Text(""),
         ),
         resizeToAvoidBottomInset: false,

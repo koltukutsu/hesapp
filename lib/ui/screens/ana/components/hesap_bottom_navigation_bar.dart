@@ -9,9 +9,10 @@ import 'package:hesap/ui/theme/colors.dart';
 import 'package:hesap/util/constants.dart';
 
 class HesapBottomNavigationBar extends StatefulWidget {
-  const HesapBottomNavigationBar({Key? key, required this.index})
+  const HesapBottomNavigationBar({Key? key, required this.index,  required this.appBarUpdateFunction})
       : super(key: key);
   final int index;
+  final Function(int indexCurrent) appBarUpdateFunction;
 
   @override
   State<HesapBottomNavigationBar> createState() => _HesapBottomNavigationBar();
@@ -33,7 +34,7 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buildTabItem(index: 0, icon: const Icon(Icons.home)),
+            buildTabItem(index: 0, icon: const Icon(Icons.table_bar)),
             buildTabItem(index: 1, icon: const Icon(Icons.fastfood)),
             // buildTabItem(index: 2, icon: const Icon(Icons.shopping_basket_outlined)),
             placeHolder,
@@ -53,6 +54,7 @@ class _HesapBottomNavigationBar extends State<HesapBottomNavigationBar> {
           icon: icon,
           iconSize: 32,
           onPressed: () {
+            widget.appBarUpdateFunction(index);
             if (index == 0) {
               // TODO: buradaki 1. sayda mantigi duzeltilmeli
               //context.read<QRCubit>().leaveTable();

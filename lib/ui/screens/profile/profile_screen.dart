@@ -51,122 +51,221 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         if (state is AuthSignInSuccessful) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text("Profil"),
-              backgroundColor: AppColors.primary,
-              actions: [
-                IconButton(
-                  icon: Icon(isEditing ? Icons.save : Icons.edit),
-                  onPressed: () {
-                    setState(() {
-                      isEditing = !isEditing;
-                    });
-                  },
-                )
-              ],
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: Insets.l, horizontal: Insets.s),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    BlocBuilder<ProfileCubit, ProfileState>(
-                      builder: (context, state) {
-                        return Column(
-                          children: [
-                            ProfileTextField(
-                              controller: TextEditingController(
-                                text: name,
-                              ),
-                              label: "Ad Soyadı",
-                              enabled: isEditing,
-                              suffixIcon: const Icon(Icons.person),
-                              onChanged: (value) {
-                                name = value;
-                              },
+          // return Scaffold(
+          //   appBar: AppBar(
+          //     title: const Text("Profil"),
+          //     backgroundColor: AppColors.primary,
+          //     actions: [
+          //       IconButton(
+          //         icon: Icon(isEditing ? Icons.save : Icons.edit),
+          //         onPressed: () {
+          //           setState(() {
+          //             isEditing = !isEditing;
+          //           });
+          //         },
+          //       )
+          //     ],
+          //   ),
+          //   body: SingleChildScrollView(
+          //     child: Padding(
+          //       padding: const EdgeInsets.symmetric(
+          //           vertical: Insets.l, horizontal: Insets.s),
+          //       child: Column(
+          //         crossAxisAlignment: CrossAxisAlignment.center,
+          //         children: [
+          //           BlocBuilder<ProfileCubit, ProfileState>(
+          //             builder: (context, state) {
+          //               return Column(
+          //                 children: [
+          //                   ProfileTextField(
+          //                     controller: TextEditingController(
+          //                       text: name,
+          //                     ),
+          //                     label: "Ad Soyadı",
+          //                     enabled: isEditing,
+          //                     suffixIcon: const Icon(Icons.person),
+          //                     onChanged: (value) {
+          //                       name = value;
+          //                     },
+          //                   ),
+          //                   ProfileTextField(
+          //                     controller: TextEditingController(
+          //                       text: username,
+          //                     ),
+          //                     label: "Kullanıcı Adı",
+          //                     enabled: isEditing,
+          //                     suffixIcon: const Icon(Icons.person),
+          //                     onChanged: (value) {
+          //                       username = value;
+          //                     },
+          //                   ),
+          //                   ProfileTextField(
+          //                     controller: TextEditingController(
+          //                       text: email,
+          //                     ),
+          //                     label: "E-posta Adresi",
+          //                     enabled: isEditing,
+          //                     suffixIcon: const Icon(Icons.mail),
+          //                     onChanged: (value) {
+          //                       email = value;
+          //                     },
+          //                   ),
+          //                   ProfileTextField(
+          //                     controller: TextEditingController(
+          //                       text: phone,
+          //                     ),
+          //                     label: "Telefon No",
+          //                     enabled: isEditing,
+          //                     suffixIcon: const Icon(Icons.phone),
+          //                     onChanged: (value) {
+          //                       phone = value;
+          //                     },
+          //                   ),
+          //                 ],
+          //               );
+          //             },
+          //           ),
+          //           Align(
+          //             alignment: Alignment.centerRight,
+          //             child: HesapButtonAnimated(
+          //                 label: "Kart Ekle",
+          //                 filled: false,
+          //                 widthRatio: 0.28,
+          //                 onPressed: () {
+          //                   Navigator.push(
+          //                       context,
+          //                       FadeInRoute(
+          //                           page: const HesapAddCreditCard(),
+          //                           routeName: ROUTE_CREDIT_CARD_ADD));
+          //                 }),
+          //           ),
+          //           const ProfileSavedCards(),
+          //           const ProfileOrderHistory(),
+          //           TextButton.icon(
+          //             label: const Text("Çıkış Yap"),
+          //             icon: const Icon(Icons.exit_to_app_rounded),
+          //             onPressed: () {
+          //               context.read<AuthCubit>().signOut();
+          //               Navigator.of(context).pushNamedAndRemoveUntil(
+          //                   ROUTE_BASE, (Route<dynamic> route) => false);
+          //             },
+          //           )
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // );
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  vertical: Insets.l, horizontal: Insets.s),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BlocBuilder<ProfileCubit, ProfileState>(
+                    builder: (context, state) {
+                      return Column(
+                        children: [
+                          ProfileTextField(
+                            controller: TextEditingController(
+                              text: name,
                             ),
-                            ProfileTextField(
-                              controller: TextEditingController(
-                                text: username,
-                              ),
-                              label: "Kullanıcı Adı",
-                              enabled: isEditing,
-                              suffixIcon: const Icon(Icons.person),
-                              onChanged: (value) {
-                                username = value;
-                              },
+                            label: "Ad Soyadı",
+                            enabled: isEditing,
+                            suffixIcon: const Icon(Icons.person),
+                            onChanged: (value) {
+                              name = value;
+                            },
+                          ),
+                          ProfileTextField(
+                            controller: TextEditingController(
+                              text: username,
                             ),
-                            ProfileTextField(
-                              controller: TextEditingController(
-                                text: email,
-                              ),
-                              label: "E-posta Adresi",
-                              enabled: isEditing,
-                              suffixIcon: const Icon(Icons.mail),
-                              onChanged: (value) {
-                                email = value;
-                              },
+                            label: "Kullanıcı Adı",
+                            enabled: isEditing,
+                            suffixIcon: const Icon(Icons.person),
+                            onChanged: (value) {
+                              username = value;
+                            },
+                          ),
+                          ProfileTextField(
+                            controller: TextEditingController(
+                              text: email,
                             ),
-                            ProfileTextField(
-                              controller: TextEditingController(
-                                text: phone,
-                              ),
-                              label: "Telefon No",
-                              enabled: isEditing,
-                              suffixIcon: const Icon(Icons.phone),
-                              onChanged: (value) {
-                                phone = value;
-                              },
+                            label: "E-posta Adresi",
+                            enabled: isEditing,
+                            suffixIcon: const Icon(Icons.mail),
+                            onChanged: (value) {
+                              email = value;
+                            },
+                          ),
+                          ProfileTextField(
+                            controller: TextEditingController(
+                              text: phone,
                             ),
-                          ],
-                        );
-                      },
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: HesapButtonAnimated(
-                          label: "Kart Ekle",
-                          filled: false,
-                          widthRatio: 0.28,
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                FadeInRoute(
-                                    page: const HesapAddCreditCard(),
-                                    routeName: ROUTE_CREDIT_CARD_ADD));
-                          }),
-                    ),
-                    const ProfileSavedCards(),
-                    const ProfileOrderHistory(),
-                    TextButton.icon(
-                      label: const Text("Çıkış Yap"),
-                      icon: const Icon(Icons.exit_to_app_rounded),
-                      onPressed: () {
-                        context.read<AuthCubit>().signOut();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            ROUTE_BASE, (Route<dynamic> route) => false);
-                      },
-                    )
-                  ],
-                ),
+                            label: "Telefon No",
+                            enabled: isEditing,
+                            suffixIcon: const Icon(Icons.phone),
+                            onChanged: (value) {
+                              phone = value;
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: HesapButtonAnimated(
+                        label: "Kart Ekle",
+                        filled: false,
+                        widthRatio: 0.28,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              FadeInRoute(
+                                  page: const HesapAddCreditCard(),
+                                  routeName: ROUTE_CREDIT_CARD_ADD));
+                        }),
+                  ),
+                  const ProfileSavedCards(),
+                  const ProfileOrderHistory(),
+                  TextButton.icon(
+                    label: const Text("Çıkış Yap"),
+                    icon: const Icon(Icons.exit_to_app_rounded),
+                    onPressed: () {
+                      context.read<AuthCubit>().signOut();
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          ROUTE_BASE, (Route<dynamic> route) => false);
+                    },
+                  )
+                ],
               ),
             ),
           );
         } else {
-          return Scaffold(
-            body: Center(
-              child: Column(
-                children: const [
-                  HesapNormalText(
-                    text: "Giriş Ekranına Yönlendiriliyorsunuz",
-                  ),
-                  SizedBox(
-                      width: 50, height: 50, child: CircularProgressIndicator())
-                ],
-              ),
+          // return Scaffold(
+          //   body: Center(
+          //     child: Column(
+          //       children: const [
+          //         HesapNormalText(
+          //           text: "Giriş Ekranına Yönlendiriliyorsunuz",
+          //         ),
+          //         SizedBox(
+          //             width: 50, height: 50, child: CircularProgressIndicator())
+          //       ],
+          //     ),
+          //   ),
+          // );
+          return Center(
+            child: Column(
+              children: const [
+                HesapNormalText(
+                  text: "Giriş Ekranına Yönlendiriliyorsunuz",
+                ),
+                SizedBox(
+                    width: 50, height: 50, child: CircularProgressIndicator())
+              ],
             ),
           );
         }

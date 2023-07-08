@@ -27,6 +27,7 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
 
   Widget buildFloatingActionButton({required int index}) {
     return FloatingActionButton(
+      backgroundColor: AppColors.primary,
       onPressed: () {
         Navigator.of(context).pushNamed(ROUTE_SEPET_EKRAN);
         // setState(() {
@@ -40,7 +41,7 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
         builder: (context, state) => badges.Badge(
           showBadge: context.watch<SepetCubit>().orderSums >= 0,
           badgeContent: Text(context.watch<SepetCubit>().orderSums.toString(),
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColors.primary,
                   fontWeight: FontWeight.bold,
                   fontSize: 16)),
@@ -60,7 +61,7 @@ class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
             elevation: 0,
           ),
           child:
-              Icon(Icons.shopping_cart_outlined, size: 30, color: Colors.white),
+              const Icon(Icons.shopping_cart_outlined, size: 30, color: Colors.white),
         ),
       ),
     );

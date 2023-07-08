@@ -17,13 +17,13 @@ class _MenuEkranState extends State<MenuEkran> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("Menü"),
-      //   backgroundColor: AppColors.primary,
-      // ),
+        // appBar: AppBar(
+        //   title: const Text("Menü"),
+        //   backgroundColor: AppColors.primary,
+        // ),
         body: MenuBody(
-          restaurantId: "Y6Soer2POVTako14DN4Q",
-        ));
+      restaurantId: "Y6Soer2POVTako14DN4Q",
+    ));
     // return Scaffold(
     //     // appBar: AppBar(
     //     //   title: const Text("Menü"),
