@@ -31,11 +31,13 @@ class SepetRepository {
         .get();
 
     return Product(
-      productId: urunID,
-      title: urun['isim'],
-      price: urun['fiyat'],
-      image: urun['resim'],
-      duration: urun['sure'],
+      productId: urun.id,
+      explanation: urun['explanation'],
+      stock: urun['stock'],
+      title: urun['name'],
+      price: urun['price'],
+      image: urun['picture_url'],
+      duration: urun['preparing_time'],
     );
   }
 

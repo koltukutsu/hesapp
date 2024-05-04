@@ -3,7 +3,9 @@ class Product {
   String title;
   num price;
   String image;
-  String duration;
+  int duration;
+  num stock;
+  String explanation;
 
   Product({
     required this.productId,
@@ -11,5 +13,7 @@ class Product {
     required this.price,
     required this.image,
     required this.duration,
+    required this.stock,
+    required this.explanation,
   });
 }

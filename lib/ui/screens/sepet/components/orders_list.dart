@@ -1,9 +1,12 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hesap/cubit/sepet/sepet_cubit.dart';
+import 'package:hesap/ui/theme/insets.dart';
 import 'package:like_button/like_button.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../data/model/order.dart';
 import '../../../theme/colors.dart';
@@ -21,6 +24,8 @@ class _OrdersListState extends State<OrdersList> {
     super.initState();
     context.read<SepetCubit>().loadOrders();
   }
+
+  bool changeValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,37 +50,31 @@ class _OrdersListState extends State<OrdersList> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Checkbox(
-                            checkColor: Colors.white,
+                            checkColor: Colors.black,
                             fillColor:
                                 MaterialStateProperty.resolveWith(getColor),
-                            value: false,
+                            value: changeValue,
                             onChanged: (bool? value) {
+                              setState(() {
+                                changeValue = value!;
+                              });
                               /*//setState(() {
 
                                 //_sepetFooterRefresh(context);
                               });*/
                             },
                           ),
-                          Container(
-                            width: 105,
-                            height: 72,
-                            //  color: Colors.red,
-                            // decoration: BoxDecoration(
-                            //   borderRadius:
-                            //       const BorderRadius.all(Radius.circular(10)),
-                            //   image: DecorationImage(
-                            //       image: NetworkImage(order.image)),
-                            // ),
-                            // alignment: Alignment.bottomCenter,
-                            // padding: const EdgeInsets.all(10),
-                            // margin: const EdgeInsets.all(20),
-                            // child: Image.asset(""),
-                            child: Image.network(
-                              order.image,
-                              height: 91,
-                              width: 110,
-                            ),
-                          ),
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(Insets.m),
+                              child: CachedNetworkImage(
+                                  imageUrl: order.image,
+                                  width: 121.sp,
+                                  height: 64.75.sp,
+                                  fit: BoxFit.cover,
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) => const Center(
+                                    child: RefreshProgressIndicator(),
+                                  ))),
                           Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Column(
@@ -119,6 +118,9 @@ class _OrdersListState extends State<OrdersList> {
                                             context
                                                 .read<SepetCubit>()
                                                 .decrement(order);
+                                            context
+                                                .read<SepetCubit>()
+                                                .decrementTotalSumWithoutEmit();
                                           });
                                         },
                                       ),
@@ -155,6 +157,9 @@ class _OrdersListState extends State<OrdersList> {
                                               context
                                                   .read<SepetCubit>()
                                                   .increment(order);
+                                              context
+                                                  .read<SepetCubit>()
+                                                  .incrementTotalSumWithoutEmit();
                                             });
                                             return !isLiked;
                                           },

@@ -21,7 +21,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const OnBoardingAppBar(),
+      appBar: null,
+        // const OnBoardingAppBar(),
       body: OnBoardingBody(
         navigateToRegisterScreen: () {
           Navigator.push(context,

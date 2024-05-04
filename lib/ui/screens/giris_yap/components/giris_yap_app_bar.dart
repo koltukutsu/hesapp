@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hesap/ui/theme/colors.dart';
 
-class GirisYapAppBar extends StatelessWidget with PreferredSizeWidget {
+class GirisYapAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GirisYapAppBar({Key? key}) : super(key: key);
 
   @override

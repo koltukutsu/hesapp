@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hesap/cubit/masa/masa_cubit.dart';
-import 'package:hesap/cubit/qr/qr_cubit.dart';
 import 'package:hesap/ui/screens/qr_scanner/components/qr_scanner_view.dart';
 import 'package:hesap/ui/theme/colors.dart';
-import 'package:hesap/util/constants.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRScannerBody extends StatefulWidget {

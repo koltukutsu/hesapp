@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hesap/data/model/hesap_user.dart';
 import 'package:hesap/data/repository/auth_repository.dart';
 
@@ -96,5 +98,38 @@ class AuthCubit extends Cubit<AuthState> {
 
   HesapUser? getHesapUser() {
     return hesapUser;
+  }
+
+  signUpWithGoogle() async {
+    // Trigger the authentication flow
+    try{
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+    await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    final UserCredential takenUserCredentials =
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    final User? userInfo = takenUserCredentials.user;
+    final AdditionalUserInfo? userAdditionalInfo =
+        takenUserCredentials.additionalUserInfo;
+
+    print("USER INFO: " + userInfo.toString());
+  } catch (error) {
+      print("ERROR: " + error.toString());
+    }
+    // if (userInfo != null) {
+    //   setUserNames(userName: userInfo.displayName!, userEmail: userInfo.email!);
+    // }
+    print("ICERDEYIZ");
+    // emit(NoAvatars());
+    // Once signed in, return the UserCredential
+    // return await FirebaseAuth.instance.signInWithCredential(credential)
   }
 }

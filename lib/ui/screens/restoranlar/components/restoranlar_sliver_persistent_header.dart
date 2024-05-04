@@ -135,7 +135,7 @@ class MaviKisim1 extends StatelessWidget {
           bottomLeft: Radius.circular(60),
           bottomRight: Radius.circular(60),
         ),
-        child: Container(
+        child:  Container(
           width: MediaQuery.of(context).size.width,
           height: topPadding - 55,
           color: AppColors.primary,

@@ -1,6 +1,11 @@
 // necessary
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hesap/cubit/sepet/sepet_cubit.dart';
 import 'package:hesap/util/constants.dart';
+import 'package:badges/badges.dart' as badges;
+
+import '../theme/colors.dart';
 
 class HesapFloatingActionButton extends StatefulWidget {
   const HesapFloatingActionButton({Key? key, required this.index})
@@ -13,67 +18,52 @@ class HesapFloatingActionButton extends StatefulWidget {
 }
 
 class _HesapFloatingActionButton extends State<HesapFloatingActionButton> {
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
     return buildFloatingActionButton(index: widget.index);
   }
 
   Widget buildFloatingActionButton({required int index}) {
-    // if (index == 1) {
-    //   return FloatingActionButton(
-    //     onPressed: () {
-    //       // showDialog(
-    //       //   context: context,
-    //       //   builder: (BuildContext context) => AlertDialog(
-    //       //     title: const Text("Yeni Restorana Geçme"),
-    //       //     content: const Text("Yeni Restorana Geçmek İstiyor musun?"),
-    //       //     actions: [
-    //       //       TextButton(
-    //       //         child: const Text("Hayır"),
-    //       //         onPressed: () {
-    //       //           // context.read<ProfileCubit>().toggleEditMode();
-    //       //           Navigator.of(context).pop();
-    //       //           ScaffoldMessenger.of(context).showSnackBar(
-    //       //               informationSnackbar("Restorandan Çıkılmadı"));
-    //       //           // buraya eski hallerine getirilmesi icin bir ozellik eklenmesi lazim, ufak bir fonksiyon ile halledilir
-    //       //           // TODO: ozelligi eklemeye gerek kalmadi, otomatik olarak halledildi
-    //       //         },
-    //       //       ),
-    //       //       TextButton(
-    //       //         child: const Text("Geç"),
-    //       //         onPressed: () {
-    //       //           Navigator.of(context).pop();
-    //       //           ScaffoldMessenger.of(context)
-    //       //               .showSnackBar(correctSnackbar("Restorandan Çıkıldı"));
-    //       //           Navigator.of(context).popUntil(ModalRoute.withName(
-    //       //               ROUTE_RESTAURANTS)); // TODO: qr okuma floating action butonuna tiklayinca ilk restoranlar sayfasina yonlendirsin mi??
-    //       //           Navigator.of(context).pushNamed(ROUTE_QR_SCREEN);
-    //       //         },
-    //       //       )
-    //       //     ],
-    //       //   ),
-    //       // );
-    //     },
-    //     child: const Icon(Icons.qr_code_scanner),
-    //   );
-    // } else {
-    //   return BlocBuilder<DegisenEkranlarCubit, DegisenEkranlarState>(
-    //       builder: (context, state) {
-    //     return FloatingActionButton(
-    //       // onPressed: () => widget.onChangedButton(index),
-    //       onPressed: () => BlocProvider.of<DegisenEkranlarCubit>(context)
-    //           .onChangedButton(index),
-    //       child: const Icon(Icons.exit_to_app),
-    //     );
-    //   }
-    //
-    //   );
-    // }
     return FloatingActionButton(
+      backgroundColor: AppColors.primary,
       onPressed: () {
         Navigator.of(context).pushNamed(ROUTE_SEPET_EKRAN);
+        // setState(() {
+        //   count++;
+        // });
       },
-      child: const Icon(Icons.shopping_basket),
+      child: BlocBuilder<SepetCubit, SepetState>(
+        // buildWhen: (previous, current) {
+        //   return current is SepetDecrement || current is SepetIncrement;
+        // },
+        builder: (context, state) => badges.Badge(
+          showBadge: context.watch<SepetCubit>().orderSums >= 0,
+          badgeContent: Text(context.watch<SepetCubit>().orderSums.toString(),
+              style: const TextStyle(
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16)),
+          badgeStyle: const badges.BadgeStyle(
+            // shape: badges.BadgeShape.circle,
+            badgeColor: Colors.white,
+            // padding: EdgeInsets.all(5),
+            // borderRadius: BorderRadius.circular(4),
+            borderSide: BorderSide(color: AppColors.white, width: 3),
+            // borderGradient:
+            //     badges.BadgeGradient.linear(colors: [Colors.red, Colors.black]),
+            // badgeGradient: badges.BadgeGradient.linear(
+            //   colors: [Colors.blue, Colors.yellow],
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            // ),
+            elevation: 0,
+          ),
+          child:
+              const Icon(Icons.shopping_cart_outlined, size: 30, color: Colors.white),
+        ),
+      ),
     );
   }
 }

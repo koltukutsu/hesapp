@@ -17,3 +17,17 @@ class SepetSuccess extends SepetState {
   @override
   List<Object?> get props => [];
 }
+
+class SepetIncrement extends SepetState{
+  const SepetIncrement();
+  // final int ordersSum;
+  @override
+  List<Object> get props => [];
+}
+
+class SepetDecrement extends SepetState{
+  const SepetDecrement();
+  // final int ordersSum;
+  @override
+  List<Object> get props => [];
+}

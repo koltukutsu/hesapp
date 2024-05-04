@@ -24,43 +24,75 @@ class MasaTemelEkran extends StatefulWidget {
 class _MasaTemelEkran extends State<MasaTemelEkran> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Masadakiler"),
-        backgroundColor: AppColors.primary,
-      ),
-      body: Column(
-        children: [
-          HesapNormalText(
-              text: context.read<MasaCubit>().restaurantName,
-              fontSize: 32,
-              textColor: AppColors.primary,
-              paddingTop: 10,
-              paddingBottom: 10),
-          HesapTextCard(
-              text: "Masa ${context.read<MasaCubit>().tableName}",
-              cardColor: AppColors.primary,
-              textColor: AppColors.white,
-              paddingTop: 10,
-              paddingBottom: 10,
-              fontSize: 28),
-          SizedBox(
-            // height: MediaQuery.of(context).size.height - 150,
-            // height: MediaQuery.of(context).size.height * 0.1,
-            child: Column(
-              children: [
-                // const SizedBox(
-                //   height: 100,
-                // ),
-                HesapMiddleSideMasa(
-                  qrStream: context.read<MasaCubit>().getPeopleOnTable(),
-                ),
-              ],
-            ),
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text("Masadakiler"),
+    //     backgroundColor: AppColors.primary,
+    //   ),
+    //   body: Column(
+    //     children: [
+    //       HesapNormalText(
+    //           text: context.read<MasaCubit>().restaurantName,
+    //           fontSize: 32,
+    //           textColor: AppColors.primary,
+    //           paddingTop: 10,
+    //           paddingBottom: 10),
+    //       HesapTextCard(
+    //           text: "Masa ${context.read<MasaCubit>().tableName}",
+    //           cardColor: AppColors.primary,
+    //           textColor: AppColors.white,
+    //           paddingTop: 10,
+    //           paddingBottom: 10,
+    //           fontSize: 28),
+    //       SizedBox(
+    //         // height: MediaQuery.of(context).size.height - 150,
+    //         // height: MediaQuery.of(context).size.height * 0.1,
+    //         child: Column(
+    //           children: [
+    //             // const SizedBox(
+    //             //   height: 100,
+    //             // ),
+    //             HesapMiddleSideMasa(
+    //               qrStream: context.read<MasaCubit>().getPeopleOnTable(),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //       const AnaEkranaDon(),
+    //     ],
+    //   ),
+    // );
+    return Column(
+      children: [
+        HesapNormalText(
+            text: context.read<MasaCubit>().restaurantName,
+            fontSize: 32,
+            textColor: AppColors.primary,
+            paddingTop: 10,
+            paddingBottom: 10),
+        HesapTextCard(
+            text: "Masa ${context.read<MasaCubit>().tableName}",
+            cardColor: AppColors.primary,
+            textColor: AppColors.white,
+            paddingTop: 10,
+            paddingBottom: 10,
+            fontSize: 28),
+        SizedBox(
+          // height: MediaQuery.of(context).size.height - 150,
+          // height: MediaQuery.of(context).size.height * 0.1,
+          child: Column(
+            children: [
+              // const SizedBox(
+              //   height: 100,
+              // ),
+              HesapMiddleSideMasa(
+                qrStream: context.read<MasaCubit>().getPeopleOnTable(),
+              ),
+            ],
           ),
-          const AnaEkranaDon(),
-        ],
-      ),
+        ),
+        const AnaEkranaDon(),
+      ],
     );
   }
 }

@@ -74,20 +74,20 @@ class _HesapMiddleSideMasaState extends State<HesapMiddleSideMasa> {
                       ),
                       child: Row(
                         children: [
-                          Container(
-                            height: 46,
-                            width: 46,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppColors.primary,
-                            ),
-                            child: randomAvatar(
-                              data["ismi"],
-                              height: 50,
-                              width: 52,
-                            ),
-                            alignment: Alignment.center,
-                          ),
+                          // Container(
+                          //   height: 46,
+                          //   width: 46,
+                          //   decoration: const BoxDecoration(
+                          //     shape: BoxShape.circle,
+                          //     color: AppColors.primary,
+                          //   ),
+                          //   child: randomAvatar(
+                          //     data["ismi"],
+                          //     height: 50,
+                          //     width: 52,
+                          //   ),
+                          //   alignment: Alignment.center,
+                          // ),
                           const SizedBox(
                             width: 8,
                           ),
